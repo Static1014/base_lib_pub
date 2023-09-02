@@ -31,8 +31,7 @@ This is a baseLib pub based on getx.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+The entrance is as follows:
 
 ```dart
 import 'package:pic_maker/_baseLib/base_main.dart';
