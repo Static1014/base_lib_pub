@@ -142,7 +142,7 @@ Future<String> readFileToBase64Str(String path, {String? defaultStr}) async {
     }
   }
   String res = base64Encode(await file.readAsBytes());
-  "base64Encode length: ${res.length}".logI();
+  "$path base64Encode length: ${res.length}".logI();
   return res;
 }
 
@@ -158,7 +158,7 @@ Future<String> readFileToStr(String path, {String? defaultStr}) async {
     }
   }
   String res = await file.readAsString();
-  "Content length: ${res.length}".logI();
+  "$path file content length: ${res.length}".logI();
   return res;
 }
 
