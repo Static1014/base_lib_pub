@@ -1,3 +1,5 @@
+import 'package:base_lib_pub/base_lib_pub.dart';
+
 /// 通过转义字符改变日志颜色
 const ansiColorRed = "\x1b[31m";
 const ansiColorGreen = "\x1b[32m";
@@ -37,12 +39,13 @@ void w({required dynamic msg, String tag = '', bool split = false, String? ansiC
 /// NSLog日志格式
 void printLog(String type, dynamic msg, {String tag = "", bool split = false, String? ansiColor}) {
   // 时间补齐
-  var time = DateTime.now().toString();
-  if (time.length < 26) {
-    time = "$time${"0" * (26 - time.length)}";
-  }
+  var time = DateTime.now().toFormatString();
+  // if (time.length < 26) {
+  //   time = "$time${"0" * (26 - time.length)}";
+  // }
 
-  var log = "$time($type) ${tag.isNotEmpty ? "[$tag]" : ""} ==> $msg";
+  // var log = "$time($type) ${tag.isNotEmpty ? "[$tag]" : ""} ==> $msg";
+  var log = "$time ${tag.isNotEmpty ? "[$tag]" : ""}=>$msg";
   var color = ansiColorReset;
   var reset = ansiColorReset;
   switch (type) {

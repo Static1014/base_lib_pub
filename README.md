@@ -34,7 +34,7 @@ This is a baseLib pub based on getx.
 The entrance is as follows:
 
 ```dart
-import 'package:pic_maker/_baseLib/base_main.dart';
+import 'package:base_lib_pub/base_lib_pub.dart';
 
 // ...
 
