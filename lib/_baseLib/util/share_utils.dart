@@ -6,7 +6,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../extension/common_ext.dart';
 import '../translation/lang.dart';
-import '../ui/dialog/overlay_utils.dart';
+import '../ui/overlay_utils.dart';
 
 /// Name: share_utils.dart
 ///

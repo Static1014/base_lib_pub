@@ -10,7 +10,7 @@ import '../const/global_const.dart';
 import '../extension/common_ext.dart';
 import '../route/nav.dart';
 import '../translation/lang.dart';
-import '../ui/dialog/overlay_utils.dart';
+import '../ui/overlay_utils.dart';
 
 /// Name: common_utils.dart
 ///

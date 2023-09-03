@@ -1,3 +1,4 @@
+import 'package:base_lib_pub/_baseLib/util/image_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'route/nav.dart';
@@ -18,6 +19,7 @@ void initBaseApp({
   Brightness iconBrightness = Brightness.light,
   Brightness barBrightness = Brightness.light,
   List<String>? unPopRoutes,
+  bool initWeChat = false,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -30,6 +32,9 @@ void initBaseApp({
   );
   initLog(enable: enableLog);
   Nav.initUnPopRoutes(unPopRoutes ?? []);
+  if (initWeChat) {
+    initWechatAssetsPicker();
+  }
 }
 
 void initUi({

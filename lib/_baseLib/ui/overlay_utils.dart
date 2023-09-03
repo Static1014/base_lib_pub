@@ -4,8 +4,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../extension/common_ext.dart';
-import '../../ui/dialog/m_dialog.dart';
+import '../extension/common_ext.dart';
+import 'dialog/m_dialog.dart';
 
 /// Name: overlay_utils.dart
 ///
@@ -20,6 +20,9 @@ enum ToastLevel {
   warn, // 黄底白字
   error // 红底白字
 }
+
+TransitionBuilder toastBuilder = BotToastInit();
+NavigatorObserver toastObserver = BotToastNavigatorObserver();
 
 void toast(String msg, {int durationInSec = 2}) {
   BotToast.showText(text: msg, duration: Duration(seconds: durationInSec));

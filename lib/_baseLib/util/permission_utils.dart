@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../translation/lang.dart';
-import '../ui/dialog/overlay_utils.dart';
+import '../ui/overlay_utils.dart';
 
 /// Name: permission_utils.dart
 ///

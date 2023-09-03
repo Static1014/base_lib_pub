@@ -19,7 +19,7 @@ import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 import '../extension/common_ext.dart';
 import '../extension/datetime_ext.dart';
 import '../translation/lang.dart';
-import '../ui/dialog/overlay_utils.dart';
+import '../ui/overlay_utils.dart';
 import 'common_utils.dart';
 import 'file_utils.dart';
 
