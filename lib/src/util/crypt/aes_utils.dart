@@ -7,8 +7,8 @@ import '../../extension/common_ext.dart';
 /// Created by Static4u
 /// Date : 2023/8/16 15:22
 class AESUtils {
-  static const String _globalIV = '4128736450938751';
-  static const String _globalPwd = 'f12bg73g0hoa68fh';
+  static const String _globalIV = '78gf34uhfaf8fow0';
+  static const String _globalPwd = 'fawjeef20fa3fha8';
   static const AESMode _globalMode = AESMode.cbc;
   static const String _globalPadding = 'PKCS7';
 
