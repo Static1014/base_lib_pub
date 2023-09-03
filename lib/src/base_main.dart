@@ -1,4 +1,4 @@
-import 'package:base_lib_pub/_baseLib/util/image_utils.dart';
+import 'package:base_lib_pub/src/util/image_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'route/nav.dart';
