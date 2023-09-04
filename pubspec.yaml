@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: A new Flutter pub.
-version: 0.1.1
+version: 0.1.2
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:

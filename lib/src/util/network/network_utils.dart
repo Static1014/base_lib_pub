@@ -33,7 +33,7 @@ Future<Response<T>> post<T>(
   String path, {
   Object? data,
   Map<String, dynamic>? headers,
-  String contentType = 'application/json',
+  String contentType = Headers.jsonContentType,
   ResponseType responseType = ResponseType.json,
   CancelToken? cancelToken,
   Options? options,
@@ -48,6 +48,37 @@ Future<Response<T>> post<T>(
     cancelToken: cancelToken,
     options: Options(
       method: 'POST',
+      contentType: contentType,
+      sendTimeout: sendTimeout,
+      receiveTimeout: receiveTimeout,
+      headers: headers,
+      responseType: responseType,
+    ),
+    onSendProgress: onSendProgress,
+    onReceiveProgress: onReceiveProgress,
+  );
+}
+
+/// get请求
+Future<Response<T>> get<T>(
+  String path, {
+  Map<String, dynamic>? params,
+  Map<String, dynamic>? headers,
+  String? contentType,
+  ResponseType? responseType,
+  CancelToken? cancelToken,
+  Options? options,
+  ProgressCallback? onSendProgress,
+  ProgressCallback? onReceiveProgress,
+  Duration? sendTimeout,
+  Duration? receiveTimeout,
+}) async {
+  return globalDio.request(
+    path,
+    queryParameters: params,
+    cancelToken: cancelToken,
+    options: Options(
+      method: 'GET',
       contentType: contentType,
       sendTimeout: sendTimeout,
       receiveTimeout: receiveTimeout,

@@ -47,3 +47,8 @@
 ## 0.1.1
 
 * 导出network_utils；
+
+## 0.1.2
+
+1. network_utils新增get、post通用请求方法；
+2. 简化log格式；

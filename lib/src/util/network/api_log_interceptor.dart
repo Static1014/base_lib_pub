@@ -1,8 +1,6 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:dio/dio.dart';
 
-import 'network_utils.dart';
-
 /// Name: api_log_interceptor.dart
 ///
 /// Created by Static4u
@@ -16,7 +14,7 @@ class ApiLogInterceptor extends Interceptor {
     // 如果你想终止请求并触发一个错误，你可以使用 `handler.reject(error)`。
     String url = globalDio.options.baseUrl + options.path;
     dynamic data = options.data;
-    'Request  on url: $url, with params  :\n$data'.logI(tag: tag, split: true);
+    'Request  on url: $url, with ${data == null ? "no params" : "params:\n$data"}'.logI(tag: tag, split: true);
     handler.next(options);
   }
 
@@ -26,7 +24,7 @@ class ApiLogInterceptor extends Interceptor {
     // 如果你想终止请求并触发一个错误，你可以使用 `handler.reject(error)`。
     String url = globalDio.options.baseUrl + err.requestOptions.path;
     dynamic data = err.requestOptions.data;
-    'Error    on url: $url, with params  :\n$data'.logW(tag: tag, split: true);
+    'Error    on url: $url, with ${data == null ? "no params" : "params:\n$data"}  :\n$data'.logW(tag: tag, split: true);
     handler.next(err);
   }
 

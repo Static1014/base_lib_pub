@@ -70,14 +70,14 @@ void printLog(String type, dynamic msg, {String tag = "", bool split = false, St
     if (split) {
       int maxLen = 800;
       while (log.length > 800) {
-        print("$color ${log.substring(0, maxLen)} $reset");
+        print("$color${log.substring(0, maxLen)}$reset");
         log = log.substring(maxLen);
       }
-      print("$color $log $reset");
+      print("$color$log$reset");
     } else {
-      print("$color $log $reset");
+      print("$color$log$reset");
     }
   } catch (e) {
-    print("$color $e $reset");
+    print("$color$e$reset");
   }
 }
