@@ -27,3 +27,4 @@ export 'src/util/image_utils.dart';
 export 'src/util/log_utils.dart';
 export 'src/util/permission_utils.dart';
 export 'src/util/share_utils.dart';
+export 'src/util/network/network_utils.dart';

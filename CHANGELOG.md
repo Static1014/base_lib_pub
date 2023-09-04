@@ -43,3 +43,7 @@
 ## 0.1.0
 
 * 新增network_utils；
+
+## 0.1.1
+
+* 导出network_utils；
