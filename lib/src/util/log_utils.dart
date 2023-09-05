@@ -45,7 +45,7 @@ void printLog(String type, dynamic msg, {String tag = "", bool split = false, St
   // }
 
   // var log = "$time($type) ${tag.isNotEmpty ? "[$tag]" : ""} ==> $msg";
-  var log = "$time ${tag.isNotEmpty ? "[$tag]" : ""}=>$msg";
+  var log = "[$type]$time ${tag.isNotEmpty ? "[$tag]" : ""}=>$msg";
   var color = ansiColorReset;
   var reset = ansiColorReset;
   switch (type) {
