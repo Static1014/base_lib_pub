@@ -505,3 +505,12 @@ Widget mInkView({
     ),
   );
 }
+
+/// 通用转圈
+Widget mProgressIndicator({
+  Color color = Colors.white,
+}) {
+  return CircularProgressIndicator(
+    backgroundColor: color,
+  );
+}

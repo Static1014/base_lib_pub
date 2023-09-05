@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -59,9 +60,7 @@ CancelFunc showLoading(String msg, {VoidCallback? onClose}) {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const CircularProgressIndicator(
-              backgroundColor: Colors.white,
-            ),
+            mProgressIndicator(),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 20, 8, 4),
               child: Text(
