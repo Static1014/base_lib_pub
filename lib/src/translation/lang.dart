@@ -20,6 +20,7 @@ class MyBaseTrs {
   final confirm = "confirm";
   final warn = "warn";
   final noMore = "noMore";
+  final retry = "retry";
 
   // imgUtils
   final imgNull = "imgNull";
@@ -69,6 +70,7 @@ final baseEnUS = {
   BaseTrs.imgSaved2GalleryFailed: 'There\'s something wrong to save image',
   BaseTrs.shareEmpty: 'You need to choose something to share',
   BaseTrs.shareNoFile: 'The file you choose is not existed, please try another one',
+  BaseTrs.retry: 'Retry',
 };
 
 final baseZhCN = {
@@ -97,4 +99,5 @@ final baseZhCN = {
   BaseTrs.imgSaved2GalleryFailed: '图片保存失败',
   BaseTrs.shareEmpty: '分享内容不能为空',
   BaseTrs.shareNoFile: '你选择的文件不存在，换一个吧',
+  BaseTrs.retry: '重试',
 };

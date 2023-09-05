@@ -21,7 +21,6 @@ void initBaseApp({
   Brightness barBrightness = Brightness.light,
   List<String>? unPopRoutes,
   bool initWeChat = false,
-  bool initNetwork = false,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -36,9 +35,6 @@ void initBaseApp({
   Nav.initUnPopRoutes(unPopRoutes ?? []);
   if (initWeChat) {
     initWechatAssetsPicker();
-  }
-  if (initNetwork) {
-    initDio();
   }
 }
 
