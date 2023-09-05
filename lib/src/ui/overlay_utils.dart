@@ -43,7 +43,12 @@ void notify(String msg, {String title = '', int durationInSec = 2}) {
 /// @param: msg 消息
 /// @param: onClose 关闭方法回调
 /// @return: 关闭方法
-CancelFunc showLoading(String msg, {VoidCallback? onClose}) {
+CancelFunc showLoading(
+  String msg, {
+  VoidCallback? onClose,
+  double pbSize = 36,
+  Color pbColor = BaseColors.cWhite,
+}) {
   return BotToast.showCustomLoading(
     backButtonBehavior: BackButtonBehavior.ignore, // 拦截返回按钮点击
     onClose: onClose,
@@ -60,7 +65,7 @@ CancelFunc showLoading(String msg, {VoidCallback? onClose}) {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            mProgressIndicator(),
+            mProgressIndicator(size: pbSize, color: pbColor),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 20, 8, 4),
               child: Text(
