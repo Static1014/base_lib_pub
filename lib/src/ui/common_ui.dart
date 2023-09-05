@@ -508,9 +508,22 @@ Widget mInkView({
 
 /// 通用转圈
 Widget mProgressIndicator({
-  Color color = Colors.white,
+  bool isIosStyle = true,
+  Color? color,
+  double size = 24,
+  double strokeWidthInAndroid = 4,
 }) {
-  return CircularProgressIndicator(
-    backgroundColor: color,
-  );
+  return isIosStyle
+      ? CupertinoActivityIndicator(
+          color: color,
+          radius: size / 2,
+        )
+      : SizedBox(
+          width: size,
+          height: size,
+          child: CircularProgressIndicator(
+            backgroundColor: color,
+            strokeWidth: strokeWidthInAndroid,
+          ),
+        );
 }
