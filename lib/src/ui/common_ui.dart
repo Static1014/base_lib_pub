@@ -110,7 +110,7 @@ Widget mBackBtn() {
 /// 获取普通Text
 Widget mText({
   required String msg,
-  double fontSize = 16,
+  double fontSize = 15,
   FontWeight weight = FontWeight.normal,
   Color? color,
   TextAlign textAlign = TextAlign.start,
