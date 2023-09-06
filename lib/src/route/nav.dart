@@ -39,7 +39,7 @@ class Nav {
   /// 图片预览
   static void startImagePreview({
     required List<String> imgList,
-    List<(bool isText, Color? textColor, Color? textBgColor)>? textTagList,
+    List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList,
     int defaultIndex = 0,
     Widget? bottomView,
     bool enableTapImgClose = true,

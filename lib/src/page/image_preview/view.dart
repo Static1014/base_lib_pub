@@ -18,7 +18,7 @@ class ImagePreviewPage extends StatelessWidget {
   List<String> imgList = [];
 
   // 文字标识源，当对应index的值为true，imgList对应index的元素不是图片，是文字
-  List<(bool isText, Color? textColor, Color? textBgColor)>? textTagList = [];
+  List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList = [];
 
   // 底部自定义视图
   Widget? bottomView;
