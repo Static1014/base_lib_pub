@@ -39,6 +39,7 @@ class Nav {
   /// 图片预览
   static void startImagePreview({
     required List<String> imgList,
+    List<(bool isText, Color? textColor, Color? textBgColor)>? textTagList,
     int defaultIndex = 0,
     Widget? bottomView,
     bool enableTapImgClose = true,
@@ -53,10 +54,13 @@ class Nav {
     bool pageOpaque = false, // 页面背景不透明
     double bgOpacityBase = 1.0,
     bool splitBottomView = false,
+    bool errorShowData = false,
+    Color? errorBgColor,
   }) {
     Get.to(
       () => ImagePreviewPage(
         imgList: imgList,
+        textTagList: textTagList,
         defaultIndex: defaultIndex,
         bottomView: bottomView,
         enableTapImgClose: enableTapImgClose,
@@ -70,6 +74,8 @@ class Nav {
         imgBgOpacityBase: bgOpacityBase,
         pageBgColor: pageBgColor,
         splitBottomView: splitBottomView,
+        errorShowData: errorShowData,
+        errorBgColor: errorBgColor,
       ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,

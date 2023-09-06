@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: A new Flutter pub.
-version: 0.2.0
+version: 0.2.2
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -43,6 +43,8 @@ dependencies:
   #  cryptography: ^2.5.0
   #  cryptography_flutter: ^2.3.0
   encrypt: ^5.0.1
+  # animations
+  simple_animations: ^5.0.2
 
 dev_dependencies:
   flutter_test:

@@ -17,6 +17,9 @@ class ImagePreviewPage extends StatelessWidget {
   // 图片源
   List<String> imgList = [];
 
+  // 文字标识源，当对应index的值为true，imgList对应index的元素不是图片，是文字
+  List<(bool isText, Color? textColor, Color? textBgColor)>? textTagList = [];
+
   // 底部自定义视图
   Widget? bottomView;
 
@@ -45,10 +48,15 @@ class ImagePreviewPage extends StatelessWidget {
   // 让bottomView独立于image，放在页面底部
   bool splitBottomView = false;
 
+  // 加载失败时，直接显示list中的内容
+  bool errorShowData = false;
+  Color? errorBgColor;
+
   ImagePreviewPage({
     Key? key,
     this.defaultIndex = 0,
     required this.imgList,
+    this.textTagList,
     this.bottomView,
     this.enableTapImgClose = true,
     this.enableHeroTag = true,
@@ -61,6 +69,8 @@ class ImagePreviewPage extends StatelessWidget {
     this.imgBgColor,
     this.imgBgOpacityBase = 1.0,
     this.splitBottomView = false,
+    this.errorShowData = false,
+    this.errorBgColor,
   }) : super(key: key) {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
@@ -186,6 +196,14 @@ class ImagePreviewPage extends StatelessWidget {
     );
   }
 
+  (bool isText, Color? textColor, Color? textBgColor) _isText(int index) {
+    var exit = textTagList != null && (textTagList?.length ?? 0) > index;
+    if (exit) {
+      return textTagList?[index] ?? (false, null, null);
+    }
+    return (false, null, null);
+  }
+
   Widget buildImageView() {
     return Container(
       decoration: pageDecoration,
@@ -201,13 +219,25 @@ class ImagePreviewPage extends StatelessWidget {
             String url = logic.imgList[index];
             GlobalKey<ExtendedImageSlidePageState> gk = GlobalKey<ExtendedImageSlidePageState>();
 
-            Widget iv = mLoadImageView(
-              url,
-              enableSlideOutPage: enableSlideOutPage,
-              fit: BoxFit.contain,
-              mode: ExtendedImageMode.gesture,
-              initGestureConfigHandler: (_) => _gestureConfig,
-            );
+            (bool isText, Color? textColor, Color? textBgColor) isText = _isText(index);
+            Widget iv = isText.$1
+                ? Container(
+                    padding: const EdgeInsets.all(12),
+                    color: isText.$2 ?? errorBgColor,
+                    alignment: Alignment.center,
+                    child: mText(
+                      msg: url,
+                      color: isText.$3 ?? BaseColors.cFontBlack,
+                      fontSize: 14,
+                    ),
+                  )
+                : mLoadImageView(
+                    url,
+                    enableSlideOutPage: enableSlideOutPage,
+                    fit: BoxFit.contain,
+                    mode: ExtendedImageMode.gesture,
+                    initGestureConfigHandler: (_) => _gestureConfig,
+                  );
 
             Widget child;
             if (enableHeroTag) {

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 
 import '../const/global_const.dart';
 import '../theme/base_colors.dart';
@@ -313,6 +314,7 @@ Widget mLoadImageView(
   double minHeight = 0,
   double? compressionRatio,
   String? package,
+  Widget? errorWidget,
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -324,6 +326,7 @@ Widget mLoadImageView(
   LoadStateChanged stateChanged = _getLoadStateChanged(
     loadingWidget: loadingWidget,
     errorSize: errorSize,
+    errorWidget: errorWidget,
     errorImgPath: errorImgPath,
     package: package,
   );
@@ -373,6 +376,7 @@ Widget mLoadImageView(
           border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
           borderRadius: borderRadius,
           loadStateChanged: stateChanged,
+          cache: true,
         );
   return ConstrainedBox(
     constraints: BoxConstraints(minHeight: minHeight, minWidth: minWidth),
@@ -383,6 +387,7 @@ Widget mLoadImageView(
 /// 获取图片加载各阶段展示视图
 LoadStateChanged _getLoadStateChanged({
   Widget? loadingWidget,
+  Widget? errorWidget,
   double errorSize = 30,
   String errorImgPath = GlobalConst.defaultErrorImg,
   String? package,
@@ -396,8 +401,11 @@ LoadStateChanged _getLoadStateChanged({
           return Center(child: mProgressIndicator());
         }
       case LoadState.completed:
-        return state.completedWidget;
+        return mFadeInView(child: state.completedWidget);
       case LoadState.failed:
+        if (errorWidget != null) {
+          return errorWidget;
+        }
         if (errorSize == 0) {
           return Image.asset(
             errorImgPath,
@@ -417,6 +425,25 @@ LoadStateChanged _getLoadStateChanged({
         );
     }
   };
+}
+
+/// fadeInView
+Widget mFadeInView({
+  Duration duration = const Duration(milliseconds: 600),
+  Duration delay = Duration.zero,
+  Tween<double>? tween,
+  required Widget child,
+}) {
+  return PlayAnimationBuilder<double>(
+      tween: tween ?? Tween<double>(begin: 0, end: 1),
+      duration: duration,
+      delay: delay,
+      builder: (ctx, opacity, child) {
+        return Opacity(
+          opacity: opacity,
+          child: child,
+        );
+      });
 }
 
 /// 头像框

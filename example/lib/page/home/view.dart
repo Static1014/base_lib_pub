@@ -24,12 +24,16 @@ class HomePage extends StatelessWidget {
             _buildTestFunc('ImagePreview', () {
               Nav.startImagePreview(
                 imgList: [
+                  'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                   'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
                   'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                 ],
+                textTagList: [(true, null, null)],
                 defaultIndex: 0,
                 pageBgColor: BaseColors.cTransparent,
                 enableHeroTag: false,
+                errorShowData: true,
+                errorBgColor: BaseColors.cCyan,
               );
             }),
           ],

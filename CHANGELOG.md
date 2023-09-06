@@ -2,14 +2,13 @@
 
 * 初始化版本；
 
-
 ## 0.0.2
 
 * 基础调整
 
 1. pub精简；
 2. 部分util统一管理，子项目无需引用；
-   1. toast；
+    1. toast；
 3. 启动调整；
 
 ## 0.0.3
@@ -90,3 +89,12 @@
 2. 调整BaseDimens.dStatusBarHeight值的获取方式；
 3. 调整ImagePreview样式；
 4. 调整log样式；
+
+## 0.2.1
+
+1. 调整ImagePreview支持显示文字；
+
+## 0.2.2
+
+1. 调整ImagePreview支持显示文字，支持修改文字及背景颜色；
+2. 新增mFadeInView，动画显示View；
