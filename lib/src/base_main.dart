@@ -1,6 +1,7 @@
 import 'package:base_lib_pub/src/util/image_utils.dart';
 import 'package:base_lib_pub/src/util/network/network_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'route/nav.dart';
 import 'ui/common_ui.dart';
@@ -36,6 +37,7 @@ void initBaseApp({
   if (initWeChat) {
     initWechatAssetsPicker();
   }
+  Get.config(enableLog: enableLog);
 }
 
 void initUi({
