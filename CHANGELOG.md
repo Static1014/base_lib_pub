@@ -1,104 +1,109 @@
 ## 0.0.1
 
-* 初始化版本；
+* Initial version;
 
 ## 0.0.2
 
-* 基础调整
+* Base adjustment
 
-1. pub精简；
-2. 部分util统一管理，子项目无需引用；
-    1. toast；
-3. 启动调整；
+1. pub streamlining;
+2. Some util unified management, subprojects do not need to reference;
+1. toast;
+3. Start adjustment;
 
 ## 0.0.3
 
-* export调整，一次导入；
+* export adjustment, import once;
 
 ## 0.0.4
 
-* 目录调整；
+* Directory adjustment;
 
 ## 0.0.5
 
-* file_utils 日志调整；
+* file_utils log adjustment;
 
 ## 0.0.6
 
-* aes_utils调整；
+* aes_utils adjustment;
 
 ## 0.0.7
 
-* 自动发布；
+* Automatic release;
 
 ## 0.0.8
 
-* 精简log；
+* Thin log;
 
 ## 0.0.9
 
-* 测试自动发布；
+* Test automatic release;
 
 ## 0.1.0
 
-* 新增network_utils；
+* network_utils added;
 
 ## 0.1.1
 
-* 导出network_utils；
+* Export network_utils;
 
 ## 0.1.2
 
-1. network_utils新增get、post通用请求方法；
-2. 简化log格式；
+1. network_utils adds a common request method for get and post.
+2. Simplify the log format.
 
 ## 0.1.3
 
-1. 网络请求日志格式调整；
+1. Adjust the format of network request logs.
 
 ## 0.1.4
 
-1. 更新Trs；
-2. 网络请求实例初始化不自动发起；
+1. Update Trs;
+2. Network request instance initialization is not automatically initiated.
 
 ## 0.1.5
 
-1. 新增通用转圈；
+1. New universal turning circle;
 
 ## 0.1.6
 
-1. 调整通用转圈样式；
+1. Adjust the universal turning style;
 
 ## 0.1.7
 
-1. 调整通用转圈样式；
+1. Adjust the universal turning style;
 
 ## 0.1.8
 
-1. 切换日志输出模式，由Get.log()输出，去除前缀“I/flutter (29368):”；
+1. Switch the log output mode to Get.log() and remove the prefix "I/flutter (29368):".
 
 ## 0.1.9
 
-1. 调整日志格式；
-2. 依赖项目中Image.asset()必须传package，子项目引用依赖中的资源也需要；
-3. 调整assets目录；
+1. Adjust the log format.
+2. Image.asset() in the dependent project must pass the package, and the subproject reference resources in the dependency also needs;
+3. Adjust the assets directory.
 
 ## 0.2.0
 
-1. 新增example项目，方便lib自身测试；
-2. 调整BaseDimens.dStatusBarHeight值的获取方式；
-3. 调整ImagePreview样式；
-4. 调整log样式；
+1. Add the example project to facilitate lib testing;
+2. Adjust the BaseDimens. DStatusBarHeight value access;
+3. Adjust the ImagePreview style;
+4. Adjust the log style.
 
 ## 0.2.1
 
-1. 调整ImagePreview支持显示文字；
+1. Adjust ImagePreview to support text display;
 
 ## 0.2.2
 
-1. 调整ImagePreview支持显示文字，支持修改文字及背景颜色；
-2. 新增mFadeInView，动画显示View；
+1. Adjust ImagePreview to support the display of text, support to modify the text and background color;
+2. Add mFadeInView, animation display View;
 
 ## 0.2.3
 
-1. 调整ImagePreview支持显示文字，参数调整；
+1. Adjust the ImagePreview support to display text, parameter adjustment;
+
+## 1.0.0
+
+1. Improve README, add English version (machine translation);
+2. Remove some warnings;

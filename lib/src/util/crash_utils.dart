@@ -23,7 +23,7 @@ void initCrashHandler({String? msg, toastError = false}) {
       //   textColor: Colors.white,
       // );
     }
-    msg ??= BaseTrs.crash.tr;
+    msg ??= baseTrs.crash.tr;
     try {
       writeToFile("${myDefaultDirPath}crash/log-${DateTime.now().toFormatString(format: [yyyy, '-', mm, '-', dd])}.txt",
           "\n\n\n${DateTime.now().toFormatString()}===============\n${details.exception.toString()}\n${details.stack.toString()}",

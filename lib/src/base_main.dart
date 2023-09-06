@@ -1,5 +1,4 @@
 import 'package:base_lib_pub/src/util/image_utils.dart';
-import 'package:base_lib_pub/src/util/network/network_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

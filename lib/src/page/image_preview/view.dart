@@ -12,45 +12,43 @@ class ImagePreviewPage extends StatelessWidget {
   }
 
   // 默认显示下标
-  int defaultIndex = 0;
+  final int defaultIndex;
 
   // 图片源
-  List<String> imgList = [];
+  final List<String> imgList;
 
   // 文字标识源，当对应index的值为true，imgList对应index的元素不是图片，是文字
-  List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList = [];
+  final List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList;
 
   // 底部自定义视图
-  Widget? bottomView;
+  final Widget? bottomView;
 
   // 点击图片关闭预览
-  bool enableTapImgClose = true;
+  final bool enableTapImgClose;
 
   // 左上角返回按钮
-  bool closeBtnVisible = true;
+  final bool closeBtnVisible;
 
   // hero过渡动画
-  bool enableHeroTag = true;
+  final bool enableHeroTag;
 
   // 自定义图片heroTag
-  List<String>? heroTags;
+  final List<String>? heroTags;
 
   // 是否允许拖动图片关闭预览
-  bool enableSlideOutPage = true;
-  Color? imgBgColor;
-  double imgBgOpacityBase = 1.0;
-  Color? pageBgColor;
+  final bool enableSlideOutPage;
+  final Color? imgBgColor;
+  final double imgBgOpacityBase;
+  final Color? pageBgColor;
 
   // 页面padding
-  EdgeInsets? pagePadding;
-  Decoration? pageDecoration;
+  final EdgeInsets? pagePadding;
+  final Decoration? pageDecoration;
 
   // 让bottomView独立于image，放在页面底部
-  bool splitBottomView = false;
+  final bool splitBottomView;
 
-  // 加载失败时，直接显示list中的内容
-  bool errorShowData = false;
-  Color? errorBgColor;
+  final Color? errorBgColor;
 
   ImagePreviewPage({
     Key? key,
@@ -69,14 +67,12 @@ class ImagePreviewPage extends StatelessWidget {
     this.imgBgColor,
     this.imgBgOpacityBase = 1.0,
     this.splitBottomView = false,
-    this.errorShowData = false,
     this.errorBgColor,
   }) : super(key: key) {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
 
     logic.curIndex(defaultIndex);
-    imgBgColor ??= BaseColors.cBlack;
     logic.imgList(imgList);
   }
 

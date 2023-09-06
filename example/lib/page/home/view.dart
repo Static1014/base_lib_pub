@@ -32,7 +32,6 @@ class HomePage extends StatelessWidget {
                 defaultIndex: 0,
                 pageBgColor: BaseColors.cTransparent,
                 enableHeroTag: false,
-                errorShowData: true,
                 errorBgColor: BaseColors.cCyan,
               );
             }),

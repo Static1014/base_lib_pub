@@ -43,7 +43,7 @@ Future<bool> clickBack({dynamic result}) async {
     if (GetMy.lastTime == null || DateTime.now().difference(GetMy.lastTime!) > const Duration(seconds: 1)) {
       //   // 一秒之内点击两次返回键，提示再次点击退出
       GetMy.lastTime = DateTime.now();
-      toast(BaseTrs.exitOnDoubleClick.tr);
+      toast(baseTrs.exitOnDoubleClick.tr);
       return false;
     }
     exitApp();

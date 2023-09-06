@@ -170,7 +170,7 @@ class MDialog {
                                           onPressed: () {
                                             hide();
                                           },
-                                          child: Text(BaseTrs.confirm.tr),
+                                          child: Text(baseTrs.confirm.tr),
                                         ),
                                       ],
                                 ),
@@ -213,14 +213,14 @@ class MDialog {
       TextButton(
         onPressed: leftCallback,
         child: Text(
-          leftBtnText ?? BaseTrs.cancel.tr,
+          leftBtnText ?? baseTrs.cancel.tr,
           style: TextStyle(color: leftColor),
         ),
       ),
       TextButton(
         onPressed: rightCallback,
         child: Text(
-          rightBtnText ?? BaseTrs.confirm.tr,
+          rightBtnText ?? baseTrs.confirm.tr,
           style: TextStyle(color: rightColor),
         ),
       ),

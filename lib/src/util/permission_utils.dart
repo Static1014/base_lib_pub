@@ -20,7 +20,7 @@ Future<bool> checkPermission({required Permission permission, OnPermissionCheck?
       onPermissionCheck?.call(true);
       return true;
     } else {
-      toast(BaseTrs.permissionTipStorage.tr);
+      toast(baseTrs.permissionTipStorage.tr);
       onPermissionCheck?.call(false);
       return false;
     }

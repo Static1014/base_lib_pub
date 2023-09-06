@@ -47,7 +47,7 @@ Future<ui.Image?> getRenderImage(GlobalKey gk) async {
 Future<File?> saveImage2File(String path, ui.Image? image) async {
   var data = await image?.toByteData(format: ui.ImageByteFormat.png);
   if (data == null) {
-    toast(BaseTrs.imgNull.tr);
+    toast(baseTrs.imgNull.tr);
     return null;
   } else {
     return saveDataToFile(path, data);
@@ -83,17 +83,17 @@ Future<String> saveImage2Gallery(ui.Image? image, {bool isTransform2FilePath = t
 /// 保存图片数据到相册
 Future<String> saveImageData2Gallery(ByteData? data, {bool isTransform2FilePath = true}) async {
   if (data == null) {
-    toast(BaseTrs.imgNull.tr);
+    toast(baseTrs.imgNull.tr);
     return '';
   }
   Map<String, Object> result = Map.castFrom(await ImageGallerySaver.saveImage(data.buffer.asUint8List(), quality: 100));
   if (result['isSuccess'] == true) {
     '图片已保存到相册, filePath: ${result['filePath']}'.logI();
-    toast(BaseTrs.imgSaved2Gallery.tr);
+    toast(baseTrs.imgSaved2Gallery.tr);
     var uri = result['filePath'] as String;
     return isTransform2FilePath ? (await toFile(uri)).absolute.path : uri;
   } else {
-    toast(BaseTrs.imgSaved2GalleryFailed.tr);
+    toast(baseTrs.imgSaved2GalleryFailed.tr);
     return '';
   }
 }

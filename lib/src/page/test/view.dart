@@ -14,11 +14,11 @@ class TestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(BaseTrs.testTitle.tr),
+        title: Text(baseTrs.testTitle.tr),
       ),
       body: Container(
         color: Colors.green.withAlpha(100),
-        child: Text(BaseTrs.testTitle.tr),
+        child: Text(baseTrs.testTitle.tr),
       ),
     );
   }
