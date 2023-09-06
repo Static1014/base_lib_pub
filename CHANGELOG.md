@@ -98,3 +98,7 @@
 
 1. 调整ImagePreview支持显示文字，支持修改文字及背景颜色；
 2. 新增mFadeInView，动画显示View；
+
+## 0.2.3
+
+1. 调整ImagePreview支持显示文字，参数调整；
