@@ -107,3 +107,7 @@
 
 1. Improve README, add English version (machine translation);
 2. Remove some warnings;
+
+## 1.0.1
+
+1. modify README;

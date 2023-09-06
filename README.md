@@ -12,7 +12,7 @@ and the Flutter guide for
 -->
 _Language: [Chinese](README.zh-cn.md), English
 
-## About
+## Description
 
 This is a basic library of Flutter project based on [Getx](https://github.com/jonataslaw/getx/blob/master/README.zh-cn.md).
 
