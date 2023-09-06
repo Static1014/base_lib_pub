@@ -510,7 +510,7 @@ Widget mInkView({
 Widget mProgressIndicator({
   bool isIosStyle = true,
   Color? color,
-  double size = 24,
+  double size = 20,
   double strokeWidthInAndroid = 4,
 }) {
   return isIosStyle
