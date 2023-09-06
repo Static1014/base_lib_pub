@@ -1,5 +1,5 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:get/get.dart';
+import 'dart:developer' as developer;
 
 /// 通过转义字符改变日志颜色
 const ansiColorRed = "\x1b[31m";
@@ -84,5 +84,5 @@ void printLog(String type, dynamic msg, {String tag = "", bool split = false, St
 }
 
 void realLog(String msg) {
-  Get.log(msg);
+  developer.log(msg);
 }
