@@ -1,13 +1,9 @@
 import 'dart:math';
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../theme/base_colors.dart';
-import '../../theme/base_dimens.dart';
-import '../../ui/common_ui.dart';
-import 'logic.dart';
 
 class ImagePreviewPage extends StatelessWidget {
   /// 根据url、index生成hero tag

@@ -312,6 +312,7 @@ Widget mLoadImageView(
   double minWidth = 0,
   double minHeight = 0,
   double? compressionRatio,
+  String? package,
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -320,7 +321,12 @@ Widget mLoadImageView(
     borderRadius = BorderRadius.all(Radius.circular(radius));
   }
 
-  LoadStateChanged stateChanged = _getLoadStateChanged(loadingWidget: loadingWidget, errorSize: errorSize, errorImgPath: errorImgPath);
+  LoadStateChanged stateChanged = _getLoadStateChanged(
+    loadingWidget: loadingWidget,
+    errorSize: errorSize,
+    errorImgPath: errorImgPath,
+    package: package,
+  );
 
   Widget iv;
   if (isAsset) {
@@ -336,6 +342,7 @@ Widget mLoadImageView(
       border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
       borderRadius: borderRadius,
       loadStateChanged: stateChanged,
+      package: url.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
     );
   }
 
@@ -378,6 +385,7 @@ LoadStateChanged _getLoadStateChanged({
   Widget? loadingWidget,
   double errorSize = 30,
   String errorImgPath = GlobalConst.defaultErrorImg,
+  String? package,
 }) {
   return (state) {
     switch (state.extendedImageLoadState) {
@@ -391,10 +399,21 @@ LoadStateChanged _getLoadStateChanged({
         return state.completedWidget;
       case LoadState.failed:
         if (errorSize == 0) {
-          return Image.asset(errorImgPath, fit: BoxFit.cover);
+          return Image.asset(
+            errorImgPath,
+            fit: BoxFit.cover,
+            package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+          );
         }
         return Center(
-          child: SizedBox(width: errorSize, height: errorSize, child: Image.asset(errorImgPath, fit: BoxFit.cover)),
+          child: SizedBox(
+              width: errorSize,
+              height: errorSize,
+              child: Image.asset(
+                errorImgPath,
+                fit: BoxFit.cover,
+                package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+              )),
         );
     }
   };
@@ -408,6 +427,7 @@ Widget mAvatar({
   double borderWidth = 1,
   Color borderColor = BaseColors.cYellow,
   BoxShape? shape,
+  String? package,
 }) {
   shape ??= BoxShape.circle;
   double radius = 0;
@@ -434,6 +454,7 @@ Widget mAvatar({
             errorSize: size,
             placeholderSize: size,
             placeholderImgPath: GlobalConst.defaultAvatarImg,
+            package: package,
           )),
     ],
   );

@@ -46,7 +46,9 @@ void printLog(String type, dynamic msg, {String tag = "", bool split = false, St
   // }
 
   // var log = "$time($type) ${tag.isNotEmpty ? "[$tag]" : ""} ==> $msg";
-  var log = "[$type]$time ${tag.isNotEmpty ? "[$tag]" : ""}=>$msg";
+  // var log = "[$type]$time ${tag.isNotEmpty ? "[$tag]" : ""}=>$msg";
+  var log = "$msg";
+  var name = '$type: ${tag.isNotEmpty ? "[$tag]" : ""} @ $time';
   var color = ansiColorReset;
   var reset = ansiColorReset;
   switch (type) {
@@ -70,19 +72,19 @@ void printLog(String type, dynamic msg, {String tag = "", bool split = false, St
   try {
     if (split) {
       int maxLen = 800;
-      while (log.length > 800) {
-        realLog("$color${log.substring(0, maxLen)}$reset");
+      while (log.length > maxLen) {
+        realLog("$color${log.substring(0, maxLen)}$reset", name);
         log = log.substring(maxLen);
       }
-      realLog("$color$log$reset");
+      realLog("$color$log$reset", name);
     } else {
-      realLog("$color$log$reset");
+      realLog("$color$log$reset", name);
     }
   } catch (e) {
-    realLog("$color$e$reset");
+    realLog("$color$e$reset", name);
   }
 }
 
-void realLog(String msg) {
-  developer.log(msg);
+void realLog(String msg, String name) {
+  developer.log(msg, name: name);
 }
