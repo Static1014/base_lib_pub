@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 /// Name: dart
 ///
 /// Created by Static4u
@@ -22,7 +25,7 @@ class BaseDimens {
   static const double dIconBtnHeight = 50; // 44
   static const double dIconSize = 20;
 
-  static const double dStatusBarHeight = 20;
+  static double dStatusBarHeight = MediaQuery.of(Get.context!).padding.top;
   static const double dAppBarHeight = 50;
 
   /// header高度

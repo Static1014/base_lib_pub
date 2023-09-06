@@ -83,3 +83,10 @@
 1. 调整日志格式；
 2. 依赖项目中Image.asset()必须传package，子项目引用依赖中的资源也需要；
 3. 调整assets目录；
+
+## 0.2.0
+
+1. 新增example项目，方便lib自身测试；
+2. 调整BaseDimens.dStatusBarHeight值的获取方式；
+3. 调整ImagePreview样式；
+4. 调整log样式；

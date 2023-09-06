@@ -393,7 +393,7 @@ LoadStateChanged _getLoadStateChanged({
         if (loadingWidget != null) {
           return loadingWidget;
         } else {
-          return const Center(child: CupertinoActivityIndicator(radius: 10));
+          return Center(child: mProgressIndicator());
         }
       case LoadState.completed:
         return state.completedWidget;

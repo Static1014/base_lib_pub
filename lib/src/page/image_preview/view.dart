@@ -101,7 +101,8 @@ class ImagePreviewPage extends StatelessWidget {
                                 onPressed: () {
                                   logic.close();
                                 },
-                                backgroundColor: BaseColors.cBlackTrans,
+                                backgroundColor: BaseColors.cTransparent,
+                                elevation: 0,
                                 child: const Icon(Icons.arrow_back_ios_new_outlined),
                               ),
                             ),
