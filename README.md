@@ -56,11 +56,12 @@ Come on!
 1. Personal open source, limited ability, light spray;
 2. Most of the time, the project is only debugging on individual private Android devices. 
 3. If there is any compatibility problem, please email to [420048248@qq.com](mailto:420048248@qq.com) or use the contact information at the bottom to give feedback;
+4. Based on Flutter 3.13.0, Dart 3.1.0；
 
 
 ## Usage
 
-The entrance is as [follows](example/lib/main.dart):
+The [entrance](example/lib/main.dart) is as follows:
 
 ```dart
 import 'package:base_lib_pub/base_lib_pub.dart';
@@ -106,7 +107,7 @@ class _MyAppState extends State<MyApp> {
 1. Basis: [get: ^ 4.6.5](https://pub.dev/packages/get)
 2. The animation: [simple_animations](https://pub.dev/packages/simple_animations)
 3. Toast, loading: [bot_toast: ^ 4.0.4](https://pub.dev/packages/bot_toast)
-4. Permission to apply for, check: [permission_handler: ^ 10.2.0](https://pub.dev/packages/permission_handler)
+4. Permission to apply for, check: [permission_handler: ^ 10.4.5](https://pub.dev/packages/permission_handler)
 5. Save the images into the photo gallery: [image_gallery_saver: ^ 2.0.1](https://pub.dev/packages/)
 6. Image loading, see: [extended_image: ^ 8.1.0](https://pub.dev/packages/extended_image)
 7. Imitation WeChat choose image: [wechat_assets_picker: ^ 8.7.0](https://pub.dev/packages/wechat_assets_picker), [wechat_camera_picker: ^ 4.0.1](https://pub.dev/packages/)
@@ -119,6 +120,7 @@ class _MyAppState extends State<MyApp> {
 14. Uri to file path: [uri_to_file: ^ 0.2.0](https://pub.dev/packages/uri_to_file)
 15. Encryption: [encrypt: ^ 5.0.1](https://pub.dev/packages/encrypt)
 
+- Please comply with the open source licensing requirements of the dependent project.
 
 ## Additional information
 

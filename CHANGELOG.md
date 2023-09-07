@@ -8,8 +8,8 @@
 
 1. pub streamlining;
 2. Some util unified management, subprojects do not need to reference;
-1. toast;
-3. Start adjustment;
+3. toast;
+4. Start adjustment;
 
 ## 0.0.3
 
@@ -111,3 +111,9 @@
 ## 1.0.1
 
 1. modify README;
+
+## 1.0.2
+
+1. modify README;
+2. update pub 'permission_handler';
+3. update License;

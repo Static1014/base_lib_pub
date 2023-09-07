@@ -55,11 +55,13 @@ _语言: 中文, [英文](README.md)
 ## 开始之前
 
 1. 个人开源，能力有限，轻喷；
-2. 该项目大部分时间只在个别私人Android设备上调试，如存在兼容性问题，可邮箱联系[420048248@qq.com](mailto:420048248@qq.com)或通过底部联系方式进行反馈；
+2. 该项目大部分时间只在个别私人Android设备上调试；
+3. 如存在兼容性问题，可邮箱联系[420048248@qq.com](mailto:420048248@qq.com)或通过底部联系方式进行反馈；
+4. 开发调试基于：Flutter 3.13.2, Dart 3.1.0；
 
 ## 使用
 
-项目使用入口[示例](example/lib/main.dart):
+项目使用[入口示例](example/lib/main.dart):
 
 ```dart
 import 'package:base_lib_pub/base_lib_pub.dart';
@@ -106,7 +108,7 @@ class _MyAppState extends State<MyApp> {
 1. 基础: [get: ^4.6.5](https://pub.dev/packages/get)
 2. 动画: [simple_animations](https://pub.dev/packages/simple_animations)
 3. toast、loading: [bot_toast: ^4.0.4](https://pub.dev/packages/bot_toast)
-4. 权限申请、检查: [permission_handler: ^10.2.0](https://pub.dev/packages/permission_handler)
+4. 权限申请、检查: [permission_handler: ^10.4.5](https://pub.dev/packages/permission_handler)
 5. 保存图片到相册: [image_gallery_saver: ^2.0.1](https://pub.dev/packages/)
 6. 图片加载、查看: [extended_image: ^8.1.0](https://pub.dev/packages/extended_image)
 7. 仿微信选择图片: [wechat_assets_picker: ^8.7.0](https://pub.dev/packages/wechat_assets_picker)、[wechat_camera_picker: ^4.0.1](https://pub.dev/packages/)
@@ -118,6 +120,8 @@ class _MyAppState extends State<MyApp> {
 13. 瀑布流、自定义栅格等: [flutter_staggered_grid_view: ^0.7.0](https://pub.dev/packages/flutter_staggered_grid_view)
 14. uri转文件路径: [uri_to_file: ^0.2.0](https://pub.dev/packages/uri_to_file)
 15. 加解密: [encrypt: ^5.0.1](https://pub.dev/packages/encrypt)
+
+- 请自觉遵循依赖项目的开源许可要求。
 
 ## 写在最后
 

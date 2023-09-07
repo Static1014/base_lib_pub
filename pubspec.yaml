@@ -1,6 +1,6 @@
 name: base_lib_pub
-description: A new Flutter pub.
-version: 1.0.1
+description: This is a basic library of Flutter project based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
+version: 1.0.2
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -16,7 +16,7 @@ dependencies:
   # toast
   bot_toast: ^4.0.4
   #  权限申请、检查
-  permission_handler: ^10.2.0
+  permission_handler: ^10.4.5
   #  保存图片到相册
   image_gallery_saver: ^2.0.1
   #  图片加载、查看

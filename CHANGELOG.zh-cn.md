@@ -111,3 +111,9 @@
 ## 1.0.1
 
 1. 修改README;
+
+## 1.0.2
+
+1. 修改 README;
+2. 升级 pub 'permission_handler';
+3. 修改license；
