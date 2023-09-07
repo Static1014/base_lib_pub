@@ -48,8 +48,6 @@ class ImagePreviewPage extends StatelessWidget {
   // 让bottomView独立于image，放在页面底部
   final bool splitBottomView;
 
-  final Color? errorBgColor;
-
   ImagePreviewPage({
     Key? key,
     this.defaultIndex = 0,
@@ -67,7 +65,6 @@ class ImagePreviewPage extends StatelessWidget {
     this.imgBgColor,
     this.imgBgOpacityBase = 1.0,
     this.splitBottomView = false,
-    this.errorBgColor,
   }) : super(key: key) {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
@@ -219,11 +216,11 @@ class ImagePreviewPage extends StatelessWidget {
             Widget iv = isText.$1
                 ? Container(
                     padding: const EdgeInsets.all(12),
-                    color: isText.$2 ?? errorBgColor,
+                    color: isText.$3,
                     alignment: Alignment.center,
                     child: mText(
                       msg: url,
-                      color: isText.$3 ?? BaseColors.cFontBlack,
+                      color: isText.$2 ?? BaseColors.cFontBlack,
                       fontSize: 14,
                     ),
                   )

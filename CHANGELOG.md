@@ -131,3 +131,8 @@
 
 1. Fix the image display animation flash issue in ImagePreviewPage hero;
 2. Modify the mLoadImageView loading success animation to be displayed only when the asynchronous loading succeeds.
+
+## 1.0.6
+
+1. Delete unnecessary parameters from the ImagePreviewPage.
+2. The mLoadImageView loading success animation is enabled by default.

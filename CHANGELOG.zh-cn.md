@@ -131,3 +131,8 @@
 
 1. 修复ImagePreviewPage hero中image显示动画闪动的问题;
 2. 修改mLoadImageView加载成功动画仅在异步加载成功时显示；
+
+## 1.0.6
+
+1. 删除ImagePreviewPage中无用参数;
+2. 默认开启mLoadImageView加载成功动画；

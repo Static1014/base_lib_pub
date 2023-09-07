@@ -54,7 +54,6 @@ class Nav {
     bool pageOpaque = false, // 页面背景不透明
     double bgOpacityBase = 1.0,
     bool splitBottomView = false,
-    Color? errorBgColor,
   }) {
     Get.to(
       () => ImagePreviewPage(
@@ -73,7 +72,6 @@ class Nav {
         imgBgOpacityBase: bgOpacityBase,
         pageBgColor: pageBgColor,
         splitBottomView: splitBottomView,
-        errorBgColor: errorBgColor,
       ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,

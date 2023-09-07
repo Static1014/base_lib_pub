@@ -32,7 +32,6 @@ class HomePage extends StatelessWidget {
                 defaultIndex: 0,
                 pageBgColor: BaseColors.cTransparent,
                 enableHeroTag: false,
-                errorBgColor: BaseColors.cCyan,
                 bottomView: Container(
                   child: mText(msg: '你好啊'),
                 ),
@@ -50,7 +49,6 @@ class HomePage extends StatelessWidget {
                   defaultIndex: 0,
                   pageBgColor: BaseColors.cTransparent,
                   enableHeroTag: true,
-                  errorBgColor: BaseColors.cCyan,
                   bottomView: Container(
                     child: mText(msg: '你好啊'),
                   ),
