@@ -141,3 +141,7 @@
 
 1. mLoadImageView支持添加背景颜色;
 2. mLoadImageView支持设置网络图片超时时间;
+
+## 1.0.8
+
+1. 修改dio默认连接超时时间;

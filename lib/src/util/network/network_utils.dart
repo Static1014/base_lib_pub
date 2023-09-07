@@ -12,7 +12,7 @@ late Dio globalDio;
 /// 配置dio
 void initDio({
   String baseUrl = '',
-  Duration connectTimeout = const Duration(seconds: 5),
+  Duration connectTimeout = const Duration(seconds: 10),
   Duration? receiveTimeout = const Duration(seconds: 30),
   bool isAddLogInterceptor = true,
 }) {

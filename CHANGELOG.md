@@ -141,3 +141,7 @@
 
 1. mLoadImageView supports adding background colors.
 2. mLoadImageView supports setting the timeout period for network images.
+
+## 1.0.8
+
+1. Change the default connection timeout period of dio.
