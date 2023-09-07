@@ -76,10 +76,15 @@ class HomePage extends StatelessWidget {
     'xxxxxx 1'.logE();
     return Hero(
       tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
-      child: SizedBox(
-        width: 100,
-        height: 100,
-        child: mLoadImageView('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', enableFadeIn: true),
+      child: Card(
+        child: SizedBox(
+          width: 100,
+          height: 100,
+          child: mLoadImageView(
+            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+            timeLimit: const Duration(seconds: 2),
+          ),
+        ),
       ),
     );
   }

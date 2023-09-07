@@ -316,6 +316,8 @@ Widget mLoadImageView(
   bool enableFadeIn = true,
   Duration fadeInDuration = const Duration(milliseconds: 600),
   Duration timeLimit = const Duration(seconds: 30),
+  Duration timeRetry = const Duration(seconds: 5),
+  int retries = 3,
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -373,7 +375,7 @@ Widget mLoadImageView(
           mode: mode,
           compressionRatio: compressionRatio,
           clipBehavior: Clip.antiAlias,
-          retries: 3,
+          retries: retries,
           fit: fit,
           shape: shape,
           border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
@@ -381,6 +383,7 @@ Widget mLoadImageView(
           loadStateChanged: stateChanged,
           cache: true,
           timeLimit: timeLimit,
+          timeRetry: timeRetry,
         );
   return Container(
     color: bgColor,
