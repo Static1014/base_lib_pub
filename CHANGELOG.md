@@ -122,3 +122,7 @@
 
 1. fix mFadeInView invisible bug;
 2. Adjust the bottom ui layout in the ImagePreview page;
+
+## 1.0.4
+
+1. update log format;

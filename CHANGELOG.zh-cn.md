@@ -122,3 +122,7 @@
 
 1. 修复mFadeInView不显示的bug;
 2. 调整ImagePreview页面中底部ui布局;
+
+## 1.0.4
+
+1. 更新日志格式;
