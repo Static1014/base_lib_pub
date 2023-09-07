@@ -311,7 +311,7 @@ Widget mLoadImageView(
   double? compressionRatio,
   String? package,
   Widget? errorWidget,
-  bool enableFadeIn = false,
+  bool enableFadeIn = true,
   Duration fadeInDuration = const Duration(milliseconds: 600),
 }) {
   bool isAsset = url.startsWith("assets");
