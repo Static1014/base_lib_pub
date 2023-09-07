@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
@@ -19,7 +20,25 @@ import '../ui/overlay_utils.dart';
 
 /// 延迟执行
 void doDelay(int milliSec, VoidCallback callback) {
-  Future.delayed(Duration(milliseconds: milliSec), callback);
+  doDelayOn(Duration(milliseconds: milliSec), callback);
+}
+
+/// 延迟执行
+void doDelayOn(Duration delay, VoidCallback callback) {
+  Future.delayed(delay, callback);
+}
+
+/// 定时循环执行
+Timer doInterval(
+  Duration interval,
+  void Function(Timer? timer) callback, {
+  // 启动时调用一次
+  bool callOnStart = false,
+}) {
+  if (callOnStart) {
+    callback(null);
+  }
+  return Timer.periodic(interval, callback);
 }
 
 /// 字符串判空

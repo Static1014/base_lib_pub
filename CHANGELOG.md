@@ -145,3 +145,4 @@
 ## 1.0.8
 
 1. Change the default connection timeout period of dio.
+2. Add the doDelayOn and doInterval methods in common_utils.

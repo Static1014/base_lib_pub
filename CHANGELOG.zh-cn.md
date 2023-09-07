@@ -145,3 +145,4 @@
 ## 1.0.8
 
 1. 修改dio默认连接超时时间;
+2. common_utils新增doDelayOn、doInterval方法；

@@ -18,6 +18,16 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            _buildTestFuncWithChild(Obx(() => Text('Timer on :  ${logic.tick.value}')), () {
+              if (logic.timer?.isActive ?? false) {
+                logic.timer?.cancel();
+                logic.tick(0);
+                return;
+              }
+              logic.timer = doInterval(const Duration(seconds: 1), (timer) {
+                logic.tick(timer?.tick);
+              });
+            }),
             _buildTestFunc('toast', () {
               toast('xxx');
             }),
@@ -65,16 +75,20 @@ class HomePage extends StatelessWidget {
   Hero buildImage() {
     'xxxxxx 1'.logE();
     return Hero(
-              tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
-              child: SizedBox(
-                width: 100,
-                height: 100,
-                child: mLoadImageView('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', enableFadeIn: true),
-              ),
-            );
+      tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
+      child: SizedBox(
+        width: 100,
+        height: 100,
+        child: mLoadImageView('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', enableFadeIn: true),
+      ),
+    );
   }
 
   Widget _buildTestFunc(String title, GestureTapCallback? onTap) {
+    return _buildTestFuncWithChild(Text(title), onTap);
+  }
+
+  Widget _buildTestFuncWithChild(Widget child, GestureTapCallback? onTap) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -85,7 +99,7 @@ class HomePage extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             width: double.infinity,
-            child: Text(title),
+            child: child,
           ),
         ),
       ),
