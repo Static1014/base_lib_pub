@@ -136,3 +136,8 @@
 
 1. 删除ImagePreviewPage中无用参数;
 2. 默认开启mLoadImageView加载成功动画；
+
+## 1.0.7
+
+1. mLoadImageView支持添加背景颜色;
+2. mLoadImageView支持设置网络图片超时时间;

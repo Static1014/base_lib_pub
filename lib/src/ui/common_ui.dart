@@ -298,6 +298,7 @@ Widget mLoadImageView(
   double errorSize = 30,
   BoxFit? fit = BoxFit.cover,
   Color borderColor = BaseColors.cGrayLine,
+  Color bgColor = BaseColors.cGrayLightBg,
   double borderWidth = 0,
   BoxShape? shape,
   double radius = 0,
@@ -309,10 +310,12 @@ Widget mLoadImageView(
   double minWidth = 0,
   double minHeight = 0,
   double? compressionRatio,
+  //  当主项目引用的不是自身项目的assets时，必须指定assets的package；base_lib_pub本身引用自身assets也必须
   String? package,
   Widget? errorWidget,
   bool enableFadeIn = true,
   Duration fadeInDuration = const Duration(milliseconds: 600),
+  Duration timeLimit = const Duration(seconds: 30),
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -377,8 +380,10 @@ Widget mLoadImageView(
           borderRadius: borderRadius,
           loadStateChanged: stateChanged,
           cache: true,
+          timeLimit: timeLimit,
         );
-  return ConstrainedBox(
+  return Container(
+    color: bgColor,
     constraints: BoxConstraints(minHeight: minHeight, minWidth: minWidth),
     child: iv,
   );

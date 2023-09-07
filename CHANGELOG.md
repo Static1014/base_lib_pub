@@ -136,3 +136,8 @@
 
 1. Delete unnecessary parameters from the ImagePreviewPage.
 2. The mLoadImageView loading success animation is enabled by default.
+
+## 1.0.7
+
+1. mLoadImageView supports adding background colors.
+2. mLoadImageView supports setting the timeout period for network images.

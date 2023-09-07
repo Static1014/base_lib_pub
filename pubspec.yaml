@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 1.0.6
+version: 1.0.7
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -80,10 +80,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
+  #   - family: Schuyler
   #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  #       - asset: fonts/Schuyler-Regular.ttf
+  #       - asset: fonts/Schuyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
