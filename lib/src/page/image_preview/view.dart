@@ -72,7 +72,7 @@ class ImagePreviewPage extends StatelessWidget {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
 
-    logic.curIndex(defaultIndex);
+    logic.initPageController(defaultIndex);
     logic.imgList(imgList);
   }
 
@@ -210,7 +210,7 @@ class ImagePreviewPage extends StatelessWidget {
           onPageChanged: (i) {
             logic.curIndex(i);
           },
-          controller: ExtendedPageController(initialPage: defaultIndex),
+          controller: logic.epc,
           itemBuilder: (ctx, index) {
             String url = logic.imgList[index];
             GlobalKey<ExtendedImageSlidePageState> gk = GlobalKey<ExtendedImageSlidePageState>();
@@ -233,6 +233,7 @@ class ImagePreviewPage extends StatelessWidget {
                     fit: BoxFit.contain,
                     mode: ExtendedImageMode.gesture,
                     initGestureConfigHandler: (_) => _gestureConfig,
+                    enableFadeIn: index != defaultIndex,
                   );
 
             Widget child;

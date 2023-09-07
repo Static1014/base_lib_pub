@@ -311,6 +311,8 @@ Widget mLoadImageView(
   double? compressionRatio,
   String? package,
   Widget? errorWidget,
+  bool enableFadeIn = false,
+  Duration fadeInDuration = const Duration(milliseconds: 600),
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -325,6 +327,8 @@ Widget mLoadImageView(
     errorWidget: errorWidget,
     errorImgPath: errorImgPath,
     package: package,
+    enableFadeIn: enableFadeIn,
+    fadeInDuration: fadeInDuration,
   );
 
   Widget iv;
@@ -387,6 +391,8 @@ LoadStateChanged _getLoadStateChanged({
   double errorSize = 30,
   String errorImgPath = GlobalConst.defaultErrorImg,
   String? package,
+  bool enableFadeIn = false,
+  Duration fadeInDuration = const Duration(milliseconds: 600),
 }) {
   return (state) {
     switch (state.extendedImageLoadState) {
@@ -397,7 +403,12 @@ LoadStateChanged _getLoadStateChanged({
           return Center(child: mProgressIndicator());
         }
       case LoadState.completed:
-        return mFadeInView(child: state.completedWidget);
+        return enableFadeIn && !state.wasSynchronouslyLoaded
+            ? mFadeInView(
+                child: state.completedWidget,
+                duration: fadeInDuration,
+              )
+            : state.completedWidget;
       case LoadState.failed:
         if (errorWidget != null) {
           return errorWidget;

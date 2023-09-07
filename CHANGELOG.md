@@ -126,3 +126,8 @@
 ## 1.0.4
 
 1. update log format;
+
+## 1.0.5
+
+1. Fix the image display animation flash issue in ImagePreviewPage hero;
+2. Modify the mLoadImageView loading success animation to be displayed only when the asynchronous loading succeeds.

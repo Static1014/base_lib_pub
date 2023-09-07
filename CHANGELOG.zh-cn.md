@@ -126,3 +126,8 @@
 ## 1.0.4
 
 1. 更新日志格式;
+
+## 1.0.5
+
+1. 修复ImagePreviewPage hero中image显示动画闪动的问题;
+2. 修改mLoadImageView加载成功动画仅在异步加载成功时显示；
