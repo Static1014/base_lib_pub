@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
                 pageBgColor: BaseColors.cTransparent,
                 enableHeroTag: false,
                 errorBgColor: BaseColors.cCyan,
+                bottomView: Container(child: mText(msg: '你好啊'),),
               );
             }),
           ],

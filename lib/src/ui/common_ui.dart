@@ -1,17 +1,13 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:simple_animations/animation_builder/play_animation_builder.dart';
-
-import '../const/global_const.dart';
-import '../theme/base_colors.dart';
-import '../theme/base_dimens.dart';
-import '../util/common_utils.dart';
 
 /// Name: common_ui.dart
 ///
@@ -438,7 +434,7 @@ Widget mFadeInView({
       tween: tween ?? Tween<double>(begin: 0, end: 1),
       duration: duration,
       delay: delay,
-      builder: (ctx, opacity, child) {
+      builder: (ctx, opacity, _) {
         return Opacity(
           opacity: opacity,
           child: child,

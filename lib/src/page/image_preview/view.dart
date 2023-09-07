@@ -156,15 +156,15 @@ class ImagePreviewPage extends StatelessWidget {
               bottom: 8,
               left: 0,
               right: 0,
-              child: Row(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment:
-                    (bottomView != null && logic.imgList.length > 1 && !splitBottomView) ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Obx(
                     () => logic.imgList.length > 1
                         ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                               decoration: mSimpleBoxDecoration(solidColor: BaseColors.cBlackTrans),

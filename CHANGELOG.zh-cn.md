@@ -117,3 +117,8 @@
 1. 修改 README;
 2. 升级 pub 'permission_handler';
 3. 修改license；
+
+## 1.0.3
+
+1. 修复mFadeInView不显示的bug;
+2. 调整ImagePreview页面中底部ui布局;

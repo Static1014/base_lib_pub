@@ -117,3 +117,8 @@
 1. modify README;
 2. update pub 'permission_handler';
 3. update License;
+
+## 1.0.3
+
+1. fix mFadeInView invisible bug;
+2. Adjust the bottom ui layout in the ImagePreview page;
