@@ -146,3 +146,8 @@
 
 1. 修改dio默认连接超时时间;
 2. common_utils新增doDelayOn、doInterval方法；
+
+## 1.0.9
+
+1. mLoadImageView默认无背景颜色;
+2. 修复api日志格式错误；

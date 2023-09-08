@@ -298,7 +298,7 @@ Widget mLoadImageView(
   double errorSize = 30,
   BoxFit? fit = BoxFit.cover,
   Color borderColor = BaseColors.cGrayLine,
-  Color bgColor = BaseColors.cGrayLightBg,
+  Color? bgColor,
   double borderWidth = 0,
   BoxShape? shape,
   double radius = 0,
@@ -318,6 +318,7 @@ Widget mLoadImageView(
   Duration timeLimit = const Duration(seconds: 30),
   Duration timeRetry = const Duration(seconds: 5),
   int retries = 3,
+  bool cache = true,
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
@@ -381,7 +382,7 @@ Widget mLoadImageView(
           border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
           borderRadius: borderRadius,
           loadStateChanged: stateChanged,
-          cache: true,
+          cache: cache,
           timeLimit: timeLimit,
           timeRetry: timeRetry,
         );

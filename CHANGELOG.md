@@ -146,3 +146,8 @@
 
 1. Change the default connection timeout period of dio.
 2. Add the doDelayOn and doInterval methods in common_utils.
+
+## 1.0.9
+
+1. mLoadImageView has no background color by default.
+2. Rectify api log format errors.
