@@ -22,7 +22,7 @@ export 'src/util/common_utils.dart';
 export 'src/util/crash_utils.dart';
 export 'src/util/crypt/aes_utils.dart';
 export 'src/util/file_utils.dart';
-export 'src/util/getx_animation_controller_mixin.dart';
+export 'src/getx/getx_animation_controller_mixin.dart';
 export 'src/util/image_utils.dart';
 export 'src/util/log_utils.dart';
 export 'src/util/permission_utils.dart';

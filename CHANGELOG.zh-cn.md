@@ -151,3 +151,8 @@
 
 1. mLoadImageView默认无背景颜色;
 2. 修复api日志格式错误；
+
+## 1.0.10
+
+1. 新增KeepAliveWrapper，保持TabBarView、ViewPager状态；
+2. 新增GetTicker，支持创建TabController；

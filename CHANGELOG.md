@@ -151,3 +151,8 @@
 
 1. mLoadImageView has no background color by default.
 2. Rectify api log format errors.
+
+## 1.0.10
+
+1. Add KeepAliveWrapper to maintain TabBarView and ViewPager status;
+2. Add GetTicker, supporting the creation of TabController;

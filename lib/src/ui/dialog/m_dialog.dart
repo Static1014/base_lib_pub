@@ -6,7 +6,7 @@ import '../../theme/base_colors.dart';
 import '../../translation/lang.dart';
 import '../../ui/common_ui.dart';
 import '../../util/common_utils.dart';
-import '../../util/getx_animation_controller_mixin.dart';
+import '../../getx/getx_animation_controller_mixin.dart';
 
 /// Name: m_dialog.dart
 ///
