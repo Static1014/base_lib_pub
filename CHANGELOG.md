@@ -156,3 +156,8 @@
 
 1. Add KeepAliveWrapper to maintain TabBarView and ViewPager status;
 2. Add GetTicker, supporting the creation of TabController;
+
+
+## 1.0.11
+
+1. export；

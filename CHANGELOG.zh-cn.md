@@ -156,3 +156,7 @@
 
 1. 新增KeepAliveWrapper，保持TabBarView、ViewPager状态；
 2. 新增GetTicker，支持创建TabController；
+
+## 1.0.11
+
+1. 导出；
