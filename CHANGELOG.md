@@ -1,3 +1,8 @@
+## 1.1.0
+
+1. pub update;
+2. base on flutter 3.13.3;
+
 ## 0.0.1
 
 * Initial version;
