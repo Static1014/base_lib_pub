@@ -6,5 +6,6 @@ class HomeLogic extends GetxController {
   final tick = 0.obs;
   Timer? timer;
 
-  final checked = false.obs;
+  final list = [false, false].obs;
+  final index = 0.obs;
 }

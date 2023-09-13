@@ -1,3 +1,8 @@
+## 1.2.1
+
+1. 修复ImagePreviewPage切换page index后，bottomView和actionView中无法更新相应index状态的bug;
+2. ImagePreviewPage新增onPreviewIndexChanged回调；
+
 ## 1.2.0
 
 1. ImagePreviewPage新增支持添加右上角的actionView;

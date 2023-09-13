@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                   imgList: [
                     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
                     'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
-                    'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
+                    // 'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                   ],
                   textTagList: [null, null, (true, null, null)],
                   defaultIndex: 0,
@@ -62,15 +62,49 @@ class HomePage extends StatelessWidget {
                   bottomView: Container(
                     child: mText(msg: '你好啊'),
                   ),
+                  onPreviewIndexChanged: (i) {
+                    logic.index(i);
+                  },
                   actionView: GestureDetector(
                     onTap: () {
-                      logic.checked(!logic.checked.value);
+                      logic.list[logic.index.value] = !logic.list[logic.index.value];
                     },
-                    child: Obx(() => Icon(logic.checked.value ? Icons.check_box : Icons.check_box_outline_blank_outlined)),
+                    child: Obx(
+                      () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                    ),
                   ),
                 );
               },
-              child: buildImage(),
+              child: buildImage('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
+            ),
+            GestureDetector(
+              onTap: () {
+                Nav.startImagePreview(
+                  imgList: [
+                    'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                    'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                  ],
+                  textTagList: [null, null, (true, null, null)],
+                  defaultIndex: 1,
+                  pageBgColor: BaseColors.cTransparent,
+                  enableHeroTag: true,
+                  bottomView: Container(
+                    child: mText(msg: '你好啊'),
+                  ),
+                  onPreviewIndexChanged: (i) {
+                    logic.index(i);
+                  },
+                  actionView: GestureDetector(
+                    onTap: () {
+                      logic.list[logic.index.value] = !logic.list[logic.index.value];
+                    },
+                    child: Obx(
+                      () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                    ),
+                  ),
+                );
+              },
+              child: buildImage('https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png', 1),
             ),
           ],
         ),
@@ -78,17 +112,17 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget buildImage() {
+  Widget buildImage(String url, int index) {
     return Card(
       child: Stack(
         children: [
           Hero(
-            tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
+            tag: ImagePreviewPage.generateHeroTag(url, 0),
             child: SizedBox(
               width: 100,
               height: 100,
               child: mLoadImageView(
-                'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                url,
                 timeLimit: const Duration(seconds: 2),
               ),
             ),
@@ -98,10 +132,10 @@ class HomePage extends StatelessWidget {
             right: 4,
             child: GestureDetector(
               onTap: () {
-                logic.checked(!logic.checked.value);
+                logic.list[index] = !logic.list[index];
               },
               child: Obx(
-                () => Icon(logic.checked.value ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                () => Icon(logic.list[index] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
               ),
             ),
           ),

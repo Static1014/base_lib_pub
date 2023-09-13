@@ -5,6 +5,9 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+/// 定义预览页页面切换回调
+typedef OnPreviewIndexChanged = void Function(int index);
+
 class ImagePreviewPage extends StatelessWidget {
   /// 根据url、index生成hero tag
   static String generateHeroTag(String url, int index) {
@@ -13,6 +16,7 @@ class ImagePreviewPage extends StatelessWidget {
 
   // 默认显示下标
   final int defaultIndex;
+  final OnPreviewIndexChanged? onPreviewIndexChanged;
 
   // 图片源
   final List<String> imgList;
@@ -52,6 +56,7 @@ class ImagePreviewPage extends StatelessWidget {
   ImagePreviewPage({
     Key? key,
     this.defaultIndex = 0,
+    this.onPreviewIndexChanged,
     required this.imgList,
     this.textTagList,
     this.bottomView,
@@ -203,7 +208,7 @@ class ImagePreviewPage extends StatelessWidget {
   }
 
   Widget buildBottomView() {
-    return ConstrainedBox(
+    return Container(
       constraints: const BoxConstraints(maxHeight: 100),
       child: bottomView!,
     );
@@ -226,6 +231,7 @@ class ImagePreviewPage extends StatelessWidget {
           itemCount: logic.imgList.length,
           onPageChanged: (i) {
             logic.curIndex(i);
+            onPreviewIndexChanged?.call(i);
           },
           controller: logic.epc,
           itemBuilder: (ctx, index) {

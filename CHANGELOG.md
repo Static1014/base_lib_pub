@@ -1,3 +1,8 @@
+## 1.2.1
+
+1. Fix the bug where the corresponding index status cannot be updated in bottomView and actionView after ImagePreviewPage switches to page index;
+2. Added onPreviewIndexChanged callback to ImagePreviewPage;
+
 ## 1.2.0
 
 1. The ImagePreviewPage has added support for adding an actionView in the upper right corner;
