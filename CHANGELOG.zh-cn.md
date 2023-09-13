@@ -1,3 +1,8 @@
+## 1.1.1
+
+1. common_utils新增vibrate震动方法；
+2. pub更新;
+
 ## 1.1.0
 
 1. pub更新;

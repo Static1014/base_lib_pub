@@ -198,3 +198,10 @@ String formatIntMoney(int num) {
 
   return result;
 }
+
+// 振动
+void vibrate() async {
+  // 需要权限
+  // <uses-permission android:name="android.permission.VIBRATE"/>
+  SystemChannels.platform.invokeMethod('HapticFeedback.vibrate');
+}

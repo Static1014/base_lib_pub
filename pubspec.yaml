@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 1.1.0
+version: 1.1.1
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -14,7 +14,7 @@ dependencies:
   # get
   get: ^4.6.6
   # toast
-  bot_toast: ^4.0.4
+  bot_toast: ^4.1.1
   #  权限申请、检查
   permission_handler: ^11.0.0
   #  保存图片到相册

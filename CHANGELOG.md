@@ -1,3 +1,8 @@
+## 1.1.1
+
+1. Common_utils Added vibrate method;
+2. pub update;
+
 ## 1.1.0
 
 1. pub update;
