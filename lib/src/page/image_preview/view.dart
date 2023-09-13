@@ -22,6 +22,7 @@ class ImagePreviewPage extends StatelessWidget {
 
   // 底部自定义视图
   final Widget? bottomView;
+  final Widget? actionView;
 
   // 点击图片关闭预览
   final bool enableTapImgClose;
@@ -54,6 +55,7 @@ class ImagePreviewPage extends StatelessWidget {
     required this.imgList,
     this.textTagList,
     this.bottomView,
+    this.actionView,
     this.enableTapImgClose = true,
     this.enableHeroTag = true,
     this.heroTags,
@@ -111,11 +113,29 @@ class ImagePreviewPage extends StatelessWidget {
                             ),
                     )
                   : const SizedBox.shrink(),
+              _buildActionView()
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildActionView() {
+    return actionView != null
+        ? Obx(() => logic.isSliding.value
+            ? const SizedBox.shrink()
+            : Positioned(
+                right: 8,
+                top: BaseDimens.dStatusBarHeight,
+                child: Container(
+                  height: BaseDimens.dAppBarHeight,
+                  constraints: BoxConstraints(maxWidth: Get.width - 100),
+                  alignment: Alignment.centerRight,
+                  child: actionView!,
+                ),
+              ))
+        : const SizedBox.shrink();
   }
 
   /// 图片播放器

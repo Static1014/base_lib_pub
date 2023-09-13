@@ -1,3 +1,8 @@
+## 1.2.0
+
+1. The ImagePreviewPage has added support for adding an actionView in the upper right corner;
+2. Update README;
+
 ## 1.1.1
 
 1. Common_utils Added vibrate method;

@@ -61,6 +61,8 @@ _语言: 中文, [英文](README.md)
 
 ## 使用
 
+示例代码：[example](example/lib/page/home/view.dart)。
+
 项目使用[入口示例](example/lib/main.dart):
 
 ```dart
@@ -105,21 +107,21 @@ class _MyAppState extends State<MyApp> {
 
 ## 项目依赖
 
-1. 基础: [get: ^4.6.5](https://pub.dev/packages/get)
+1. 基础: [get](https://pub.dev/packages/get)
 2. 动画: [simple_animations](https://pub.dev/packages/simple_animations)
-3. toast、loading: [bot_toast: ^4.0.4](https://pub.dev/packages/bot_toast)
-4. 权限申请、检查: [permission_handler: ^10.4.5](https://pub.dev/packages/permission_handler)
-5. 保存图片到相册: [image_gallery_saver: ^2.0.1](https://pub.dev/packages/)
-6. 图片加载、查看: [extended_image: ^8.1.0](https://pub.dev/packages/extended_image)
-7. 仿微信选择图片: [wechat_assets_picker: ^8.7.0](https://pub.dev/packages/wechat_assets_picker)、[wechat_camera_picker: ^4.0.1](https://pub.dev/packages/)
-8. 网络: [dio: ^5.3.2](https://pub.dev/packages/wechat_camera_picker)
-9. 图片压缩: [flutter_image_compress: ^2.0.3](https://pub.dev/packages/flutter_image_compress)
-10. 文件操作: [path_provider: ^2.1.1](https://pub.dev/packages/path_provider)
-11. 日期格式化: [date_format: ^2.0.7](https://pub.dev/packages/date_format)
-12. 分享: [share_plus: ^7.1.0](https://pub.dev/packages/share_plus)
-13. 瀑布流、自定义栅格等: [flutter_staggered_grid_view: ^0.7.0](https://pub.dev/packages/flutter_staggered_grid_view)
-14. uri转文件路径: [uri_to_file: ^0.2.0](https://pub.dev/packages/uri_to_file)
-15. 加解密: [encrypt: ^5.0.1](https://pub.dev/packages/encrypt)
+3. toast、loading: [bot_toast](https://pub.dev/packages/bot_toast)
+4. 权限申请、检查: [permission_handler](https://pub.dev/packages/permission_handler)
+5. 保存图片到相册: [image_gallery_saver](https://pub.dev/packages/)
+6. 图片加载、查看: [extended_image](https://pub.dev/packages/extended_image)
+7. 仿微信选择图片: [wechat_assets_picker](https://pub.dev/packages/wechat_assets_picker)、[wechat_camera_picker](https://pub.dev/packages/wechat_camera_picker)
+8. 网络: [dio](https://pub.dev/packages/dio)
+9. 图片压缩: [flutter_image_compress](https://pub.dev/packages/flutter_image_compress)
+10. 文件操作: [path_provider](https://pub.dev/packages/path_provider)
+11. 日期格式化: [date_format](https://pub.dev/packages/date_format)
+12. 分享: [share_plus](https://pub.dev/packages/share_plus)
+13. 瀑布流、自定义栅格等: [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
+14. uri转文件路径: [uri_to_file](https://pub.dev/packages/uri_to_file)
+15. 加解密: [encrypt](https://pub.dev/packages/encrypt)
 
 - 请自觉遵循依赖项目的开源许可要求。
 

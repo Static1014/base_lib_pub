@@ -1,3 +1,8 @@
+## 1.2.0
+
+1. ImagePreviewPage新增支持添加右上角的actionView;
+2. README修改；
+
 ## 1.1.1
 
 1. common_utils新增vibrate震动方法；

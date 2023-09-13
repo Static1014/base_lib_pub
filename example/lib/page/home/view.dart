@@ -62,6 +62,12 @@ class HomePage extends StatelessWidget {
                   bottomView: Container(
                     child: mText(msg: '你好啊'),
                   ),
+                  actionView: GestureDetector(
+                    onTap: () {
+                      logic.checked(!logic.checked.value);
+                    },
+                    child: Obx(() => Icon(logic.checked.value ? Icons.check_box : Icons.check_box_outline_blank_outlined)),
+                  ),
                 );
               },
               child: buildImage(),
@@ -72,19 +78,34 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Hero buildImage() {
-    'xxxxxx 1'.logE();
-    return Hero(
-      tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
-      child: Card(
-        child: SizedBox(
-          width: 100,
-          height: 100,
-          child: mLoadImageView(
-            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
-            timeLimit: const Duration(seconds: 2),
+  Widget buildImage() {
+    return Card(
+      child: Stack(
+        children: [
+          Hero(
+            tag: ImagePreviewPage.generateHeroTag('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
+            child: SizedBox(
+              width: 100,
+              height: 100,
+              child: mLoadImageView(
+                'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                timeLimit: const Duration(seconds: 2),
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 4,
+            right: 4,
+            child: GestureDetector(
+              onTap: () {
+                logic.checked(!logic.checked.value);
+              },
+              child: Obx(
+                () => Icon(logic.checked.value ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
