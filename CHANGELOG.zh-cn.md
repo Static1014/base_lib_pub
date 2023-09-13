@@ -1,3 +1,8 @@
+## 1.2.2
+
+1. 修正example中预览下标值；
+2. ScrollControllerExt新增toggleScroll方法：如果在顶部，滚动到底部；否则滚动到顶部；
+
 ## 1.2.1
 
 1. 修复ImagePreviewPage切换page index后，bottomView和actionView中无法更新相应index状态的bug;

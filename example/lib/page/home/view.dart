@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
             }),
             GestureDetector(
               onTap: () {
+                logic.index(0);
                 Nav.startImagePreview(
                   imgList: [
                     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
@@ -79,6 +80,7 @@ class HomePage extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
+                logic.index(1);
                 Nav.startImagePreview(
                   imgList: [
                     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',

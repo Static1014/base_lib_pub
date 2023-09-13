@@ -50,6 +50,15 @@ extension ScrollControllerExt on ScrollController {
       curve: curve,
     );
   }
+
+  /// 如果在顶部，滚动到底部；否则滚动到顶部
+  void toggleScroll({int milliseconds = 300, Curve curve = Curves.easeIn}) {
+    if (offset == 0) {
+      scrollToBottom(milliseconds: milliseconds, curve: curve);
+    } else {
+      scrollToTop(milliseconds: milliseconds, curve: curve);
+    }
+  }
 }
 
 extension ExtList on List<int> {

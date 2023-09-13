@@ -1,3 +1,8 @@
+## 1.2.2
+
+1. Correct the preview index value in example;
+2. ScrollControllerExt adds a toggleScroll method: if at the top, scroll to the bottom; Otherwise, scroll to the top;
+
 ## 1.2.1
 
 1. Fix the bug where the corresponding index status cannot be updated in bottomView and actionView after ImagePreviewPage switches to page index;
