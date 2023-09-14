@@ -1,3 +1,8 @@
+## 1.2.3
+
+1. Privatize the properties and methods that ImagePreviewLogic does not have to expose, exposing only those that need to be exposed;
+2. Manage a group of classes and files through library, part, and part of. You can privatize the class by _ClassName and make it visible to members of the same group through part;
+
 ## 1.2.2
 
 1. Correct the preview index value in example;

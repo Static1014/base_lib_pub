@@ -1,3 +1,8 @@
+## 1.2.3
+
+1. 私有化ImagePreviewLogic不必须暴露的属性和方法，只暴露需要暴露的；
+2. 通过library、part、part of管理一组类及文件，可通过对类(_ClassName)私有化类并通过part对同组成员可见；
+
 ## 1.2.2
 
 1. 修正example中预览下标值；
