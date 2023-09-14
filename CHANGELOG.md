@@ -1,3 +1,7 @@
+## 1.3.1
+
+1. Export the ListFooter and add the MySalomonBottomBar.
+
 ## 1.3.0
 
 1. Add the ListFooter component for page loading.

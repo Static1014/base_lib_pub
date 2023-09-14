@@ -121,6 +121,7 @@ class _MyAppState extends State<MyApp> {
 13. The waterfall flow, such as custom grid: [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
 14. Uri to file: [uri_to_file](https://pub.dev/packages/uri_to_file)
 15. Encryption: [encrypt](https://pub.dev/packages/encrypt)
+16. SalomonBottomBar(*modified*): [salomon_bottom_bar](https://pub.dev/packages/salomon_bottom_bar)
 
 - Please comply with the open source licensing requirements of the dependent project.
 

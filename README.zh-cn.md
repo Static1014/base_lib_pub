@@ -122,6 +122,7 @@ class _MyAppState extends State<MyApp> {
 13. 瀑布流、自定义栅格等: [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
 14. uri转文件路径: [uri_to_file](https://pub.dev/packages/uri_to_file)
 15. 加解密: [encrypt](https://pub.dev/packages/encrypt)
+16. SalomonBottomBar(*修改*): [salomon_bottom_bar](https://pub.dev/packages/salomon_bottom_bar)
 
 - 请自觉遵循依赖项目的开源许可要求。
 

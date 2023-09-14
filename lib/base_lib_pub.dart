@@ -20,6 +20,8 @@ export 'src/ui/common_ui.dart';
 export 'src/ui/keep_alive_wrapper.dart';
 export 'src/ui/dialog/m_dialog.dart';
 export 'src/ui/overlay_utils.dart';
+export 'src/ui/list_footer/view.dart';
+export 'src/ui/my_salomon_bottom_bar.dart';
 export 'src/util/common_utils.dart';
 export 'src/util/crash_utils.dart';
 export 'src/util/crypt/aes_utils.dart';

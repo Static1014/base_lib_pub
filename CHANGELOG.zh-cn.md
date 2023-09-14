@@ -1,3 +1,7 @@
+## 1.3.1
+
+1. 导出ListFooter、新增MySalomonBottomBar；
+
 ## 1.3.0
 
 1. 新增ListFooter组件，可用于分页加载；
