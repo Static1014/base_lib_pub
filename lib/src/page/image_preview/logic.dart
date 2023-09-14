@@ -1,6 +1,8 @@
 part of image_preview;
 
 class ImagePreviewLogic extends GetxController {
+  static ImagePreviewLogic get to => Get.find();
+
   late ExtendedPageController _epc;
   final _curIndex = 0.obs;
   final _imgList = [].obs;
