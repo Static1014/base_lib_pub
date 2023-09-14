@@ -1,3 +1,8 @@
+## 1.3.0
+
+1. Add the ListFooter component for page loading.
+2. Add MySalomonBottomBar, modified by salomonBottomBar, add double click callback, customize the height;
+
 ## 1.2.4
 
 1. Add static ImagePreviewLogic;

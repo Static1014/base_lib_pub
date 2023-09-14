@@ -20,6 +20,7 @@ class MyBaseTrs {
   final confirm = "confirm";
   final warn = "warn";
   final noMore = "noMore";
+  final loading = "loading";
   final retry = "retry";
 
   // imgUtils
@@ -47,6 +48,7 @@ const baseTrs = MyBaseTrs();
 final baseEnUS = {
   /// base
   baseTrs.noMore: 'No more',
+  baseTrs.loading: 'Loading...',
   baseTrs.warn: 'Warn',
   baseTrs.save: 'Save',
   baseTrs.confirm: 'OK',
@@ -76,6 +78,7 @@ final baseEnUS = {
 final baseZhCN = {
   /// base
   baseTrs.noMore: '没有更多了',
+  baseTrs.loading: '加载中...',
   baseTrs.warn: '警告',
   baseTrs.save: '保存',
   baseTrs.confirm: '确定',

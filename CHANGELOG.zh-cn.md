@@ -1,3 +1,8 @@
+## 1.3.0
+
+1. 新增ListFooter组件，可用于分页加载；
+2. 新增MySalomonBottomBar，由salomonBottomBar修改而来，增加了双击回调，自定义高度；
+
 ## 1.2.4
 
 1. 添加静态ImagePreviewLogic；
