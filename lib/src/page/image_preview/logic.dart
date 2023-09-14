@@ -1,32 +1,27 @@
-import 'package:extended_image/extended_image.dart';
-import 'package:get/get.dart';
-
-import '../../route/nav.dart';
+part of image_preview;
 
 class ImagePreviewLogic extends GetxController {
-  static ImagePreviewLogic get to => Get.find();
+  late ExtendedPageController _epc;
+  final _curIndex = 0.obs;
+  final _imgList = [].obs;
+  final _isSliding = false.obs;
 
-  late ExtendedPageController epc;
-  final curIndex = 0.obs;
-  final imgList = [].obs;
-  final isSliding = false.obs;
-
-  void initPageController(int initialPage){
-    epc = ExtendedPageController(initialPage: initialPage);
-    curIndex(initialPage);
+  void _initPageController(int initialPage) {
+    _epc = ExtendedPageController(initialPage: initialPage);
+    _curIndex(initialPage);
   }
 
   void deleteAt(int index) {
-    if (index >= 0 && index < imgList.length) {
-      imgList.removeAt(index);
+    if (index >= 0 && index < _imgList.length) {
+      _imgList.removeAt(index);
     }
 
-    if (imgList.isEmpty) {
-      close();
+    if (_imgList.isEmpty) {
+      _close();
     }
   }
 
-  void close() {
+  void _close() {
     Nav.pop();
   }
 }

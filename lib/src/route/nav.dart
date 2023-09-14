@@ -1,8 +1,6 @@
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-
-import '../page/image_preview/view.dart';
-import '../route/base_routes.dart';
 
 /// Name: nav.dart
 ///

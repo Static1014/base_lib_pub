@@ -81,6 +81,7 @@ class HomePage extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 logic.index(1);
+                // ImagePreviewLogic? previewLogic;
                 Nav.startImagePreview(
                   imgList: [
                     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
@@ -90,7 +91,10 @@ class HomePage extends StatelessWidget {
                   defaultIndex: 1,
                   pageBgColor: BaseColors.cTransparent,
                   enableHeroTag: true,
-                  bottomView: Container(
+                  bottomView: GestureDetector(
+                    onTap: () {
+                      Get.find<ImagePreviewLogic>().deleteAt(1);
+                    },
                     child: mText(msg: '你好啊'),
                   ),
                   onPreviewIndexChanged: (i) {

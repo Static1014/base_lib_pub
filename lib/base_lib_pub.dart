@@ -7,7 +7,6 @@ export 'src/getx/getx_ticker.dart';
 export 'src/extension/common_ext.dart';
 export 'src/extension/datetime_ext.dart';
 export 'src/page/image_preview/hero.dart';
-export 'src/page/image_preview/logic.dart';
 export 'src/page/image_preview/view.dart';
 export 'src/page/test/logic.dart';
 export 'src/page/test/state.dart';

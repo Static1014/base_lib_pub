@@ -1,9 +1,13 @@
+library image_preview;
+
 import 'dart:math';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+part 'logic.dart';
 
 /// 定义预览页页面切换回调
 typedef OnPreviewIndexChanged = void Function(int index);
@@ -76,8 +80,8 @@ class ImagePreviewPage extends StatelessWidget {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
 
-    logic.initPageController(defaultIndex);
-    logic.imgList(imgList);
+    logic._initPageController(defaultIndex);
+    logic._imgList(imgList);
   }
 
   final logic = Get.put(ImagePreviewLogic());
@@ -102,14 +106,14 @@ class ImagePreviewPage extends StatelessWidget {
               buildPreviewView(),
               closeBtnVisible
                   ? Obx(
-                      () => logic.isSliding.value
+                      () => logic._isSliding.value
                           ? const SizedBox.shrink()
                           : Positioned(
                               left: 4,
                               top: BaseDimens.dStatusBarHeight,
                               child: FloatingActionButton(
                                 onPressed: () {
-                                  logic.close();
+                                  logic._close();
                                 },
                                 backgroundColor: BaseColors.cTransparent,
                                 elevation: 0,
@@ -118,7 +122,7 @@ class ImagePreviewPage extends StatelessWidget {
                             ),
                     )
                   : const SizedBox.shrink(),
-              _buildActionView()
+              _buildActionView(),
             ],
           ),
         ),
@@ -128,7 +132,7 @@ class ImagePreviewPage extends StatelessWidget {
 
   Widget _buildActionView() {
     return actionView != null
-        ? Obx(() => logic.isSliding.value
+        ? Obx(() => logic._isSliding.value
             ? const SizedBox.shrink()
             : Positioned(
                 right: 8,
@@ -170,9 +174,9 @@ class ImagePreviewPage extends StatelessWidget {
 
   Widget buildIndicatorView() {
     // 初始创建时，肯定显示
-    logic.isSliding(false);
+    logic._isSliding(false);
     return Obx(
-      () => logic.isSliding.value
+      () => logic._isSliding.value
           ? const SizedBox.shrink()
           : Positioned(
               bottom: 8,
@@ -184,7 +188,7 @@ class ImagePreviewPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Obx(
-                    () => logic.imgList.length > 1
+                    () => logic._imgList.length > 1
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                             child: Container(
@@ -192,7 +196,7 @@ class ImagePreviewPage extends StatelessWidget {
                               decoration: mSimpleBoxDecoration(solidColor: BaseColors.cBlackTrans),
                               child: Obx(() {
                                 return mText(
-                                  msg: "${logic.curIndex.value + 1} / ${logic.imgList.length}",
+                                  msg: "${logic._curIndex.value + 1} / ${logic._imgList.length}",
                                   color: BaseColors.cFontWhite,
                                 );
                               }),
@@ -228,14 +232,14 @@ class ImagePreviewPage extends StatelessWidget {
       clipBehavior: pageDecoration == null ? Clip.none : Clip.antiAlias,
       child: Obx(
         () => ExtendedImageGesturePageView.builder(
-          itemCount: logic.imgList.length,
+          itemCount: logic._imgList.length,
           onPageChanged: (i) {
-            logic.curIndex(i);
+            logic._curIndex(i);
             onPreviewIndexChanged?.call(i);
           },
-          controller: logic.epc,
+          controller: logic._epc,
           itemBuilder: (ctx, index) {
-            String url = logic.imgList[index];
+            String url = logic._imgList[index];
             GlobalKey<ExtendedImageSlidePageState> gk = GlobalKey<ExtendedImageSlidePageState>();
 
             (bool isText, Color? textColor, Color? textBgColor) isText = _isText(index);
@@ -294,7 +298,7 @@ class ImagePreviewPage extends StatelessWidget {
             return ExtendedImageSlidePage(
               key: gk,
               onSlidingPage: (state) {
-                logic.isSliding(state.isSliding);
+                logic._isSliding(state.isSliding);
               },
               slidePageBackgroundHandler: (offset, pageSize) {
                 Color bg = imgBgColor ?? BaseColors.cBlack;
@@ -306,7 +310,7 @@ class ImagePreviewPage extends StatelessWidget {
                   ? GestureDetector(
                       onTap: () {
                         gk.currentState!.popPage();
-                        logic.close();
+                        logic._close();
                       },
                       child: child,
                     )
