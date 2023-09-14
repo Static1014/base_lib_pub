@@ -1,3 +1,7 @@
+## 1.2.4
+
+1. Add static ImagePreviewLogic;
+
 ## 1.2.3
 
 1. Privatize the properties and methods that ImagePreviewLogic does not have to expose, exposing only those that need to be exposed;

@@ -1,3 +1,7 @@
+## 1.2.4
+
+1. 添加静态ImagePreviewLogic；
+
 ## 1.2.3
 
 1. 私有化ImagePreviewLogic不必须暴露的属性和方法，只暴露需要暴露的；
