@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
+import '../../getx/getx_animation_controller_mixin.dart';
 import '../../theme/base_colors.dart';
 import '../../translation/lang.dart';
 import '../../ui/common_ui.dart';
 import '../../util/common_utils.dart';
-import '../../getx/getx_animation_controller_mixin.dart';
 
 /// Name: m_dialog.dart
 ///
@@ -123,61 +123,62 @@ class MDialog {
               ),
               child: Center(
                 child: Container(
-                  constraints: BoxConstraints(maxHeight: Get.height * 0.8),
                   padding: const EdgeInsets.all(20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Card(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: BaseColors.cWhite,
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
-                        ),
-                        padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 6),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                  width: double.infinity,
+                  child: Card(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: BaseColors.cWhite,
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                      padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 6),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          isEmptyOrNull(title)
+                              ? const SizedBox.shrink()
+                              : Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: mText(
+                                    msg: title,
+                                    color: BaseColors.cFontBlack,
+                                    weight: FontWeight.bold,
+                                    maxLines: 4,
+                                    fontSize: 16,
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ),
+                          mOverSizeScrollView(
+                            maxSize: Get.height * 0.6,
                             children: [
-                              isEmptyOrNull(title)
-                                  ? const SizedBox.shrink()
-                                  : Padding(
-                                      padding: const EdgeInsets.only(bottom: 8),
-                                      child: mText(
-                                        msg: title,
-                                        color: BaseColors.cFontBlack,
-                                        weight: FontWeight.bold,
-                                        fontSize: 16,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                    ),
                               mText(
                                 msg: msg,
                                 color: BaseColors.cFontGray,
                                 fontSize: 15,
                                 textAlign: TextAlign.start,
                               ),
-                              mDividerH(height: 4),
-                              SizedBox(
-                                width: double.infinity,
-                                child: Wrap(
-                                  direction: Axis.horizontal,
-                                  alignment: WrapAlignment.end,
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: actions ??
-                                      [
-                                        TextButton(
-                                          onPressed: () {
-                                            hide();
-                                          },
-                                          child: Text(baseTrs.confirm.tr),
-                                        ),
-                                      ],
-                                ),
-                              ),
                             ],
                           ),
-                        ),
+                          mDividerH(height: 4),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Wrap(
+                              direction: Axis.horizontal,
+                              alignment: WrapAlignment.end,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: actions ??
+                                  [
+                                    TextButton(
+                                      onPressed: () {
+                                        hide();
+                                      },
+                                      child: Text(BaseTrs.confirm.tr),
+                                    ),
+                                  ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -213,14 +214,14 @@ class MDialog {
       TextButton(
         onPressed: leftCallback,
         child: Text(
-          leftBtnText ?? baseTrs.cancel.tr,
+          leftBtnText ?? BaseTrs.cancel.tr,
           style: TextStyle(color: leftColor),
         ),
       ),
       TextButton(
         onPressed: rightCallback,
         child: Text(
-          rightBtnText ?? baseTrs.confirm.tr,
+          rightBtnText ?? BaseTrs.confirm.tr,
           style: TextStyle(color: rightColor),
         ),
       ),

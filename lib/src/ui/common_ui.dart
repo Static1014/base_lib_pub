@@ -6,6 +6,8 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 
@@ -91,17 +93,70 @@ Widget mSafeRoot({
   );
 }
 
-Widget mAppBar() {
-  return AppBar(elevation: 0);
-}
-
-Widget mBackBtn() {
-  return IconButton(
-    onPressed: () {
-      clickBack();
-    },
-    icon: const Icon(Icons.arrow_back_ios_new),
+/// 统一appbar
+Widget mAppBar({
+  required String title,
+  bool centerTitle = true,
+  Color titleColor = BaseColors.cFontWhite,
+  double height = 0,
+  double? elevation = 4,
+  Color? backgroundColor,
+  // 自定义左侧按钮
+  Widget? leading,
+  // 左侧返回按钮
+  Color backIconColor = Colors.white,
+  bool backEnable = false,
+  VoidCallback? backPressed,
+  List<Widget>? actions,
+  PreferredSizeWidget? bottom,
+  double? titleSpacing,
+  double? leadingWidth,
+  Widget? titleView,
+}) {
+  /// 默认返回按钮
+  final Widget leadingDefault = IconButton(
+    icon: Icon(
+      Icons.arrow_back_ios,
+      color: backIconColor,
+      size: 18,
+    ),
+    onPressed: backPressed ?? clickBack,
   );
+  Widget? leadingReal;
+  if (leading != null) {
+    leadingReal = leading;
+  } else if (backEnable || backPressed != null) {
+    leadingReal = leadingDefault;
+  } else {
+    leadingReal = null;
+  }
+  var bar = AppBar(
+    leading: leadingReal,
+    elevation: elevation,
+    backgroundColor: backgroundColor,
+    centerTitle: centerTitle,
+    title: titleView ??
+        mText(
+          maxLines: 1,
+          weight: FontWeight.bold,
+          msg: title,
+          color: titleColor,
+          fontSize: BaseDimens.dFontSizeTitle,
+        ),
+    actions: actions,
+    bottom: bottom,
+    titleSpacing: titleSpacing,
+    leadingWidth: leadingWidth,
+  );
+
+  if (height != 0) {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(height),
+      child: bar,
+    );
+  } else {
+    return bar;
+  }
 }
 
 /// 获取普通Text
@@ -590,4 +645,33 @@ Widget mProgressIndicator({
             strokeWidth: strokeWidthInAndroid,
           ),
         );
+}
+
+/// 尺寸超过一定值后可滚动
+Widget mOverSizeScrollView({
+  required double maxSize,
+  required List<Widget> children,
+  Axis scrollDirection = Axis.vertical,
+  double? crossSize = double.infinity,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
+}) {
+  return Container(
+    width: scrollDirection == Axis.vertical ? crossSize : null,
+    height: scrollDirection == Axis.horizontal ? crossSize : null,
+    constraints: scrollDirection == Axis.vertical ? BoxConstraints(maxHeight: maxSize) : BoxConstraints(maxWidth: maxSize),
+    child: SingleChildScrollView(
+      scrollDirection: scrollDirection,
+      child: scrollDirection == Axis.vertical
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: crossAxisAlignment,
+              children: children,
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: crossAxisAlignment,
+              children: children,
+            ),
+    ),
+  );
 }

@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
 import '../util/common_utils.dart' as common_util;
 import '../util/log_utils.dart';
@@ -22,10 +21,6 @@ extension CommonExt on Object {
   void logW({String tag = '', bool split = false, String? ansiColor}) {
     w(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
   }
-}
-
-extension GetMy on GetInterface {
-  static DateTime? lastTime;
 }
 
 extension StringExt on String {

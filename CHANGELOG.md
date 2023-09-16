@@ -1,3 +1,12 @@
+## 2.0.0
+
+1. Adjust the implementation of some base classes and their corresponding extensions;
+2. Add a non-SingleTop startup page, and obtain controllers of different instances of the same page through the tag.
+3. Add CommonWebView, which supports opening urls, html text, local html files, and html assets.
+4. Add the Header component.
+5. Add url_launcher pub and use it;
+6. Added mOverSizeScrollView support for view scrollable beyond the specified size;
+
 ## 1.3.1
 
 1. Export the ListFooter and add the MySalomonBottomBar.

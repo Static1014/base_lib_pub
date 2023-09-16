@@ -1,5 +1,6 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub_example/route/routes.dart';
+import 'package:base_lib_pub_example/translation/translation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: Routes.init,
-      getPages: Routes.getPages(),
+      getPages: BaseRoutes.getPages(),
+      // 国际化配置
+      locale: MyTranslations.locale,
+      fallbackLocale: MyTranslations.fallbackLocale,
+      translations: MyTranslations(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],

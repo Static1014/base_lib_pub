@@ -1,41 +1,83 @@
+import 'dart:async';
+
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 /// Name: nav.dart
 ///
 /// Created by Static4u
 /// Date : 2023/5/6 11:21
-class Nav {
-  static final List<String> _unPopRoutes = [];
 
-  static void initUnPopRoutes(List<String> routes) {
+final Nav = NavClass();
+
+class NavClass {
+  final List<String> _unPopRoutes = [];
+
+  void initUnPopRoutes(List<String> routes) {
     _unPopRoutes.addAll(routes);
   }
 
-  static void push(String routeName, {dynamic args}) {
-    Get.toNamed(routeName, arguments: args);
+  void push(String routeName, {dynamic args, bool singleTop = true}) {
+    Get.toNamed(routeName, arguments: args, preventDuplicates: singleTop);
   }
 
-  static void pop({dynamic result, bool closeOverlays = false}) {
+  void pop({dynamic result, bool closeOverlays = false}) {
     Get.back(result: result, closeOverlays: closeOverlays);
   }
 
-  static void replace(String routeName, {dynamic args}) {
-    Get.offNamed(routeName, arguments: args);
+  void replace(String routeName, {dynamic args, bool singleTop = true}) {
+    Get.offNamed(routeName, arguments: args, preventDuplicates: singleTop);
   }
 
-  static bool isPopEnable() {
+  bool isPopEnable() {
     var routeName = Get.routing.route?.settings.name;
     return !(_unPopRoutes.contains(routeName));
   }
 
-// static bool isPbShowing() {
+  Future<T?>? to<T>(
+    dynamic page, {
+    bool? opaque,
+    Transition? transition = Transition.rightToLeftWithFade,
+    Curve? curve,
+    Duration? duration,
+    int? id,
+    String? routeName,
+    bool fullscreenDialog = false,
+    dynamic arguments,
+    Bindings? binding,
+    bool preventDuplicates = true,
+    String? tag,
+    bool? popGesture,
+    double Function(BuildContext context)? gestureWidth,
+  }) {
+    /// 当不是singleTop时，必须有tag，且tag不能重复
+    assert(preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag)));
+
+    return Get.to(
+      page,
+      opaque: opaque,
+      transition: transition,
+      curve: curve,
+      duration: duration,
+      id: id,
+      routeName: routeName,
+      fullscreenDialog: fullscreenDialog,
+      arguments: arguments,
+      binding: binding,
+      preventDuplicates: preventDuplicates,
+      popGesture: popGesture,
+      gestureWidth: gestureWidth,
+    );
+  }
+
+//  bool isPbShowing() {
 //   return Get.rawRoute?.settings.name == BaseRoutes.pb;
 // }
 
   /// 图片预览
-  static void startImagePreview({
+  void startImagePreview({
     required List<String> imgList,
     List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList,
     int defaultIndex = 0,
@@ -54,6 +96,7 @@ class Nav {
     double bgOpacityBase = 1.0,
     bool splitBottomView = false,
     OnPreviewIndexChanged? onPreviewIndexChanged,
+    bool singleTop = true,
   }) {
     Get.to(
       () => ImagePreviewPage(
@@ -77,6 +120,38 @@ class Nav {
       ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,
+      preventDuplicates: singleTop,
+    );
+  }
+
+  /// 启动通用WebView
+  void startCommonWebView(
+    String url, {
+    bool singleTop = false,
+    String? tag,
+    String? title,
+    bool popConfirm = false,
+    WillPopCallback? onPopConfirm,
+    bool clearCache = true,
+    bool clearLocalStorage = true,
+    void Function(String url)? onPageStarted,
+    void Function(String url)? onPageFinished,
+    FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
+    void Function(WebResourceError error)? onWebResourceError,
+  }) {
+    CommonWebViewPage.start(
+      url,
+      singleTop: singleTop,
+      tag: tag,
+      title: title,
+      popConfirm: popConfirm,
+      onPopConfirm: onPopConfirm,
+      clearCache: clearCache,
+      clearLocalStorage: clearLocalStorage,
+      onPageStarted: onPageStarted,
+      onPageFinished: onPageFinished,
+      onNavigationRequest: onNavigationRequest,
+      onWebResourceError: onWebResourceError,
     );
   }
 }

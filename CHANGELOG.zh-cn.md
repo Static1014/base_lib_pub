@@ -1,3 +1,17 @@
+## 2.0.0
+
+1. 调整部分基础类与其对应扩展的实现方式；
+2. 新增非singleTop方式启动页面，并通过tag获取相同页面不同实例的controller；
+3. 新增CommonWebView，支持打开url、html文本、本地html文件和html asset；
+4. 新增Header组件；
+5. 新增url_launcher pub及使用；
+6. 新增mOverSizeScrollView支持view超过指定尺寸可滚动；
+
+## 1.4.0
+
+1. 将TestPage移动到example项目中；
+2. 新增CommonWebViewPage，支持快速打开远程html页面;
+
 ## 1.3.1
 
 1. 导出ListFooter、新增MySalomonBottomBar；

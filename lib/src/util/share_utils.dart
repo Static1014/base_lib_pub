@@ -16,7 +16,7 @@ import '../ui/overlay_utils.dart';
 // 分享文本
 void shareStr(String msg) {
   if (msg.isEmptyOrNull()) {
-    toast(baseTrs.shareEmpty.tr);
+    toast(BaseTrs.shareEmpty.tr);
     return;
   }
   Share.share(msg);
@@ -25,13 +25,13 @@ void shareStr(String msg) {
 // 分享本地文件
 void shareLocalFile(String path, {String? msg}) async {
   if (path.isEmptyOrNull()) {
-    toast(baseTrs.shareEmpty.tr);
+    toast(BaseTrs.shareEmpty.tr);
     return;
   }
 
   var file = File(path);
   if (!(await file.exists())) {
-    toast(baseTrs.shareNoFile.tr);
+    toast(BaseTrs.shareNoFile.tr);
     return;
   }
 
@@ -43,6 +43,6 @@ void shareLocalData(Uint8List? data, {String? msg}) async {
   if (data != null) {
     Share.shareXFiles([XFile.fromData(data)], text: msg);
   } else {
-    toast(baseTrs.shareEmpty.tr);
+    toast(BaseTrs.shareEmpty.tr);
   }
 }

@@ -1,4 +1,7 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:base_lib_pub_example/page/test/logic.dart';
+import 'package:base_lib_pub_example/route/nav_ext.dart';
+import 'package:base_lib_pub_example/translation/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,108 +14,166 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('base_lib_pub example'),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildTestFuncWithChild(Obx(() => Text('Timer on :  ${logic.tick.value}')), () {
-              if (logic.timer?.isActive ?? false) {
-                logic.timer?.cancel();
-                logic.tick(0);
-                return;
-              }
-              logic.timer = doInterval(const Duration(seconds: 1), (timer) {
-                logic.tick(timer?.tick);
-              });
-            }),
-            _buildTestFunc('toast', () {
-              toast('xxx');
-            }),
-            _buildTestFunc('ImagePreview', () {
-              Nav.startImagePreview(
-                imgList: [
-                  'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
-                  'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
-                  'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
-                ],
-                textTagList: [null, (true, null, null)],
-                defaultIndex: 0,
-                pageBgColor: BaseColors.cTransparent,
-                enableHeroTag: false,
-                bottomView: Container(
-                  child: mText(msg: '你好啊'),
-                ),
-              );
-            }),
-            GestureDetector(
-              onTap: () {
-                logic.index(0);
+    return mRoot(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(Trs.appName.tr),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildTestFunc('WebView', () {
+                // 打开多个webview page
+                CommonWebViewPage.start(
+                  'https://www.baidu.com',
+                  tag: 'web1',
+                  title: '百度',
+                  popConfirm: true,
+                );
+                // CommonWebViewPage.start('https://www.bilibili.com', tag: 'web2', title: 'B站');
+                // CommonWebViewPage.start('https://blog.csdn.net/bluewn/article/details/104347506', tag: 'web1', title: '百度');
+              }),
+              _buildTestFunc('not singleTop（multi same pages with multi same logic instances）', () {
+                // 先启动一个singleTop的
+                Nav.startTest();
+                // 再启动一个非singleTop的
+                Nav.startTest(singleTop: false, tag: 'test1');
+                doDelay(4000, () {
+                  Get.findLogic<TestLogic>(tag: 'test1')?.count.value.logE();
+                  Get.findLogic<TestLogic>()?.count(1);
+                });
+              }),
+              _buildTestFuncWithChild(Obx(() => Text('Timer on :  ${logic.tick.value}')), () {
+                if (logic.timer?.isActive ?? false) {
+                  logic.timer?.cancel();
+                  logic.tick(0);
+                  return;
+                }
+                logic.timer = doInterval(const Duration(seconds: 1), (timer) {
+                  logic.tick(timer?.tick);
+                });
+              }),
+              _buildTestFunc('toast', () {
+                toast('xxx');
+              }),
+              _buildTestFunc('ImagePreview', () {
                 Nav.startImagePreview(
                   imgList: [
                     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                    'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                     'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
-                    // 'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                   ],
-                  textTagList: [null, null, (true, null, null)],
+                  textTagList: [null, (true, null, null)],
                   defaultIndex: 0,
                   pageBgColor: BaseColors.cTransparent,
-                  enableHeroTag: true,
+                  enableHeroTag: false,
                   bottomView: Container(
                     child: mText(msg: '你好啊'),
                   ),
-                  onPreviewIndexChanged: (i) {
-                    logic.index(i);
-                  },
-                  actionView: GestureDetector(
-                    onTap: () {
-                      logic.list[logic.index.value] = !logic.list[logic.index.value];
-                    },
-                    child: Obx(
-                      () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
-                    ),
-                  ),
                 );
-              },
-              child: buildImage('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
-            ),
-            GestureDetector(
-              onTap: () {
-                logic.index(1);
-                // ImagePreviewLogic? previewLogic;
-                Nav.startImagePreview(
-                  imgList: [
-                    'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
-                    'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
-                  ],
-                  textTagList: [null, null, (true, null, null)],
-                  defaultIndex: 1,
-                  pageBgColor: BaseColors.cTransparent,
-                  enableHeroTag: true,
-                  bottomView: GestureDetector(
+              }),
+              mText(msg: 'ImagePreview with bottomView and actionView in list'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
                     onTap: () {
-                      Get.find<ImagePreviewLogic>().deleteAt(1);
+                      logic.index(0);
+                      Nav.startImagePreview(
+                        imgList: [
+                          'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                          'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                          // 'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
+                        ],
+                        textTagList: [null, null, (true, null, null)],
+                        defaultIndex: 0,
+                        pageBgColor: BaseColors.cTransparent,
+                        enableHeroTag: true,
+                        bottomView: Container(
+                          child: mText(msg: '你好啊'),
+                        ),
+                        onPreviewIndexChanged: (i) {
+                          logic.index(i);
+                        },
+                        actionView: GestureDetector(
+                          onTap: () {
+                            logic.list[logic.index.value] = !logic.list[logic.index.value];
+                          },
+                          child: Obx(
+                            () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                          ),
+                        ),
+                      );
                     },
-                    child: mText(msg: '你好啊'),
+                    child: buildImage('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
                   ),
-                  onPreviewIndexChanged: (i) {
-                    logic.index(i);
-                  },
-                  actionView: GestureDetector(
+                  GestureDetector(
                     onTap: () {
-                      logic.list[logic.index.value] = !logic.list[logic.index.value];
+                      logic.index(1);
+                      // ImagePreviewLogic? previewLogic;
+                      Nav.startImagePreview(
+                        imgList: [
+                          'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                          'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                        ],
+                        textTagList: [null, null, (true, null, null)],
+                        defaultIndex: 1,
+                        pageBgColor: BaseColors.cTransparent,
+                        enableHeroTag: true,
+                        singleTop: false,
+                        bottomView: GestureDetector(
+                          onTap: () {
+                            Get.find<ImagePreviewLogic>().deleteAt(1);
+                          },
+                          child: mText(msg: '你好啊'),
+                        ),
+                        onPreviewIndexChanged: (i) {
+                          logic.index(i);
+                        },
+                        actionView: GestureDetector(
+                          onTap: () {
+                            logic.list[logic.index.value] = !logic.list[logic.index.value];
+                          },
+                          child: Obx(
+                            () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                          ),
+                        ),
+                      );
+                      // Nav.startImagePreview(
+                      //   imgList: [
+                      //     'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                      //     'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                      //   ],
+                      //   textTagList: [null, null, (true, null, null)],
+                      //   defaultIndex: 1,
+                      //   singleTop: false,
+                      //   pageBgColor: BaseColors.cTransparent,
+                      //   enableHeroTag: true,
+                      //   bottomView: GestureDetector(
+                      //     onTap: () {
+                      //       Get.find<ImagePreviewLogic>().deleteAt(1);
+                      //     },
+                      //     child: mText(msg: '你好啊'),
+                      //   ),
+                      //   onPreviewIndexChanged: (i) {
+                      //     logic.index(i);
+                      //   },
+                      //   actionView: GestureDetector(
+                      //     onTap: () {
+                      //       logic.list[logic.index.value] = !logic.list[logic.index.value];
+                      //     },
+                      //     child: Obx(
+                      //       () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
+                      //     ),
+                      //   ),
+                      // );
                     },
-                    child: Obx(
-                      () => Icon(logic.list[logic.index.value] ? Icons.check_box : Icons.check_box_outline_blank_outlined),
-                    ),
+                    child: buildImage('https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png', 1),
                   ),
-                );
-              },
-              child: buildImage('https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png', 1),
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

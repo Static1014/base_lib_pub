@@ -2,9 +2,11 @@
 ///
 /// Created by Static4u
 /// Date : 2023/7/14 10:07
-class MyBaseTrs {
-  const MyBaseTrs();
 
+// ignore: non_constant_identifier_names
+final BaseTrs = BaseTrsClass();
+
+class BaseTrsClass {
   /// ************************************************ base ************************************************
   // 双击退出
   final exitOnDoubleClick = "exitOnDoubleClick";
@@ -41,66 +43,68 @@ class MyBaseTrs {
   // 测试页
   final testTitle = "testTitle";
   final goTest = "goTest";
-}
 
-const baseTrs = MyBaseTrs();
+  final closePageConfirmTip = "closePageConfirmTip";
+}
 
 final baseEnUS = {
   /// base
-  baseTrs.noMore: 'No more',
-  baseTrs.loading: 'Loading...',
-  baseTrs.warn: 'Warn',
-  baseTrs.save: 'Save',
-  baseTrs.confirm: 'OK',
-  baseTrs.deleteTip: 'Are you sure to delete it?',
-  baseTrs.saveToGallery: 'Send to gallery',
-  baseTrs.cancel: 'Cancel',
-  baseTrs.share: 'Share',
-  baseTrs.delete: 'Delete',
-  baseTrs.leftDelete: '<< Sliding left to delete',
-  baseTrs.leaveOne: 'It can\'t be less',
-  baseTrs.setting: 'Setting',
-  baseTrs.about: 'About',
-  baseTrs.privacy: 'Privacy Policy',
-  baseTrs.testTitle: 'Test Page',
-  baseTrs.goTest: 'go Test Page',
-  baseTrs.exitOnDoubleClick: 'Double click to exit',
-  baseTrs.crash: 'Something Wrong',
-  baseTrs.permissionTipStorage: 'Please authorize the use of storage permissions first',
-  baseTrs.imgNull: 'Image Data is wrong',
-  baseTrs.imgSaved2Gallery: 'Image has been saved to Gallery',
-  baseTrs.imgSaved2GalleryFailed: 'There\'s something wrong to save image',
-  baseTrs.shareEmpty: 'You need to choose something to share',
-  baseTrs.shareNoFile: 'The file you choose is not existed, please try another one',
-  baseTrs.retry: 'Retry',
+  BaseTrs.noMore: 'No more',
+  BaseTrs.loading: 'Loading...',
+  BaseTrs.warn: 'Warn',
+  BaseTrs.save: 'Save',
+  BaseTrs.confirm: 'OK',
+  BaseTrs.deleteTip: 'Are you sure to delete it?',
+  BaseTrs.saveToGallery: 'Send to gallery',
+  BaseTrs.cancel: 'Cancel',
+  BaseTrs.share: 'Share',
+  BaseTrs.delete: 'Delete',
+  BaseTrs.leftDelete: '<< Sliding left to delete',
+  BaseTrs.leaveOne: 'It can\'t be less',
+  BaseTrs.setting: 'Setting',
+  BaseTrs.about: 'About',
+  BaseTrs.privacy: 'Privacy Policy',
+  BaseTrs.testTitle: 'Test Page',
+  BaseTrs.goTest: 'go Test Page',
+  BaseTrs.exitOnDoubleClick: 'Double click to exit',
+  BaseTrs.crash: 'Something Wrong',
+  BaseTrs.permissionTipStorage: 'Please authorize the use of storage permissions first',
+  BaseTrs.imgNull: 'Image Data is wrong',
+  BaseTrs.imgSaved2Gallery: 'Image has been saved to Gallery',
+  BaseTrs.imgSaved2GalleryFailed: 'There\'s something wrong to save image',
+  BaseTrs.shareEmpty: 'You need to choose something to share',
+  BaseTrs.shareNoFile: 'The file you choose is not existed, please try another one',
+  BaseTrs.retry: 'Retry',
+  BaseTrs.closePageConfirmTip: 'Are you sure to close current page?',
 };
 
 final baseZhCN = {
   /// base
-  baseTrs.noMore: '没有更多了',
-  baseTrs.loading: '加载中...',
-  baseTrs.warn: '警告',
-  baseTrs.save: '保存',
-  baseTrs.confirm: '确定',
-  baseTrs.deleteTip: '确定要删除吗？',
-  baseTrs.saveToGallery: '保存至相册',
-  baseTrs.share: '分享',
-  baseTrs.cancel: '取消',
-  baseTrs.delete: '删除',
-  baseTrs.leftDelete: '<< 左滑删除',
-  baseTrs.leaveOne: '不能再删啦',
-  baseTrs.setting: '设置',
-  baseTrs.about: '关于',
-  baseTrs.privacy: '隐私政策',
-  baseTrs.testTitle: '测试页',
-  baseTrs.goTest: '打开测试页',
-  baseTrs.exitOnDoubleClick: '双击退出',
-  baseTrs.crash: '好像哪里出错了',
-  baseTrs.permissionTipStorage: '请先授权使用存储权限',
-  baseTrs.imgNull: '图片资源有误',
-  baseTrs.imgSaved2Gallery: '图片已保存到相册',
-  baseTrs.imgSaved2GalleryFailed: '图片保存失败',
-  baseTrs.shareEmpty: '分享内容不能为空',
-  baseTrs.shareNoFile: '你选择的文件不存在，换一个吧',
-  baseTrs.retry: '重试',
+  BaseTrs.noMore: '没有更多了',
+  BaseTrs.loading: '加载中...',
+  BaseTrs.warn: '警告',
+  BaseTrs.save: '保存',
+  BaseTrs.confirm: '确定',
+  BaseTrs.deleteTip: '确定要删除吗？',
+  BaseTrs.saveToGallery: '保存至相册',
+  BaseTrs.share: '分享',
+  BaseTrs.cancel: '取消',
+  BaseTrs.delete: '删除',
+  BaseTrs.leftDelete: '<< 左滑删除',
+  BaseTrs.leaveOne: '不能再删啦',
+  BaseTrs.setting: '设置',
+  BaseTrs.about: '关于',
+  BaseTrs.privacy: '隐私政策',
+  BaseTrs.testTitle: '测试页',
+  BaseTrs.goTest: '打开测试页',
+  BaseTrs.exitOnDoubleClick: '双击退出',
+  BaseTrs.crash: '好像哪里出错了',
+  BaseTrs.permissionTipStorage: '请先授权使用存储权限',
+  BaseTrs.imgNull: '图片资源有误',
+  BaseTrs.imgSaved2Gallery: '图片已保存到相册',
+  BaseTrs.imgSaved2GalleryFailed: '图片保存失败',
+  BaseTrs.shareEmpty: '分享内容不能为空',
+  BaseTrs.shareNoFile: '你选择的文件不存在，换一个吧',
+  BaseTrs.retry: '重试',
+  BaseTrs.closePageConfirmTip: '你确定要关闭当前页面吗？',
 };

@@ -7,17 +7,25 @@ import '../page/home/view.dart';
 ///
 /// Created by Static4u
 /// Date : 2023/4/12 10:53
-class Routes extends BaseRoutes {
+// ignore: non_constant_identifier_names
+final Routes = MyRoutesClass();
+
+class MyRoutesClass extends BaseRoutesClass {
   /// 初始路由
-  static const init = '/';
+  final init = '/';
 
   /// 所有路由别名必须以‘/’开头
-  static const home = '/home';
+  final home = '/home';
 
-  static List<GetPage> getPages() {
+  /// 基础测试页
+  final test = '/test';
+}
+
+extension RoutesExt on BaseRoutesClass {
+  List<GetPage> getPages() {
     var list = [
-      GetPage(name: init, page: () => HomePage()),
-      GetPage(name: home, transition: Transition.fade, page: () => HomePage()),
+      GetPage(name: Routes.init, page: () => HomePage()),
+      GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
     ];
     list.addAll(BaseRoutes.basePages);
     return list;

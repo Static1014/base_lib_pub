@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:base_lib_pub/src/getx/GetxExt.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -59,10 +60,10 @@ Future<bool> clickBack({dynamic result}) async {
     return false;
   } else {
     // 不能返回
-    if (GetMy.lastTime == null || DateTime.now().difference(GetMy.lastTime!) > const Duration(seconds: 1)) {
+    if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
       //   // 一秒之内点击两次返回键，提示再次点击退出
-      GetMy.lastTime = DateTime.now();
-      toast(baseTrs.exitOnDoubleClick.tr);
+      MyGet.lastTime = DateTime.now();
+      toast(BaseTrs.exitOnDoubleClick.tr);
       return false;
     }
     exitApp();

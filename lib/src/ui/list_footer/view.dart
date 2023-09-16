@@ -27,7 +27,7 @@ class ListFooterView extends StatelessWidget {
       height: height,
       child: Obx(() => switch (logic.state.value) {
             ListFooterState.noMore => mText(
-                msg: baseTrs.noMore.tr,
+                msg: BaseTrs.noMore.tr,
                 textAlign: TextAlign.center,
                 color: BaseColors.cFontGrayLight,
                 fontSize: 14,
@@ -38,7 +38,7 @@ class ListFooterView extends StatelessWidget {
                   mProgressIndicator(),
                   mDividerH(width: 4),
                   mText(
-                    msg: baseTrs.loading.tr,
+                    msg: BaseTrs.loading.tr,
                     textAlign: TextAlign.center,
                     color: BaseColors.cFontGrayLight,
                     fontSize: 14,
@@ -48,7 +48,7 @@ class ListFooterView extends StatelessWidget {
             ListFooterState.failed => GestureDetector(
                 onTap: retryCallback,
                 child: mText(
-                  msg: '${logic.failedMsg.value}   ${baseTrs.retry.tr}',
+                  msg: '${logic.failedMsg.value}   ${BaseTrs.retry.tr}',
                   textAlign: TextAlign.center,
                   color: BaseColors.cFontGrayLight,
                   fontSize: 14,
