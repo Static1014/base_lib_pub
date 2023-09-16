@@ -1,3 +1,7 @@
+## 2.0.1
+
+1. 修改BaseRoutes及example中Routes的继承方法getPages来汇集routes；
+
 ## 2.0.0
 
 1. 调整部分基础类与其对应扩展的实现方式；

@@ -1,3 +1,7 @@
+## 2.0.1
+
+1. Modify getPages of Routes inheritance method in BaseRoutes and example to aggregate routes;
+
 ## 2.0.0
 
 1. Adjust the implementation of some base classes and their corresponding extensions;

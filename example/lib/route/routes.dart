@@ -19,15 +19,13 @@ class MyRoutesClass extends BaseRoutesClass {
 
   /// 基础测试页
   final test = '/test';
-}
 
-extension RoutesExt on BaseRoutesClass {
+  @override
   List<GetPage> getPages() {
-    var list = [
-      GetPage(name: Routes.init, page: () => HomePage()),
-      GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
-    ];
-    list.addAll(BaseRoutes.basePages);
-    return list;
+    return super.getPages()
+      ..addAll([
+        GetPage(name: Routes.init, page: () => HomePage()),
+        GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
+      ]);
   }
 }

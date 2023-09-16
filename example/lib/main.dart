@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       initialRoute: Routes.init,
-      getPages: BaseRoutes.getPages(),
+      getPages: Routes.getPages(),
       // 国际化配置
       locale: MyTranslations.locale,
       fallbackLocale: MyTranslations.fallbackLocale,

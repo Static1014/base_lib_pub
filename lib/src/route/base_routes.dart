@@ -18,4 +18,7 @@ class BaseRoutesClass {
 
   /// 基础路由
   final List<GetPage> basePages = [];
+
+  /// 获取路由
+  List<GetPage> getPages() => basePages;
 }
