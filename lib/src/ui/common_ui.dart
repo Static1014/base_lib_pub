@@ -60,39 +60,33 @@ Widget mWillPopScope({required Widget child, WillPopCallback? onWillPop}) {
 }
 
 /// 点击空白处关闭键盘
-Widget mRoot({required Widget child, WillPopCallback? onWillPop}) {
+Widget mRoot({
+  required Widget child,
+  WillPopCallback? onWillPop,
+  bool safeArea = true,
+  bool safeTop = false,
+  bool safeBottom = true,
+  bool safeLeft = true,
+  bool safeRight = true,
+}) {
   return WillPopScope(
     onWillPop: onWillPop ?? clickBack,
-    child: GestureDetector(onTap: hideKeyboard, child: child),
-  );
-}
-
-/// 快速生成根视图
-/// SafeArea(GestureDetector(CupertinoScrollbar(SingleChildScrollView)))
-Widget mSafeRoot({
-  bool clickable = true, // 是否点击空白处隐藏键盘
-  bool fullScreenScroll = false, // 是否全屏ScrollView，防止固定布局超出屏幕高度
-  bool showScrollbar = false, // 是否显示滚动条
-//    double appBarHeight = 0,
-//    double tabBarHeight = 0,
-  bool isCupertinoStyle = false,
-  EdgeInsets? margin,
-  required Widget child,
-}) {
-  var lastChild = isCupertinoStyle ? Material(child: child) : child;
-//    var h = max(0, screenContentHeight - appBarHeight - tabBarHeight - (margin != null ? (margin.top + margin.bottom) : 0));
-//    i(msg: "safe root height: $h");
-  var wInBar = SingleChildScrollView(
-    child: Container(margin: margin, child: lastChild),
-  );
-  var secChild = fullScreenScroll ? (showScrollbar ? CupertinoScrollbar(child: wInBar) : wInBar) : lastChild;
-  return SafeArea(
-    child: clickable ? GestureDetector(onTap: hideKeyboard, child: secChild) : secChild,
+    child: GestureDetector(
+        onTap: hideKeyboard,
+        child: safeArea
+            ? SafeArea(
+                top: safeTop,
+                bottom: safeBottom,
+                left: safeLeft,
+                right: safeRight,
+                child: child,
+              )
+            : child),
   );
 }
 
 /// 统一appbar
-Widget mAppBar({
+PreferredSizeWidget mAppBar({
   required String title,
   bool centerTitle = true,
   Color titleColor = BaseColors.cFontWhite,
@@ -100,10 +94,10 @@ Widget mAppBar({
   FontWeight titleFontWeight = FontWeight.normal,
   int titleMaxLine = 1,
   double height = 0,
-  double? elevation = 4,
+  double? elevation = 0,
   Color? backgroundColor,
   Widget? leading, // 自定义左侧按钮
-  Color backIconColor = Colors.white, // 左侧返回按钮
+  Color? backIconColor = Colors.white, // 左侧返回按钮
   bool backEnable = false,
   VoidCallback? backPressed,
   List<Widget>? actions,
@@ -149,14 +143,9 @@ Widget mAppBar({
     leadingWidth: leadingWidth,
   );
 
-  if (height != 0) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(height),
-      child: bar,
-    );
-  } else {
-    return bar;
-  }
+  double pHeight = (height != 0 ? height : BaseDimens.dAppBarHeight) + (bottom?.preferredSize.height ?? 0);
+
+  return PreferredSize(preferredSize: Size.fromHeight(pHeight), child: bar);
 }
 
 /// 获取普通Text
@@ -654,24 +643,26 @@ Widget mOverSizeScrollView({
   Axis scrollDirection = Axis.vertical,
   double? crossSize = double.infinity,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
+  bool showScrollBar = false,
 }) {
+  Widget content = SingleChildScrollView(
+    scrollDirection: scrollDirection,
+    child: scrollDirection == Axis.vertical
+        ? Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: crossAxisAlignment,
+            children: children,
+          )
+        : Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: crossAxisAlignment,
+            children: children,
+          ),
+  );
   return Container(
     width: scrollDirection == Axis.vertical ? crossSize : null,
     height: scrollDirection == Axis.horizontal ? crossSize : null,
     constraints: scrollDirection == Axis.vertical ? BoxConstraints(maxHeight: maxSize) : BoxConstraints(maxWidth: maxSize),
-    child: SingleChildScrollView(
-      scrollDirection: scrollDirection,
-      child: scrollDirection == Axis.vertical
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: crossAxisAlignment,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: crossAxisAlignment,
-              children: children,
-            ),
-    ),
+    child: showScrollBar ? CupertinoScrollbar(child: content) : content,
   );
 }

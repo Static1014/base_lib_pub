@@ -1,3 +1,8 @@
+## 2.0.4
+
+1. 删除Header，由mAppBar替代；
+2. mRoot默认添加SafeArea，默认顶部不进行safe处理（会导致设置状态栏颜色无效）；
+
 ## 2.0.3
 
 1. 丰富mAppBar、Header的入参；

@@ -12,9 +12,8 @@ class TestPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final TestLogic logic = Get.find(tag: tag);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Text(BaseTrs.testTitle.tr),
+      appBar: mAppBar(
+        title: BaseTrs.testTitle.tr,
       ),
       body: Container(
         color: Colors.green.withAlpha(100),

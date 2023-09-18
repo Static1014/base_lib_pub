@@ -1,3 +1,9 @@
+## 2.0.4
+
+1. Delete Header and replace it with mAppBar.
+2. mRoot adds SafeArea by default, and does not handle safe at the top by default (the color of the
+   status bar is invalid);
+
 ## 2.0.3
 
 1. Specify parameters for the mAppBar and Header.
@@ -223,7 +229,6 @@
 
 1. Add KeepAliveWrapper to maintain TabBarView and ViewPager status;
 2. Add GetTicker, supporting the creation of TabController;
-
 
 ## 1.0.11
 

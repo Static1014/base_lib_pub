@@ -16,9 +16,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return mRoot(
       child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: Text(Trs.appName.tr),
+        appBar: mAppBar(
+          title: Trs.appName.tr,
+          backEnable: false,
+          centerTitle: false,
         ),
         body: SingleChildScrollView(
           child: Column(

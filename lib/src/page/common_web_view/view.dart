@@ -110,9 +110,9 @@ class CommonWebViewPage extends StatelessWidget {
     return mRoot(
       onWillPop: _buildPopConfirm(),
       child: Scaffold(
-        appBar: Header(
-          title,
-          onBackClick: _buildPopConfirm(),
+        appBar: mAppBar(
+          title: title ?? '',
+          backPressed: _buildPopConfirm(),
         ),
         body: Stack(
           children: [
