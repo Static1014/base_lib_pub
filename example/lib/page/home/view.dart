@@ -22,6 +22,18 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              _buildTestFunc('DataUtils', () async {
+                // DataUtils本地存储
+                DataUtils.set('i1', 1);
+                DataUtils.set('str', '11111');
+                DataUtils.getInt('i1').then((value) => value.logE());
+                DataUtils.getString('i1').then((value) => value.logE()).catchError((e) {
+                  '$e'.logE();
+                });
+                DataUtils.getString('str').then((value) => value.logE()).catchError((e) {
+                  ''.logE();
+                });
+              }),
               _buildTestFunc('WebView', () {
                 // 打开多个webview page
                 CommonWebViewPage.start(

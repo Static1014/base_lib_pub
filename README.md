@@ -104,29 +104,9 @@ class _MyAppState extends State<MyApp> {
 }
 ```
 
-## Dependency
-
-1. Basis: [get](https://pub.dev/packages/get)
-2. The animation: [simple_animations](https://pub.dev/packages/simple_animations)
-3. Toast, loading: [bot_toast](https://pub.dev/packages/bot_toast)
-4. Permission handler: [permission_handler](https://pub.dev/packages/permission_handler)
-5. Save the images into the photo gallery: [image_gallery_saver](https://pub.dev/packages/)
-6. Image loading, see: [extended_image](https://pub.dev/packages/extended_image)
-7. Imitation WeChat choose image: [wechat_assets_picker](https://pub.dev/packages/wechat_assets_picker), [wechat_camera_picker](https://pub.dev/packages/wechat_camera_picker)
-8. Network: [dio](https://pub.dev/packages/dio)
-9. The image compression: [flutter_image_compress](https://pub.dev/packages/flutter_image_compress)
-10. File operations: [path_provider](https://pub.dev/packages/path_provider)
-11. The date format: [date_format](https://pub.dev/packages/date_format)
-12. Sharing: [share_plus](https://pub.dev/packages/share_plus)
-13. The waterfall flow, such as custom grid: [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
-14. Uri to file: [uri_to_file](https://pub.dev/packages/uri_to_file)
-15. Encryption: [encrypt](https://pub.dev/packages/encrypt)
-16. SalomonBottomBar(*modified*): [salomon_bottom_bar](https://pub.dev/packages/salomon_bottom_bar)
-
-- Please comply with the open source licensing requirements of the dependent project.
-
 ## Additional information
 
+- Please comply with the open source licensing requirements of the dependent project.
 - Technology is a long and continuous road, and you share!
 - Contact:  [420048248@qq.com](mailto:420048248@qq.com), [Github](https://github.com/Static1014/base_lib_pub.git), [WeChat: Misu_324]()
  

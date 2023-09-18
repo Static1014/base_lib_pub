@@ -105,31 +105,11 @@ class _MyAppState extends State<MyApp> {
 
 ```
 
-## 项目依赖
-
-1. 基础: [get](https://pub.dev/packages/get)
-2. 动画: [simple_animations](https://pub.dev/packages/simple_animations)
-3. toast、loading: [bot_toast](https://pub.dev/packages/bot_toast)
-4. 权限申请、检查: [permission_handler](https://pub.dev/packages/permission_handler)
-5. 保存图片到相册: [image_gallery_saver](https://pub.dev/packages/)
-6. 图片加载、查看: [extended_image](https://pub.dev/packages/extended_image)
-7. 仿微信选择图片: [wechat_assets_picker](https://pub.dev/packages/wechat_assets_picker)、[wechat_camera_picker](https://pub.dev/packages/wechat_camera_picker)
-8. 网络: [dio](https://pub.dev/packages/dio)
-9. 图片压缩: [flutter_image_compress](https://pub.dev/packages/flutter_image_compress)
-10. 文件操作: [path_provider](https://pub.dev/packages/path_provider)
-11. 日期格式化: [date_format](https://pub.dev/packages/date_format)
-12. 分享: [share_plus](https://pub.dev/packages/share_plus)
-13. 瀑布流、自定义栅格等: [flutter_staggered_grid_view](https://pub.dev/packages/flutter_staggered_grid_view)
-14. uri转文件路径: [uri_to_file](https://pub.dev/packages/uri_to_file)
-15. 加解密: [encrypt](https://pub.dev/packages/encrypt)
-16. SalomonBottomBar(*修改*): [salomon_bottom_bar](https://pub.dev/packages/salomon_bottom_bar)
+## 写在最后
 
 - 请自觉遵循依赖项目的开源许可要求。
 
-## 写在最后
-
 - 技术是一条漫长且持续的道路，与诸君共勉！
-
 
 - 联系方式: [420048248@qq.com](mailto:420048248@qq.com)、[Github](https://github.com/Static1014/base_lib_pub.git)、[微信: Misu_324]()
 

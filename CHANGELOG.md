@@ -1,3 +1,8 @@
+## 2.0.2
+
+1. Add DataUtils to support local data storage.
+2. Modify README to remove project dependencies;
+
 ## 2.0.1
 
 1. Modify getPages of Routes inheritance method in BaseRoutes and example to aggregate routes;

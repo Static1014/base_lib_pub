@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 2.0.1
+version: 2.0.2
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -42,13 +42,15 @@ dependencies:
   # 加解密
   #  cryptography: ^2.5.0
   #  cryptography_flutter: ^2.3.0
-  encrypt: ^5.0.1
+  encrypt: ^5.0.2
   # animations
   simple_animations: ^5.0.2
   # webView
   webview_flutter: ^4.2.4
   # url_launcher(通过url启动第三方app，如alipay://)
   url_launcher: ^6.1.14
+  # 本地存储
+  shared_preferences: ^2.2.1
 
 dev_dependencies:
   flutter_test:

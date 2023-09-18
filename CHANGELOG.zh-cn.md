@@ -1,3 +1,8 @@
+## 2.0.2
+
+1. 新增DataUtils，支持本地数据存储；
+2. 修改README，去除项目依赖部分；
+
 ## 2.0.1
 
 1. 修改BaseRoutes及example中Routes的继承方法getPages来汇集routes；
