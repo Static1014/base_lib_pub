@@ -12,7 +12,7 @@ class BaseDimens {
   static const double dFontSizeLarge = 18;
   static const double dFontSizeLargeEx = 26;
   static const double dFontSize20 = 20;
-  static const double dFontSizeTitle = 22;
+  static const double dFontSizeTitle = 20;
 
   static const double dFontSizeBtnSmall = 16;
   static const double dFontSizeBtnNormal = 18;

@@ -1,3 +1,8 @@
+## 2.0.5
+
+1. Change the default font size of title.
+2. Modify the default mAppBar style
+
 ## 2.0.4
 
 1. Delete Header and replace it with mAppBar.

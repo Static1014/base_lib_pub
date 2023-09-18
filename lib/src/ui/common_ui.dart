@@ -95,22 +95,27 @@ PreferredSizeWidget mAppBar({
   int titleMaxLine = 1,
   double height = 0,
   double? elevation = 0,
-  Color? backgroundColor,
+  Color? backgroundColor = BaseColors.cPrimaryColor,
   Widget? leading, // 自定义左侧按钮
   Color? backIconColor = Colors.white, // 左侧返回按钮
   bool backEnable = false,
+  bool autoBackEnable = true,
   VoidCallback? backPressed,
   List<Widget>? actions,
   PreferredSizeWidget? bottom,
   double? titleSpacing,
   double? leadingWidth,
-  double? backIconSize = 18,
+  double? backIconSize = 20,
   Widget? titleView,
 }) {
+  if (autoBackEnable) {
+    backEnable = Nav.isPopEnable();
+  }
+
   /// 默认返回按钮
   final Widget leadingDefault = IconButton(
     icon: Icon(
-      Icons.arrow_back_ios,
+      Icons.arrow_back_ios_new,
       color: backIconColor,
       size: backIconSize,
     ),
@@ -122,7 +127,8 @@ PreferredSizeWidget mAppBar({
   } else if (backEnable || backPressed != null) {
     leadingReal = leadingDefault;
   } else {
-    leadingReal = null;
+    leadingReal = const SizedBox.shrink();
+    leadingWidth = 0;
   }
   var bar = AppBar(
     leading: leadingReal,
