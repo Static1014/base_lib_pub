@@ -3,12 +3,10 @@ library common_web_view;
 import 'dart:async';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:base_lib_pub/src/ui/header.dart';
 import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 part 'logic.dart';
@@ -35,6 +33,7 @@ class CommonWebViewPage extends StatelessWidget {
     void Function(String url)? onPageFinished,
     FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
     void Function(WebResourceError error)? onWebResourceError,
+    Transition? transition,
   }) {
     Nav.to(
       () => CommonWebViewPage(
@@ -52,6 +51,7 @@ class CommonWebViewPage extends StatelessWidget {
       ),
       tag: tag,
       preventDuplicates: singleTop,
+      transition: transition,
       binding: BindingsBuilder(() {
         Get.put(CommonWebViewLogic(), tag: tag);
       }),

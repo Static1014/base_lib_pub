@@ -26,7 +26,7 @@ class BaseDimens {
   static const double dIconSize = 20;
 
   static double dStatusBarHeight = MediaQuery.of(Get.context!).padding.top;
-  static const double dAppBarHeight = 50;
+  static const double dAppBarHeight = 56;
 
   /// header高度
   static const double dHeaderHeightDefault = 64;

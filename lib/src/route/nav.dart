@@ -10,6 +10,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 /// Created by Static4u
 /// Date : 2023/5/6 11:21
 
+// ignore: non_constant_identifier_names
 final Nav = NavClass();
 
 class NavClass {
@@ -34,42 +35,6 @@ class NavClass {
   bool isPopEnable() {
     var routeName = Get.routing.route?.settings.name;
     return !(_unPopRoutes.contains(routeName));
-  }
-
-  Future<T?>? to<T>(
-    dynamic page, {
-    bool? opaque,
-    Transition? transition = Transition.rightToLeftWithFade,
-    Curve? curve,
-    Duration? duration,
-    int? id,
-    String? routeName,
-    bool fullscreenDialog = false,
-    dynamic arguments,
-    Bindings? binding,
-    bool preventDuplicates = true,
-    String? tag,
-    bool? popGesture,
-    double Function(BuildContext context)? gestureWidth,
-  }) {
-    /// 当不是singleTop时，必须有tag，且tag不能重复
-    assert(preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag)));
-
-    return Get.to(
-      page,
-      opaque: opaque,
-      transition: transition,
-      curve: curve,
-      duration: duration,
-      id: id,
-      routeName: routeName,
-      fullscreenDialog: fullscreenDialog,
-      arguments: arguments,
-      binding: binding,
-      preventDuplicates: preventDuplicates,
-      popGesture: popGesture,
-      gestureWidth: gestureWidth,
-    );
   }
 
 //  bool isPbShowing() {
@@ -138,6 +103,7 @@ class NavClass {
     void Function(String url)? onPageFinished,
     FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
     void Function(WebResourceError error)? onWebResourceError,
+    Transition? transition,
   }) {
     CommonWebViewPage.start(
       url,
@@ -152,6 +118,43 @@ class NavClass {
       onPageFinished: onPageFinished,
       onNavigationRequest: onNavigationRequest,
       onWebResourceError: onWebResourceError,
+      transition: transition,
+    );
+  }
+
+  Future<T?>? to<T>(
+    dynamic page, {
+    bool? opaque,
+    Transition? transition = Transition.rightToLeftWithFade,
+    Curve? curve,
+    Duration? duration,
+    int? id,
+    String? routeName,
+    bool fullscreenDialog = false,
+    dynamic arguments,
+    Bindings? binding,
+    bool preventDuplicates = true,
+    String? tag,
+    bool? popGesture,
+    double Function(BuildContext context)? gestureWidth,
+  }) {
+    /// 当不是singleTop时，必须有tag，且tag不能重复
+    assert(preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag)));
+
+    return Get.to(
+      page,
+      opaque: opaque,
+      transition: transition,
+      curve: curve,
+      duration: duration,
+      id: id,
+      routeName: routeName,
+      fullscreenDialog: fullscreenDialog,
+      arguments: arguments,
+      binding: binding,
+      preventDuplicates: preventDuplicates,
+      popGesture: popGesture,
+      gestureWidth: gestureWidth,
     );
   }
 }

@@ -24,7 +24,7 @@ class MyRoutesClass extends BaseRoutesClass {
   List<GetPage> getPages() {
     return super.getPages()
       ..addAll([
-        GetPage(name: Routes.init, page: () => HomePage()),
+        GetPage(name: Routes.init, transition: Transition.fade, page: () => HomePage()),
         GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
       ]);
   }

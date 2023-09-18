@@ -6,8 +6,6 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 
@@ -98,19 +96,21 @@ Widget mAppBar({
   required String title,
   bool centerTitle = true,
   Color titleColor = BaseColors.cFontWhite,
+  double titleFontSize = BaseDimens.dFontSizeTitle,
+  FontWeight titleFontWeight = FontWeight.normal,
+  int titleMaxLine = 1,
   double height = 0,
   double? elevation = 4,
   Color? backgroundColor,
-  // 自定义左侧按钮
-  Widget? leading,
-  // 左侧返回按钮
-  Color backIconColor = Colors.white,
+  Widget? leading, // 自定义左侧按钮
+  Color backIconColor = Colors.white, // 左侧返回按钮
   bool backEnable = false,
   VoidCallback? backPressed,
   List<Widget>? actions,
   PreferredSizeWidget? bottom,
   double? titleSpacing,
   double? leadingWidth,
+  double? backIconSize = 18,
   Widget? titleView,
 }) {
   /// 默认返回按钮
@@ -118,7 +118,7 @@ Widget mAppBar({
     icon: Icon(
       Icons.arrow_back_ios,
       color: backIconColor,
-      size: 18,
+      size: backIconSize,
     ),
     onPressed: backPressed ?? clickBack,
   );
@@ -137,11 +137,11 @@ Widget mAppBar({
     centerTitle: centerTitle,
     title: titleView ??
         mText(
-          maxLines: 1,
-          weight: FontWeight.bold,
+          maxLines: titleMaxLine,
+          weight: titleFontWeight,
           msg: title,
           color: titleColor,
-          fontSize: BaseDimens.dFontSizeTitle,
+          fontSize: titleFontSize,
         ),
     actions: actions,
     bottom: bottom,

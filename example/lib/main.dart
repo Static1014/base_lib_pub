@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
       // 国际化配置

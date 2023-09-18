@@ -1,3 +1,9 @@
+## 2.0.3
+
+1. Specify parameters for the mAppBar and Header.
+2. Change the default appBar height to 56.
+3. Modify example default route adjustment animation.
+
 ## 2.0.2
 
 1. Add DataUtils to support local data storage.

@@ -1,3 +1,9 @@
+## 2.0.3
+
+1. 丰富mAppBar、Header的入参；
+2. 修改默认appBar高度为56；
+3. 修改example默认路由调整动画；
+
 ## 2.0.2
 
 1. 新增DataUtils，支持本地数据存储；

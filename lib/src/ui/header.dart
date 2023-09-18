@@ -19,6 +19,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   final bool centerTitle;
   final Widget? titleView;
   final Callback? onBackClick;
+  final double titleFontSize;
+  final FontWeight titleFontWeight;
+  final int titleMaxLine;
+  final double? backIconSize;
 
   const Header(
     this._title, {
@@ -33,6 +37,10 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     this.titleColor = BaseColors.cFontWhite,
     this.titleView,
     this.titleSpacing = 12,
+    this.titleFontSize = BaseDimens.dFontSizeTitle,
+    this.titleFontWeight = FontWeight.normal,
+    this.titleMaxLine = 1,
+    this.backIconSize = 18,
   });
 
   @override

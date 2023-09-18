@@ -13,6 +13,7 @@ class TestPage extends StatelessWidget {
     final TestLogic logic = Get.find(tag: tag);
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(BaseTrs.testTitle.tr),
       ),
       body: Container(

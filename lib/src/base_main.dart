@@ -21,6 +21,7 @@ void initBaseApp({
   Brightness barBrightness = Brightness.light,
   List<String>? unPopRoutes,
   bool initWeChat = false,
+  Transition? defaultTransition = Transition.cupertino,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -36,7 +37,10 @@ void initBaseApp({
   if (initWeChat) {
     initWechatAssetsPicker();
   }
-  Get.config(enableLog: enableLog);
+  Get.config(
+    enableLog: enableLog,
+    defaultTransition: defaultTransition,
+  );
 }
 
 void initUi({
