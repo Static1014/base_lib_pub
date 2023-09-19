@@ -1,3 +1,9 @@
+## 2.1.1
+
+1. Adjust the safeArea background color of the ImagePreviewPage to transparent to prevent the hero
+   animation from being covered;
+2. Change the minimum flutter version to 3.3.0;
+
 ## 2.1.0
 
 1. Add PackageUtils to obtain application information.

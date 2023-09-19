@@ -97,6 +97,7 @@ class ImagePreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return mRoot(
+      safeAreaBgColor: BaseColors.cTransparent,
       child: Scaffold(
         backgroundColor: pageBgColor,
         body: Padding(
@@ -108,19 +109,19 @@ class ImagePreviewPage extends StatelessWidget {
                   ? Obx(
                       () => logic._isSliding.value
                           ? const SizedBox.shrink()
-                          : Positioned(
-                              left: 4,
-                              top: BaseDimens.dStatusBarHeight,
-                              child: FloatingActionButton(
-                                onPressed: () {
-                                  logic._close();
-                                },
-                                backgroundColor: BaseColors.cTransparent,
-                                elevation: 0,
-                                child: const Icon(Icons.arrow_back_ios_new_outlined),
-                              ),
-                            ),
-                    )
+                    : Positioned(
+                  left: 4,
+                  top: BaseDimens.dStatusBarHeight,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      logic._close();
+                    },
+                    backgroundColor: BaseColors.cTransparent,
+                    elevation: 0,
+                    child: const Icon(Icons.arrow_back_ios_new_outlined),
+                  ),
+                ),
+              )
                   : const SizedBox.shrink(),
               _buildActionView(),
             ],

@@ -1,3 +1,8 @@
+## 2.1.1
+
+1. 调整ImagePreviewPage的safeArea背景颜色为透明，避免hero动画被遮盖；
+2. 修改最低flutter版本为3.3.0;
+
 ## 2.1.0
 
 1. 新增PackageUtils获取应用信息；
