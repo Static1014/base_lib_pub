@@ -1,3 +1,7 @@
+## 2.1.2
+
+1. Update harmony_plugin.
+
 ## 2.1.1
 
 1. Adjust the safeArea background color of the ImagePreviewPage to transparent to prevent the hero

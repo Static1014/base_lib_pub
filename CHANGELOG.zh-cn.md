@@ -1,3 +1,7 @@
+## 2.1.2
+
+1. 更新harmony_plugin版本；
+
 ## 2.1.1
 
 1. 调整ImagePreviewPage的safeArea背景颜色为透明，避免hero动画被遮盖；
