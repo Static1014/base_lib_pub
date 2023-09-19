@@ -1,3 +1,12 @@
+## 2.1.0
+
+1. Add PackageUtils to obtain application information.
+2. Modify DataUtils.
+3. mRoot adds the safeArea background color parameter.
+4. Add DeviceUtils to obtain device information.
+5. Add harmony_plugin to obtain great information;
+6. Adjust the import;
+
 ## 2.0.5
 
 1. Change the default font size of title.
