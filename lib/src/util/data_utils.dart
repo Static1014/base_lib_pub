@@ -7,24 +7,31 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Date : 2023/9/18 14:49
 
 // ignore: non_constant_identifier_names
-final DataUtils = DataUtilsClass();
+final DataUtils = _DataUtilsClass();
 
-class DataUtilsClass {
-  static DataUtilsClass? _instance;
+class _DataUtilsClass {
+  static _DataUtilsClass? _instance;
 
-  DataUtilsClass._internal() {
+  _DataUtilsClass._internal() {
     _instance = this;
   }
 
-  factory DataUtilsClass() {
-    return _instance ?? DataUtilsClass._internal();
+  factory _DataUtilsClass() {
+    return _instance ?? _DataUtilsClass._internal();
   }
 
   SharedPreferences? _prefs;
 
-  Future<bool> set(String key, dynamic value) async {
+  Future<SharedPreferences> init({bool prefix = false}) async {
+    if (prefix) {
+      SharedPreferences.setPrefix(await PackageUtils.pkgName);
+    }
     _prefs ??= await SharedPreferences.getInstance();
+    return _prefs!;
+  }
 
+  Future<bool> set(String key, dynamic value) async {
+    await init();
     if (value is int) {
       return await _prefs!.setInt(key, value);
     } else if (value is bool) {
@@ -43,27 +50,52 @@ class DataUtilsClass {
   }
 
   Future<int> getInt(String key, {int defaultValue = 0}) async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getInt(key) ?? defaultValue;
+    try {
+      return (await init()).getInt(key) ?? defaultValue;
+    } catch (e) {
+      e.logE(tag: 'Exception msg');
+    }
+
+    return defaultValue;
   }
 
   Future<bool> getBool(String key, {bool defaultValue = false}) async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getBool(key) ?? defaultValue;
+    try {
+      return (await init()).getBool(key) ?? defaultValue;
+    } catch (e) {
+      e.logE(tag: 'Exception msg');
+    }
+
+    return defaultValue;
   }
 
   Future<String> getString(String key, {String defaultValue = ''}) async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getString(key) ?? defaultValue;
+    try {
+      return (await init()).getString(key) ?? defaultValue;
+    } catch (e) {
+      e.logE(tag: 'Exception msg');
+    }
+
+    return defaultValue;
   }
 
   Future<double> getDouble(String key, {double defaultValue = 0.0}) async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getDouble(key) ?? defaultValue;
+    try {
+      return (await init()).getDouble(key) ?? defaultValue;
+    } catch (e) {
+      e.logE(tag: 'Exception msg');
+    }
+
+    return defaultValue;
   }
 
   Future<List<String>> getStringList(String key, {List<String> defaultValue = const []}) async {
-    _prefs ??= await SharedPreferences.getInstance();
-    return _prefs!.getStringList(key) ?? defaultValue;
+    try {
+      return (await init()).getStringList(key) ?? defaultValue;
+    } catch (e) {
+      e.logE(tag: 'Exception msg');
+    }
+
+    return defaultValue;
   }
 }

@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 2.0.5
+version: 2.0.6
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -51,6 +51,12 @@ dependencies:
   url_launcher: ^6.1.14
   # 本地存储
   shared_preferences: ^2.2.1
+  # 应用信息
+  package_info_plus: ^4.1.0
+  # 设备信息
+  device_info_plus: ^9.0.3
+  # 鸿蒙系统判断
+  harmony_plugin: ^0.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,18 +1,18 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:get/get.dart';
 
-/// Name: GetxExt.dart
+/// Name: getx_ext.dart
 ///
 /// Created by Static4u
 /// Date : 2023/9/15 09:32
+
+// ignore: non_constant_identifier_names
+final MyGet = _MyGetImpl();
 
 class _MyGetImpl extends GetInterface {
   /// 双击退出
   DateTime? lastTime;
 }
-
-// ignore: non_constant_identifier_names
-final MyGet = _MyGetImpl();
 
 extension GetExt on GetInterface {
   /// 当以非singleTop模式启动多个同一页面，必须使用不同tag的logic进行处理。

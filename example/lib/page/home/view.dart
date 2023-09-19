@@ -24,17 +24,49 @@ class HomePage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Obx(
+                () => _buildTestFunc('device info${logic.displayName}${logic.deviceInfo}', () {
+                  logic.deviceInfo('');
+                  logic.displayName('');
+
+                  DeviceUtils.getPhoneDisplayName().then((value) {
+                    logic.displayName('\ndisplay_name: $value\n');
+                  });
+                  if (GetPlatform.isAndroid) {
+                    DeviceUtils.androidInfo.then((value) {
+                      // value.toString().logE();
+                      logic.deviceInfo('\nandroid设备信息：$value');
+                    });
+                  } else if (GetPlatform.isIOS) {
+                    DeviceUtils.iosInfo.then((value) {
+                      logic.deviceInfo('\nios设备信息：$value');
+                    });
+                  }
+                }),
+              ),
+              Obx(
+                () => _buildTestFunc('package info${logic.pkgInfo}', () {
+                  logic.pkgInfo('');
+                  PackageUtils.appName.then((value) {
+                    logic.pkgInfo('\napp名称：$value\n');
+                  });
+                  PackageUtils.pkgName.then((value) {
+                    logic.pkgInfo('${logic.pkgInfo.value}包名：$value\n');
+                  });
+                  PackageUtils.versionName.then((value) {
+                    logic.pkgInfo('${logic.pkgInfo.value}版本名称：$value\n');
+                  });
+                  PackageUtils.versionCode.then((value) {
+                    logic.pkgInfo('${logic.pkgInfo.value}版本编号：$value');
+                  });
+                }),
+              ),
               _buildTestFunc('DataUtils', () async {
                 // DataUtils本地存储
                 DataUtils.set('i1', 1);
                 DataUtils.set('str', '11111');
-                DataUtils.getInt('i1').then((value) => value.logE());
-                DataUtils.getString('i1').then((value) => value.logE()).catchError((e) {
-                  '$e'.logE();
-                });
-                DataUtils.getString('str').then((value) => value.logE()).catchError((e) {
-                  ''.logE();
-                });
+                DataUtils.getString('i1').then((value) => value.logE());
+                DataUtils.getString('str').then((value) => value.logE());
               }),
               _buildTestFunc('WebView', () {
                 // 打开多个webview page

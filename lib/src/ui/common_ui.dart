@@ -68,18 +68,22 @@ Widget mRoot({
   bool safeBottom = true,
   bool safeLeft = true,
   bool safeRight = true,
+  Color? safeAreaBgColor = BaseColors.cWhite, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
 }) {
   return WillPopScope(
     onWillPop: onWillPop ?? clickBack,
     child: GestureDetector(
         onTap: hideKeyboard,
         child: safeArea
-            ? SafeArea(
-                top: safeTop,
-                bottom: safeBottom,
-                left: safeLeft,
-                right: safeRight,
-                child: child,
+            ? Container(
+                color: safeAreaBgColor,
+                child: SafeArea(
+                  top: safeTop,
+                  bottom: safeBottom,
+                  left: safeLeft,
+                  right: safeRight,
+                  child: child,
+                ),
               )
             : child),
   );

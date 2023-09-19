@@ -1,12 +1,6 @@
-import 'package:base_lib_pub/src/util/image_utils.dart';
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'route/nav.dart';
-import 'ui/common_ui.dart';
-import 'util/crash_utils.dart';
-import 'util/file_utils.dart';
-import 'util/log_utils.dart';
 
 /// Name: base_main.dart
 ///
@@ -22,6 +16,7 @@ void initBaseApp({
   List<String>? unPopRoutes,
   bool initWeChat = false,
   Transition? defaultTransition = Transition.cupertino,
+  bool enableData = false,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -41,6 +36,7 @@ void initBaseApp({
     enableLog: enableLog,
     defaultTransition: defaultTransition,
   );
+  DataUtils.init(prefix: true);
 }
 
 void initUi({

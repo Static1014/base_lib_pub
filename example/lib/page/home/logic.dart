@@ -8,4 +8,8 @@ class HomeLogic extends GetxController {
 
   final list = [false, false].obs;
   final index = 0.obs;
+
+  final pkgInfo = ''.obs;
+  final deviceInfo = ''.obs;
+  final displayName = ''.obs;
 }
