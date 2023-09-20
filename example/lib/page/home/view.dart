@@ -229,7 +229,7 @@ class HomePage extends StatelessWidget {
       child: Stack(
         children: [
           Hero(
-            tag: ImagePreviewPage.generateHeroTag(url, 0),
+            tag: ImagePreviewPage.generateHeroTag(url, index),
             child: SizedBox(
               width: 100,
               height: 100,

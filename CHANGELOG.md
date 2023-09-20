@@ -1,3 +1,11 @@
+## 2.1.3
+
+1. Update harmony_plugin to support ios default return.
+2. Adjust README;
+3. Adjust the version number of example and add build number.
+4. Modify info.plist in ios to add the description of permission application for third-party skip
+   life, album, and camera.
+
 ## 2.1.2
 
 1. Update harmony_plugin.

@@ -9,6 +9,8 @@ PODS:
     - Mantle
     - SDWebImage
     - SDWebImageWebPCoder
+  - harmony_plugin (0.0.1):
+    - Flutter
   - image_gallery_saver (2.0.2):
     - Flutter
   - integration_test (0.0.1):
@@ -60,6 +62,7 @@ DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - flutter_image_compress_common (from `.symlinks/plugins/flutter_image_compress_common/ios`)
+  - harmony_plugin (from `.symlinks/plugins/harmony_plugin/ios`)
   - image_gallery_saver (from `.symlinks/plugins/image_gallery_saver/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
@@ -89,6 +92,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_image_compress_common:
     :path: ".symlinks/plugins/flutter_image_compress_common/ios"
+  harmony_plugin:
+    :path: ".symlinks/plugins/harmony_plugin/ios"
   image_gallery_saver:
     :path: ".symlinks/plugins/image_gallery_saver/ios"
   integration_test:
@@ -119,6 +124,7 @@ SPEC CHECKSUMS:
   device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_image_compress_common: ec1d45c362c9d30a3f6a0426c297f47c52007e3e
+  harmony_plugin: f76f6a78f16dc37e1c9e1dff2bf4e58a787bc7c2
   image_gallery_saver: cb43cc43141711190510e92c460eb1655cd343cb
   integration_test: 13825b8a9334a850581300559b8839134b124670
   libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef

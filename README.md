@@ -10,7 +10,8 @@ For general information about developing packages, see the Dart guide for
 and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
-_Language: [Chinese](README.zh-cn.md), English
+_Language_: [![Static Badge](https://img.shields.io/badge/Chinese-Zh--cn-FF0000)
+](README.zh-cn.md), [![Static Badge](https://img.shields.io/badge/English-En--us-122c60)](README.md)
 
 ## Description
 

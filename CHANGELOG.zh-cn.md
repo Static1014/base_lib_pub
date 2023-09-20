@@ -1,3 +1,10 @@
+## 2.1.3
+
+1. 更新harmony_plugin版本，支持ios默认返回；
+2. 调整README；
+3. 调整example版本号，新增build number;
+4. 修改ios下info.plist，增加第三方跳转生命、相册、摄像头权限申请描述；
+
 ## 2.1.2
 
 1. 更新harmony_plugin版本；

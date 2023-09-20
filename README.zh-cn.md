@@ -11,7 +11,8 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-_语言: 中文, [英文](README.md)
+_语言_: [![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-Zh--cn-FF0000)
+](README.zh-cn.md)、 [![Static Badge](https://img.shields.io/badge/%E8%8B%B1%E6%96%87-En--us-122c60)](README.md)
 
 ## 项目介绍
 
