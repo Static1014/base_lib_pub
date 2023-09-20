@@ -96,6 +96,7 @@ class MDialog {
     String title = '',
     String msg = '',
     List<Widget>? actions,
+    double? maxContentSize,
   }) {
     _init();
     _entry = OverlayEntry(
@@ -115,70 +116,73 @@ class MDialog {
           child: Container(
             color: BaseColors.cBlackTrans,
             child: ScaleTransition(
-              scale: Tween<double>(begin: 0.3, end: 1).animate(
+              scale: Tween<double>(begin: 0, end: 1).animate(
                 CurvedAnimation(
                   parent: animController.controller,
-                  curve: const Interval(0.2, 1, curve: Curves.easeOutCubic),
+                  curve: const Interval(0, 1, curve: Curves.easeOutCubic),
                 ),
               ),
               child: Center(
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   width: double.infinity,
-                  child: Card(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: BaseColors.cWhite,
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 6),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          isEmptyOrNull(title)
-                              ? const SizedBox.shrink()
-                              : Padding(
-                                  padding: const EdgeInsets.only(bottom: 8),
-                                  child: mText(
-                                    msg: title,
-                                    color: BaseColors.cFontBlack,
-                                    weight: FontWeight.bold,
-                                    maxLines: 4,
-                                    fontSize: 16,
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ),
-                          mOverSizeScrollView(
-                            maxSize: Get.height * 0.6,
-                            children: [
-                              mText(
-                                msg: msg,
-                                color: BaseColors.cFontGray,
-                                fontSize: 15,
-                                textAlign: TextAlign.start,
-                              ),
-                            ],
-                          ),
-                          mDividerH(height: 4),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Wrap(
-                              direction: Axis.horizontal,
-                              alignment: WrapAlignment.end,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: actions ??
-                                  [
-                                    TextButton(
-                                      onPressed: () {
-                                        hide();
-                                      },
-                                      child: Text(BaseTrs.confirm.tr),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Card(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: BaseColors.cWhite,
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        padding: const EdgeInsets.only(left: 16, top: 16, right: 16, bottom: 6),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            isEmptyOrNull(title)
+                                ? const SizedBox.shrink()
+                                : Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: mText(
+                                      msg: title,
+                                      color: BaseColors.cFontBlack,
+                                      weight: FontWeight.bold,
+                                      maxLines: 4,
+                                      fontSize: 16,
+                                      textAlign: TextAlign.start,
                                     ),
-                                  ],
+                                  ),
+                            mOverSizeScrollView(
+                              maxSize: maxContentSize ?? Get.height * 0.6,
+                              children: [
+                                mText(
+                                  msg: msg,
+                                  color: BaseColors.cFontGray,
+                                  fontSize: 15,
+                                  textAlign: TextAlign.start,
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+                            mDividerH(height: 4),
+                            SizedBox(
+                              width: double.infinity,
+                              child: Wrap(
+                                direction: Axis.horizontal,
+                                alignment: WrapAlignment.end,
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: actions ??
+                                    [
+                                      TextButton(
+                                        onPressed: () {
+                                          hide();
+                                        },
+                                        child: Text(BaseTrs.confirm.tr),
+                                      ),
+                                    ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

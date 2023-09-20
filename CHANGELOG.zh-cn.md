@@ -1,3 +1,8 @@
+## 2.1.6
+
+1. MDialog.tip支持自定义最大内容高度；
+2. 新增mScrollConfig，支持添加scrollbar;
+
 ## 2.1.5
 
 1. getSystemOverlayStyle新增支持配置底部系统导航栏(不一定存在)样式；

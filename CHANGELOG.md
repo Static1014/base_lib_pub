@@ -1,3 +1,8 @@
+## 2.1.6
+
+1. MDialog.tip supports custom maximum content height;
+2. Add mScrollConfig and support scrollbar.
+
 ## 2.1.5
 
 1. getSystemOverlayStyle added support for configuring the bottom system navigation bar (not

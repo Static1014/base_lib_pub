@@ -90,6 +90,7 @@ MDialog mShowTip({
   String msg = '',
   String? id,
   List<Widget>? actions,
+  double? maxContentSize,
 }) {
   return MDialog.tip(
     id: id,
@@ -97,6 +98,7 @@ MDialog mShowTip({
     title: title,
     msg: msg,
     actions: actions,
+    maxContentSize: maxContentSize,
   )..show();
 }
 

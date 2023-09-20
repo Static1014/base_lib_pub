@@ -679,25 +679,52 @@ Widget mOverSizeScrollView({
   double? crossSize = double.infinity,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
   bool showScrollBar = false,
+  ScrollbarOrientation? scrollbarOrientation,
 }) {
-  Widget content = SingleChildScrollView(
-    scrollDirection: scrollDirection,
-    child: scrollDirection == Axis.vertical
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: crossAxisAlignment,
-            children: children,
-          )
-        : Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: crossAxisAlignment,
-            children: children,
-          ),
+  bool isVertical = scrollDirection == Axis.vertical;
+  Widget content = mScrollConfig(
+    scrollbarOrientation: scrollbarOrientation,
+    scrollBar: showScrollBar,
+    child: SingleChildScrollView(
+      padding: EdgeInsets.zero,
+      scrollDirection: scrollDirection,
+      child: isVertical
+          ? Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: crossAxisAlignment,
+              children: children,
+            )
+          : Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: crossAxisAlignment,
+              children: children,
+            ),
+    ),
   );
   return Container(
-    width: scrollDirection == Axis.vertical ? crossSize : null,
-    height: scrollDirection == Axis.horizontal ? crossSize : null,
-    constraints: scrollDirection == Axis.vertical ? BoxConstraints(maxHeight: maxSize) : BoxConstraints(maxWidth: maxSize),
-    child: showScrollBar ? CupertinoScrollbar(child: content) : content,
+    padding: EdgeInsets.zero,
+    width: isVertical ? crossSize : null,
+    height: !isVertical ? crossSize : null,
+    constraints: isVertical ? BoxConstraints(maxHeight: maxSize) : BoxConstraints(maxWidth: maxSize),
+    child: content,
+  );
+}
+
+/// 自定义scrollConfig，支持添加scrollbar
+Widget mScrollConfig({
+  ScrollBehavior scrollBehavior = const CupertinoScrollBehavior(),
+  bool scrollBar = false,
+  ScrollbarOrientation? scrollbarOrientation,
+  required Widget child,
+}) {
+  return ScrollConfiguration(
+    behavior: scrollBehavior,
+    child: scrollBar
+        ? Scrollbar(
+            radius: const Radius.circular(2),
+            scrollbarOrientation: scrollbarOrientation,
+            child: child,
+          )
+        : child,
   );
 }
