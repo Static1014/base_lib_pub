@@ -28,29 +28,61 @@ Come on!
 ## Features
 
 1. General project structure;
-2. General page: picture preview (text preview supported) and test page.;
-3. General tools：
-   1. Aes encryption and decryption;
-   2. Network requests and request logs; 
-   3. Share; 
-   4. Crash log; 
-   5. File operation; 
-   6. GetxAnimationController； 
-   7. Picture selector, take photo and picture compression; 
-   8. Unified log management; 
-   9. Permission request and verification; 
-   10. Other general utils; 
-4. General basic internationalization (Chinese, English);
-5. General ui:
-   1. Cartridge: Support multiple cartridges to customize the closing sequence; Custom animation;
-   2. universal loading；;
-   3. Common colors and sizes;
-6. General navigation;
-7. General extension:
-   1. Log output;
-   2. Date formatting;
-   3. Rolling controller;
-8. Stay tuned...
+2. General page:
+    1. Picture preview (text preview support);
+    2. webView (no-singleTop support);
+3. General tools;
+    1. aes encryption and decryption;
+    2. Network requests and request logs;
+    3. System sharing;
+    4. crash log;
+    5. File operation;
+    6. Picture selector, photo selector and picture compression;
+    7. Unified log management;
+    8. Permission request and verification;
+    9. Local data storage;
+    10. Equipment information inquiry;
+    11. Application information query;
+    12. Adjust third-party applications;
+    13. Other general utils;
+4. Internationalization of general foundation (Chinese and English);
+5. Universal ui:
+    1. common_ui:
+        1. mWillPopScope;
+        2. mRoot;
+        3. mAppBar;
+        4. mText;
+        5. mTextField;
+        6. mBorder、mLine、mDivider;
+        7. mLoadImageView;
+        8. mFadeInView;
+        9. mAvatar;
+        10. mSimpleBoxDecoration;
+        11. mInkView;
+        12. mProgressIndicator;
+        13. mOverSizeScrollView;
+        14. mScrollConfig;
+        15. ...
+    2. Cartridge: Support multiple cartridges to customize closing sequence and animation;
+        1. mShowTip;
+        2. mShowDialog;
+    3. General showLoading, toast, notify；;
+    4. Common colors and sizes (which may be removed later)
+    5. universal list Footer；;
+    6. KeepAliveWrapper;
+    7. MySalomonBottomBar (modified from SalomonBottomBar, supporting double-click callback);
+6. Universal navigation routing;
+    1. Nav navigation tools;
+    2. Inherit BaseRoutesClass to uniformly obtain routing Routes；;
+7. Universal extension:
+    1. Log output;
+    2. Date formatting;
+    3. Rolling controller;
+    4. getx: myget extends GetInterface；;
+8. Others
+    1. GetxAnimationControllerMixin gets AnimationController；;
+    2. GetTicker to get TickerProvider；;
+9. ...
 
 ## Getting started
 
@@ -73,17 +105,16 @@ import 'package:base_lib_pub/base_lib_pub.dart';
 
 void main() {
   initBaseApp(
-    enableLog: MyConst.isDebug || MyConst.isForceLog,
+    enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
   );
-
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   MyApp({super.key}) {
-    /// network util init
+    /// 初始化网络请求
     initDio(baseUrl: '');
   }
 
@@ -95,8 +126,13 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
+      // 国际化配置
+      locale: MyTranslations.locale,
+      fallbackLocale: MyTranslations.fallbackLocale,
+      translations: MyTranslations(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],

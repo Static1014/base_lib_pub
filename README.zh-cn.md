@@ -29,29 +29,61 @@ _语言_: [![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-Zh--c
 ## 项目功能
 
 1. 通用项目结构;
-2. 通用page：图片预览（支持文字预览）、测试页;
+2. 通用page：
+    1. 图片预览（支持文字预览）;
+    2. webView（支持非singleTop）；
 3. 通用工具;
-   1. aes加解密；
-   2. 网络请求、请求日志；
-   3. 分享；
-   4. 崩溃日志；
-   5. 文件操作；
-   6. GetxAnimationController；
-   7. 图片选择器、拍照选择器、图片压缩；
-   8. 统一日志管理；
-   9. 权限请求与验证；
-   10. 其他通用utils；
+    1. aes加解密；
+    2. 网络请求、请求日志；
+    3. 系统分享；
+    4. 崩溃日志；
+    5. 文件操作；
+    6. 图片选择器、拍照选择器、图片压缩；
+    7. 统一日志管理；
+    8. 权限请求与验证；
+    9. 本地数据存储；
+    10. 设备信息查询；
+    11. 应用信息查询；
+    12. 调整第三方应用；
+    13. 其他通用utils；
 4. 通用基础国际化（中文、英文）;
 5. 通用ui：
-   1. 弹框：支持多个弹框自定义关闭顺序；自定义动画；
-   2. 通用loading；
-   3. 通用颜色、尺寸；
-6. 通用导航；
+    1. common_ui:
+        1. mWillPopScope;
+        2. mRoot;
+        3. mAppBar;
+        4. mText;
+        5. mTextField;
+        6. mBorder、mLine、mDivider;
+        7. mLoadImageView;
+        8. mFadeInView;
+        9. mAvatar;
+        10. mSimpleBoxDecoration;
+        11. mInkView;
+        12. mProgressIndicator;
+        13. mOverSizeScrollView;
+        14. mScrollConfig;
+        15. ...
+    2. 弹框：支持多个弹框自定义关闭顺序、自定义动画；
+        1. mShowTip;
+        2. mShowDialog;
+    3. 通用showLoading、toast、notify；
+    4. 通用颜色、尺寸（后期可能移除）
+    5. 通用列表Footer；
+    6. KeepAliveWrapper;
+    7. MySalomonBottomBar（由SalomonBottomBar修改而来，支持双击回调）；
+6. 通用导航路由；
+    1. Nav导航工具；
+    2. 继承BaseRoutesClass以统一获得路由Routes；
 7. 通用扩展：
-   1. 日志输出；
-   2. 日期格式化；
-   3. 滚动控制器；
-8. 敬请期待...
+    1. 日志输出；
+    2. 日期格式化；
+    3. 滚动控制器；
+    4. getx：MyGet扩展GetInterface；
+8. 其他
+    1. GetxAnimationControllerMixin获取AnimationController；
+    2. GetTicker获取TickerProvider；
+9. ...
 
 ## 开始之前
 
@@ -73,11 +105,10 @@ import 'package:base_lib_pub/base_lib_pub.dart';
 
 void main() {
   initBaseApp(
-    enableLog: MyConst.isDebug || MyConst.isForceLog,
+    enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
   );
-
   runApp(MyApp());
 }
 
@@ -95,15 +126,19 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
+      // 国际化配置
+      locale: MyTranslations.locale,
+      fallbackLocale: MyTranslations.fallbackLocale,
+      translations: MyTranslations(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],
     );
   }
 }
-
 ```
 
 ## 写在最后

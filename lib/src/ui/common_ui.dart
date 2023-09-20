@@ -114,7 +114,7 @@ Widget mRoot({
 
 /// 统一appbar
 PreferredSizeWidget mAppBar({
-  required String title,
+  String title = '',
   bool centerTitle = true,
   Color titleColor = BaseColors.cFontWhite,
   double titleFontSize = BaseDimens.dFontSizeTitle,
@@ -135,6 +135,7 @@ PreferredSizeWidget mAppBar({
   double? backIconSize = 20,
   Widget? titleView,
   SystemUiOverlayStyle? systemOverlayStyle,
+  bool automaticallyImplyLeading = true,
 }) {
   if (autoBackEnable) {
     backEnable = Nav.isPopEnable();
@@ -163,6 +164,7 @@ PreferredSizeWidget mAppBar({
     elevation: elevation,
     backgroundColor: backgroundColor,
     centerTitle: centerTitle,
+    automaticallyImplyLeading: automaticallyImplyLeading,
     title: titleView ??
         mText(
           maxLines: titleMaxLine,
@@ -175,7 +177,7 @@ PreferredSizeWidget mAppBar({
     bottom: bottom,
     titleSpacing: titleSpacing,
     leadingWidth: leadingWidth,
-    systemOverlayStyle: systemOverlayStyle,
+    systemOverlayStyle: systemOverlayStyle ?? getSystemOverlayStyle(),
   );
 
   double pHeight = (height != 0 ? height : BaseDimens.dAppBarHeight) + (bottom?.preferredSize.height ?? 0);

@@ -1,3 +1,9 @@
+## 2.1.8
+
+1. mAppBar文字title非必须；
+2. mAppBar新增入参;
+3. 完善README;
+
 ## 2.1.7
 
 1. ListFooterView新增frozen(...)方法获取固定状态ListFooterView；
