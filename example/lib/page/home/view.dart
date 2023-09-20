@@ -226,6 +226,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
+                ListFooterView.frozen(state: ListFooterState.noMore),
               ],
             ),
           ),
