@@ -1,3 +1,10 @@
+## 2.1.5
+
+1. getSystemOverlayStyle added support for configuring the bottom system navigation bar (not
+   necessarily existing) style;
+2. MyGet adds the UI style attribute of the current application system, which is applied to
+   getSystemOverlayStyle by default;
+
 ## 2.1.4
 
 1. Change the default startup animation of the ImagePreviewPage to fadeIn;

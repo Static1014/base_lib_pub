@@ -14,34 +14,52 @@ import 'package:simple_animations/animation_builder/play_animation_builder.dart'
 /// Created by Static4u
 /// Date : 2023/7/13 11:15
 
-/// 设置全局状态栏样式(默认深底白字)
-void setGlobalStatusBarStyle({
+/// 设置全局状态栏、系统导航栏样式（默认深底白字、黑底白字）
+void setGlobalSystemOverlayStyle({
   Color statusBarColor = BaseColors.cTransparent,
-  bool isLightBarIcon = true, // 深底白字
+  bool isStatusBarIconLight = true, // 深底白字
+  Color sysNavigationBarColor = BaseColors.cBlack,
+  bool isSysNavigationBarIconLight = true, // 深底白字
 }) {
-  MyGet.isLightBarIcon = isLightBarIcon;
+  MyGet.isStatusBarIconLight = isStatusBarIconLight;
+  MyGet.statusBarBgColor = statusBarColor;
+  MyGet.sysNavigationBarBgColor = sysNavigationBarColor;
+  MyGet.isSysNavigationBarIconLight = isSysNavigationBarIconLight;
 
-  SystemChrome.setSystemUIOverlayStyle(getStatusBarStyle(
+  SystemChrome.setSystemUIOverlayStyle(getSystemOverlayStyle(
     statusBarColor: statusBarColor,
-    isLightBarIcon: isLightBarIcon,
+    isStatusBarIconLight: isStatusBarIconLight,
+    sysNavigationBarColor: sysNavigationBarColor,
+    isSysNavigationBarIconLight: isSysNavigationBarIconLight,
   ));
 }
 
-/// 获得状态栏样式（默认深底白字）
-SystemUiOverlayStyle getStatusBarStyle({
-  Color statusBarColor = BaseColors.cTransparent,
-  bool? isLightBarIcon, // 深底白字
+/// 获得状态栏、系统导航栏样式（默认深底白字、黑底白字）
+SystemUiOverlayStyle getSystemOverlayStyle({
+  Color? statusBarColor,
+  bool? isStatusBarIconLight, // 深底白字
+  Color? sysNavigationBarColor,
+  bool? isSysNavigationBarIconLight, // 深底白字
 }) {
-  return isLightBarIcon ?? MyGet.isLightBarIcon
+  statusBarColor ??= MyGet.statusBarBgColor;
+  isStatusBarIconLight ??= MyGet.isStatusBarIconLight;
+  sysNavigationBarColor ??= MyGet.sysNavigationBarBgColor;
+  isSysNavigationBarIconLight ??= MyGet.isSysNavigationBarIconLight;
+
+  return isStatusBarIconLight
       ? SystemUiOverlayStyle.light.copyWith(
           statusBarColor: statusBarColor,
           statusBarIconBrightness: Brightness.light,
           statusBarBrightness: Brightness.dark,
+          systemNavigationBarColor: sysNavigationBarColor,
+          systemNavigationBarIconBrightness: (isSysNavigationBarIconLight) ? Brightness.light : Brightness.dark,
         )
       : SystemUiOverlayStyle.dark.copyWith(
           statusBarColor: statusBarColor,
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.light,
+          systemNavigationBarColor: sysNavigationBarColor,
+          systemNavigationBarIconBrightness: (isSysNavigationBarIconLight) ? Brightness.light : Brightness.dark,
         );
 }
 

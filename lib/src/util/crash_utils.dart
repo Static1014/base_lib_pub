@@ -13,7 +13,7 @@ import 'file_utils.dart';
 /// Date : 2023/9/2 19:46
 
 /// 崩溃监听
-void initCrashHandler({String? msg, toastError = false}) {
+void initCrashHandler({String? prefixMsg, toastError = false}) {
   /// 崩溃处理
   void reportCrash(FlutterErrorDetails details) async {
     if (toastError) {
@@ -23,12 +23,12 @@ void initCrashHandler({String? msg, toastError = false}) {
       //   textColor: Colors.white,
       // );
     }
-    msg ??= BaseTrs.crash.tr;
+    prefixMsg ??= BaseTrs.crash.tr;
     try {
       writeToFile("${myDefaultDirPath}crash/log-${DateTime.now().toFormatString(format: [yyyy, '-', mm, '-', dd])}.txt",
           "\n\n\n${DateTime.now().toFormatString()}===============\n${details.exception.toString()}\n${details.stack.toString()}",
           append: true);
-      "$msg$details".logE();
+      "$prefixMsg$details".logE();
     } catch (_) {}
   }
 

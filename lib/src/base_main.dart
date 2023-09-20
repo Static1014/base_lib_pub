@@ -8,40 +8,47 @@ import 'package:get/get.dart';
 /// Date : 2022/11/6 16:43
 
 void initBaseApp({
+  /// 是否开启日志
   enableLog = false,
-  String? crashDefaultMsg,
-  Color statusBarColor = Colors.transparent,
-  bool? isLightBarIcon = true, // 深底白字
+
+  /// 是否开启日志
+  String? crashPrefixMsg,
+
+  /// 状态栏和系统导航栏配色
+  Color statusBarColor = BaseColors.cTransparent,
+  Color sysNavigationBarColor = BaseColors.cBlack,
+  bool isStatusBarIconLight = true, // 深底白字
+  bool isSysNavigationBarIconLight = true, // 深底白字
+
+  /// 底层路由
   List<String>? unPopRoutes,
+
+  /// 初始化仿微信图片选择
   bool initWeChat = false,
+
+  /// 默认路由跳转动画
   Transition? defaultTransition = Transition.cupertino,
-  bool enableData = false,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
   initMyDefaultDir();
-  initCrashHandler(msg: crashDefaultMsg);
-  initUi(
+  initCrashHandler(prefixMsg: crashPrefixMsg);
+  setGlobalSystemOverlayStyle(
     statusBarColor: statusBarColor,
-    isLightBarIcon: isLightBarIcon ?? MyGet.isLightBarIcon,
+    isStatusBarIconLight: isStatusBarIconLight,
+    sysNavigationBarColor: sysNavigationBarColor,
+    isSysNavigationBarIconLight: isStatusBarIconLight,
   );
-  initLog(enable: enableLog);
   Nav.initUnPopRoutes(unPopRoutes ?? []);
   if (initWeChat) {
     initWechatAssetsPicker();
   }
+  initLog(enable: enableLog);
   Get.config(
     enableLog: enableLog,
     defaultTransition: defaultTransition,
   );
   DataUtils.init(prefix: true);
-}
-
-void initUi({
-  Color statusBarColor = Colors.transparent,
-  bool isLightBarIcon = true, // 深底白字
-}) {
-  setGlobalStatusBarStyle(statusBarColor: statusBarColor, isLightBarIcon: isLightBarIcon);
 }
 
 void initLog({bool enable = false}) {

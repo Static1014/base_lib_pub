@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:get/get.dart';
 
@@ -13,8 +15,11 @@ class _MyGetImpl extends GetInterface {
   /// 双击退出
   DateTime? lastTime;
 
-  /// 当前应用状态栏配色（深底白字）
-  bool isLightBarIcon = true;
+  /// 当前应用状态栏、底部系统导航栏(不一定存在)配色
+  bool isStatusBarIconLight = true; //状态栏（深底白字）
+  Color statusBarBgColor = BaseColors.cTransparent; // 状态栏背景色
+  bool isSysNavigationBarIconLight = true; //系统导航栏（深底白字）
+  Color sysNavigationBarBgColor = BaseColors.cBlack; // 系统导航栏背景色
 }
 
 extension GetExt on GetInterface {

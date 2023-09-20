@@ -1,3 +1,8 @@
+## 2.1.5
+
+1. getSystemOverlayStyle新增支持配置底部系统导航栏(不一定存在)样式；
+2. MyGet新增记录当前应用系统UI样式属性，默认应用到getSystemOverlayStyle中；
+
 ## 2.1.4
 
 1. 调整ImagePreviewPage的默认启动动画为fadeIn；
