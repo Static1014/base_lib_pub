@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
           title: Trs.appName.tr,
           backEnable: false,
           centerTitle: false,
+          systemOverlayStyle: getStatusBarStyle(isLightBarIcon: true),
         ),
         body: SingleChildScrollView(
           child: Column(

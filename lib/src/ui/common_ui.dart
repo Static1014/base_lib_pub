@@ -14,30 +14,35 @@ import 'package:simple_animations/animation_builder/play_animation_builder.dart'
 /// Created by Static4u
 /// Date : 2023/7/13 11:15
 
-/// 设置全局状态栏样式
+/// 设置全局状态栏样式(默认深底白字)
 void setGlobalStatusBarStyle({
   Color statusBarColor = BaseColors.cTransparent,
-  Brightness iconBrightness = Brightness.light,
-  Brightness barBrightness = Brightness.light,
+  bool isLightBarIcon = true, // 深底白字
 }) {
+  MyGet.isLightBarIcon = isLightBarIcon;
+
   SystemChrome.setSystemUIOverlayStyle(getStatusBarStyle(
     statusBarColor: statusBarColor,
-    iconBrightness: iconBrightness,
-    barBrightness: barBrightness,
+    isLightBarIcon: isLightBarIcon,
   ));
 }
 
-/// 获得状态栏样式
+/// 获得状态栏样式（默认深底白字）
 SystemUiOverlayStyle getStatusBarStyle({
   Color statusBarColor = BaseColors.cTransparent,
-  Brightness iconBrightness = Brightness.light,
-  Brightness barBrightness = Brightness.light,
+  bool? isLightBarIcon, // 深底白字
 }) {
-  return SystemUiOverlayStyle.light.copyWith(
-    statusBarColor: statusBarColor,
-    statusBarIconBrightness: iconBrightness,
-    statusBarBrightness: barBrightness,
-  );
+  return isLightBarIcon ?? MyGet.isLightBarIcon
+      ? SystemUiOverlayStyle.light.copyWith(
+          statusBarColor: statusBarColor,
+          statusBarIconBrightness: Brightness.light,
+          statusBarBrightness: Brightness.dark,
+        )
+      : SystemUiOverlayStyle.dark.copyWith(
+          statusBarColor: statusBarColor,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        );
 }
 
 /// widget build回调
@@ -111,6 +116,7 @@ PreferredSizeWidget mAppBar({
   double? leadingWidth,
   double? backIconSize = 20,
   Widget? titleView,
+  SystemUiOverlayStyle? systemOverlayStyle,
 }) {
   if (autoBackEnable) {
     backEnable = Nav.isPopEnable();
@@ -151,6 +157,7 @@ PreferredSizeWidget mAppBar({
     bottom: bottom,
     titleSpacing: titleSpacing,
     leadingWidth: leadingWidth,
+    systemOverlayStyle: systemOverlayStyle,
   );
 
   double pHeight = (height != 0 ? height : BaseDimens.dAppBarHeight) + (bottom?.preferredSize.height ?? 0);

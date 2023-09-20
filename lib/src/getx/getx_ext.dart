@@ -12,6 +12,9 @@ final MyGet = _MyGetImpl();
 class _MyGetImpl extends GetInterface {
   /// 双击退出
   DateTime? lastTime;
+
+  /// 当前应用状态栏配色（深底白字）
+  bool isLightBarIcon = true;
 }
 
 extension GetExt on GetInterface {

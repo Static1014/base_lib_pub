@@ -1,3 +1,10 @@
+## 2.1.4
+
+1. 调整ImagePreviewPage的默认启动动画为fadeIn；
+2. 调整setGlobalStatusBarStyle默认状态栏配色为深底白字；
+3.
+mAppBar新增systemOverlayStyle入参，可独立配置状态栏配色，如果某个页面的状态栏配色与预想不一致，请先查看页面appBar是否独立配置了systemOverlayStyle或被覆盖；
+
 ## 2.1.3
 
 1. 更新harmony_plugin版本，支持ios默认返回；

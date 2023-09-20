@@ -11,8 +11,7 @@ void initBaseApp({
   enableLog = false,
   String? crashDefaultMsg,
   Color statusBarColor = Colors.transparent,
-  Brightness iconBrightness = Brightness.light,
-  Brightness barBrightness = Brightness.light,
+  bool? isLightBarIcon = true, // 深底白字
   List<String>? unPopRoutes,
   bool initWeChat = false,
   Transition? defaultTransition = Transition.cupertino,
@@ -24,8 +23,7 @@ void initBaseApp({
   initCrashHandler(msg: crashDefaultMsg);
   initUi(
     statusBarColor: statusBarColor,
-    iconBrightness: iconBrightness,
-    barBrightness: barBrightness,
+    isLightBarIcon: isLightBarIcon ?? MyGet.isLightBarIcon,
   );
   initLog(enable: enableLog);
   Nav.initUnPopRoutes(unPopRoutes ?? []);
@@ -41,10 +39,9 @@ void initBaseApp({
 
 void initUi({
   Color statusBarColor = Colors.transparent,
-  Brightness iconBrightness = Brightness.light,
-  Brightness barBrightness = Brightness.light,
+  bool isLightBarIcon = true, // 深底白字
 }) {
-  setGlobalStatusBarStyle();
+  setGlobalStatusBarStyle(statusBarColor: statusBarColor, isLightBarIcon: isLightBarIcon);
 }
 
 void initLog({bool enable = false}) {

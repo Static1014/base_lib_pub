@@ -1,3 +1,11 @@
+## 2.1.4
+
+1. Change the default startup animation of the ImagePreviewPage to fadeIn;
+2. Set the default setGlobalStatusBarStyle status bar to white characters with deep background;
+3. Add systemOverlayStyle to mAppBar to configure the color of the status bar independently. If the
+   color of the status bar of a page is inconsistent with the expected, check whether the appBar of
+   the page is configured with systemOverlayStyle independently or is overwritten.
+
 ## 2.1.3
 
 1. Update harmony_plugin to support ios default return.

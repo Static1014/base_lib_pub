@@ -62,6 +62,7 @@ class NavClass {
     bool splitBottomView = false,
     OnPreviewIndexChanged? onPreviewIndexChanged,
     bool singleTop = true,
+    Transition? transition = Transition.fadeIn,
   }) {
     Get.to(
       () => ImagePreviewPage(
@@ -86,6 +87,7 @@ class NavClass {
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,
       preventDuplicates: singleTop,
+      transition: transition,
     );
   }
 
