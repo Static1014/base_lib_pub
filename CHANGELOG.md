@@ -1,3 +1,9 @@
+## 2.1.8
+
+1. mAppBar text title is not required;
+2. Added the mAppBar parameter.
+3. Improve README;
+
 ## 2.1.7
 
 1. ListFooterView added frozen(...) Method to obtain the fixed state ListFooterView;
