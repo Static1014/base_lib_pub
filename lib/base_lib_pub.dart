@@ -33,3 +33,4 @@ export 'src/util/network/network_utils.dart';
 export 'src/util/package_utils.dart';
 export 'src/util/permission_utils.dart';
 export 'src/util/share_utils.dart';
+export 'src/util/url_launcher_utils.dart';

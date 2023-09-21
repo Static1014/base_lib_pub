@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
@@ -125,6 +124,10 @@ class CommonWebViewPage extends StatelessWidget {
       userAgent: userAgent,
     );
     onCommonWebViewPageCreate?.call(logic.webViewController);
+
+    if (urlOrData.isEmptyOrNull()) {
+      'CommonWebViewPage\' url or data is empty or null, check?'.logE(tag: 'CommonWebViewPage');
+    }
   }
 
   final double bottomHeight = 40;
@@ -134,16 +137,7 @@ class CommonWebViewPage extends StatelessWidget {
     final logic = Get.find<CommonWebViewLogic>(tag: tag);
 
     onBuildFinished((duration) {
-      logic
-          // .._initWebViewController(
-          //   clearCache: clearCacheOnStart,
-          //   clearLocalStorage: clearLocalStorageOnStart,
-          //   onPageFinished: onPageFinished,
-          //   onNavigationRequest: onNavigationRequest,
-          //   onWebResourceError: onWebResourceError,
-          // )
-          // .._load(urlOrData, type);
-          ._load(
+      logic._load(
         urlOrData,
         type,
         method: method,

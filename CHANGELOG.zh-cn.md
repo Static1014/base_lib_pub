@@ -1,3 +1,9 @@
+## 2.3.0
+
+1. 导出url_launcher_utils：新增mailto、tel方法（须配置queries，参考url_launcher_utils文件注释）；
+2. String扩展encodeUrl中文编码；
+3. CommonWebViewPage新增urlOrData为空的log提示；
+
 ## 2.2.0
 
 1. CommonWebViewPage支持传入userAgent，request method、body、headers等;

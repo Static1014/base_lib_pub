@@ -48,6 +48,8 @@
 	<key>LSApplicationQueriesSchemes</key>
     <array>
       <string>baiduboxapp</string>
+      <string>mailto</string>
+      <string>tel</string>
     </array>
     <key>NSAppTransportSecurity</key>
     <dict>

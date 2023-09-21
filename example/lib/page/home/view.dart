@@ -27,6 +27,18 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                _buildTestFunc('mailto', () {
+                  mailto(
+                    target: '15022252451@139.com',
+                    cc: 'static4u@163.com',
+                    bcc: '1225939299@qq.com',
+                    title: '标题',
+                    body: '我是内容',
+                  );
+                }),
+                _buildTestFunc('tel', () {
+                  tel('15022252451');
+                }),
                 _buildTestFunc('tip dialog', () {
                   mShowTip(
                     title: 'test',

@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
 import 'package:flutter/widgets.dart';
 
 import '../util/common_utils.dart' as common_util;
@@ -24,7 +26,21 @@ extension CommonExt on Object {
 }
 
 extension StringExt on String {
+  /// 字符串判空
   bool isEmptyOrNull() => common_util.isEmptyOrNull(this);
+
+  /// 在url中传中文时需要进行中文转码
+  String encodeUrl({Encoding encoding = utf8}) {
+    return Uri.encodeQueryComponent(this, encoding: encoding);
+  }
+
+  /// 是否是schemeUrl，需要通过url_launcher打开第三方app
+  bool get isSchemeUrl => !startsWith('http://') && !startsWith('https://');
+
+  /// 通过url_launcher启动（在浏览器中打开），如果无法启动，返回false
+  Future<bool> launch() async {
+    return launchMyUrl(this);
+  }
 }
 
 extension ScrollControllerExt on ScrollController {

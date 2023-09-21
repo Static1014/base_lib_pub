@@ -1,3 +1,10 @@
+## 2.3.0
+
+1. Export url_launcher_utils: Add the mailto and tel methods. (Configure queries and refer to the
+   url_launcher_utils file comments.)
+2. String Extended encodeUrl Chinese code;
+3. A message indicating that urlOrData is empty is added on the CommonWebViewPage.
+
 ## 2.2.0
 
 1. CommonWebViewPage supports userAgent, request method, body, and headers.
