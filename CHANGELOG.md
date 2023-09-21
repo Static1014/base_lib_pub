@@ -1,3 +1,8 @@
+## 2.1.10
+
+1. Nav.startImagePreview(...) Forwarded by Nav.to();
+2. Nav.startImagePreview(...) Non-singleTop mode is not supported now(supported soon).
+
 ## 2.1.9
 
 1. Nav.to() added a toast prompt that must pass a unique tag in non-SingleTop mode;

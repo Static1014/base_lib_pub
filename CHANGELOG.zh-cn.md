@@ -1,3 +1,8 @@
+## 2.1.10
+
+1. Nav.startImagePreview(...)由Nav.to()转发;
+2. Nav.startImagePreview(...)暂不支持非singleTop模式；
+
 ## 2.1.9
 
 1. Nav.to()新增非SingleTop模式下必须传入唯一tag的toast提示;

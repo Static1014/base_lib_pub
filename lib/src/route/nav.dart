@@ -42,6 +42,7 @@ class NavClass {
 // }
 
   /// 图片预览
+  /// todo 暂不支持not-singleTop
   void startImagePreview({
     required List<String> imgList,
     List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList,
@@ -62,9 +63,10 @@ class NavClass {
     bool splitBottomView = false,
     OnPreviewIndexChanged? onPreviewIndexChanged,
     bool singleTop = true,
+    String? tag,
     Transition? transition = Transition.fadeIn,
   }) {
-    Get.to(
+    to(
       () => ImagePreviewPage(
         imgList: imgList,
         textTagList: textTagList,
@@ -88,6 +90,7 @@ class NavClass {
       routeName: BaseRoutes.imgPreview,
       preventDuplicates: singleTop,
       transition: transition,
+      tag: tag,
     );
   }
 
@@ -143,7 +146,7 @@ class NavClass {
     /// 当不是singleTop时，必须有tag，且tag不能重复
     bool ok = preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag));
     if (!ok) {
-      var msg = BaseTrs.noMore.tr;
+      var msg = BaseTrs.notSingleTopError.tr;
       toast(msg);
       msg.logE();
     }
