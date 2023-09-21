@@ -18,6 +18,9 @@ class ImagePreviewPage extends StatelessWidget {
     return '$url--$index';
   }
 
+  // logic tag
+  final String? tag;
+
   // 默认显示下标
   final int defaultIndex;
   final OnPreviewIndexChanged? onPreviewIndexChanged;
@@ -76,15 +79,16 @@ class ImagePreviewPage extends StatelessWidget {
     this.imgBgColor,
     this.imgBgOpacityBase = 1.0,
     this.splitBottomView = false,
+    this.tag,
   }) : super(key: key) {
     assert(imgList.isNotEmpty);
     assert(defaultIndex >= 0 && defaultIndex < imgList.length);
 
+    var logic = Get.find<ImagePreviewLogic>(tag: tag);
     logic._initPageController(defaultIndex);
     logic._imgList(imgList);
   }
 
-  final logic = Get.put(ImagePreviewLogic());
   final _gestureConfig = GestureConfig(
     //you must set inPageView true if you want to use ExtendedImageGesturePageView
     inPageView: true,
@@ -96,6 +100,8 @@ class ImagePreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var logic = Get.find<ImagePreviewLogic>(tag: tag);
+
     return mRoot(
       safeAreaBgColor: BaseColors.cTransparent,
       child: Scaffold(
@@ -104,26 +110,26 @@ class ImagePreviewPage extends StatelessWidget {
           padding: pagePadding ?? EdgeInsets.zero,
           child: Stack(
             children: [
-              buildPreviewView(),
+              buildPreviewView(logic),
               closeBtnVisible
                   ? Obx(
                       () => logic._isSliding.value
                           ? const SizedBox.shrink()
-                    : Positioned(
-                  left: 4,
-                  top: BaseDimens.dStatusBarHeight,
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      logic._close();
-                    },
-                    backgroundColor: BaseColors.cTransparent,
-                    elevation: 0,
-                    child: const Icon(Icons.arrow_back_ios_new_outlined),
-                  ),
-                ),
-              )
+                          : Positioned(
+                              left: 4,
+                              top: BaseDimens.dStatusBarHeight,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  logic._close();
+                                },
+                                backgroundColor: BaseColors.cTransparent,
+                                elevation: 0,
+                                child: const Icon(Icons.arrow_back_ios_new_outlined),
+                              ),
+                            ),
+                    )
                   : const SizedBox.shrink(),
-              _buildActionView(),
+              _buildActionView(logic),
             ],
           ),
         ),
@@ -131,7 +137,7 @@ class ImagePreviewPage extends StatelessWidget {
     );
   }
 
-  Widget _buildActionView() {
+  Widget _buildActionView(ImagePreviewLogic logic) {
     return actionView != null
         ? Obx(() => logic._isSliding.value
             ? const SizedBox.shrink()
@@ -149,15 +155,15 @@ class ImagePreviewPage extends StatelessWidget {
   }
 
   /// 图片播放器
-  Widget buildPreviewView() {
+  Widget buildPreviewView(ImagePreviewLogic logic) {
     return splitBottomView
         ? Column(
             children: [
               Flexible(
                 child: Stack(
                   children: [
-                    buildImageView(),
-                    buildIndicatorView(),
+                    buildImageView(logic),
+                    buildIndicatorView(logic),
                   ],
                 ),
               ),
@@ -167,13 +173,13 @@ class ImagePreviewPage extends StatelessWidget {
           )
         : Stack(
             children: [
-              buildImageView(),
-              buildIndicatorView(),
+              buildImageView(logic),
+              buildIndicatorView(logic),
             ],
           );
   }
 
-  Widget buildIndicatorView() {
+  Widget buildIndicatorView(ImagePreviewLogic logic) {
     // 初始创建时，肯定显示
     logic._isSliding(false);
     return Obx(
@@ -227,7 +233,7 @@ class ImagePreviewPage extends StatelessWidget {
     return (false, null, null);
   }
 
-  Widget buildImageView() {
+  Widget buildImageView(ImagePreviewLogic logic) {
     return Container(
       decoration: pageDecoration,
       clipBehavior: pageDecoration == null ? Clip.none : Clip.antiAlias,

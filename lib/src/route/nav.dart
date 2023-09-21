@@ -85,12 +85,16 @@ class NavClass {
         pageBgColor: pageBgColor,
         splitBottomView: splitBottomView,
         onPreviewIndexChanged: onPreviewIndexChanged,
+        tag: tag,
       ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,
       preventDuplicates: singleTop,
       transition: transition,
       tag: tag,
+      binding: BindingsBuilder(() {
+        Get.put(ImagePreviewLogic(), tag: tag);
+      }),
     );
   }
 

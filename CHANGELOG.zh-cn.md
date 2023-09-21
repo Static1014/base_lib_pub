@@ -1,7 +1,7 @@
 ## 2.1.10
 
 1. Nav.startImagePreview(...)由Nav.to()转发;
-2. Nav.startImagePreview(...)暂不支持非singleTop模式；
+2. Nav.startImagePreview(...)新增支持非singleTop模式，此模式下必须传递tag；
 
 ## 2.1.9
 

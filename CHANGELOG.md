@@ -1,7 +1,7 @@
 ## 2.1.10
 
 1. Nav.startImagePreview(...) Forwarded by Nav.to();
-2. Nav.startImagePreview(...) Non-singleTop mode is not supported now(supported soon).
+2. Nav.startImagePreview(...) Added support for non-SingleTOP mode, in which tag must be passed;
 
 ## 2.1.9
 
