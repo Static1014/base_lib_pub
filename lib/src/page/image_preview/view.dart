@@ -103,7 +103,7 @@ class ImagePreviewPage extends StatelessWidget {
     var logic = Get.find<ImagePreviewLogic>(tag: tag);
 
     return mRoot(
-      safeAreaBgColor: BaseColors.cTransparent,
+      safeArea: false,
       child: Scaffold(
         backgroundColor: pageBgColor,
         body: Padding(
@@ -186,7 +186,7 @@ class ImagePreviewPage extends StatelessWidget {
       () => logic._isSliding.value
           ? const SizedBox.shrink()
           : Positioned(
-              bottom: 8,
+        bottom: 8 + (!splitBottomView ? MediaQuery.of(Get.context!).padding.bottom : 0),
               left: 0,
               right: 0,
               child: Column(

@@ -125,6 +125,31 @@ class HomePage extends StatelessWidget {
                 _buildTestFunc('toast', () {
                   toast(randomNum(1000).toString() * 10);
                 }),
+                _buildTestFunc('ImagePreview dialog', () {
+                  Nav.startImagePreview(
+                    imgList: ['https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg'],
+                    enableHeroTag: false,
+                    enableSlideOutPage: false,
+                    enableTapImgClose: false,
+                    closeBtnVisible: false,
+                    pageBgColor: BaseColors.cBlack.withOpacity(0.6),
+                    bgColor: BaseColors.cBlack,
+                    bgOpacityBase: 0.44,
+                    pagePadding: EdgeInsets.symmetric(vertical: Get.size.height / 4 / 2, horizontal: 40),
+                    pageDecoration: mSimpleBoxDecoration(borderRadius: 20),
+                    bottomView: GestureDetector(
+                      onTap: () {
+                        Nav.pop();
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        color: BaseColors.cGreen,
+                        child: mText(msg: '点我关闭dialog'),
+                      ),
+                    ),
+                    splitBottomView: true,
+                  );
+                }),
                 _buildTestFunc('ImagePreview', () {
                   Nav.startImagePreview(
                     imgList: [

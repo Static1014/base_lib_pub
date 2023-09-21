@@ -41,11 +41,13 @@ Future<bool> launchMyUrl(
   String url, {
   LaunchMode mode = LaunchMode.externalApplication,
 }) async {
+  bool result = false;
   if (await canLaunchUrlString(url)) {
-    return launchUrlString(url, mode: mode);
+    result = await launchUrlString(url, mode: mode);
   }
 
-  return false;
+  'Launch result: $result on $url'.logI(tag: 'url_launcher_utils');
+  return result;
 }
 
 /// 发送邮件
@@ -72,17 +74,24 @@ Future<bool> mailto({
   if (!isEmptyOrNull(body)) {
     params['body'] = body!.encodeUrl();
   }
-  return launchUrl(Uri(
+  Uri uri = Uri(
     scheme: 'mailto',
     path: target,
     query: params.entries.map((MapEntry<String, String> e) => '${e.key}=${e.value}').join('&'),
-  )..toString().logI(tag: 'url_launcher_utils'));
+  );
+  bool result = await launchUrl(uri);
+  'Launch result: $result on ${uri.toString()}'.logI(tag: 'url_launcher_utils');
+  return result;
 }
 
 /// 调用拨号页面
 Future<bool> tel(String phone) async {
-  if (phone.isEmptyOrNull()) {
-    return false;
+  bool result = false;
+  String url = 'tel:$phone';
+  if (!phone.isEmptyOrNull()) {
+    result = await url.launch();
   }
-  return 'tel:$phone'.launch();
+
+  'Launch result: $result on $url'.logI(tag: 'url_launcher_utils');
+  return result;
 }

@@ -1,3 +1,9 @@
+## 2.3.1
+
+1. url_launcher_utils函数调用结果日志输出；
+2. ImagePreviewPage不使用safeArea，全屏展示。通过自定义bottomPadding来避免遮挡；
+3. HomePage新增示例；
+
 ## 2.3.0
 
 1. 导出url_launcher_utils：新增mailto、tel方法（须配置queries，参考url_launcher_utils文件注释）；

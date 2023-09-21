@@ -1,3 +1,10 @@
+## 2.3.1
+
+1. url_launcher_utils function call result log output;
+2. The ImagePreviewPage does not use safeArea and is displayed in full screen. Avoid occlusion by
+   defining bottomPadding;
+3. Add an example to the HomePage.
+
 ## 2.3.0
 
 1. Export url_launcher_utils: Add the mailto and tel methods. (Configure queries and refer to the
