@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 var loadingSize = min(Get.width / 3, 160).roundToDouble();
 
 enum ToastLevel {
-  normal, // 白底黑字
+  normal, // 灰底白字
   info, // 绿底白字
   warn, // 黄底白字
   error // 红底白字
@@ -22,8 +22,44 @@ enum ToastLevel {
 TransitionBuilder toastBuilder = BotToastInit();
 NavigatorObserver toastObserver = BotToastNavigatorObserver();
 
-void toast(String msg, {int durationInSec = 2}) {
-  BotToast.showText(text: msg, duration: Duration(seconds: durationInSec));
+void toast(
+  String msg, {
+  Duration duration = const Duration(seconds: 2),
+  bool onlyOne = false,
+  Color bgColor = BaseColors.cGray, // level == ToastLevel.normal时才有效
+  Color textColor = BaseColors.cFontWhite,
+  EdgeInsetsGeometry padding = const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+  TextStyle? textStyle,
+  ToastLevel level = ToastLevel.normal,
+  AlignmentGeometry align = const Alignment(0, 0.9),
+  bool crossPage = true,
+}) {
+  switch (level) {
+    case ToastLevel.info:
+      bgColor = BaseColors.cGreen;
+      break;
+    case ToastLevel.warn:
+      bgColor = BaseColors.cYellow;
+      break;
+    case ToastLevel.error:
+      bgColor = BaseColors.cRed;
+      break;
+    case ToastLevel.normal:
+      break;
+  }
+
+  BotToast.showText(
+    text: msg,
+    duration: duration,
+    onlyOne: onlyOne,
+    backgroundColor: BaseColors.cTransparent,
+    // 页面背景，toast是一个透明的全页面
+    contentColor: bgColor,
+    textStyle: textStyle ?? TextStyle(fontSize: 14.5, color: textColor),
+    contentPadding: padding,
+    align: align,
+    crossPage: crossPage,
+  );
 }
 
 void notify(String msg, {String title = '', int durationInSec = 2}) {

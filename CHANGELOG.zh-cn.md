@@ -1,3 +1,7 @@
+## 2.1.11
+
+1. toast()新增支持自定义颜色、ToastLevel、自定义位置等;
+
 ## 2.1.10
 
 1. Nav.startImagePreview(...)由Nav.to()转发;

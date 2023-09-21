@@ -1,3 +1,7 @@
+## 2.1.11
+
+1. toast() added support for custom colors, ToastLevel, and custom locations, etc.;
+
 ## 2.1.10
 
 1. Nav.startImagePreview(...) Forwarded by Nav.to();

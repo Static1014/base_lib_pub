@@ -108,7 +108,7 @@ class HomePage extends StatelessWidget {
                   });
                 }),
                 _buildTestFunc('toast', () {
-                  toast('xxx');
+                  toast(randomNum(1000).toString() * 10);
                 }),
                 _buildTestFunc('ImagePreview', () {
                   Nav.startImagePreview(
