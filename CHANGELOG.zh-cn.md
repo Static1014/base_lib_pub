@@ -1,3 +1,7 @@
+## 2.1.9
+
+1. Nav.to()新增非SingleTop模式下必须传入唯一tag的toast提示;
+
 ## 2.1.8
 
 1. mAppBar文字title非必须；

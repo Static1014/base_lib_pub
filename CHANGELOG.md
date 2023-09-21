@@ -1,3 +1,7 @@
+## 2.1.9
+
+1. Nav.to() added a toast prompt that must pass a unique tag in non-SingleTop mode;
+
 ## 2.1.8
 
 1. mAppBar text title is not required;

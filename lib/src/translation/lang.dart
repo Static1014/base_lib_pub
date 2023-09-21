@@ -45,6 +45,7 @@ class BaseTrsClass {
   final goTest = "goTest";
 
   final closePageConfirmTip = "closePageConfirmTip";
+  final notSingleTopError = "notSingleTopError";
 }
 
 final baseEnUS = {
@@ -76,6 +77,7 @@ final baseEnUS = {
   BaseTrs.shareNoFile: 'The file you choose is not existed, please try another one',
   BaseTrs.retry: 'Retry',
   BaseTrs.closePageConfirmTip: 'Are you sure to close current page?',
+  BaseTrs.notSingleTopError: 'A unique tag must be passed in non-SingleTOP mode',
 };
 
 final baseZhCN = {
@@ -107,4 +109,5 @@ final baseZhCN = {
   BaseTrs.shareNoFile: '你选择的文件不存在，换一个吧',
   BaseTrs.retry: '重试',
   BaseTrs.closePageConfirmTip: '你确定要关闭当前页面吗？',
+  BaseTrs.notSingleTopError: '非SingleTop模式下必须传入唯一tag',
 };

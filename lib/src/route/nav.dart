@@ -141,7 +141,13 @@ class NavClass {
     double Function(BuildContext context)? gestureWidth,
   }) {
     /// 当不是singleTop时，必须有tag，且tag不能重复
-    assert(preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag)));
+    bool ok = preventDuplicates || ((tag?.isNotEmpty ?? false) && !Get.isRegistered(tag: tag));
+    if (!ok) {
+      var msg = BaseTrs.noMore.tr;
+      toast(msg);
+      msg.logE();
+    }
+    assert(ok);
 
     return Get.to(
       page,
