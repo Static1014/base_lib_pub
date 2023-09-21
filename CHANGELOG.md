@@ -1,3 +1,10 @@
+## 2.2.0
+
+1. CommonWebViewPage supports userAgent, request method, body, and headers.
+2. CommonWebViewPage added a callback to expose the WebViewController of the current page for
+   external use (pay attention to the call time of the method, the webView is not drawn when the
+   callback is performed).
+
 ## 2.1.11
 
 1. toast() added support for custom colors, ToastLevel, and custom locations, etc.;

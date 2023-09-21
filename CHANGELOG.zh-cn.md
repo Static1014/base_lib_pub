@@ -1,3 +1,8 @@
+## 2.2.0
+
+1. CommonWebViewPage支持传入userAgent，request method、body、headers等;
+2. CommonWebViewPage新增创建回调，暴露当前page的WebViewController，供外部使用（须注意方法的调用时机，回调时webView还未绘制）；
+
 ## 2.1.11
 
 1. toast()新增支持自定义颜色、ToastLevel、自定义位置等;

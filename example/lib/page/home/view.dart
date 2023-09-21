@@ -83,6 +83,9 @@ class HomePage extends StatelessWidget {
                     'https://www.baidu.com',
                     tag: 'web1',
                     title: '百度',
+                    onCommonWebViewPageCreate: (webController) {
+                      webController.setBackgroundColor(Colors.red);
+                    },
                   );
                   // CommonWebViewPage.start('https://www.bilibili.com', tag: 'web2', title: 'B站');
                   // CommonWebViewPage.start('https://blog.csdn.net/bluewn/article/details/104347506', tag: 'web1', title: '百度');

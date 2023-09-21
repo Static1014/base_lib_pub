@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:flutter/widgets.dart';
@@ -113,6 +114,11 @@ class NavClass {
     FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
     void Function(WebResourceError error)? onWebResourceError,
     Transition? transition,
+    String? userAgent,
+    LoadRequestMethod method = LoadRequestMethod.get,
+    Map<String, String> headers = const <String, String>{},
+    Uint8List? body,
+    OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
   }) {
     CommonWebViewPage.start(
       url,
@@ -128,6 +134,11 @@ class NavClass {
       onNavigationRequest: onNavigationRequest,
       onWebResourceError: onWebResourceError,
       transition: transition,
+      userAgent: userAgent,
+      method: method,
+      headers: headers,
+      body: body,
+      onCommonWebViewPageCreate: onCommonWebViewPageCreate,
     );
   }
 

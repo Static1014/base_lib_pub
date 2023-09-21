@@ -1,6 +1,7 @@
 library common_web_view;
 
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
@@ -18,6 +19,10 @@ enum WebViewContentType {
   asset, // 项目资源
 }
 
+/// CommonWebViewPage创建回调，用于返回当前WebViewController
+/// 注意：此时WebView还未绘制，只能设置WebViewController参数，无法load
+typedef OnCommonWebViewPageCreate = void Function(WebViewController logic);
+
 class CommonWebViewPage extends StatelessWidget {
   /// 启动
   static void start(
@@ -34,6 +39,11 @@ class CommonWebViewPage extends StatelessWidget {
     FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
     void Function(WebResourceError error)? onWebResourceError,
     Transition? transition,
+    String? userAgent,
+    LoadRequestMethod method = LoadRequestMethod.get,
+    Map<String, String> headers = const <String, String>{},
+    Uint8List? body,
+    OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
   }) {
     Nav.to(
       () => CommonWebViewPage(
@@ -48,6 +58,11 @@ class CommonWebViewPage extends StatelessWidget {
         onPageFinished: onPageFinished,
         onNavigationRequest: onNavigationRequest,
         onWebResourceError: onWebResourceError,
+        userAgent: userAgent,
+        method: method,
+        headers: headers,
+        body: body,
+        onCommonWebViewPageCreate: onCommonWebViewPageCreate,
       ),
       tag: tag,
       preventDuplicates: singleTop,
@@ -58,6 +73,7 @@ class CommonWebViewPage extends StatelessWidget {
     );
   }
 
+  final OnCommonWebViewPageCreate? onCommonWebViewPageCreate;
   final String? tag;
   final String? title;
   final String urlOrData;
@@ -73,8 +89,13 @@ class CommonWebViewPage extends StatelessWidget {
   final void Function(String url)? onPageFinished;
   final FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest;
   final void Function(WebResourceError error)? onWebResourceError;
+  final String? userAgent;
 
-  const CommonWebViewPage(
+  final LoadRequestMethod method;
+  final Map<String, String> headers;
+  final Uint8List? body;
+
+  CommonWebViewPage(
     this.urlOrData, {
     this.type = WebViewContentType.url,
     Key? key,
@@ -88,7 +109,23 @@ class CommonWebViewPage extends StatelessWidget {
     this.clearLocalStorageOnStart = true,
     this.onNavigationRequest,
     this.onWebResourceError,
-  }) : super(key: key);
+    this.userAgent,
+    this.body,
+    this.method = LoadRequestMethod.get,
+    this.headers = const <String, String>{},
+    this.onCommonWebViewPageCreate,
+  }) : super(key: key) {
+    final logic = Get.find<CommonWebViewLogic>(tag: tag);
+    logic._initWebViewController(
+      clearCache: clearCacheOnStart,
+      clearLocalStorage: clearLocalStorageOnStart,
+      onPageFinished: onPageFinished,
+      onNavigationRequest: onNavigationRequest,
+      onWebResourceError: onWebResourceError,
+      userAgent: userAgent,
+    );
+    onCommonWebViewPageCreate?.call(logic.webViewController);
+  }
 
   final double bottomHeight = 40;
 
@@ -98,14 +135,21 @@ class CommonWebViewPage extends StatelessWidget {
 
     onBuildFinished((duration) {
       logic
-        .._initWebViewController(
-          clearCache: clearCacheOnStart,
-          clearLocalStorage: clearLocalStorageOnStart,
-          onPageFinished: onPageFinished,
-          onNavigationRequest: onNavigationRequest,
-          onWebResourceError: onWebResourceError,
-        )
-        .._load(urlOrData, type);
+          // .._initWebViewController(
+          //   clearCache: clearCacheOnStart,
+          //   clearLocalStorage: clearLocalStorageOnStart,
+          //   onPageFinished: onPageFinished,
+          //   onNavigationRequest: onNavigationRequest,
+          //   onWebResourceError: onWebResourceError,
+          // )
+          // .._load(urlOrData, type);
+          ._load(
+        urlOrData,
+        type,
+        method: method,
+        headers: headers,
+        body: body,
+      );
     });
     return mRoot(
       onWillPop: _buildPopConfirm(),

@@ -14,9 +14,11 @@ class CommonWebViewLogic extends GetxController {
     void Function(String url)? onPageFinished,
     FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
     void Function(WebResourceError error)? onWebResourceError,
+    String? userAgent,
   }) {
     webViewController
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setUserAgent(userAgent)
       ..setNavigationDelegate(
         NavigationDelegate(
             onProgress: (progress) {
@@ -66,11 +68,22 @@ class CommonWebViewLogic extends GetxController {
     });
   }
 
-  void _load(String urlOrData, WebViewContentType type) {
+  void _load(
+    String urlOrData,
+    WebViewContentType type, {
+    LoadRequestMethod method = LoadRequestMethod.get,
+    Map<String, String> headers = const <String, String>{},
+    Uint8List? body,
+  }) {
     _type(type);
     switch (_type.value) {
       case WebViewContentType.url:
-        webViewController.loadRequest(Uri.parse(urlOrData));
+        webViewController.loadRequest(
+          Uri.parse(urlOrData),
+          method: method,
+          headers: headers,
+          body: body,
+        );
         break;
       case WebViewContentType.htmlString:
         webViewController.loadHtmlString(urlOrData);
