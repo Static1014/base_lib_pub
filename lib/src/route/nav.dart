@@ -43,7 +43,6 @@ class NavClass {
 // }
 
   /// 图片预览
-  /// todo 暂不支持not-singleTop
   void startImagePreview({
     required List<String> imgList,
     List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList,
@@ -67,6 +66,10 @@ class NavClass {
     String? tag,
     Transition? transition = Transition.fadeIn,
   }) {
+    if (imgList.isEmpty) {
+      toast(BaseTrs.previewListEmpty.tr);
+      return;
+    }
     to(
       () => ImagePreviewPage(
         imgList: imgList,
@@ -78,16 +81,16 @@ class NavClass {
         enableHeroTag: enableHeroTag,
         heroTags: tagList,
         enableSlideOutPage: enableSlideOutPage,
-        closeBtnVisible: closeBtnVisible,
-        imgBgColor: bgColor,
-        pagePadding: pagePadding,
-        pageDecoration: pageDecoration,
-        imgBgOpacityBase: bgOpacityBase,
-        pageBgColor: pageBgColor,
-        splitBottomView: splitBottomView,
-        onPreviewIndexChanged: onPreviewIndexChanged,
-        tag: tag,
-      ),
+            closeBtnVisible: closeBtnVisible,
+            imgBgColor: bgColor,
+            pagePadding: pagePadding,
+            pageDecoration: pageDecoration,
+            imgBgOpacityBase: bgOpacityBase,
+            pageBgColor: pageBgColor,
+            splitBottomView: splitBottomView,
+            onPreviewIndexChanged: onPreviewIndexChanged,
+            tag: tag,
+          ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,
       preventDuplicates: singleTop,
@@ -165,7 +168,7 @@ class NavClass {
       toast(msg);
       msg.logE();
     }
-    assert(ok);
+    assert(ok, BaseTrs.notSingleTopError.tr);
 
     return Get.to(
       page,

@@ -46,6 +46,7 @@ class BaseTrsClass {
 
   final closePageConfirmTip = "closePageConfirmTip";
   final notSingleTopError = "notSingleTopError";
+  final previewListEmpty = "previewListEmpty";
 }
 
 final baseEnUS = {
@@ -78,6 +79,7 @@ final baseEnUS = {
   BaseTrs.retry: 'Retry',
   BaseTrs.closePageConfirmTip: 'Are you sure to close current page?',
   BaseTrs.notSingleTopError: 'A unique tag must be passed in non-SingleTOP mode',
+  BaseTrs.previewListEmpty: 'There are no items to preview.',
 };
 
 final baseZhCN = {
@@ -110,4 +112,5 @@ final baseZhCN = {
   BaseTrs.retry: '重试',
   BaseTrs.closePageConfirmTip: '你确定要关闭当前页面吗？',
   BaseTrs.notSingleTopError: '非SingleTop模式下必须传入唯一tag',
+  BaseTrs.previewListEmpty: '没有可预览的项目。',
 };

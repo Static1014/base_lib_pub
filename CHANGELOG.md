@@ -1,3 +1,8 @@
+## 2.3.2
+
+1. If imgList is empty when ImagePreviewPage is started, toast prompts.
+2. Add Clear ExtendedImage cache.
+
 ## 2.3.1
 
 1. url_launcher_utils function call result log output;

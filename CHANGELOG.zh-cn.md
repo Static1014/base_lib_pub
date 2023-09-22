@@ -1,3 +1,8 @@
+## 2.3.2
+
+1. ImagePreviewPage启动时如果imgList为空，则toast提示；
+2. 新增清除ExtendedImage缓存；
+
 ## 2.3.1
 
 1. url_launcher_utils函数调用结果日志输出；

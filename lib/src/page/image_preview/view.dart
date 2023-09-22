@@ -81,11 +81,11 @@ class ImagePreviewPage extends StatelessWidget {
     this.splitBottomView = false,
     this.tag,
   }) : super(key: key) {
-    assert(imgList.isNotEmpty);
-    assert(defaultIndex >= 0 && defaultIndex < imgList.length);
+    assert(imgList.isNotEmpty, 'the size of preview imgList must be over 0');
+    // assert(defaultIndex >= 0 && defaultIndex < imgList.length, 'default index should between 0 and the size of imgList');
 
     var logic = Get.find<ImagePreviewLogic>(tag: tag);
-    logic._initPageController(defaultIndex);
+    logic._initPageController(defaultIndex < 0 && defaultIndex >= imgList.length ? 0 : defaultIndex);
     logic._imgList(imgList);
   }
 

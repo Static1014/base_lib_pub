@@ -241,6 +241,12 @@ Future<bool> saveNetworkImageToPhoto(String url, {bool useCache = true}) async {
   return imageEntity != null;
 }
 
+/// 清除ExtendedImage缓存
+Future<bool> clearExtendedImageCache() async {
+  clearMemoryImageCache();
+  return await clearDiskCachedImages();
+}
+
 // Future<AssetEntity?> pickSingleMedia(BuildContext context, List<AssetEntity> selectedAssets, RequestType type) async {
 //   List<AssetEntity>? list = await AssetPicker.pickAssets(context,
 //       pickerConfig: AssetPickerConfig(maxAssets: 1, selectedAssets: selectedAssets, specialPickerType: SpecialPickerType.noPreview, requestType: type));
