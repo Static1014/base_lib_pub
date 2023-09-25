@@ -115,6 +115,9 @@ Widget mRoot({
         );
 }
 
+/// 通过回调，在目标route被创建时再调用mAppBar，避免Nav.isPopEnable判断错误
+typedef MAppBarBuilder = PreferredSizeWidget Function();
+
 /// 统一appbar
 PreferredSizeWidget mAppBar({
   String title = '',

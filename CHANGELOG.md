@@ -1,3 +1,9 @@
+## 2.4.1
+
+1. Replace appBar with appBarBuilder as the input parameter of CommonWebViewPage, and then create
+   mAppBar when the target route is created through the callback to avoid Nav.isPopEnable error
+   judgment.
+
 ## 2.4.0
 
 1. CommonWebViewPage Added WebPageBuilder to support custom page content.

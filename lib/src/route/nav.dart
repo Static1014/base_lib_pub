@@ -125,7 +125,7 @@ class NavClass {
     Uint8List? body,
     OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
     bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
-    PreferredSizeWidget? appBar,
+    MAppBarBuilder? appBarBuilder,
     WebPageBuilder? pageBuilder,
     Color? pbBgColor,
     Color? pbColor,
@@ -148,7 +148,7 @@ class NavClass {
         headers: headers,
         body: body,
         onCommonWebViewPageCreate: onCommonWebViewPageCreate,
-        appBar: appBar,
+        appBarBuilder: appBarBuilder,
         pageBuilder: pageBuilder,
         pbBgColor: pbBgColor,
         pbColor: pbColor,

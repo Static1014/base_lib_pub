@@ -1,3 +1,7 @@
+## 2.4.1
+
+1. CommonWebViewPage入参appBar替换为appBarBuilder，通过回调，在目标route被创建时再创建mAppBar，避免Nav.isPopEnable判断错误；
+
 ## 2.4.0
 
 1. CommonWebViewPage新增WebPageBuilder，支持自定义页面内容；

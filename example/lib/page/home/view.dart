@@ -132,6 +132,7 @@ class HomePage extends StatelessWidget {
                     onCommonWebViewPageCreate: (webController) {
                       webController.setBackgroundColor(Colors.red);
                     },
+                    appBarBuilder: () => mAppBar(title: 'title'),
                   );
                   // CommonWebViewPage.start('https://www.bilibili.com', tag: 'web2', title: 'B站');
                   // CommonWebViewPage.start('https://blog.csdn.net/bluewn/article/details/104347506', tag: 'web1', title: '百度');

@@ -33,7 +33,9 @@ class CommonWebViewPage extends StatelessWidget {
   final String? title;
   final String urlOrData;
   final WebViewContentType type;
-  final PreferredSizeWidget? appBar;
+
+  /// 不能直接传入mAppBar，它会在创建page之前被创建，此时还不能pop，所以不会正常显示返回按钮
+  final MAppBarBuilder? appBarBuilder;
 
   /// 当pageBuilder不为空，popConfirm、onPopConfirm、appBar、title会忽略
   final WebPageBuilder? pageBuilder;
@@ -44,7 +46,7 @@ class CommonWebViewPage extends StatelessWidget {
   final bool clearCacheOnStart;
   final bool clearLocalStorageOnStart;
 
-  void Function(int progress)? onProgress;
+  final void Function(int progress)? onProgress;
   final void Function(String url)? onPageStarted;
   final void Function(String url)? onPageFinished;
   final FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest;
@@ -78,7 +80,7 @@ class CommonWebViewPage extends StatelessWidget {
     this.method = LoadRequestMethod.get,
     this.headers = const <String, String>{},
     this.onCommonWebViewPageCreate,
-    this.appBar,
+    this.appBarBuilder,
     this.pageBuilder,
     this.pbBgColor,
     this.pbColor,
@@ -130,7 +132,7 @@ class CommonWebViewPage extends StatelessWidget {
         mRoot(
           onWillPop: _buildPopConfirm(),
           child: Scaffold(
-            appBar: appBar ??
+            appBar: appBarBuilder?.call() ??
                 mAppBar(
                   title: title ?? '',
                   backPressed: _buildPopConfirm(),
