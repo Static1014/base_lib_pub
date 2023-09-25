@@ -89,10 +89,44 @@ class HomePage extends StatelessWidget {
                   DataUtils.getString('i1').then((value) => value.logE());
                   DataUtils.getString('str').then((value) => value.logE());
                 }),
-                _buildTestFunc('WebView', () {
+                _buildTestFunc('自定义WebView页面', () {
+                  //  自定义页面
+                  Nav.startCommonWebView(
+                    urlOrData: 'https://www.baidu.com',
+                    tag: '自定义WebView页面',
+                    pageBuilder: (webLogic, webView, pb) {
+                      return mRoot(
+                        child: Scaffold(
+                          appBar: mAppBar(title: '自定义WebView页面', actions: [
+                            IconButton(
+                                onPressed: () {
+                                  webLogic.setBottomNav(false);
+                                },
+                                icon: const Icon(Icons.change_circle_outlined))
+                          ]),
+                          body: Column(
+                            children: [
+                              pb,
+                              Container(
+                                height: 100,
+                                color: BaseColors.cGreen,
+                                width: double.infinity,
+                                child: Center(
+                                  child: mText(msg: '我是一个控件'),
+                                ),
+                              ),
+                              Flexible(child: webView),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }),
+                _buildTestFunc('WebViewPage', () {
                   // 打开多个webview page
                   Nav.startCommonWebView(
-                    'https://www.baidu.com',
+                    urlOrData: 'https://www.baidu.com',
                     tag: 'web1',
                     title: '百度',
                     onCommonWebViewPageCreate: (webController) {

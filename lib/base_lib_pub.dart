@@ -4,6 +4,7 @@ export 'src/base_main.dart';
 export 'src/const/global_const.dart';
 export 'src/extension/common_ext.dart';
 export 'src/extension/datetime_ext.dart';
+export 'src/extension/web_view_ext.dart';
 export 'src/getx/getx_animation_controller_mixin.dart';
 export 'src/getx/getx_ext.dart';
 export 'src/getx/getx_ticker.dart';

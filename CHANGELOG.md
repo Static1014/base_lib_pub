@@ -1,3 +1,11 @@
+## 2.4.0
+
+1. CommonWebViewPage Added WebPageBuilder to support custom page content.
+2. Expand WebViewController and add init method for quick initialization; Added the load fast
+   loading content.
+3. CommonWebViewPageLogic supports explicit and implicit switching of the web navigation bar at the
+   bottom.
+
 ## 2.3.4
 
 1. CommonWebViewPage supports popGesture;

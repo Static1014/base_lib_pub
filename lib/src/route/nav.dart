@@ -72,7 +72,7 @@ class NavClass {
       return;
     }
     to(
-          () => ImagePreviewPage(
+      () => ImagePreviewPage(
         imgList: imgList,
         textTagList: textTagList,
         defaultIndex: defaultIndex,
@@ -105,8 +105,8 @@ class NavClass {
   }
 
   /// 启动通用WebView
-  void startCommonWebView(
-    String urlOrData, {
+  void startCommonWebView({
+    required String urlOrData,
     bool singleTop = false,
     String? tag,
     String? title,
@@ -125,10 +125,14 @@ class NavClass {
     Uint8List? body,
     OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
     bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
+    PreferredSizeWidget? appBar,
+    WebPageBuilder? pageBuilder,
+    Color? pbBgColor,
+    Color? pbColor,
   }) {
     to(
       () => CommonWebViewPage(
-        urlOrData,
+        urlOrData: urlOrData,
         tag: tag,
         title: title,
         popConfirm: popConfirm,
@@ -144,6 +148,10 @@ class NavClass {
         headers: headers,
         body: body,
         onCommonWebViewPageCreate: onCommonWebViewPageCreate,
+        appBar: appBar,
+        pageBuilder: pageBuilder,
+        pbBgColor: pbBgColor,
+        pbColor: pbColor,
       ),
       tag: tag,
       preventDuplicates: singleTop,

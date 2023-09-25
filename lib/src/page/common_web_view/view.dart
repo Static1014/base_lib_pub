@@ -22,6 +22,9 @@ enum WebViewContentType {
 /// 注意：此时WebView还未绘制，只能设置WebViewController参数，无法load
 typedef OnCommonWebViewPageCreate = void Function(WebViewController logic);
 
+/// 自定义页面布局
+typedef WebPageBuilder = Widget Function(CommonWebViewLogic logic, Widget webViewWithNav, Widget pb);
+
 class CommonWebViewPage extends StatelessWidget {
   /// 启动通用WebView，参照lib/route/nav.startCommonWebView().
 
@@ -30,6 +33,10 @@ class CommonWebViewPage extends StatelessWidget {
   final String? title;
   final String urlOrData;
   final WebViewContentType type;
+  final PreferredSizeWidget? appBar;
+
+  /// 当pageBuilder不为空，popConfirm、onPopConfirm、appBar、title会忽略
+  final WebPageBuilder? pageBuilder;
 
   final bool popConfirm; // 关闭是否需要确认
   final WillPopCallback? onPopConfirm; // 关闭确认回调
@@ -37,6 +44,7 @@ class CommonWebViewPage extends StatelessWidget {
   final bool clearCacheOnStart;
   final bool clearLocalStorageOnStart;
 
+  void Function(int progress)? onProgress;
   final void Function(String url)? onPageStarted;
   final void Function(String url)? onPageFinished;
   final FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest;
@@ -47,14 +55,18 @@ class CommonWebViewPage extends StatelessWidget {
   final Map<String, String> headers;
   final Uint8List? body;
 
-  CommonWebViewPage(
-    this.urlOrData, {
+  final Color? pbBgColor;
+  final Color? pbColor;
+
+  CommonWebViewPage({
+    required this.urlOrData,
     this.type = WebViewContentType.url,
     Key? key,
     this.tag,
     this.title,
     this.popConfirm = false,
     this.onPopConfirm,
+    this.onProgress,
     this.onPageStarted,
     this.onPageFinished,
     this.clearCacheOnStart = true,
@@ -66,15 +78,30 @@ class CommonWebViewPage extends StatelessWidget {
     this.method = LoadRequestMethod.get,
     this.headers = const <String, String>{},
     this.onCommonWebViewPageCreate,
+    this.appBar,
+    this.pageBuilder,
+    this.pbBgColor,
+    this.pbColor,
   }) : super(key: key) {
     final logic = Get.find<CommonWebViewLogic>(tag: tag);
-    logic._initWebViewController(
+    logic.webViewController.init(
       clearCache: clearCacheOnStart,
       clearLocalStorage: clearLocalStorageOnStart,
-      onPageFinished: onPageFinished,
-      onNavigationRequest: onNavigationRequest,
-      onWebResourceError: onWebResourceError,
       userAgent: userAgent,
+      onPageStarted: onPageStarted,
+      onProgress: (progress) {
+        logic._pb(progress);
+        onProgress?.call(progress);
+      },
+      onPageFinished: (url) {
+        logic._checkBottomNavState();
+        onPageFinished?.call(url);
+      },
+      onWebResourceError: onWebResourceError,
+      onNavigationRequest: onNavigationRequest,
+      onUrlChange: (url) {
+        logic._checkBottomNavState();
+      },
     );
     onCommonWebViewPageCreate?.call(logic.webViewController);
 
@@ -90,52 +117,64 @@ class CommonWebViewPage extends StatelessWidget {
     final logic = Get.find<CommonWebViewLogic>(tag: tag);
 
     onBuildFinished((duration) {
-      logic._load(
-        urlOrData,
-        type,
+      logic._type(type);
+      logic.webViewController.load(
+        urlOrData: urlOrData,
+        type: type,
         method: method,
         headers: headers,
         body: body,
       );
     });
-    return mRoot(
-      onWillPop: _buildPopConfirm(),
-      child: Scaffold(
-        appBar: mAppBar(
-          title: title ?? '',
-          backPressed: _buildPopConfirm(),
+    return pageBuilder?.call(logic, _buildWebViewWithNav(logic), _buildPb(logic)) ??
+        mRoot(
+          onWillPop: _buildPopConfirm(),
+          child: Scaffold(
+            appBar: appBar ??
+                mAppBar(
+                  title: title ?? '',
+                  backPressed: _buildPopConfirm(),
+                ),
+            body: Stack(
+              children: [
+                Positioned.fill(
+                  child: _buildWebViewWithNav(logic),
+                ),
+                Positioned(
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  child: _buildPb(logic),
+                ),
+              ],
+            ),
+          ),
+        );
+  }
+
+  Widget _buildWebViewWithNav(CommonWebViewLogic logic) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Flexible(
+          child: WebViewWidget(
+            controller: logic.webViewController,
+          ),
         ),
-        body: Stack(
-          children: [
-            Positioned.fill(
-              bottom: bottomHeight,
-              child: WebViewWidget(
-                controller: logic.webViewController,
-              ),
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Obx(
-                () => logic._pb.value < 100
-                    ? LinearProgressIndicator(
-                        value: logic._pb.value < 10 ? null : double.parse('${logic._pb.value}'),
-                        backgroundColor: BaseColors.cGrayBg,
-                        valueColor: const AlwaysStoppedAnimation(BaseColors.cPrimaryColor),
-                      )
-                    : const SizedBox.shrink(),
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: _buildBottomNavigator(logic),
+        Obx(() => logic._bottomNavVisible.value ? _buildBottomNavigator(logic) : const SizedBox.shrink()),
+      ],
+    );
+  }
+
+  Widget _buildPb(CommonWebViewLogic logic) {
+    return Obx(
+      () => logic._pb.value < 100
+          ? LinearProgressIndicator(
+              value: logic._pb.value < 10 ? null : double.parse('${logic._pb.value}'),
+              backgroundColor: pbBgColor ?? BaseColors.cGrayBg,
+              valueColor: AlwaysStoppedAnimation(pbColor ?? BaseColors.cPrimaryColor),
             )
-          ],
-        ),
-      ),
+          : const SizedBox.shrink(),
     );
   }
 

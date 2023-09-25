@@ -1,3 +1,9 @@
+## 2.4.0
+
+1. CommonWebViewPage新增WebPageBuilder，支持自定义页面内容；
+2. 扩展WebViewController，新增init方法快速初始化；新增load快速加载内容；
+3. CommonWebViewPageLogic支持底部web导航栏的显隐切换；
+
 ## 2.3.4
 
 1. CommonWebViewPage支持popGesture；
