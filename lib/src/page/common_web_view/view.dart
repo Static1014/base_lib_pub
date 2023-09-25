@@ -191,7 +191,7 @@ class CommonWebViewPage extends StatelessWidget {
     );
   }
 
-  WillPopCallback _buildPopConfirm() {
+  WillPopCallback? _buildPopConfirm() {
     MDialog? confirmDialog;
     return popConfirm
         ? (onPopConfirm ??
@@ -206,6 +206,6 @@ class CommonWebViewPage extends StatelessWidget {
               );
               return false;
             })
-        : clickBack;
+        : null;
   }
 }

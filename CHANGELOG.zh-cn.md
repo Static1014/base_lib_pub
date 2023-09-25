@@ -1,6 +1,11 @@
+## 2.3.4
+
+1. CommonWebViewPage支持popGesture；
+
 ## 2.3.3
 
-1.
+1. ImagePreviewPage和CommonWebViewPage启动可设置fullscreenDialog参数；
+2. mRoot在不设置onWillPop时不创建WillPopScope，避免popGesture失效；
 
 ## 2.3.2
 

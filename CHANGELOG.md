@@ -1,3 +1,7 @@
+## 2.3.4
+
+1. CommonWebViewPage supports popGesture;
+
 ## 2.3.3
 
 1. The fullscreenDialog parameter can be set when ImagePreviewPage and CommonWebViewPage are
