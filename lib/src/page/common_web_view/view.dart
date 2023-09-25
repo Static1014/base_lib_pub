@@ -23,54 +23,7 @@ enum WebViewContentType {
 typedef OnCommonWebViewPageCreate = void Function(WebViewController logic);
 
 class CommonWebViewPage extends StatelessWidget {
-  /// 启动
-  static void start(
-    String urlOrData, {
-    bool singleTop = false,
-    String? tag,
-    String? title,
-    bool popConfirm = false,
-    WillPopCallback? onPopConfirm,
-    bool clearCache = true,
-    bool clearLocalStorage = true,
-    void Function(String url)? onPageStarted,
-    void Function(String url)? onPageFinished,
-    FutureOr<NavigationDecision> Function(NavigationRequest request)? onNavigationRequest,
-    void Function(WebResourceError error)? onWebResourceError,
-    Transition? transition,
-    String? userAgent,
-    LoadRequestMethod method = LoadRequestMethod.get,
-    Map<String, String> headers = const <String, String>{},
-    Uint8List? body,
-    OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
-  }) {
-    Nav.to(
-      () => CommonWebViewPage(
-        urlOrData,
-        tag: tag,
-        title: title,
-        popConfirm: popConfirm,
-        onPopConfirm: onPopConfirm,
-        clearCacheOnStart: clearCache,
-        clearLocalStorageOnStart: clearLocalStorage,
-        onPageStarted: onPageStarted,
-        onPageFinished: onPageFinished,
-        onNavigationRequest: onNavigationRequest,
-        onWebResourceError: onWebResourceError,
-        userAgent: userAgent,
-        method: method,
-        headers: headers,
-        body: body,
-        onCommonWebViewPageCreate: onCommonWebViewPageCreate,
-      ),
-      tag: tag,
-      preventDuplicates: singleTop,
-      transition: transition,
-      binding: BindingsBuilder(() {
-        Get.put(CommonWebViewLogic(), tag: tag);
-      }),
-    );
-  }
+  /// 启动通用WebView，参照lib/route/nav.startCommonWebView().
 
   final OnCommonWebViewPageCreate? onCommonWebViewPageCreate;
   final String? tag;

@@ -65,13 +65,14 @@ class NavClass {
     bool singleTop = true,
     String? tag,
     Transition? transition = Transition.fadeIn,
+    bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
   }) {
     if (imgList.isEmpty) {
       toast(BaseTrs.previewListEmpty.tr);
       return;
     }
     to(
-      () => ImagePreviewPage(
+          () => ImagePreviewPage(
         imgList: imgList,
         textTagList: textTagList,
         defaultIndex: defaultIndex,
@@ -81,21 +82,22 @@ class NavClass {
         enableHeroTag: enableHeroTag,
         heroTags: tagList,
         enableSlideOutPage: enableSlideOutPage,
-            closeBtnVisible: closeBtnVisible,
-            imgBgColor: bgColor,
-            pagePadding: pagePadding,
-            pageDecoration: pageDecoration,
-            imgBgOpacityBase: bgOpacityBase,
-            pageBgColor: pageBgColor,
-            splitBottomView: splitBottomView,
-            onPreviewIndexChanged: onPreviewIndexChanged,
-            tag: tag,
-          ),
+        closeBtnVisible: closeBtnVisible,
+        imgBgColor: bgColor,
+        pagePadding: pagePadding,
+        pageDecoration: pageDecoration,
+        imgBgOpacityBase: bgOpacityBase,
+        pageBgColor: pageBgColor,
+        splitBottomView: splitBottomView,
+        onPreviewIndexChanged: onPreviewIndexChanged,
+        tag: tag,
+      ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,
       preventDuplicates: singleTop,
       transition: transition,
       tag: tag,
+      fullscreenDialog: fullscreenDialog,
       binding: BindingsBuilder(() {
         Get.put(ImagePreviewLogic(), tag: tag);
       }),
@@ -104,7 +106,7 @@ class NavClass {
 
   /// 启动通用WebView
   void startCommonWebView(
-    String url, {
+    String urlOrData, {
     bool singleTop = false,
     String? tag,
     String? title,
@@ -122,26 +124,34 @@ class NavClass {
     Map<String, String> headers = const <String, String>{},
     Uint8List? body,
     OnCommonWebViewPageCreate? onCommonWebViewPageCreate,
+    bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
   }) {
-    CommonWebViewPage.start(
-      url,
-      singleTop: singleTop,
+    to(
+      () => CommonWebViewPage(
+        urlOrData,
+        tag: tag,
+        title: title,
+        popConfirm: popConfirm,
+        onPopConfirm: onPopConfirm,
+        clearCacheOnStart: clearCache,
+        clearLocalStorageOnStart: clearLocalStorage,
+        onPageStarted: onPageStarted,
+        onPageFinished: onPageFinished,
+        onNavigationRequest: onNavigationRequest,
+        onWebResourceError: onWebResourceError,
+        userAgent: userAgent,
+        method: method,
+        headers: headers,
+        body: body,
+        onCommonWebViewPageCreate: onCommonWebViewPageCreate,
+      ),
       tag: tag,
-      title: title,
-      popConfirm: popConfirm,
-      onPopConfirm: onPopConfirm,
-      clearCache: clearCache,
-      clearLocalStorage: clearLocalStorage,
-      onPageStarted: onPageStarted,
-      onPageFinished: onPageFinished,
-      onNavigationRequest: onNavigationRequest,
-      onWebResourceError: onWebResourceError,
+      preventDuplicates: singleTop,
       transition: transition,
-      userAgent: userAgent,
-      method: method,
-      headers: headers,
-      body: body,
-      onCommonWebViewPageCreate: onCommonWebViewPageCreate,
+      fullscreenDialog: fullscreenDialog,
+      binding: BindingsBuilder(() {
+        Get.put(CommonWebViewLogic(), tag: tag);
+      }),
     );
   }
 

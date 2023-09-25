@@ -1,3 +1,9 @@
+## 2.3.3
+
+1. The fullscreenDialog parameter can be set when ImagePreviewPage and CommonWebViewPage are
+   started.
+2. mRoot does not create WillPopScope when onWillPop is not set, or else popGesture will be invalid.
+
 ## 2.3.2
 
 1. If imgList is empty when ImagePreviewPage is started, toast prompts.

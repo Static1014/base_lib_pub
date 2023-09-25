@@ -11,24 +11,26 @@ class TestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TestLogic logic = Get.find(tag: tag);
-    return Scaffold(
-      appBar: mAppBar(
-        title: BaseTrs.testTitle.tr,
-      ),
-      body: Container(
-        color: Colors.green.withAlpha(100),
-        child: Obx(() => Text('${BaseTrs.testTitle.tr} - ${logic.count.value}')),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          logic.count(logic.count.value + 1);
+    return mRoot(
+      child: Scaffold(
+        appBar: mAppBar(
+          title: BaseTrs.testTitle.tr,
+        ),
+        body: Container(
+          color: Colors.green.withAlpha(100),
+          child: Obx(() => Text('${BaseTrs.testTitle.tr} - ${logic.count.value}')),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            logic.count(logic.count.value + 1);
 
-          // Get.find<TestLogic>(tag: 'test1').count.value.logE();
-          // Get.find<TestLogic>(tag: 'test2').count.value.logE();
-          Get.findLogic<TestLogic>(tag: 'test1')?.count.value.logE();
-          Get.findLogic<TestLogic>()?.count.value.logE();
-        },
-        child: const Icon(Icons.add),
+            // Get.find<TestLogic>(tag: 'test1').count.value.logE();
+            // Get.find<TestLogic>(tag: 'test2').count.value.logE();
+            Get.findLogic<TestLogic>(tag: 'test1')?.count.value.logE();
+            Get.findLogic<TestLogic>()?.count.value.logE();
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

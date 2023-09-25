@@ -85,7 +85,7 @@ Widget mWillPopScope({required Widget child, WillPopCallback? onWillPop}) {
 /// 点击空白处关闭键盘
 Widget mRoot({
   required Widget child,
-  WillPopCallback? onWillPop,
+  WillPopCallback? onWillPop, // 当存在返回拦截时才使用WillPopScope，否则会导致popGesture无效（iOS手势返回上一页）
   bool safeArea = true,
   bool safeTop = false,
   bool safeBottom = true,
@@ -93,23 +93,26 @@ Widget mRoot({
   bool safeRight = true,
   Color? safeAreaBgColor = BaseColors.cWhite, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
 }) {
-  return WillPopScope(
-    onWillPop: onWillPop ?? clickBack,
-    child: GestureDetector(
-        onTap: hideKeyboard,
-        child: safeArea
-            ? Container(
-                color: safeAreaBgColor,
-                child: SafeArea(
-                  top: safeTop,
-                  bottom: safeBottom,
-                  left: safeLeft,
-                  right: safeRight,
-                  child: child,
-                ),
-              )
-            : child),
-  );
+  var cc = GestureDetector(
+      onTap: hideKeyboard,
+      child: safeArea
+          ? Container(
+              color: safeAreaBgColor,
+              child: SafeArea(
+                top: safeTop,
+                bottom: safeBottom,
+                left: safeLeft,
+                right: safeRight,
+                child: child,
+              ),
+            )
+          : child);
+  return onWillPop == null && Nav.isPopEnable() // 没有手动拦截，且能返回，才不添加WillPopScope
+      ? cc
+      : mWillPopScope(
+          onWillPop: onWillPop,
+          child: cc,
+        );
 }
 
 /// 统一appbar
