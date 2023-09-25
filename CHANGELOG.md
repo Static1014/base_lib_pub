@@ -1,3 +1,8 @@
+## 2.4.2
+
+1. The web navigation bar at the bottom of the CommonWebViewPage can be controlled by construction
+   parameters.
+
 ## 2.4.1
 
 1. Replace appBar with appBarBuilder as the input parameter of CommonWebViewPage, and then create

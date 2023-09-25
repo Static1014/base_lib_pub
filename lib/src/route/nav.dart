@@ -129,6 +129,7 @@ class NavClass {
     WebPageBuilder? pageBuilder,
     Color? pbBgColor,
     Color? pbColor,
+    bool? bottomNavVisible,
   }) {
     to(
       () => CommonWebViewPage(
@@ -152,6 +153,7 @@ class NavClass {
         pageBuilder: pageBuilder,
         pbBgColor: pbBgColor,
         pbColor: pbColor,
+        bottomNavVisible: bottomNavVisible,
       ),
       tag: tag,
       preventDuplicates: singleTop,

@@ -1,3 +1,7 @@
+## 2.4.2
+
+1. CommonWebViewPage底部web导航栏可由构造参数控制是否显示；
+
 ## 2.4.1
 
 1. CommonWebViewPage入参appBar替换为appBarBuilder，通过回调，在目标route被创建时再创建mAppBar，避免Nav.isPopEnable判断错误；
