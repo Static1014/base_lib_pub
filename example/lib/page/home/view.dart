@@ -229,19 +229,24 @@ class HomePage extends StatelessWidget {
                         logic.index(0);
                         Nav.startImagePreview(
                           imgList: [
-                            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                            'https://t7.baidu.com/it/u=3631608752,3069876728&fm=193&f=GIF',
                             // 'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                           ],
-                          textTagList: [null, null, (true, null, null)],
+                          // textTagList: [null, null, (true, null, null), null],
                           defaultIndex: 0,
                           pageBgColor: BaseColors.cTransparent,
                           enableHeroTag: true,
-                          bottomView: Container(
-                            child: mText(msg: '你好啊'),
+                          bottomView: GestureDetector(
+                            onTap: () {
+                              ImagePreviewLogic.to.deleteAt(logic.index.value);
+                            },
+                            child: mText(msg: '删除'),
                           ),
                           onPreviewIndexChanged: (i) {
                             logic.index(i);
+                            i.logE(tag: 'change xxxx');
                           },
                           actionView: GestureDetector(
                             onTap: () {

@@ -6,7 +6,7 @@ class HomeLogic extends GetxController {
   final tick = 0.obs;
   Timer? timer;
 
-  final list = [false, false].obs;
+  final list = [false, false, false].obs;
   final index = 0.obs;
 
   final pkgInfo = ''.obs;

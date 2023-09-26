@@ -7,6 +7,7 @@ class ImagePreviewLogic extends GetxController {
   final _curIndex = 0.obs;
   final _imgList = [].obs;
   final _isSliding = false.obs;
+  OnPreviewIndexChanged? onPreviewIndexChanged;
 
   void _initPageController(int initialPage) {
     _epc = ExtendedPageController(initialPage: initialPage);
@@ -14,8 +15,18 @@ class ImagePreviewLogic extends GetxController {
   }
 
   void deleteAt(int index) {
-    if (index >= 0 && index < _imgList.length) {
+    int oldLen = _imgList.length;
+    if (index >= 0 && index < oldLen) {
       _imgList.removeAt(index);
+
+      if (_imgList.length == 1) {
+        _curIndex(0);
+      }
+      if (_curIndex.value >= _imgList.length) {
+        _curIndex(max(0, _imgList.length - 1));
+      }
+
+      onPreviewIndexChanged?.call(_curIndex.value);
     }
 
     if (_imgList.isEmpty) {

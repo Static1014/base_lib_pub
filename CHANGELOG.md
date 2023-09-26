@@ -1,3 +1,7 @@
+## 2.4.5
+
+1. Fix the bug that _curIndex is wrong after ImagePreviewLogic.deleteAt(int) was called;;
+
 ## 2.4.4
 
 1. MDialog.tip supports msgPadding;

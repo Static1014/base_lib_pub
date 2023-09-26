@@ -87,6 +87,7 @@ class ImagePreviewPage extends StatelessWidget {
     var logic = Get.find<ImagePreviewLogic>(tag: tag);
     logic._initPageController(defaultIndex < 0 && defaultIndex >= imgList.length ? 0 : defaultIndex);
     logic._imgList(imgList);
+    logic.onPreviewIndexChanged = onPreviewIndexChanged;
   }
 
   final _gestureConfig = GestureConfig(
@@ -195,7 +196,7 @@ class ImagePreviewPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Obx(
-                    () => logic._imgList.length > 1
+                        () => logic._imgList.isNotEmpty
                         ? Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                             child: Container(

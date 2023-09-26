@@ -1,3 +1,7 @@
+## 2.4.5
+
+1. 修正ImagePreviewLogic.deleteAt()之后_curIndex错误的问题；
+
 ## 2.4.4
 
 1. MDialog.tip支持msgPadding；
