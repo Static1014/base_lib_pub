@@ -683,6 +683,7 @@ Widget mProgressIndicator({
 Widget mOverSizeScrollView({
   required double maxSize,
   required List<Widget> children,
+  double minSize = 0,
   Axis scrollDirection = Axis.vertical,
   double? crossSize = double.infinity,
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start,
@@ -696,24 +697,19 @@ Widget mOverSizeScrollView({
     child: SingleChildScrollView(
       padding: EdgeInsets.zero,
       scrollDirection: scrollDirection,
-      child: isVertical
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: crossAxisAlignment,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: crossAxisAlignment,
-              children: children,
-            ),
+      child: Flex(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: crossAxisAlignment,
+        direction: scrollDirection,
+        children: children,
+      ),
     ),
   );
   return Container(
     padding: EdgeInsets.zero,
     width: isVertical ? crossSize : null,
     height: !isVertical ? crossSize : null,
-    constraints: isVertical ? BoxConstraints(maxHeight: maxSize) : BoxConstraints(maxWidth: maxSize),
+    constraints: isVertical ? BoxConstraints(maxHeight: maxSize, minHeight: minSize) : BoxConstraints(maxWidth: maxSize, minWidth: minSize),
     child: content,
   );
 }

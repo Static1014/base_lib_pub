@@ -1,3 +1,8 @@
+## 2.4.3
+
+1. MDialog.tip supports custom title and content;
+2. example update;
+
 ## 2.4.2
 
 1. The web navigation bar at the bottom of the CommonWebViewPage can be controlled by construction

@@ -39,10 +39,21 @@ class HomePage extends StatelessWidget {
                 _buildTestFunc('tel', () {
                   tel('15022252451');
                 }),
-                _buildTestFunc('tip dialog', () {
+                _buildTestFunc('oversize tip dialog', () {
                   mShowTip(
                     title: 'test',
                     msg: '你好啊，我很长，都装不下了' * 100,
+                  );
+                }),
+                _buildTestFunc('tip dialog', () {
+                  mShowTip(
+                    title: 'test',
+                    titleColor: BaseColors.cRed,
+                    contentWidget: Container(
+                      constraints: const BoxConstraints(minHeight: 100),
+                      alignment: Alignment.center,
+                      child: mText(msg: '你好啊'),
+                    ),
                   );
                 }),
                 Obx(

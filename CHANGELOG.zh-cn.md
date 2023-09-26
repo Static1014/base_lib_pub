@@ -1,3 +1,8 @@
+## 2.4.3
+
+1. MDialog.tip支持自定义title和content；
+2. example更新；
+
 ## 2.4.2
 
 1. CommonWebViewPage底部web导航栏可由构造参数控制是否显示；

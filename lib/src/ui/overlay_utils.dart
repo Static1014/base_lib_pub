@@ -121,20 +121,42 @@ MDialog mShowDialog(Widget child, {String? id}) {
 }
 
 MDialog mShowTip({
-  bool dismissible = true,
+  String? id,
   String title = '',
   String msg = '',
-  String? id,
+  bool dismissible = true,
   List<Widget>? actions,
   double? maxContentSize,
+  Color titleColor = BaseColors.cFontBlack,
+  double titleFontSize = 16,
+  FontWeight titleFontWeight = FontWeight.bold,
+  int titleMaxLines = 4,
+  Color msgColor = BaseColors.cFontGray,
+  double msgFontSize = 15,
+  FontWeight msgFontWeight = FontWeight.normal,
+  TextAlign msgTextAlign = TextAlign.start,
+  double? minContentSize,
+  Widget? contentWidget,
+  Widget? titleWidget,
 }) {
   return MDialog.tip(
     id: id,
     dismissible: dismissible,
     title: title,
+    titleWidget: titleWidget,
     msg: msg,
+    contentWidget: contentWidget,
     actions: actions,
     maxContentSize: maxContentSize,
+    minContentSize: minContentSize,
+    msgTextAlign: msgTextAlign,
+    msgFontWeight: msgFontWeight,
+    msgFontSize: msgFontSize,
+    msgColor: msgColor,
+    titleMaxLines: titleMaxLines,
+    titleFontWeight: titleFontWeight,
+    titleFontSize: titleFontSize,
+    titleColor: titleColor,
   )..show();
 }
 

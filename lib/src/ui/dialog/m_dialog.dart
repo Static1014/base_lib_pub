@@ -94,9 +94,20 @@ class MDialog {
     this.dismissible = true,
     this.id,
     String title = '',
+    Color titleColor = BaseColors.cFontBlack,
+    double titleFontSize = 16,
+    FontWeight titleFontWeight = FontWeight.bold,
+    int titleMaxLines = 4,
     String msg = '',
+    Widget? titleWidget,
+    Widget? contentWidget,
+    Color msgColor = BaseColors.cFontGray,
+    double msgFontSize = 15,
+    FontWeight msgFontWeight = FontWeight.normal,
+    TextAlign msgTextAlign = TextAlign.start,
     List<Widget>? actions,
     double? maxContentSize,
+    double? minContentSize,
   }) {
     _init();
     _entry = OverlayEntry(
@@ -139,30 +150,34 @@ class MDialog {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            isEmptyOrNull(title)
-                                ? const SizedBox.shrink()
-                                : Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: mText(
-                                      msg: title,
-                                      color: BaseColors.cFontBlack,
-                                      weight: FontWeight.bold,
-                                      maxLines: 4,
-                                      fontSize: 16,
-                                      textAlign: TextAlign.start,
+                            titleWidget ??
+                                (isEmptyOrNull(title)
+                                    ? const SizedBox.shrink()
+                                    : Padding(
+                                        padding: const EdgeInsets.only(bottom: 8),
+                                        child: mText(
+                                          msg: title,
+                                          color: titleColor,
+                                          weight: titleFontWeight,
+                                          maxLines: titleMaxLines,
+                                          fontSize: titleFontSize,
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      )),
+                            contentWidget ??
+                                mOverSizeScrollView(
+                                  maxSize: maxContentSize ?? Get.height * 0.6,
+                                  minSize: minContentSize ?? 50,
+                                  children: [
+                                    mText(
+                                      msg: msg,
+                                      color: msgColor,
+                                      fontSize: msgFontSize,
+                                      weight: msgFontWeight,
+                                      textAlign: msgTextAlign,
                                     ),
-                                  ),
-                            mOverSizeScrollView(
-                              maxSize: maxContentSize ?? Get.height * 0.6,
-                              children: [
-                                mText(
-                                  msg: msg,
-                                  color: BaseColors.cFontGray,
-                                  fontSize: 15,
-                                  textAlign: TextAlign.start,
+                                  ],
                                 ),
-                              ],
-                            ),
                             mDividerH(height: 4),
                             SizedBox(
                               width: double.infinity,
