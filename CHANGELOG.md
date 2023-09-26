@@ -1,3 +1,7 @@
+## 2.4.4
+
+1. MDialog.tip supports msgPadding;
+
 ## 2.4.3
 
 1. MDialog.tip supports custom title and content;

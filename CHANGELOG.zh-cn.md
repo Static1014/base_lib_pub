@@ -1,3 +1,7 @@
+## 2.4.4
+
+1. MDialog.tip支持msgPadding；
+
 ## 2.4.3
 
 1. MDialog.tip支持自定义title和content；

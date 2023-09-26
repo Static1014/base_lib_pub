@@ -108,6 +108,7 @@ class MDialog {
     List<Widget>? actions,
     double? maxContentSize,
     double? minContentSize,
+    EdgeInsets msgPadding = EdgeInsets.zero,
   }) {
     _init();
     _entry = OverlayEntry(
@@ -169,12 +170,15 @@ class MDialog {
                                   maxSize: maxContentSize ?? Get.height * 0.6,
                                   minSize: minContentSize ?? 50,
                                   children: [
-                                    mText(
-                                      msg: msg,
-                                      color: msgColor,
-                                      fontSize: msgFontSize,
-                                      weight: msgFontWeight,
-                                      textAlign: msgTextAlign,
+                                    Padding(
+                                      padding: msgPadding,
+                                      child: mText(
+                                        msg: msg,
+                                        color: msgColor,
+                                        fontSize: msgFontSize,
+                                        weight: msgFontWeight,
+                                        textAlign: msgTextAlign,
+                                      ),
                                     ),
                                   ],
                                 ),

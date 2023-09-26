@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                     msg: '你好啊，我很长，都装不下了' * 100,
                   );
                 }),
-                _buildTestFunc('tip dialog', () {
+                _buildTestFunc('custom dialog', () {
                   mShowTip(
                     title: 'test',
                     titleColor: BaseColors.cRed,
@@ -54,6 +54,14 @@ class HomePage extends StatelessWidget {
                       alignment: Alignment.center,
                       child: mText(msg: '你好啊'),
                     ),
+                  );
+                }),
+                _buildTestFunc('msg padding dialog', () {
+                  mShowTip(
+                    title: 'test',
+                    titleColor: BaseColors.cRed,
+                    msg: '你哈哈哈哈',
+                    msgPadding: const EdgeInsets.symmetric(vertical: 20),
                   );
                 }),
                 Obx(

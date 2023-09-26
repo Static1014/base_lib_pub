@@ -138,6 +138,7 @@ MDialog mShowTip({
   double? minContentSize,
   Widget? contentWidget,
   Widget? titleWidget,
+  EdgeInsets msgPadding = EdgeInsets.zero,
 }) {
   return MDialog.tip(
     id: id,
@@ -157,6 +158,7 @@ MDialog mShowTip({
     titleFontWeight: titleFontWeight,
     titleFontSize: titleFontSize,
     titleColor: titleColor,
+    msgPadding: msgPadding,
   )..show();
 }
 
