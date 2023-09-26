@@ -38,6 +38,9 @@ class ImagePreviewPage extends StatelessWidget {
   // 点击图片关闭预览
   final bool enableTapImgClose;
 
+  // 是否显示下标指示器
+  final bool showIndicator;
+
   // 左上角返回按钮
   final bool closeBtnVisible;
 
@@ -80,6 +83,7 @@ class ImagePreviewPage extends StatelessWidget {
     this.imgBgOpacityBase = 1.0,
     this.splitBottomView = false,
     this.tag,
+    this.showIndicator = true,
   }) : super(key: key) {
     assert(imgList.isNotEmpty, 'the size of preview imgList must be over 0');
     // assert(defaultIndex >= 0 && defaultIndex < imgList.length, 'default index should between 0 and the size of imgList');
@@ -195,23 +199,25 @@ class ImagePreviewPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Obx(
-                        () => logic._imgList.isNotEmpty
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: mSimpleBoxDecoration(solidColor: BaseColors.cBlackTrans),
-                              child: Obx(() {
-                                return mText(
-                                  msg: "${logic._curIndex.value + 1} / ${logic._imgList.length}",
-                                  color: BaseColors.cFontWhite,
-                                );
-                              }),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
-                  ),
+                  showIndicator
+                      ? Obx(
+                          () => logic._imgList.isNotEmpty
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                    decoration: mSimpleBoxDecoration(solidColor: BaseColors.cBlackTrans),
+                                    child: Obx(() {
+                                      return mText(
+                                        msg: "${logic._curIndex.value + 1} / ${logic._imgList.length}",
+                                        color: BaseColors.cFontWhite,
+                                      );
+                                    }),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        )
+                      : const SizedBox.shrink(),
                   bottomView != null && !splitBottomView ? Flexible(child: buildBottomView()) : const SizedBox.shrink(),
                 ],
               ),

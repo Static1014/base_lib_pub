@@ -1,3 +1,8 @@
+## 2.4.6
+
+1. New construction parameter showIndicator is added to ImagePreviewLogic to control whether the
+   index indicator is displayed.
+
 ## 2.4.5
 
 1. Fix the bug that _curIndex is wrong after ImagePreviewLogic.deleteAt(int) was called;;

@@ -1,3 +1,7 @@
+## 2.4.6
+
+1. ImagePreviewLogic新增构造参数showIndicator控制是否显示下标指示器；
+
 ## 2.4.5
 
 1. 修正ImagePreviewLogic.deleteAt()之后_curIndex错误的问题；
