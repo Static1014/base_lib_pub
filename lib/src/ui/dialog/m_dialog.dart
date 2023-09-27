@@ -168,7 +168,7 @@ class MDialog {
                             contentWidget ??
                                 mOverSizeScrollView(
                                   maxSize: maxContentSize ?? Get.height * 0.6,
-                                  minSize: minContentSize ?? 50,
+                                  minSize: minContentSize ?? 0,
                                   children: [
                                     Padding(
                                       padding: msgPadding,

@@ -1,3 +1,12 @@
+## 2.4.7
+
+1. In example, when using url_launcher to open a web page from an external browser, it needs to be
+   declared in advance, otherwise the external browser cannot be launched in api30 and above:
+    1. Add https (http) to queries in android/app/src/main/AndroidManifest.xml;
+    2. Add https (http) to LSApplicationQueriesSchemes in ios/Runner/info.plist;
+2. The default minimum height of the message content in MDialog.tip is 0.
+3. ImagePreviewPage does not display the bottom index indicator when there is only one element;
+
 ## 2.4.6
 
 1. New construction parameter showIndicator is added to ImagePreviewLogic to control whether the

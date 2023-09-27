@@ -1,3 +1,11 @@
+## 2.4.7
+
+1. example中，当使用url_launcher从外部浏览器打开网页时，需要提前声明，否则在api30及以上无法启动外部浏览器：
+    1. AndroidManifest下在queries中添加https（http）；
+    2. ios/Runner/info.plist下LSApplicationQueriesSchemes中新增https（http）；
+2. MDialog.tip中消息内容默认最低高度为0；
+3. ImagePreviewPage中当只有一个元素时不展示下标显示器；
+
 ## 2.4.6
 
 1. ImagePreviewLogic新增构造参数showIndicator控制是否显示下标指示器；

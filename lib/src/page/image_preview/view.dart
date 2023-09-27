@@ -201,7 +201,7 @@ class ImagePreviewPage extends StatelessWidget {
                 children: [
                   showIndicator
                       ? Obx(
-                          () => logic._imgList.isNotEmpty
+                          () => logic._imgList.length > 1
                               ? Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                   child: Container(

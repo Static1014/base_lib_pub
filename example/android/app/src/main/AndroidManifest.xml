@@ -11,15 +11,25 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <queries>
-        <!-- If your app checks for SMS support -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <!-- If your app checks for baidu support -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="baiduboxapp" />
         </intent>
+        <!-- If your app checks for mail support -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="mailto" />
         </intent>
+        <!-- If your app checks for tel support -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="tel" />
