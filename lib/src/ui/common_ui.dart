@@ -124,7 +124,7 @@ PreferredSizeWidget mAppBar({
   bool centerTitle = true,
   Color titleColor = BaseColors.cFontWhite,
   double titleFontSize = BaseDimens.dFontSizeTitle,
-  FontWeight titleFontWeight = FontWeight.normal,
+  FontWeight titleFontWeight = FontWeight.bold,
   int titleMaxLine = 1,
   double height = 0,
   double? elevation = 0,

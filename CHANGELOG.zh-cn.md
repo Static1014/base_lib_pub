@@ -1,3 +1,7 @@
+## 2.4.8
+
+1. mAppBar默认title的font weight为bold；
+
 ## 2.4.7
 
 1. example中，当使用url_launcher从外部浏览器打开网页时，需要提前声明，否则在api30及以上无法启动外部浏览器：

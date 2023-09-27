@@ -1,3 +1,7 @@
+## 2.4.8
+
+1. The default mAppBar title font weight is bold;
+
 ## 2.4.7
 
 1. In example, when using url_launcher to open a web page from an external browser, it needs to be
