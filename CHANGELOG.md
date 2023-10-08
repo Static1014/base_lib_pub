@@ -1,3 +1,7 @@
+## 2.4.9
+
+1. Fixed the issue that mTextField could not actively wrap lines;
+
 ## 2.4.8
 
 1. The default mAppBar title font weight is bold;

@@ -249,7 +249,10 @@ Widget mTextField({
   OverlayVisibilityMode clearButtonMode = OverlayVisibilityMode.editing,
   bool readOnly = false,
 }) {
-  if (minLines > 1) {
+  if (minLines >= maxLines) {
+    maxLines = minLines;
+  }
+  if (maxLines > 1) {
     /// 如果是多行输入框，允许主动换行输入
     keyboardType = TextInputType.multiline;
     textInputAction = TextInputAction.newline;
@@ -258,9 +261,6 @@ Widget mTextField({
     formatters = [FilteringTextInputFormatter.allow(RegExp(GlobalConst.regexpStrNumber))];
   }
   border ??= borderWidth == 0 ? const Border() : Border(bottom: BorderSide(width: borderWidth, color: BaseColors.cGrayLine));
-  if (minLines >= maxLines) {
-    maxLines = minLines;
-  }
 
   return CupertinoTextField(
     readOnly: readOnly,

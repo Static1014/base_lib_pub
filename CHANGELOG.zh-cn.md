@@ -1,3 +1,7 @@
+## 2.4.9
+
+1. 修复mTextField无法主动换行的问题；
+
 ## 2.4.8
 
 1. mAppBar默认title的font weight为bold；
