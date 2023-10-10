@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 /// Created by Static4u
 /// Date : 2022/11/6 16:43
 
-void initBaseApp({
+void runMyApp(
+  Widget app, {
   /// 是否开启日志
   enableLog = false,
 
@@ -28,11 +29,16 @@ void initBaseApp({
 
   /// 默认路由跳转动画
   Transition? defaultTransition = Transition.cupertino,
+
+  /// 自定义启动前执行
+  Function? beforeRun,
+
+  /// 自定义启动后执行
+  Function? afterRun,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
   initMyDefaultDir();
-  initCrashHandler(prefixMsg: crashPrefixMsg);
   setGlobalSystemOverlayStyle(
     statusBarColor: statusBarColor,
     isStatusBarIconLight: isStatusBarIconLight,
@@ -40,15 +46,27 @@ void initBaseApp({
     isSysNavigationBarIconLight: isStatusBarIconLight,
   );
   Nav.initUnPopRoutes(unPopRoutes ?? []);
-  if (initWeChat) {
-    initWechatAssetsPicker();
-  }
   initLog(enable: enableLog);
   Get.config(
     enableLog: enableLog,
     defaultTransition: defaultTransition,
   );
   DataUtils.init(prefix: true);
+
+  /// 自定义启动前执行
+  beforeRun?.call();
+
+  /// 启动app
+  runApp(app);
+
+  /// 部分初始化任务可在启动app之后执行
+  initCrashHandler(prefixMsg: crashPrefixMsg);
+  if (initWeChat) {
+    initWechatAssetsPicker();
+  }
+
+  /// 自定义启动后执行
+  afterRun?.call();
 }
 
 void initLog({bool enable = false}) {

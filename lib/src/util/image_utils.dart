@@ -5,6 +5,7 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,6 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:uri_to_file/uri_to_file.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
-
-import '../extension/common_ext.dart';
-import '../extension/datetime_ext.dart';
-import '../translation/lang.dart';
-import '../ui/overlay_utils.dart';
-import 'common_utils.dart';
-import 'file_utils.dart';
 
 void initWechatAssetsPicker() {
   /// 微信资源选择注册

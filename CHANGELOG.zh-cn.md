@@ -1,3 +1,14 @@
+## 2.5.0
+
+1. 重命名mLoadImageView为mImageView；
+2. 修复mImageView无法正常显示assets资源的问题；
+3. common_ui新增获取assets资源路径的方法；
+4. 优化example中Android启动页面效果：全屏、带logo；
+5. 重命名base_main中initBaseApp为runMyApp；
+6. 优化base_main中初始化顺序，非必须想放到runApp之后执行；
+7. ImagePreviewPage默认显示indicator；
+8. mImageView新增width和height参数；
+
 ## 2.4.9
 
 1. 修复mTextField无法主动换行的问题；

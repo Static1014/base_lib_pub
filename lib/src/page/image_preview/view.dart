@@ -187,11 +187,12 @@ class ImagePreviewPage extends StatelessWidget {
   Widget buildIndicatorView(ImagePreviewLogic logic) {
     // 初始创建时，肯定显示
     logic._isSliding(false);
+    '111111 - $showIndicator'.logE();
     return Obx(
       () => logic._isSliding.value
           ? const SizedBox.shrink()
           : Positioned(
-        bottom: 8 + (!splitBottomView ? MediaQuery.of(Get.context!).padding.bottom : 0),
+              bottom: 8 + (!splitBottomView ? MediaQuery.of(Get.context!).padding.bottom : 0),
               left: 0,
               right: 0,
               child: Column(
@@ -268,7 +269,7 @@ class ImagePreviewPage extends StatelessWidget {
                       fontSize: 14,
                     ),
                   )
-                : mLoadImageView(
+                : mImageView(
                     url,
                     enableSlideOutPage: enableSlideOutPage,
                     fit: BoxFit.contain,

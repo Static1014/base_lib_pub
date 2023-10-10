@@ -66,7 +66,7 @@ class NavClass {
     String? tag,
     Transition? transition = Transition.fadeIn,
     bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
-    bool showIndicator = false,
+    bool showIndicator = true,
   }) {
     if (imgList.isEmpty) {
       toast(BaseTrs.previewListEmpty.tr);

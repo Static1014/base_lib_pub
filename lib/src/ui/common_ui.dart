@@ -374,11 +374,34 @@ Widget mDividerH({
   );
 }
 
+/// 通过assets资源路径
+String getAssetPath(String name, {String type = "png", String dir = '/'}) {
+  return "assets/$dir$name.$type";
+}
+
+/// 通过名称拼接assets图片路径
+String getImagePath(String imgName, {String type = "png", String dir = 'images/'}) {
+  return getAssetPath(imgName, type: type, dir: dir);
+}
+
+/// 通过名称拼接assets base_lib_pub路径
+String getBaseAssetPath(String name, {String type = "", String dir = ''}) {
+  return "${GlobalConst.baseAssetsPrefix}$dir$name.$type";
+}
+
+/// 通过名称拼接assets base_lib_pub图片路径
+String getBaseImagePath(String imgName, {String type = "png"}) {
+  return getBaseAssetPath(imgName, type: type, dir: 'images/');
+}
+
+/// 非网络图片即为本地图片
 bool isLocalImage(String url) => !url.startsWith("http://") && !url.startsWith("https://");
 
 /// 加载网络图片或者本地文件图片
-Widget mLoadImageView(
+Widget mImageView(
   String url, {
+  double? width,
+  double? height,
   String placeholderImgPath = GlobalConst.defaultPlaceholderImg,
   String errorImgPath = GlobalConst.defaultErrorImg,
   double placeholderSize = 30,
@@ -409,7 +432,7 @@ Widget mLoadImageView(
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
-
+  // '$url - asset: $isAsset, local: $isLocal'.logI();
   if (radius != 0) {
     borderRadius = BorderRadius.all(Radius.circular(radius));
   }
@@ -440,41 +463,43 @@ Widget mLoadImageView(
       loadStateChanged: stateChanged,
       package: url.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
     );
+  } else {
+    iv = isLocal
+        ? ExtendedImage.file(
+            File(url),
+            enableSlideOutPage: enableSlideOutPage,
+            initGestureConfigHandler: initGestureConfigHandler,
+            mode: mode,
+            compressionRatio: compressionRatio,
+            clipBehavior: Clip.antiAlias,
+            fit: fit,
+            shape: shape,
+            border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
+            borderRadius: borderRadius,
+            loadStateChanged: stateChanged,
+          )
+        : ExtendedImage.network(
+            url,
+            enableSlideOutPage: enableSlideOutPage,
+            initGestureConfigHandler: initGestureConfigHandler,
+            mode: mode,
+            compressionRatio: compressionRatio,
+            clipBehavior: Clip.antiAlias,
+            retries: retries,
+            fit: fit,
+            shape: shape,
+            border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
+            borderRadius: borderRadius,
+            loadStateChanged: stateChanged,
+            cache: cache,
+            timeLimit: timeLimit,
+            timeRetry: timeRetry,
+          );
   }
-
-  iv = isLocal
-      ? ExtendedImage.file(
-          File(url),
-          enableSlideOutPage: enableSlideOutPage,
-          initGestureConfigHandler: initGestureConfigHandler,
-          mode: mode,
-          compressionRatio: compressionRatio,
-          clipBehavior: Clip.antiAlias,
-          fit: fit,
-          shape: shape,
-          border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
-          borderRadius: borderRadius,
-          loadStateChanged: stateChanged,
-        )
-      : ExtendedImage.network(
-          url,
-          enableSlideOutPage: enableSlideOutPage,
-          initGestureConfigHandler: initGestureConfigHandler,
-          mode: mode,
-          compressionRatio: compressionRatio,
-          clipBehavior: Clip.antiAlias,
-          retries: retries,
-          fit: fit,
-          shape: shape,
-          border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
-          borderRadius: borderRadius,
-          loadStateChanged: stateChanged,
-          cache: cache,
-          timeLimit: timeLimit,
-          timeRetry: timeRetry,
-        );
   return Container(
     color: bgColor,
+    width: width,
+    height: height,
     constraints: BoxConstraints(minHeight: minHeight, minWidth: minWidth),
     child: iv,
   );
@@ -574,7 +599,7 @@ Widget mAvatar({
       SizedBox(
           width: size,
           height: size,
-          child: mLoadImageView(
+          child: mImageView(
             url,
             borderWidth: borderWidth,
             borderColor: borderColor,

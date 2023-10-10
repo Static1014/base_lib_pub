@@ -5,19 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
-  initBaseApp(
+  runMyApp(
+    const MyApp(),
     enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
+    beforeRun: () {
+      /// 初始化网络请求
+      initDio();
+    },
   );
-  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key}) {
-    /// 初始化网络请求
-    initDio(baseUrl: '');
-  }
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();

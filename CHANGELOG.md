@@ -1,3 +1,14 @@
+## 2.5.0
+
+1. Rename mLoadImageView to mImageView.
+2. Fixed mImageView cannot display assets normally.
+3. Added the method of obtaining the path of assets in common_ui.
+4. Optimize the effect of Android launch page in example: full screen with logo;
+5. Rename initBaseApp in base_main to runMyApp in base_main.
+6. Optimize the initialization sequence in base_main, do not want to be executed after runApp;
+7. ImagePreviewPage displays indicator by default;
+8. Add width and height parameters to mImageView;
+
 ## 2.4.9
 
 1. Fixed the issue that mTextField could not actively wrap lines;

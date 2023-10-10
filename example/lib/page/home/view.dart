@@ -27,6 +27,14 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    mImageView(getImagePath('user'), width: 40, height: 40),
+                    mImageView(getBaseImagePath('avatar'), width: 40, height: 40),
+                  ],
+                ),
+                // ExtendedImage.asset('assets/images/user.png'),
                 _buildTestFunc('mailto', () {
                   mailto(
                     target: '15022252451@139.com',
@@ -181,7 +189,7 @@ class HomePage extends StatelessWidget {
                 }),
                 _buildTestFunc('ImagePreview dialog', () {
                   Nav.startImagePreview(
-                    imgList: ['https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg'],
+                    imgList: ['https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'],
                     enableHeroTag: false,
                     enableSlideOutPage: false,
                     enableTapImgClose: false,
@@ -207,8 +215,8 @@ class HomePage extends StatelessWidget {
                 _buildTestFunc('ImagePreview', () {
                   Nav.startImagePreview(
                     imgList: [
-                      'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
-                      'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
+                      'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+                      'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
                       'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                     ],
                     textTagList: [null, (true, null, null)],
@@ -229,10 +237,9 @@ class HomePage extends StatelessWidget {
                         logic.index(0);
                         Nav.startImagePreview(
                           imgList: [
+                            'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
-                            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
                             'https://t7.baidu.com/it/u=3631608752,3069876728&fm=193&f=GIF',
-                            // 'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4',
                           ],
                           // textTagList: [null, null, (true, null, null), null],
                           defaultIndex: 0,
@@ -258,7 +265,7 @@ class HomePage extends StatelessWidget {
                           ),
                         );
                       },
-                      child: buildImage('https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg', 0),
+                      child: buildImage('https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500', 0),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -266,7 +273,7 @@ class HomePage extends StatelessWidget {
                         // ImagePreviewLogic? previewLogic;
                         Nav.startImagePreview(
                           imgList: [
-                            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                            'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                           ],
                           textTagList: [null, null, (true, null, null)],
@@ -295,7 +302,7 @@ class HomePage extends StatelessWidget {
                         );
                         Nav.startImagePreview(
                           imgList: [
-                            'https://static1014.gitee.io/pm_data/gallery/images/1/34d40d52a4.jpg',
+                            'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                           ],
                           textTagList: [null, null, (true, null, null)],
@@ -345,7 +352,7 @@ class HomePage extends StatelessWidget {
             child: SizedBox(
               width: 100,
               height: 100,
-              child: mLoadImageView(
+              child: mImageView(
                 url,
                 timeLimit: const Duration(seconds: 2),
               ),
