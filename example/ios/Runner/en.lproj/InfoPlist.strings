@@ -1,0 +1,10 @@
+/*
+  Localizable.strings
+  PicMaker
+
+  Created by 熊健 on 2023/10/11.
+  
+*/
+"CFBundleDisplayName"="BaseLibExample";
+"NSPhotoLibraryAddUsageDescription"="Please allow the APP to access the album";
+"NSPhotoLibraryUsageDescription"="Please allow the APP to access the album";

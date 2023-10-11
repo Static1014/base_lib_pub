@@ -1,3 +1,10 @@
+## 2.5.1
+
+1. Internationalized application name on android;
+2. Internationalized application name and description of iOS permissions request message;
+3. Set the LaunchImage and LaunchScreen on the iOS launch page;
+4. Extend Double support.toPx() to convert px units;
+
 ## 2.5.0
 
 1. Rename mLoadImageView to mImageView.

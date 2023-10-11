@@ -3,3 +3,6 @@
 build
 example/build
 *.iml
+.*
+pubspec.lock
+Podfile.lock

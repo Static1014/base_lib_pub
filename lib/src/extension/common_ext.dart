@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 import '../util/common_utils.dart' as common_util;
 import '../util/log_utils.dart';
@@ -89,5 +90,12 @@ extension GlobalKeyExt on GlobalKey {
   Size get curWidgetSize {
     RenderBox rb = currentContext?.findRenderObject() as RenderBox;
     return rb.size;
+  }
+}
+
+extension DoubleExt on double {
+  /// 转换为px单位
+  double toPx() {
+    return this * Get.pixelRatio;
   }
 }

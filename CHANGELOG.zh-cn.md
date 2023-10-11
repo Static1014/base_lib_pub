@@ -1,3 +1,10 @@
+## 2.5.1
+
+1. android支持应用名称国际化；
+2. iOS应用名称、权限请求说明国际化；
+3. iOS启动页面LaunchImage、LaunchScreen设置；
+4. 扩展Double支持.toPx()转化px单位；
+
 ## 2.5.0
 
 1. 重命名mLoadImageView为mImageView；
