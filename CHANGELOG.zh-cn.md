@@ -1,3 +1,7 @@
+## 2.6.0
+
+1. 集成并封装flutter_slidable库，使用方法请参照example/lib/page/home；
+
 ## 2.5.1
 
 1. android支持应用名称国际化；

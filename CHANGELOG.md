@@ -1,3 +1,7 @@
+## 2.6.0
+
+1. Integrate and encapsulate the flutter_slidable library. For details, see example/lib/page/home.
+
 ## 2.5.1
 
 1. Internationalized application name on android;

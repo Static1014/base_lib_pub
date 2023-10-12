@@ -187,7 +187,6 @@ class ImagePreviewPage extends StatelessWidget {
   Widget buildIndicatorView(ImagePreviewLogic logic) {
     // 初始创建时，肯定显示
     logic._isSliding(false);
-    '111111 - $showIndicator'.logE();
     return Obx(
       () => logic._isSliding.value
           ? const SizedBox.shrink()

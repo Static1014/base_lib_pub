@@ -12,4 +12,5 @@ class HomeLogic extends GetxController {
   final pkgInfo = ''.obs;
   final deviceInfo = ''.obs;
   final displayName = ''.obs;
+  final slideOne = false.obs;
 }

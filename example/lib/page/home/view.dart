@@ -11,6 +11,7 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final logic = Get.put(HomeLogic());
+  final MySlidableManager slidableManager = MySlidableManager();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,77 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                Obx(
+                  () => SizedBox(
+                    height: logic.slideOne.value ? 60 : 120,
+                    child: MySlidableAutoClose(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            MySlidable(
+                              extentRatio: 0.5,
+                              manager: slidableManager,
+                              actions: [
+                                MySlidableAction(
+                                    autoClose: false,
+                                    icon: Icons.touch_app,
+                                    onPressed: (ctx) {
+                                      toast('你好1');
+                                    }),
+                                MySlidableAction(
+                                    backgroundColor: BaseColors.cRed,
+                                    autoClose: false,
+                                    flex: 2,
+                                    icon: Icons.touch_app,
+                                    onPressed: (ctx) {
+                                      toast('你好2');
+                                    })
+                              ],
+                              child: Container(
+                                width: double.infinity,
+                                height: 60,
+                                alignment: Alignment.center,
+                                color: BaseColors.cBlue,
+                                child: mText(msg: '你好，我有侧滑菜单1'),
+                              ),
+                            ),
+                            logic.slideOne.value
+                                ? const SizedBox.shrink()
+                                : MySlidable(
+                                    manager: slidableManager,
+                                    key: const ValueKey(1),
+                                    onDismissed: () {
+                                      toast('xxx');
+                                      logic.slideOne(true);
+                                    },
+                                    actions: [
+                                      MySlidableAction(
+                                          // autoClose: false,
+                                          icon: Icons.touch_app,
+                                          label: '点我',
+                                          spacing: 8,
+                                          onPressed: (ctx) {
+                                            toast('你好2');
+                                          })
+                                    ],
+                                    child: Container(
+                                      width: double.infinity,
+                                      height: 60,
+                                      alignment: Alignment.center,
+                                      color: BaseColors.cBlue,
+                                      child: mText(msg: '你好，我有侧滑菜单2，侧滑够长可直接移除'),
+                                    ),
+                                  ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                _buildTestFunc('点我收起上面的侧滑菜单，\n并且恢复被移除的第2个(如果已经移除了)', () {
+                  slidableManager.close();
+                  logic.slideOne(false);
+                }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
