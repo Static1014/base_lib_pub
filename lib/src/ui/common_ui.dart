@@ -410,7 +410,7 @@ Widget mImageView(
   Color borderColor = BaseColors.cGrayLine,
   Color? bgColor,
   double borderWidth = 0,
-  BoxShape? shape,
+  BoxShape? shape = BoxShape.rectangle,
   double radius = 0,
   BorderRadius? borderRadius,
   bool enableSlideOutPage = false,
@@ -429,12 +429,17 @@ Widget mImageView(
   Duration timeRetry = const Duration(seconds: 5),
   int retries = 3,
   bool cache = true,
+  Clip clipBehavior = Clip.antiAlias,
 }) {
   bool isAsset = url.startsWith("assets");
   bool isLocal = isLocalImage(url);
   // '$url - asset: $isAsset, local: $isLocal'.logI();
   if (radius != 0) {
     borderRadius = BorderRadius.all(Radius.circular(radius));
+  }
+  if (borderRadius != null && shape != BoxShape.circle) {
+    // 要想设置圆角，shape必须指定为rectangle，想shape为circle时，圆角无效
+    shape = BoxShape.rectangle;
   }
 
   LoadStateChanged stateChanged = _getLoadStateChanged(
@@ -455,7 +460,7 @@ Widget mImageView(
       initGestureConfigHandler: initGestureConfigHandler,
       mode: mode,
       compressionRatio: compressionRatio,
-      clipBehavior: Clip.antiAlias,
+      clipBehavior: clipBehavior,
       fit: fit,
       shape: shape,
       border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
@@ -466,12 +471,12 @@ Widget mImageView(
   } else {
     iv = isLocal
         ? ExtendedImage.file(
-            File(url),
+      File(url),
             enableSlideOutPage: enableSlideOutPage,
             initGestureConfigHandler: initGestureConfigHandler,
             mode: mode,
             compressionRatio: compressionRatio,
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: clipBehavior,
             fit: fit,
             shape: shape,
             border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
@@ -479,12 +484,12 @@ Widget mImageView(
             loadStateChanged: stateChanged,
           )
         : ExtendedImage.network(
-            url,
+      url,
             enableSlideOutPage: enableSlideOutPage,
             initGestureConfigHandler: initGestureConfigHandler,
             mode: mode,
             compressionRatio: compressionRatio,
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: clipBehavior,
             retries: retries,
             fit: fit,
             shape: shape,

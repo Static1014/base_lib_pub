@@ -1,3 +1,10 @@
+## 2.6.1
+
+1. mImageView默认shape为rectangle；
+2. mImageView新增clipBehavior参数；
+3. 当设置mImageView的radius或borderRadius时，如果shape不是circle，自定改为rectangle；
+4. example更新；
+
 ## 2.6.0
 
 1. 集成并封装flutter_slidable库，使用方法请参照example/lib/page/home；

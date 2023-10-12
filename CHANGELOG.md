@@ -1,3 +1,11 @@
+## 2.6.1
+
+1. The default shape of mImageView is rectangle;
+2. Add clipBehavior parameter to mImageView.
+3. When setting radius or borderRadius of the mImageView, if the shape is not circle, change it to
+   rectangle;
+4. example update;
+
 ## 2.6.0
 
 1. Integrate and encapsulate the flutter_slidable library. For details, see example/lib/page/home.

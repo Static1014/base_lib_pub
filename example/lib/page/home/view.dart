@@ -103,7 +103,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     mImageView(getImagePath('user'), width: 40, height: 40),
-                    mImageView(getBaseImagePath('avatar'), width: 40, height: 40),
+                    mImageView(getBaseImagePath('avatar'), width: 40, height: 40, radius: 12),
                   ],
                 ),
                 // ExtendedImage.asset('assets/images/user.png'),
