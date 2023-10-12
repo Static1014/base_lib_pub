@@ -35,7 +35,7 @@ dependencies:
   #  util/日期
   date_format: ^2.0.7
   #  util/分享
-  share_plus: ^8.0.0
+  share_plus: ^7.1.0
   # 瀑布流、自定义栅格等
   flutter_staggered_grid_view: ^0.7.0
   #   json序列化(注释)
@@ -52,11 +52,11 @@ dependencies:
   # url_launcher(通过url启动第三方app，如alipay://)
   url_launcher: ^6.1.14
   # 本地存储
-  shared_preferences: ^2.2.1
+  shared_preferences: ^2.2.2
   # 应用信息
-  package_info_plus: ^5.0.0
+  package_info_plus: ^4.1.0
   # 设备信息
-  device_info_plus: ^10.0.0
+  device_info_plus: ^9.0.3
   # 侧滑菜单
   flutter_slidable: ^3.0.0
 
