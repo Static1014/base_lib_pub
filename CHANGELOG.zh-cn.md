@@ -1,3 +1,7 @@
+## 2.6.3
+
+1. common_ui新增setSystemOverlayVisible设置系统状态栏和底部导航栏是否可见；
+
 ## 2.6.2
 
 1. 新增NumExt扩展num，实现toAngle、toPx方法；

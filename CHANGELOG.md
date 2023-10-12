@@ -1,3 +1,8 @@
+## 2.6.3
+
+1. common_ui added setSystemOverlayVisible to set whether the system status bar and bottom
+   navigation bar are visible.
+
 ## 2.6.2
 
 1. Add NumExt extension num to implement toAngle and toPx methods;

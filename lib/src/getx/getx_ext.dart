@@ -15,6 +15,8 @@ class _MyGetImpl extends GetInterface {
   /// 双击退出
   DateTime? lastTime;
 
+  bool isStatusBarVisible = true; // 状态栏可见
+  bool isSysNavigationBarVisible = true; // 系统导航栏可见
   /// 当前应用状态栏、底部系统导航栏(不一定存在)配色
   bool isStatusBarIconLight = true; //状态栏（深底白字）
   Color statusBarBgColor = BaseColors.cTransparent; // 状态栏背景色

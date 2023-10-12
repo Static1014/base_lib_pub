@@ -14,6 +14,24 @@ import 'package:simple_animations/animation_builder/play_animation_builder.dart'
 /// Created by Static4u
 /// Date : 2023/7/13 11:15
 
+/// 设置系统状态栏和底部导航栏是否可见
+void setSystemOverlayVisible({
+  bool isStatusBarVisible = true,
+  bool isSysNavigationBarVisible = true,
+}) {
+  MyGet.isStatusBarVisible = isStatusBarVisible;
+  MyGet.isSysNavigationBarVisible = isSysNavigationBarVisible;
+
+  var list = <SystemUiOverlay>[];
+  if (isStatusBarVisible) {
+    list.add(SystemUiOverlay.top);
+  }
+  if (isSysNavigationBarVisible) {
+    list.add(SystemUiOverlay.bottom);
+  }
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: list); //隐藏状态栏，底部按钮栏
+}
+
 /// 设置全局状态栏、系统导航栏样式（默认深底白字、黑底白字）
 void setGlobalSystemOverlayStyle({
   Color statusBarColor = BaseColors.cTransparent,
