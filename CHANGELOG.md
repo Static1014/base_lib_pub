@@ -1,3 +1,7 @@
+## 2.6.2
+
+1. Add NumExt extension num to implement toAngle and toPx methods;
+
 ## 2.6.1
 
 1. The default shape of mImageView is rectangle;

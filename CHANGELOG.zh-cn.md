@@ -1,3 +1,7 @@
+## 2.6.2
+
+1. 新增NumExt扩展num，实现toAngle、toPx方法；
+
 ## 2.6.1
 
 1. mImageView默认shape为rectangle；
