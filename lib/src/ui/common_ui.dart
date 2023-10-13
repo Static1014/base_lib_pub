@@ -489,7 +489,7 @@ Widget mImageView(
   } else {
     iv = isLocal
         ? ExtendedImage.file(
-      File(url),
+            File(url),
             enableSlideOutPage: enableSlideOutPage,
             initGestureConfigHandler: initGestureConfigHandler,
             mode: mode,
@@ -767,16 +767,34 @@ Widget mScrollConfig({
   ScrollBehavior scrollBehavior = const CupertinoScrollBehavior(),
   bool scrollBar = false,
   ScrollbarOrientation? scrollbarOrientation,
+  ScrollController? controller,
+  double radius = 2,
   required Widget child,
 }) {
   return ScrollConfiguration(
     behavior: scrollBehavior,
     child: scrollBar
-        ? Scrollbar(
-            radius: const Radius.circular(2),
+        ? mScrollbar(
+            controller: controller,
+            radius: radius,
             scrollbarOrientation: scrollbarOrientation,
             child: child,
           )
         : child,
+  );
+}
+
+/// 自定义scrollbar
+Widget mScrollbar({
+  double radius = 2,
+  ScrollbarOrientation? scrollbarOrientation,
+  ScrollController? controller,
+  required Widget child,
+}) {
+  return Scrollbar(
+    controller: controller,
+    radius: Radius.circular(radius),
+    scrollbarOrientation: scrollbarOrientation,
+    child: child,
   );
 }

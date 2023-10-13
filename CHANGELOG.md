@@ -1,3 +1,8 @@
+## 2.6.4
+
+1. Custom mScrollbar uniform style;
+2. mScrollConfig uses mScrollbar;
+
 ## 2.6.3
 
 1. common_ui added setSystemOverlayVisible to set whether the system status bar and bottom

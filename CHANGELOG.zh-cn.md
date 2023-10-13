@@ -1,3 +1,8 @@
+## 2.6.4
+
+1. 自定义mScrollbar统一样式；
+2. mScrollConfig使用mScrollbar；
+
 ## 2.6.3
 
 1. common_ui新增setSystemOverlayVisible设置系统状态栏和底部导航栏是否可见；
