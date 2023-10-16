@@ -6,18 +6,24 @@ class CommonWebViewLogic extends GetxController {
   final _type = WebViewContentType.url.obs;
   final _canGoBack = false.obs;
   final _canGoForward = false.obs;
-  final _bottomNavVisible = true.obs;
+  final _bottomNavEnable = true.obs;
+  final _bottomNavVisible = false.obs;
 
-  void _checkBottomNavState() {
-    webViewController.canGoBack().then((v) {
-      _canGoBack(v);
-    });
-    webViewController.canGoForward().then((v) {
-      _canGoForward(v);
-    });
+  void _checkBottomNavState() async {
+    _canGoBack(await webViewController.canGoBack());
+    _canGoForward(await webViewController.canGoForward());
+    setBottomNav(_canGoBack.value || _canGoForward.value);
   }
 
   void setBottomNav(bool visible) {
-    _bottomNavVisible(visible);
+    if (_bottomNavEnable.value) {
+      _bottomNavVisible(visible);
+    }
+  }
+
+  void toggleBottomNav() {
+    if (_bottomNavEnable.value) {
+      _bottomNavVisible(!_bottomNavVisible.value);
+    }
   }
 }

@@ -199,7 +199,7 @@ class HomePage extends StatelessWidget {
                           appBar: mAppBar(title: '自定义WebView页面', actions: [
                             IconButton(
                                 onPressed: () {
-                                  webLogic.setBottomNav(false);
+                                  webLogic.toggleBottomNav();
                                 },
                                 icon: const Icon(Icons.change_circle_outlined))
                           ]),

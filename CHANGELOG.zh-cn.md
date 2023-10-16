@@ -1,3 +1,8 @@
+## 2.7.2
+
+1. CommonWebViewPage初始化时控制是否启用bottomNav，默认自动根据实际情况控制是否显示；
+2. CommonWebViewLogic新增在启用bottomNav的情况下，控制是否显示bottomNav；
+
 ## 2.7.1
 
 1. Nav页面跳转添加返回值；

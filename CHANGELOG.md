@@ -1,3 +1,10 @@
+## 2.7.2
+
+1. CommonWebViewPage Specifies whether the bottomNav is enabled during initialization. By default,
+   the BottomNav is displayed based on actual conditions.
+2. CommonWebViewLogic added the function of controlling the bottomNav display when the bottomNav is
+   enabled.
+
 ## 2.7.1
 
 1. Nav page jumps add the return value;

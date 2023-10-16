@@ -33,7 +33,7 @@ class CommonWebViewPage extends StatelessWidget {
   final String? title;
   final String urlOrData;
   final WebViewContentType type;
-  final bool? bottomNavVisible;
+  final bool? bottomNavEnable;
 
   /// 不能直接传入mAppBar，它会在创建page之前被创建，此时还不能pop，所以不会正常显示返回按钮
   final MAppBarBuilder? appBarBuilder;
@@ -85,10 +85,10 @@ class CommonWebViewPage extends StatelessWidget {
     this.pageBuilder,
     this.pbBgColor,
     this.pbColor,
-    this.bottomNavVisible = true,
+    this.bottomNavEnable = true,
   }) : super(key: key) {
     final logic = Get.find<CommonWebViewLogic>(tag: tag);
-    logic._bottomNavVisible(bottomNavVisible);
+    logic._bottomNavEnable(bottomNavEnable);
     logic.webViewController.init(
       clearCache: clearCacheOnStart,
       clearLocalStorage: clearLocalStorageOnStart,
@@ -166,7 +166,7 @@ class CommonWebViewPage extends StatelessWidget {
             controller: logic.webViewController,
           ),
         ),
-        Obx(() => logic._bottomNavVisible.value ? _buildBottomNavigator(logic) : const SizedBox.shrink()),
+        Obx(() => logic._bottomNavEnable.value && logic._bottomNavVisible.value ? _buildBottomNavigator(logic) : const SizedBox.shrink()),
       ],
     );
   }
