@@ -1,3 +1,9 @@
+## 2.7.0
+
+1. network_utils中新增getHttpClient和globalHttpClient，用以获取统一的网络请求httpClient，并实现https证书校验；
+2. 允许http请求；
+3. CommonWebViewPage忽略https证书；
+
 ## 2.6.4
 
 1. 自定义mScrollbar统一样式；

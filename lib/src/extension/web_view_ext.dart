@@ -70,6 +70,7 @@ extension WebViewControllerExt on WebViewController {
   }) {
     switch (type) {
       case WebViewContentType.url:
+        'CommonWebViewPage.load url: $urlOrData'.logI();
         loadRequest(
           Uri.parse(urlOrData),
           method: method,

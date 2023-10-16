@@ -1,3 +1,10 @@
+## 2.7.0
+
+1. Add getHttpClient and globalHttpClient to network_utils to obtain a unified network request
+   httpClient and implement https certificate verification.
+2. Allow http requests;
+3. CommonWebViewPage ignores the https certificate.
+
 ## 2.6.4
 
 1. Custom mScrollbar uniform style;
