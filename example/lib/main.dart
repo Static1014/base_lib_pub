@@ -10,7 +10,7 @@ void main() {
     enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
-    beforeRun: () {
+    beforeRun: () async {
       /// 初始化网络请求
       initDio();
     },

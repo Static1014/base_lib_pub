@@ -4,9 +4,9 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
+
 import '../extension/common_ext.dart';
 import '../util/permission_utils.dart';
-
 import 'common_utils.dart';
 
 /// Name: FileUtils.dart
@@ -21,7 +21,7 @@ late String myDefaultDirPath;
 Directory? _myDefaultDir;
 
 /// 应用文件根路径
-void initMyDefaultDir() async {
+Future<void> initMyDefaultDir() async {
   if (_myDefaultDir == null) {
     if (Platform.isIOS) {
       _myDefaultDir = await getApplicationSupportDirectory();

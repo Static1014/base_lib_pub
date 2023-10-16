@@ -21,16 +21,16 @@ class NavClass {
     _unPopRoutes.addAll(routes);
   }
 
-  void push(String routeName, {dynamic args, bool singleTop = true}) {
-    Get.toNamed(routeName, arguments: args, preventDuplicates: singleTop);
+  Future<dynamic>? push(String routeName, {dynamic args, bool singleTop = true}) {
+    return Get.toNamed(routeName, arguments: args, preventDuplicates: singleTop);
   }
 
   void pop({dynamic result, bool closeOverlays = false}) {
     Get.back(result: result, closeOverlays: closeOverlays);
   }
 
-  void replace(String routeName, {dynamic args, bool singleTop = true}) {
-    Get.offNamed(routeName, arguments: args, preventDuplicates: singleTop);
+  Future<dynamic>? replace(String routeName, {dynamic args, bool singleTop = true}) {
+    return Get.offNamed(routeName, arguments: args, preventDuplicates: singleTop);
   }
 
   bool isPopEnable() {
@@ -43,7 +43,7 @@ class NavClass {
 // }
 
   /// 图片预览
-  void startImagePreview({
+  Future<dynamic>? startImagePreview<T>({
     required List<String> imgList,
     List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList,
     int defaultIndex = 0,
@@ -70,9 +70,9 @@ class NavClass {
   }) {
     if (imgList.isEmpty) {
       toast(BaseTrs.previewListEmpty.tr);
-      return;
+      return null;
     }
-    to(
+    return to<T>(
       () => ImagePreviewPage(
         imgList: imgList,
         textTagList: textTagList,
@@ -107,7 +107,7 @@ class NavClass {
   }
 
   /// 启动通用WebView
-  void startCommonWebView({
+  Future<dynamic>? startCommonWebView<T>({
     required String urlOrData,
     bool singleTop = false,
     String? tag,
@@ -133,7 +133,7 @@ class NavClass {
     Color? pbColor,
     bool? bottomNavVisible,
   }) {
-    to(
+    return to<T>(
       () => CommonWebViewPage(
         urlOrData: urlOrData,
         tag: tag,
@@ -167,7 +167,7 @@ class NavClass {
     );
   }
 
-  Future<T?>? to<T>(
+  Future<dynamic>? to<T>(
     dynamic page, {
     bool? opaque,
     Transition? transition = Transition.rightToLeftWithFade,
@@ -192,7 +192,7 @@ class NavClass {
     }
     assert(ok, BaseTrs.notSingleTopError.tr);
 
-    return Get.to(
+    return Get.to<T>(
       page,
       opaque: opaque,
       transition: transition,

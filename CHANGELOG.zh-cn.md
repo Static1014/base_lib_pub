@@ -1,3 +1,8 @@
+## 2.7.1
+
+1. Nav页面跳转添加返回值；
+2. base_main里runMyApp中baseBeforeRun和beforeRun改为异步函数，只有异步执行完毕后才能runApp；
+
 ## 2.7.0
 
 1. network_utils中新增getHttpClient和globalHttpClient，用以获取统一的网络请求httpClient，并实现https证书校验；

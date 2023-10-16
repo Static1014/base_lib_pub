@@ -7,13 +7,12 @@ import 'package:get/get.dart';
 /// Created by Static4u
 /// Date : 2022/11/6 16:43
 
+typedef RoundAppRun = Future<void> Function();
+
 void runMyApp(
   Widget app, {
   /// 是否开启日志
   enableLog = false,
-
-  /// 是否开启日志
-  String? crashPrefixMsg,
 
   /// 状态栏和系统导航栏配色
   Color statusBarColor = BaseColors.cTransparent,
@@ -24,21 +23,23 @@ void runMyApp(
   /// 底层路由
   List<String>? unPopRoutes,
 
-  /// 初始化仿微信图片选择
-  bool initWeChat = false,
-
   /// 默认路由跳转动画
   Transition? defaultTransition = Transition.cupertino,
 
   /// 自定义启动前执行
-  Function? beforeRun,
+  RoundAppRun? beforeRun,
+
+  /// 初始化仿微信图片选择
+  bool initWeChat = false,
+
+  /// 是否开启日志
+  String? crashPrefixMsg,
 
   /// 自定义启动后执行
-  Function? afterRun,
+  RoundAppRun? afterRun,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
-  initMyDefaultDir();
   setGlobalSystemOverlayStyle(
     statusBarColor: statusBarColor,
     isStatusBarIconLight: isStatusBarIconLight,
@@ -51,11 +52,40 @@ void runMyApp(
     enableLog: enableLog,
     defaultTransition: defaultTransition,
   );
-  DataUtils.init(prefix: true);
 
-  /// 自定义启动前执行
-  beforeRun?.call();
+  baseBeforeRun().then((value) {
+    /// 自定义启动前执行
+    if (beforeRun != null) {
+      beforeRun.call().then((value) {
+        runBaseApp(
+          app,
+          initWeChat: initWeChat,
+          crashPrefixMsg: crashPrefixMsg,
+          afterRun: afterRun,
+        );
+      });
+    } else {
+      runBaseApp(
+        app,
+        initWeChat: initWeChat,
+        crashPrefixMsg: crashPrefixMsg,
+        afterRun: afterRun,
+      );
+    }
+  });
+}
 
+void runBaseApp(
+  Widget app, {
+  /// 初始化仿微信图片选择
+  bool initWeChat = false,
+
+  /// 是否开启日志
+  String? crashPrefixMsg,
+
+  /// 自定义启动后执行
+  RoundAppRun? afterRun,
+}) {
   /// 启动app
   runApp(app);
 
@@ -65,8 +95,15 @@ void runMyApp(
     initWechatAssetsPicker();
   }
 
-  /// 自定义启动后执行
+  /// 自定义启动后执行，即使是异步的，也不用处理异步返回
   afterRun?.call();
+}
+
+Future<void> baseBeforeRun() async {
+  await initMyDefaultDir();
+  await DataUtils.init(prefix: true);
+
+  return;
 }
 
 void initLog({bool enable = false}) {

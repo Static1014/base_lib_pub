@@ -1,3 +1,9 @@
+## 2.7.1
+
+1. Nav page jumps add the return value;
+2. In base_main, the baseBeforeRun and beforeRun of runMyApp are changed to asynchronous functions,
+   which can runApp only after the asynchronous execution is complete.
+
 ## 2.7.0
 
 1. Add getHttpClient and globalHttpClient to network_utils to obtain a unified network request
