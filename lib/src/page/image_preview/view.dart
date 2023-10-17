@@ -12,6 +12,9 @@ part 'logic.dart';
 /// 定义预览页页面切换回调
 typedef OnPreviewIndexChanged = void Function(int index);
 
+/// 自定义文字展示视图
+typedef TextViewBuilder = Widget Function(String text);
+
 class ImagePreviewPage extends StatelessWidget {
   /// 根据url、index生成hero tag
   static String generateHeroTag(String url, int index) {
@@ -30,6 +33,7 @@ class ImagePreviewPage extends StatelessWidget {
 
   // 文字标识源，当对应index的值为true，imgList对应index的元素不是图片，是文字
   final List<(bool isText, Color? textColor, Color? textBgColor)?>? textTagList;
+  final TextViewBuilder? textBuilder;
 
   // 底部自定义视图
   final Widget? bottomView;
@@ -84,6 +88,7 @@ class ImagePreviewPage extends StatelessWidget {
     this.splitBottomView = false,
     this.tag,
     this.showIndicator = true,
+    this.textBuilder,
   }) : super(key: key) {
     assert(imgList.isNotEmpty, 'the size of preview imgList must be over 0');
     // assert(defaultIndex >= 0 && defaultIndex < imgList.length, 'default index should between 0 and the size of imgList');
@@ -258,16 +263,7 @@ class ImagePreviewPage extends StatelessWidget {
 
             (bool isText, Color? textColor, Color? textBgColor) isText = _isText(index);
             Widget iv = isText.$1
-                ? Container(
-                    padding: const EdgeInsets.all(12),
-                    color: isText.$3,
-                    alignment: Alignment.center,
-                    child: mText(
-                      msg: url,
-                      color: isText.$2 ?? BaseColors.cFontBlack,
-                      fontSize: 14,
-                    ),
-                  )
+                ? _buildText(txt: url, bgColor: isText.$3, textColor: isText.$2)
                 : mImageView(
                     url,
                     enableSlideOutPage: enableSlideOutPage,
@@ -334,6 +330,33 @@ class ImagePreviewPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildText({
+    required String txt,
+    Color? bgColor,
+    Color? textColor,
+  }) {
+    if (textBuilder != null) {
+      return textBuilder!.call(txt);
+    } else {
+      return Container(
+        padding: const EdgeInsets.all(12),
+        color: bgColor,
+        alignment: Alignment.center,
+        child: mOverSizeScrollView(
+          showScrollBar: true,
+          maxSize: Get.height * 3 / 4,
+          children: [
+            mText(
+              msg: txt * 100,
+              color: textColor ?? BaseColors.cFontBlack,
+              fontSize: 14,
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   Color getSlidePageBgColor(

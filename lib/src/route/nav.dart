@@ -67,6 +67,7 @@ class NavClass {
     Transition? transition = Transition.fadeIn,
     bool fullscreenDialog = false, // 当前页面是否是以全屏弹框的方式展示，当是时，手势滑出将无效
     bool showIndicator = true,
+    TextViewBuilder? textBuilder,
   }) {
     if (imgList.isEmpty) {
       toast(BaseTrs.previewListEmpty.tr);
@@ -93,6 +94,7 @@ class NavClass {
         onPreviewIndexChanged: onPreviewIndexChanged,
         tag: tag,
         showIndicator: showIndicator,
+        textBuilder: textBuilder,
       ),
       opaque: pageOpaque,
       routeName: BaseRoutes.imgPreview,

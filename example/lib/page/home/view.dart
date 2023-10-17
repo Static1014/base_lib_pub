@@ -313,10 +313,26 @@ class HomePage extends StatelessWidget {
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                             'https://t7.baidu.com/it/u=3631608752,3069876728&fm=193&f=GIF',
                           ],
-                          // textTagList: [null, null, (true, null, null), null],
+                          textTagList: [null, null, (true, BaseColors.cWhite, BaseColors.cGreen)],
                           defaultIndex: 0,
                           pageBgColor: BaseColors.cTransparent,
                           enableHeroTag: true,
+                          textBuilder: (txt) => Container(
+                            padding: const EdgeInsets.all(12),
+                            color: BaseColors.cYellow,
+                            alignment: Alignment.center,
+                            child: mOverSizeScrollView(
+                              showScrollBar: true,
+                              maxSize: Get.height * 3 / 4,
+                              children: [
+                                mText(
+                                  msg: txt * 30,
+                                  color: BaseColors.cFontWhite,
+                                  fontSize: 14,
+                                ),
+                              ],
+                            ),
+                          ),
                           bottomView: GestureDetector(
                             onTap: () {
                               ImagePreviewLogic.to.deleteAt(logic.index.value);
@@ -376,6 +392,7 @@ class HomePage extends StatelessWidget {
                           imgList: [
                             'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
+                            'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.pnghttps://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.pnghttps://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                           ],
                           textTagList: [null, null, (true, null, null)],
                           defaultIndex: 1,

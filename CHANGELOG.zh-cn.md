@@ -1,3 +1,8 @@
+## 2.7.3
+
+1. ImagePreviewPage支持自定义text widget；
+2. ImagePreviewPage内textWidget支持超长自动开启滚动；
+
 ## 2.7.2
 
 1. CommonWebViewPage初始化时控制是否启用bottomNav，默认自动根据实际情况控制是否显示；

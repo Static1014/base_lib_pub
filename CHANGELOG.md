@@ -1,3 +1,8 @@
+## 2.7.3
+
+1. ImagePreviewPage supports custom text Widgets;
+2. textWidget in ImagePreviewPage supports long automatic scrolling;
+
 ## 2.7.2
 
 1. CommonWebViewPage Specifies whether the bottomNav is enabled during initialization. By default,
