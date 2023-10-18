@@ -1,3 +1,11 @@
+## 2.8.0
+
+1. 新增MyExtendedImageProviderWithHttpClient实现自定义httpClient的ImageProvider，以加载非官方证书的https图片资源；
+2.
+新增MyExtendedImageWithHttpClient实现network网络图片加载，默认使用network_utils/globalHttpClient??initHttpClient()
+进行网络图片加载；
+3. 替换mImageView中ExtendedImage.network为MyExtendedImageWithHttpClient.network，用于加载非官方证书的https图片资源；
+
 ## 2.7.3
 
 1. ImagePreviewPage支持自定义text widget；

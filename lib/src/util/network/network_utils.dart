@@ -13,7 +13,7 @@ import 'package:dio/io.dart';
 late Dio globalDio;
 
 /// 全局httpClient实例
-late HttpClient globalHttpClient;
+HttpClient? globalHttpClient;
 
 /// 配置dio
 void initDio({
@@ -22,7 +22,7 @@ void initDio({
   Duration? receiveTimeout = const Duration(seconds: 30),
   bool isAddLogInterceptor = true,
   bool ignoreCertificate = false, // 忽略证书
-  bool globalClient = true, // 当前初始化证书是否global化
+  bool isClientGlobal = true, // 当前初始化httpClient是否global化
   String? certPem, // https证书pem
   // 自定义证书校验规则
   bool Function(X509Certificate cert, String host, int port)? verifyCallback,
@@ -38,21 +38,22 @@ void initDio({
     globalDio.interceptors.add(ApiLogInterceptor());
   }
   // https证书校验
+  HttpClient httpClient = initHttpClient(
+    ignoreCertificate: ignoreCertificate,
+    certPem: certPem,
+    isClientGlobal: isClientGlobal,
+    verifyCallback: verifyCallback,
+  );
   globalDio.httpClientAdapter = IOHttpClientAdapter(createHttpClient: () {
-    return getHttpClient(
-      ignoreCertificate: ignoreCertificate,
-      certPem: certPem,
-      isGlobal: globalClient,
-      verifyCallback: verifyCallback,
-    );
+    return httpClient;
   });
 }
 
 /// 获取统一的httpClient
-HttpClient getHttpClient({
-  bool isGlobal = false,
+HttpClient initHttpClient({
   bool ignoreCertificate = false,
   String? certPem,
+  bool isClientGlobal = false, // 当前初始化httpClient是否global化
   bool Function(X509Certificate cert, String host, int port)? verifyCallback,
 }) {
   final client = HttpClient();
@@ -64,7 +65,7 @@ HttpClient getHttpClient({
         }
         return cert.pem == certPem;
       };
-  if (isGlobal) {
+  if (isClientGlobal) {
     globalHttpClient = client;
   }
   return client;

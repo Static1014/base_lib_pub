@@ -12,7 +12,7 @@ void main() {
     initWeChat: true,
     beforeRun: () async {
       /// 初始化网络请求
-      initDio();
+      initDio(ignoreCertificate: true);
     },
   );
 }

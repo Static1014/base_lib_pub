@@ -28,6 +28,11 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                mImageView('https://pc.homedot.space/qrcode.png', width: 50),
+                Image(
+                  width: 50,
+                  image: MyExtendedImageProviderWithHttpClient('https://pc.homedot.space/qrcode.png', httpClient: MyExtendedImageWithHttpClient.httpClient),
+                ),
                 Obx(
                   () => SizedBox(
                     height: logic.slideOne.value ? 60 : 120,
@@ -310,10 +315,11 @@ class HomePage extends StatelessWidget {
                         Nav.startImagePreview(
                           imgList: [
                             'https://img1.baidu.com/it/u=22553051,3834724655&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+                            'https://pc.homedot.space/qrcode.png',
                             'https://p7.itc.cn/images01/20200529/7fba45f763c445be964badee248ed321.png',
                             'https://t7.baidu.com/it/u=3631608752,3069876728&fm=193&f=GIF',
                           ],
-                          textTagList: [null, null, (true, BaseColors.cWhite, BaseColors.cGreen)],
+                          textTagList: [null, null, null, (true, BaseColors.cWhite, BaseColors.cGreen)],
                           defaultIndex: 0,
                           pageBgColor: BaseColors.cTransparent,
                           enableHeroTag: true,

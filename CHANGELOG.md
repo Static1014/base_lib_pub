@@ -1,3 +1,12 @@
+## 2.8.0
+
+1. Add MyExtendedImageProviderWithHttpClient implement custom httpClient ImageProvider, to load
+   HTTPS picture resources with the unofficial certificate;
+2. Add MyExtendedImageWithHttpClient.network load images, use the default
+   network_utils/globalHttpClient?? initHttpClient() loads network images.
+3. Replace the ExtendedImage.net work with MyExtendedImageWithHttpClient.net in
+   common_ui/mImageView, used to load the unofficial certificate HTTPS image resources;
+
 ## 2.7.3
 
 1. ImagePreviewPage supports custom text Widgets;

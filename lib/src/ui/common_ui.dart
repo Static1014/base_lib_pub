@@ -501,8 +501,8 @@ Widget mImageView(
             borderRadius: borderRadius,
             loadStateChanged: stateChanged,
           )
-        : ExtendedImage.network(
-      url,
+        : MyExtendedImageWithHttpClient.network(
+            url,
             enableSlideOutPage: enableSlideOutPage,
             initGestureConfigHandler: initGestureConfigHandler,
             mode: mode,
