@@ -146,7 +146,7 @@ PreferredSizeWidget mAppBar({
   int titleMaxLine = 1,
   double height = 0,
   double? elevation = 0,
-  Color? backgroundColor = BaseColors.cPrimaryColor,
+  Color? backgroundColor,
   Widget? leading, // 自定义左侧按钮
   Color? backIconColor = Colors.white, // 左侧返回按钮
   bool backEnable = false,

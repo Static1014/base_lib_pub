@@ -1,3 +1,7 @@
+## 2.8.2
+
+1. mAppBar uses the theme background color by default;
+
 ## 2.8.1
 
 1. Add size parameter to mImageView to set size;
