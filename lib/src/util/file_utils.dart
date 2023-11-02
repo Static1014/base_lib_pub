@@ -182,6 +182,17 @@ Future<File> writeToFile(String path, String data, {bool append = false}) async 
   }
 }
 
+// 读取文件为二进制数据
+Future<ByteData?> readFile(String path) async {
+  final file = File(path);
+  if (!file.existsSync()) {
+    return null;
+  }
+
+  final bytes = await file.readAsBytes();
+  return bytes.buffer.asByteData();
+}
+
 /// 保存数据为本地文件
 Future<File?> saveDataToFile(String path, ByteData data) async {
   var ok = await checkStoragePermission();

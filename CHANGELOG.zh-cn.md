@@ -1,3 +1,8 @@
+## 2.8.1
+
+1. mImageView添加size参数设置尺寸；
+2. image_utils修改pickImage，新增预览模式；
+
 ## 2.8.0
 
 1. 新增MyExtendedImageProviderWithHttpClient实现自定义httpClient的ImageProvider，以加载非官方证书的https图片资源；

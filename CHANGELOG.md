@@ -1,3 +1,8 @@
+## 2.8.1
+
+1. Add size parameter to mImageView to set size;
+2. image_utils modifies pickImage and adds preview mode.
+
 ## 2.8.0
 
 1. Add MyExtendedImageProviderWithHttpClient implement custom httpClient ImageProvider, to load

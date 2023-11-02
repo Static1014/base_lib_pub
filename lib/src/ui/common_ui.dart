@@ -418,6 +418,7 @@ bool isLocalImage(String url) => !url.startsWith("http://") && !url.startsWith("
 /// 加载网络图片或者本地文件图片
 Widget mImageView(
   String url, {
+  double? size,
   double? width,
   double? height,
   String placeholderImgPath = GlobalConst.defaultPlaceholderImg,
@@ -449,8 +450,15 @@ Widget mImageView(
   bool cache = true,
   Clip clipBehavior = Clip.antiAlias,
 }) {
-  bool isAsset = url.startsWith("assets");
-  bool isLocal = isLocalImage(url);
+  if (size != null && size > 0 && width == null && height == null) {
+    width = size;
+    height = size;
+  }
+  bool isAsset = url.startsWith("assets") || url.isEmptyOrNull();
+  bool isLocal = false;
+  if (!isAsset) {
+    isLocal = isLocalImage(url);
+  }
   // '$url - asset: $isAsset, local: $isLocal'.logI();
   if (radius != 0) {
     borderRadius = BorderRadius.all(Radius.circular(radius));

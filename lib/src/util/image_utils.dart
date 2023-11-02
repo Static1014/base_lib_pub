@@ -99,44 +99,57 @@ Future<List<AssetEntity>> pickImage(
   bool enableCamera = true,
   bool enableRecording = false,
   List<AssetEntity>? selectedList,
+  bool enablePreview = true,
 }) async {
-  return await AssetPicker.pickAssets(context,
-          pickerConfig: AssetPickerConfig(
-            textDelegate: const AssetPickerTextDelegate(),
-            maxAssets: maxCount,
-            requestType: RequestType.image,
-            selectedAssets: selectedList,
-            specialPickerType: SpecialPickerType.noPreview,
-            specialItemPosition: SpecialItemPosition.prepend,
-            specialItemBuilder: enableCamera
-                ? (ctx, entity, i) {
-                    return GestureDetector(
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () async {
-                        /// 开始拍摄
-                        final AssetEntity? result = await CameraPicker.pickFromCamera(ctx, pickerConfig: CameraPickerConfig(enableRecording: enableRecording));
+  final config = AssetPickerConfig(
+    textDelegate: const AssetPickerTextDelegate(),
+    maxAssets: maxCount,
+    selectedAssets: selectedList,
+    // 无预览模式
+    requestType: enablePreview ? RequestType.common : RequestType.image,
+    // 通过wechatMoment+自定义过滤器实现只选图片又能预览的选择模式
+    specialPickerType: enablePreview ? SpecialPickerType.wechatMoment : SpecialPickerType.noPreview,
+    filterOptions: enablePreview
+        ? CustomFilter.sql(
+            where: '${CustomColumns.base.mediaType} == 1',
+            orderBy: [
+              OrderByItem.named(
+                column: CustomColumns.base.createDate,
+                isAsc: false,
+              )
+            ],
+          )
+        : null,
+    specialItemPosition: SpecialItemPosition.prepend,
+    specialItemBuilder: enableCamera
+        ? (ctx, entity, i) {
+            return GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () async {
+                /// 开始拍摄
+                final AssetEntity? result = await CameraPicker.pickFromCamera(ctx, pickerConfig: CameraPickerConfig(enableRecording: enableRecording));
 
-                        if (result == null) {
-                          return;
-                        }
+                if (result == null) {
+                  return;
+                }
 
-                        /// 拍摄获取到照片后，放入列表中
-                        final AssetPicker<AssetEntity, AssetPathEntity> picker = ctx.findAncestorWidgetOfExactType()!;
-                        final DefaultAssetPickerBuilderDelegate builder = picker.builder as DefaultAssetPickerBuilderDelegate;
-                        final DefaultAssetPickerProvider p = builder.provider;
-                        await p.switchPath(
-                          PathWrapper<AssetPathEntity>(
-                            path: await p.currentPath!.path.obtainForNewProperties(),
-                          ),
-                        );
-                        p.selectAsset(result);
-                      },
-                      child: const Icon(Icons.camera_alt_outlined, size: 42),
-                    );
-                  }
-                : null,
-          )) ??
-      [];
+                /// 拍摄获取到照片后，放入列表中
+                final AssetPicker<AssetEntity, AssetPathEntity> picker = ctx.findAncestorWidgetOfExactType()!;
+                final DefaultAssetPickerBuilderDelegate builder = picker.builder as DefaultAssetPickerBuilderDelegate;
+                final DefaultAssetPickerProvider p = builder.provider;
+                await p.switchPath(
+                  PathWrapper<AssetPathEntity>(
+                    path: await p.currentPath!.path.obtainForNewProperties(),
+                  ),
+                );
+                p.selectAsset(result);
+              },
+              child: const Icon(Icons.camera_alt_outlined, size: 42),
+            );
+          }
+        : null,
+  );
+  return await AssetPicker.pickAssets(context, pickerConfig: config) ?? [];
 }
 
 /// 返回图片获取结果
