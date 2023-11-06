@@ -1,3 +1,7 @@
+## 2.8.4
+
+1. MDialog added isVisible Returns whether the dialog is being displayed.
+
 ## 2.8.3
 
 1. MDialog adds simpleAnimate.

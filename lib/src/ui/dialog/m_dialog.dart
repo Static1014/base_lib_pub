@@ -57,6 +57,10 @@ class MDialogManager {
     }
     return false;
   }
+
+  static bool isVisible(MDialog dialog) {
+    return dialogList.contains(dialog);
+  }
 }
 
 typedef MDialogBuilder = Widget Function(BuildContext context, AnimationController animationController);
@@ -69,6 +73,8 @@ class MDialog {
   String? id;
   bool isFake = false;
   late GetxAnimationControllerMixin animController;
+
+  bool get isVisible => MDialogManager.isVisible(this);
 
   void _init({Duration? duration}) {
     animController = GetxAnimationControllerMixin(animDuration: duration ?? const Duration(milliseconds: 240));

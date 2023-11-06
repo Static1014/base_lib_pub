@@ -1,3 +1,7 @@
+## 2.8.4
+
+1. MDialog新增isVisible返回dialog是否正在显示；
+
 ## 2.8.3
 
 1. MDialog新增simpleAnimate自带动画；
