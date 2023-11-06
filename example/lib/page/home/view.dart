@@ -28,7 +28,39 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                mImageView('https://pc.homedot.space/qrcode.png', width: 50),
+                IconButton(
+                    onPressed: () {
+                      toast('xxx');
+                    },
+                    icon: Icon(Icons.add)),
+                TextButton(
+                    onPressed: () {
+                      toast('xxx');
+                    },
+                    child: mText(msg: '你好')),
+                Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      pickImage(
+                        context,
+                        enablePreview: true,
+                        selectedList: logic.pickEntity != null ? [logic.pickEntity!] : null,
+                      ).then(
+                        (list) {
+                          if (list.isNotEmpty) {
+                            logic.pickEntity = list[0];
+                            list[0].file.then((file) {
+                              var path = file?.path ?? '';
+                              logic.pickUrl(path);
+                            });
+                          }
+                        },
+                      );
+                    },
+                    child: mImageView(logic.pickUrl.value, size: 100),
+                  ),
+                ),
+                mImageView('https://pc.homedot.space/qrcode.png', size: 50),
                 Image(
                   width: 50,
                   image: MyExtendedImageProviderWithHttpClient('https://pc.homedot.space/qrcode.png', httpClient: MyExtendedImageWithHttpClient.httpClient),
