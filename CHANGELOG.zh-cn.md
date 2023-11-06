@@ -1,3 +1,7 @@
+## 2.8.3
+
+1. MDialog新增simpleAnimate自带动画；
+
 ## 2.8.2
 
 1. mAppBar默认使用主题背景色；

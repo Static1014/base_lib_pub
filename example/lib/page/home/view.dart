@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
 
   final logic = Get.put(HomeLogic());
   final MySlidableManager slidableManager = MySlidableManager();
+  MDialog? tapDialog;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,20 @@ class HomePage extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      toast('xxx');
+                      tapDialog = MDialog.simpleAnimate(
+                          child: GestureDetector(
+                        onDoubleTap: () {
+                          tapDialog?.hide();
+                        },
+                        child: InteractiveViewer(
+                          maxScale: 4,
+                          child: Center(
+                            child: mImageView('https://pc.homedot.space/qrcode.png', size: 100),
+                          ),
+                        ),
+                      )).show();
                     },
-                    icon: Icon(Icons.add)),
+                    icon: const Icon(Icons.add)),
                 TextButton(
                     onPressed: () {
                       toast('xxx');

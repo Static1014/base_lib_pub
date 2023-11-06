@@ -83,11 +83,45 @@ class MDialog {
     isFake = true;
   }
 
+  /// 完全自定义
   MDialog.builder({required MDialogBuilder builder, this.id, Duration? duration}) {
     _init(duration: duration);
     _entry = OverlayEntry(builder: (ctx) {
       return builder(ctx, animController.controller);
     });
+  }
+
+  /// 自定义带动画
+  MDialog.simpleAnimate({required Widget child, this.id, Duration? duration}) {
+    _init(duration: duration);
+    _entry = OverlayEntry(
+      builder: (ctx) => FadeTransition(
+        opacity: Tween<double>(begin: 0, end: 1).animate(
+          CurvedAnimation(
+            parent: animController.controller,
+            curve: const Interval(0, 1, curve: Curves.easeOutCubic),
+          ),
+        ),
+        child: GestureDetector(
+          onTap: () {
+            if (dismissible) {
+              hide();
+            }
+          },
+          child: Container(
+            color: BaseColors.cBlackTrans,
+            child: ScaleTransition(
+                scale: Tween<double>(begin: 0, end: 1).animate(
+                  CurvedAnimation(
+                    parent: animController.controller,
+                    curve: const Interval(0, 1, curve: Curves.easeOutCubic),
+                  ),
+                ),
+                child: child),
+          ),
+        ),
+      ),
+    );
   }
 
   MDialog.tip({

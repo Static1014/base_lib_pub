@@ -1,3 +1,7 @@
+## 2.8.3
+
+1. MDialog adds simpleAnimate.
+
 ## 2.8.2
 
 1. mAppBar uses the theme background color by default;
