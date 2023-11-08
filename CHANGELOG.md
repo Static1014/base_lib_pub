@@ -1,3 +1,8 @@
+## 2.8.5
+
+1. When mScrollConfig enables scrollbar, if ScrollView specifies a scrollController, the scrollbar
+   must specify the same scrollController.
+
 ## 2.8.4
 
 1. MDialog added isVisible Returns whether the dialog is being displayed.

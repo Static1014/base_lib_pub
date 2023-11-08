@@ -779,6 +779,11 @@ Widget mScrollConfig({
   double radius = 2,
   required Widget child,
 }) {
+  if (!scrollBar || controller != null) {
+    'There must be the same scrollController between Scrollbar and ScrollView '
+            'while scrollBar is true and ScrollView has a controller.'
+        .logW();
+  }
   return ScrollConfiguration(
     behavior: scrollBehavior,
     child: scrollBar

@@ -1,3 +1,7 @@
+## 2.8.5
+
+1. 当mScrollConfig开启scrollbar时，如果ScrollView指定了scrollController，scrollbar必须指定同一个scrollController；
+
 ## 2.8.4
 
 1. MDialog新增isVisible返回dialog是否正在显示；
