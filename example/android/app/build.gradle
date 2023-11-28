@@ -23,17 +23,16 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.base_lib_pub_example"
+    namespace 'com.example.base_lib_pub_example'
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
     }
 
     sourceSets {

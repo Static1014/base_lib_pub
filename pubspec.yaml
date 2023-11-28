@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 2.8.5
+version: 2.9.0
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -16,22 +16,22 @@ dependencies:
   # get
   get: ^4.6.6
   # toast
-  bot_toast: ^4.1.1
+  bot_toast: ^4.1.3
   #  权限申请、检查
-  permission_handler: ^11.0.1
+  permission_handler: ^11.1.0
   #  保存图片到相册
-  image_gallery_saver: ^2.0.1
+  image_gallery_saver: ^2.0.3
   #  图片加载、查看
-  extended_image: ^8.1.1
+  extended_image: ^8.2.0
   #  MyExtendedImageProvider重写ExtendedImageProvider，替换httpClient
   path: ^1.8.3
   #  微信选择图片
-  wechat_assets_picker: ^8.7.1
-  wechat_camera_picker: ^4.0.2
+  wechat_assets_picker: ^8.8.0
+  wechat_camera_picker: ^4.1.1
   #  网络
-  dio: ^5.3.3
+  dio: ^5.3.4
   #  图片压缩
-  flutter_image_compress: ^2.0.3
+  flutter_image_compress: ^2.1.0
   #  util/访问存储文件夹
   path_provider: ^2.1.1
   #  util/日期
@@ -39,28 +39,28 @@ dependencies:
   #  util/分享
   share_plus: ^7.1.0
   # 瀑布流、自定义栅格等
-  flutter_staggered_grid_view: ^0.7.0
+  #  flutter_staggered_grid_view: ^0.7.0
   #   json序列化(注释)
   #  json_annotation: ^4.8.1
-  uri_to_file: ^0.2.0
+  uri_to_file: ^1.0.0
   # 加解密
   #  cryptography: ^2.5.0
   #  cryptography_flutter: ^2.3.0
-  encrypt: ^5.0.2
+  encrypt: ^5.0.3
   # animations
   simple_animations: ^5.0.2
   # webView
-  webview_flutter: ^4.4.1
+  webview_flutter: ^4.4.2
   # url_launcher(通过url启动第三方app，如alipay://)
-  url_launcher: ^6.1.14
+  url_launcher: ^6.2.1
   # 本地存储
   shared_preferences: ^2.2.2
   # 应用信息
-  package_info_plus: ^4.1.0
+  package_info_plus: ^5.0.1
   # 设备信息
   device_info_plus: ^9.0.3
   # 侧滑菜单
-  flutter_slidable: ^3.0.0
+  flutter_slidable: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,11 @@
+## 2.9.0
+
+1. Update dart 3.2.1, flutter 3.16.1;
+2. Fix the DecoderCallback not found problem in photo_manager dependency after upgrading flutter
+   3.16.1;
+3. Upgrade pubs;
+4. Upgrade android AGP 8.1.3，gradle 8.0；
+
 ## 2.8.5
 
 1. When mScrollConfig enables scrollbar, if ScrollView specifies a scrollController, the scrollbar

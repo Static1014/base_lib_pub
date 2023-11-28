@@ -1,3 +1,10 @@
+## 2.9.0
+
+1. 更新dart 3.2.1, flutter 3.16.1;
+2. 修复升级flutter3.16.1后photo_manager依赖中DecoderCallback not found问题；
+3. 依赖版本更新；
+4. 升级Android AGP 8.1.3，gradle 8.0；
+
 ## 2.8.5
 
 1. 当mScrollConfig开启scrollbar时，如果ScrollView指定了scrollController，scrollbar必须指定同一个scrollController；
