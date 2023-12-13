@@ -1,3 +1,9 @@
+## 3.0.0
+
+1. 升级适配Flutter SDK版本至3.16.3；
+2. 新增base_theme，通过defaultTheme调整默认主题效果为M2主题样式；
+3. 修改sample默认主题样式；
+
 ## 2.9.1
 
 1. MyGet新增actionsBeforeExitApp回调，在common_utils/exitApp前执行；

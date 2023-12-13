@@ -28,6 +28,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // 主题
+      theme: BaseTheme.createBaseTheme(BaseColors.cGreen),
       // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),

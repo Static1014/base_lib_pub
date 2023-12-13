@@ -22,7 +22,6 @@ class HomePage extends StatelessWidget {
           title: Trs.appName.tr,
           backEnable: false,
           centerTitle: false,
-          backgroundColor: BaseColors.cPrimaryColor,
           systemOverlayStyle: getSystemOverlayStyle(sysNavigationBarColor: BaseColors.cPrimaryColor),
         ),
         body: mScrollConfig(

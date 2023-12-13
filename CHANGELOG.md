@@ -1,3 +1,10 @@
+## 3.0.0
+
+1. Update to Flutter SDK version 3.16.3;
+2. Add base_theme and run the defaultTheme command to change the default theme effect to the M2
+   theme style.
+3. Modify the default theme style of sample.
+
 ## 2.9.1
 
 1. Added actionsBeforeExitApp callback in MyGet and executed before common_utils/exitApp.
