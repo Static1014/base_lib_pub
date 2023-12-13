@@ -2,7 +2,6 @@ import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub_example/route/routes.dart';
 import 'package:base_lib_pub_example/translation/translation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 void main() {
   runMyApp(
@@ -27,9 +26,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      // 主题
-      theme: BaseTheme.createBaseTheme(BaseColors.cGreen),
+    return baseApp(
       // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),

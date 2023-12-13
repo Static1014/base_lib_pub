@@ -1,3 +1,8 @@
+## 3.0.1
+
+1. 通过base_main/baseApp设置默认主题，默认M2主题样式；
+2. 通过base_main/runMyApp默认设置退出应用时，注销所有getx的controller；
+
 ## 3.0.0
 
 1. 升级适配Flutter SDK版本至3.16.3；

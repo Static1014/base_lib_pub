@@ -1,5 +1,4 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:base_lib_pub/src/extension/color_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,8 +14,8 @@ class BaseTheme {
     Color color, {
     Brightness brightness = Brightness.light,
   }) {
-    return ThemeData(
-      primarySwatch: color.toMaterialColor,
+    return (Brightness.light == brightness ? ThemeData.light() : ThemeData.dark()).copyWith(
+      // primarySwatch: color.toMaterialColor,
       colorScheme: ColorScheme.fromSeed(
         seedColor: color,
         primary: color,

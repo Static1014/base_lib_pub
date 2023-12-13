@@ -1,3 +1,9 @@
+## 3.0.1
+
+1. Set the default theme through base_main/baseApp. The default M2 theme style is set.
+2. Log out all getx controllers when exiting the application through the base_main/runMyApp default
+   Settings;
+
 ## 3.0.0
 
 1. Update to Flutter SDK version 3.16.3;

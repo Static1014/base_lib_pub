@@ -37,6 +37,9 @@ void runMyApp(
 
   /// 自定义启动后执行
   RoundAppRun? afterRun,
+
+  /// 退出应用时，注销所有getx的controller
+  bool clearGetxControllersBeforeExit = true,
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -52,6 +55,11 @@ void runMyApp(
     enableLog: enableLog,
     defaultTransition: defaultTransition,
   );
+  if (clearGetxControllersBeforeExit) {
+    MyGet.actionsBeforeExitApp.add(() {
+      clearAllGetxControllers();
+    });
+  }
 
   baseBeforeRun().then((value) {
     /// 自定义启动前执行
@@ -108,4 +116,122 @@ Future<void> baseBeforeRun() async {
 
 void initLog({bool enable = false}) {
   isForceLog = enable;
+}
+
+GetMaterialApp baseApp({
+  Key? key,
+  GlobalKey<NavigatorState>? navigatorKey,
+  GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey,
+  Widget? home,
+  Map<String, WidgetBuilder>? routes,
+  String? initialRoute,
+  RouteFactory? onGenerateRoute,
+  InitialRouteListFactory? onGenerateInitialRoutes,
+  RouteFactory? onUnknownRoute,
+  List<NavigatorObserver> navigatorObservers = const <NavigatorObserver>[],
+  TransitionBuilder? builder,
+  String title = '',
+  GenerateAppTitle? onGenerateTitle,
+  ThemeData? theme,
+  ThemeData? darkTheme,
+  ThemeMode themeMode = ThemeMode.system,
+  CustomTransition? customTransition,
+  Color? color,
+  Map<String, Map<String, String>>? translationsKeys,
+  Translations? translations,
+  TextDirection? textDirection,
+  Locale? locale,
+  Locale? fallbackLocale,
+  Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates,
+  LocaleListResolutionCallback? localeListResolutionCallback,
+  LocaleResolutionCallback? localeResolutionCallback,
+  Iterable<Locale> supportedLocales = const <Locale>[Locale('en', 'US')],
+  bool showPerformanceOverlay = false,
+  bool checkerboardRasterCacheImages = false,
+  bool checkerboardOffscreenLayers = false,
+  bool showSemanticsDebugger = false,
+  bool debugShowCheckedModeBanner = true,
+  Map<LogicalKeySet, Intent>? shortcuts,
+  ScrollBehavior? scrollBehavior,
+  ThemeData? highContrastTheme,
+  ThemeData? highContrastDarkTheme,
+  Map<Type, Action<Intent>>? actions,
+  bool debugShowMaterialGrid = false,
+  ValueChanged<Routing?>? routingCallback,
+  Transition? defaultTransition,
+  bool? opaqueRoute,
+  VoidCallback? onInit,
+  VoidCallback? onReady,
+  VoidCallback? onDispose,
+  bool? enableLog,
+  LogWriterCallback? logWriterCallback,
+  bool? popGesture,
+  SmartManagement smartManagement = SmartManagement.full,
+  Bindings? initialBinding,
+  Duration? transitionDuration,
+  bool? defaultGlobalState,
+  List<GetPage>? getPages,
+  GetPage? unknownRoute,
+  RouteInformationProvider? routeInformationProvider,
+  RouteInformationParser<Object>? routeInformationParser,
+  RouterDelegate<Object>? routerDelegate,
+  BackButtonDispatcher? backButtonDispatcher,
+  bool useInheritedMediaQuery = false,
+}) {
+  return GetMaterialApp(
+    key: key,
+    navigatorKey: navigatorKey,
+    scaffoldMessengerKey: scaffoldMessengerKey,
+    home: home,
+    routes: const <String, WidgetBuilder>{},
+    initialRoute: initialRoute,
+    onGenerateRoute: onGenerateRoute,
+    onGenerateInitialRoutes: onGenerateInitialRoutes,
+    onUnknownRoute: onUnknownRoute,
+    useInheritedMediaQuery: useInheritedMediaQuery,
+    navigatorObservers: navigatorObservers,
+    builder: builder,
+    textDirection: textDirection,
+    title: title,
+    onGenerateTitle: onGenerateTitle,
+    color: color,
+    theme: theme ?? BaseTheme.defaultTheme,
+    darkTheme: darkTheme,
+    themeMode: themeMode,
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    localizationsDelegates: localizationsDelegates,
+    localeListResolutionCallback: localeListResolutionCallback,
+    localeResolutionCallback: localeResolutionCallback,
+    supportedLocales: supportedLocales,
+    debugShowMaterialGrid: debugShowMaterialGrid,
+    showPerformanceOverlay: showPerformanceOverlay,
+    checkerboardRasterCacheImages: checkerboardRasterCacheImages,
+    checkerboardOffscreenLayers: checkerboardOffscreenLayers,
+    showSemanticsDebugger: showSemanticsDebugger,
+    debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+    shortcuts: shortcuts,
+    scrollBehavior: scrollBehavior,
+    customTransition: customTransition,
+    translationsKeys: translationsKeys,
+    translations: translations,
+    onInit: onInit,
+    onReady: onReady,
+    onDispose: onDispose,
+    routingCallback: routingCallback,
+    defaultTransition: defaultTransition,
+    getPages: getPages,
+    opaqueRoute: opaqueRoute,
+    enableLog: enableLog,
+    logWriterCallback: logWriterCallback,
+    popGesture: popGesture,
+    transitionDuration: transitionDuration,
+    defaultGlobalState: defaultGlobalState,
+    smartManagement: smartManagement,
+    initialBinding: initialBinding,
+    unknownRoute: unknownRoute,
+    highContrastTheme: highContrastTheme,
+    highContrastDarkTheme: highContrastDarkTheme,
+    actions: actions,
+  );
 }
