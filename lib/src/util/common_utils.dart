@@ -66,13 +66,24 @@ Future<bool> clickBack({dynamic result}) async {
 }
 
 /// 退出APP
-void exitApp() async {
-  await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+void exitApp({bool force = false}) async {
+  _beforeExit();
+  if (force) {
+    exit(0);
+  } else {
+    await SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+  }
 }
 
-/// 强行退出APP
-void exitAppForce() {
-  exit(0);
+void _beforeExit() {
+  for (var value in MyGet.actionsBeforeExitApp) {
+    value();
+  }
+}
+
+/// 清除所有getx控制器
+void clearAllGetxControllers() {
+  Get.deleteAll(force: true);
 }
 
 /// 计算行数

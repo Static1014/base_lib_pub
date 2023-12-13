@@ -15,6 +15,9 @@ class _MyGetImpl extends GetInterface {
   /// 双击退出
   DateTime? lastTime;
 
+  /// 退出APP前的回调
+  List<void Function()> actionsBeforeExitApp = [];
+
   bool isStatusBarVisible = true; // 状态栏可见
   bool isSysNavigationBarVisible = true; // 系统导航栏可见
   /// 当前应用状态栏、底部系统导航栏(不一定存在)配色

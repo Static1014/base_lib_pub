@@ -1,3 +1,7 @@
+## 2.9.1
+
+1. MyGet新增actionsBeforeExitApp回调，在common_utils/exitApp前执行；
+
 ## 2.9.0
 
 1. 更新dart 3.2.1, flutter 3.16.1;

@@ -1,3 +1,7 @@
+## 2.9.1
+
+1. Added actionsBeforeExitApp callback in MyGet and executed before common_utils/exitApp.
+
 ## 2.9.0
 
 1. Update dart 3.2.1, flutter 3.16.1;
