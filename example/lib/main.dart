@@ -11,7 +11,7 @@ void main() {
     initWeChat: true,
     beforeRun: () async {
       /// 初始化网络请求
-      initDio(ignoreCertificate: true);
+      initGlobalDio(ignoreCertificate: true);
     },
   );
 }

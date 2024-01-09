@@ -22,8 +22,8 @@ class BaseDimens {
 
   /// 默认按钮高度
   static const double dBtnHeight = 40; // 44
-  static const double dIconBtnHeight = 50; // 44
-  static const double dIconSize = 20;
+  static const double dIconBtnHeight = 48; // 44
+  static const double dIconSize = 24;
 
   static double dStatusBarHeight = MediaQuery.of(Get.context!).padding.top;
   static const double dAppBarHeight = 56;

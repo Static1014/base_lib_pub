@@ -74,20 +74,22 @@ class MyExtendedImageWithHttpClient extends ExtendedImage {
         assert(cacheHeight == null || cacheHeight > 0),
         super(
             image: ExtendedResizeImage.resizeIfNeeded(
-              provider: MyExtendedImageProviderWithHttpClient(url,
-                  scale: scale,
-                  headers: headers,
-                  cache: cache,
-                  cancelToken: cancelToken,
-                  retries: retries,
-                  timeRetry: timeRetry,
-                  timeLimit: timeLimit,
-                  cacheKey: cacheKey,
-                  printError: printError,
-                  cacheRawData: cacheRawData,
-                  imageCacheName: imageCacheName,
-                  cacheMaxAge: cacheMaxAge,
-                  httpClient: client ?? httpClient),
+              provider: MyExtendedImageProviderWithHttpClient(
+                url,
+                scale: scale,
+                headers: headers,
+                cache: cache,
+                cancelToken: cancelToken,
+                retries: retries,
+                timeRetry: timeRetry,
+                timeLimit: timeLimit,
+                cacheKey: cacheKey,
+                printError: printError,
+                cacheRawData: cacheRawData,
+                imageCacheName: imageCacheName,
+                cacheMaxAge: cacheMaxAge,
+                httpClient: client ?? myExtendedImageHttpClient,
+              ),
               compressionRatio: compressionRatio,
               maxBytes: maxBytes,
               cacheWidth: cacheWidth,
@@ -103,10 +105,10 @@ class MyExtendedImageWithHttpClient extends ExtendedImage {
   // We set `autoUncompress` to false to ensure that we can trust the value of
   // the `Content-Length` HTTP header. We automatically uncompress the content
   // in our call to [consolidateHttpClientResponseBytes].
-  static HttpClient _sharedHttpClient = (globalHttpClient ?? initHttpClient())..autoUncompress = false;
+  static HttpClient _sharedMyExtendedImageHttpClient = (globalHttpClient ?? createHttpClient(ignoreCertificate: true))..autoUncompress = false;
 
-  static HttpClient get httpClient {
-    HttpClient client = _sharedHttpClient;
+  static HttpClient get myExtendedImageHttpClient {
+    HttpClient client = _sharedMyExtendedImageHttpClient;
     assert(() {
       if (debugNetworkImageHttpClientProvider != null) {
         client = debugNetworkImageHttpClientProvider!();
@@ -116,7 +118,7 @@ class MyExtendedImageWithHttpClient extends ExtendedImage {
     return client;
   }
 
-  static set httpClient(HttpClient client) {
-    _sharedHttpClient = client;
+  static set myExtendedImageHttpClient(HttpClient client) {
+    _sharedMyExtendedImageHttpClient = client;
   }
 }

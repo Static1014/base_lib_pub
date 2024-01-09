@@ -1,3 +1,9 @@
+## 3.0.2
+
+1. Modify network_utils to support post and get user-defined dio.
+2. MImageView support custom httpClient, default globalHttpClient, if globalHttpClient
+   uninitialized, use the myExtendedImageHttpClient (default ignore certificate);
+
 ## 3.0.1
 
 1. Set the default theme through base_main/baseApp. The default M2 theme style is set.

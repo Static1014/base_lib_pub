@@ -15,8 +15,8 @@ late Dio globalDio;
 /// 全局httpClient实例
 HttpClient? globalHttpClient;
 
-/// 配置dio
-void initDio({
+/// 配置全局dio
+void initGlobalDio({
   String baseUrl = '',
   Duration connectTimeout = const Duration(seconds: 10),
   Duration? receiveTimeout = const Duration(seconds: 30),
@@ -27,30 +27,57 @@ void initDio({
   // 自定义证书校验规则
   bool Function(X509Certificate cert, String host, int port)? verifyCallback,
 }) {
-  globalDio = Dio();
+  globalDio = createDio(
+    baseUrl: baseUrl,
+    connectTimeout: connectTimeout,
+    receiveTimeout: receiveTimeout,
+    isAddLogInterceptor: isAddLogInterceptor,
+    ignoreCertificate: ignoreCertificate,
+    isClientGlobal: isClientGlobal,
+    certPem: certPem,
+    verifyCallback: verifyCallback,
+  );
+}
 
-  globalDio.options.baseUrl = baseUrl;
-  globalDio.options.connectTimeout = connectTimeout;
-  globalDio.options.receiveTimeout = receiveTimeout;
+// 创建dio
+Dio createDio({
+  String baseUrl = '',
+  Duration connectTimeout = const Duration(seconds: 10),
+  Duration? receiveTimeout = const Duration(seconds: 30),
+  bool isAddLogInterceptor = true,
+  bool ignoreCertificate = false, // 忽略证书
+  bool isClientGlobal = false, // 当前初始化httpClient是否global化
+  String? certPem, // https证书pem
+  // 自定义证书校验规则
+  bool Function(X509Certificate cert, String host, int port)? verifyCallback,
+  HttpClient? httpClient,
+}) {
+  final dio = Dio();
+
+  dio.options.baseUrl = baseUrl;
+  dio.options.connectTimeout = connectTimeout;
+  dio.options.receiveTimeout = receiveTimeout;
 
   // 日志拦截器
   if (isAddLogInterceptor) {
-    globalDio.interceptors.add(ApiLogInterceptor());
+    dio.interceptors.add(ApiLogInterceptor());
   }
   // https证书校验
-  HttpClient httpClient = initHttpClient(
-    ignoreCertificate: ignoreCertificate,
-    certPem: certPem,
-    isClientGlobal: isClientGlobal,
-    verifyCallback: verifyCallback,
-  );
-  globalDio.httpClientAdapter = IOHttpClientAdapter(createHttpClient: () {
-    return httpClient;
+  dio.httpClientAdapter = IOHttpClientAdapter(createHttpClient: () {
+    return httpClient ??
+        createHttpClient(
+          ignoreCertificate: ignoreCertificate,
+          certPem: certPem,
+          isClientGlobal: isClientGlobal,
+          verifyCallback: verifyCallback,
+        );
   });
+
+  return dio;
 }
 
 /// 获取统一的httpClient
-HttpClient initHttpClient({
+HttpClient createHttpClient({
   bool ignoreCertificate = false,
   String? certPem,
   bool isClientGlobal = false, // 当前初始化httpClient是否global化
@@ -84,8 +111,9 @@ Future<Response<T>> post<T>(
   ProgressCallback? onReceiveProgress,
   Duration? sendTimeout,
   Duration? receiveTimeout,
+  Dio? dio,
 }) async {
-  return globalDio.request(
+  return (dio ?? globalDio).request(
     path,
     data: data,
     cancelToken: cancelToken,
@@ -115,8 +143,9 @@ Future<Response<T>> get<T>(
   ProgressCallback? onReceiveProgress,
   Duration? sendTimeout,
   Duration? receiveTimeout,
+  Dio? dio,
 }) async {
-  return globalDio.request(
+  return (dio ?? globalDio).request(
     path,
     queryParameters: params,
     cancelToken: cancelToken,

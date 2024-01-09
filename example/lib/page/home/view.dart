@@ -44,7 +44,10 @@ class HomePage extends StatelessWidget {
                         ),
                       )).show();
                     },
-                    icon: const Icon(Icons.add)),
+                    icon: const Icon(
+                      Icons.add,
+                      color: BaseColors.cGreen,
+                    )),
                 TextButton(
                     onPressed: () {
                       toast('xxx');
@@ -69,14 +72,15 @@ class HomePage extends StatelessWidget {
                         },
                       );
                     },
-                    child: mImageView(logic.pickUrl.value, size: 100),
+                    child: mImageView(logic.pickUrl.value, bgColor: BaseColors.cGrayBg, size: 100),
                   ),
                 ),
                 mImageView('https://pc.homedot.space/qrcode.png', size: 50),
-                Image(
-                  width: 50,
-                  image: MyExtendedImageProviderWithHttpClient('https://pc.homedot.space/qrcode.png', httpClient: MyExtendedImageWithHttpClient.httpClient),
-                ),
+                // Image(
+                //   width: 50,
+                //   image: MyExtendedImageProviderWithHttpClient('https://pc.homedot.space/qrcode.png',
+                //       httpClient: MyExtendedImageWithHttpClient.myExtendedImageHttpClient),
+                // ),
                 Obx(
                   () => SizedBox(
                     height: logic.slideOne.value ? 60 : 120,

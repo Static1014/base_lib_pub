@@ -449,6 +449,7 @@ Widget mImageView(
   int retries = 3,
   bool cache = true,
   Clip clipBehavior = Clip.antiAlias,
+  HttpClient? httpClient,
 }) {
   if (size != null && size > 0 && width == null && height == null) {
     width = size;
@@ -525,6 +526,7 @@ Widget mImageView(
             cache: cache,
             timeLimit: timeLimit,
             timeRetry: timeRetry,
+            client: httpClient ?? globalHttpClient,
           );
   }
   return Container(

@@ -1,3 +1,9 @@
+## 3.0.2
+
+1. 修改network_utils，支持post、get自定义dio；
+2.
+mImageView支持自定义httpClient，默认使用globalHttpClient，如果globalHttpClient未初始化，则使用myExtendedImageHttpClient（默认忽略证书）；
+
 ## 3.0.1
 
 1. 通过base_main/baseApp设置默认主题，默认M2主题样式；
