@@ -1,3 +1,7 @@
+## 3.0.3
+
+1. 修改BaseTheme默认主题TabBarTheme，取消分割线；
+
 ## 3.0.2
 
 1. 修改network_utils，支持post、get自定义dio；

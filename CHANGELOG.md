@@ -1,3 +1,7 @@
+## 3.0.3
+
+1. modify the default theme TabBarTheme of BaseTheme and cancel the dividing line;
+
 ## 3.0.2
 
 1. Modify network_utils to support post and get user-defined dio.

@@ -31,9 +31,9 @@ class _MyAppState extends State<MyApp> {
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
       // 国际化配置
-      locale: MyTranslations.locale,
-      fallbackLocale: MyTranslations.fallbackLocale,
-      translations: MyTranslations(),
+      locale: MyTrans.locale,
+      fallbackLocale: MyTrans.fallbackLocale,
+      translations: MyTrans(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],

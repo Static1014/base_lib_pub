@@ -15,36 +15,41 @@ class BaseTheme {
     Brightness brightness = Brightness.light,
   }) {
     return (Brightness.light == brightness ? ThemeData.light() : ThemeData.dark()).copyWith(
-      // primarySwatch: color.toMaterialColor,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: color,
-        primary: color,
-        brightness: brightness,
-        surfaceTint: BaseColors.cTransparent,
-      ),
-      iconTheme: const IconThemeData(
-        size: BaseDimens.dIconSize,
-        fill: 0.0,
-        weight: 400.0,
-        grade: 0.0,
-        opticalSize: BaseDimens.dIconBtnHeight,
-        color: BaseColors.cWhite,
-        opacity: 0.8,
-      ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        foregroundColor: BaseColors.cWhite,
-        backgroundColor: color,
-        shape: const CircleBorder(),
-      ),
-      appBarTheme: AppBarTheme(
-        iconTheme: const IconThemeData(
-          color: BaseColors.cWhite,
-          size: BaseDimens.dIconSize,
+        // primarySwatch: color.toMaterialColor,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: color,
+          primary: color,
+          brightness: brightness,
+          surfaceTint: BaseColors.cTransparent,
         ),
-        backgroundColor: color,
-        titleTextStyle: Typography.dense2014.titleLarge,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-      ),
-    );
+        iconTheme: const IconThemeData(
+          size: BaseDimens.dIconSize,
+          fill: 0.0,
+          weight: 400.0,
+          grade: 0.0,
+          opticalSize: BaseDimens.dIconBtnHeight,
+          color: BaseColors.cWhite,
+          opacity: 0.8,
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          foregroundColor: BaseColors.cWhite,
+          backgroundColor: color,
+          shape: const CircleBorder(),
+        ),
+        appBarTheme: AppBarTheme(
+          iconTheme: const IconThemeData(
+            color: BaseColors.cWhite,
+            size: BaseDimens.dIconSize,
+          ),
+          backgroundColor: color,
+          titleTextStyle: Typography.dense2014.titleLarge,
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+        ),
+        tabBarTheme: const TabBarTheme(
+          dividerHeight: 0,
+          indicatorSize: TabBarIndicatorSize.label,
+          indicatorColor: BaseColors.cFontWhite,
+          labelPadding: EdgeInsets.zero,
+        ));
   }
 }

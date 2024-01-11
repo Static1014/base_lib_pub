@@ -8,14 +8,14 @@ import 'lang.dart';
 ///
 /// Created by Static4u
 /// Date : 2023/4/12 08:52
-class MyTranslations extends Translations {
+class MyTrans extends Translations {
   // 默认使用设备locale
   static Locale? get locale => Get.deviceLocale;
 
   // locale指定失败时的locale
   static const fallbackLocale = Locale('zh', 'CN');
 
-  MyTranslations() {
+  MyTrans() {
     enUS.addAll(baseEnUS);
     zhCN.addAll(baseZhCN);
   }
