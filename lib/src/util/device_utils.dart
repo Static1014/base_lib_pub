@@ -1,6 +1,7 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:harmony_plugin/harmony_plugin.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 /// Name: device_utils.dart
 ///
@@ -187,5 +188,18 @@ class _DeviceUtilsClass {
       return '${info.name} on ${info.systemName} ${info.systemVersion}';
     }
     return '';
+  }
+
+  // 打开APP设置，手动进行权限、通知等的管理
+  Future<void> goAppSetting() async {
+    openAppSettings();
+    // if (Platform.isAndroid) {
+    //   var data = 'package:${await PackageUtils.pkgName}';
+    //   AndroidIntent intent = AndroidIntent(
+    //     action: 'action_application_details_settings', // android.settings.APPLICATION_DETAILS_SETTINGS
+    //     data: data,
+    //   );
+    //   await intent.launch();
+    // }
   }
 }

@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../extension/common_ext.dart';
 import '../util/permission_utils.dart';
@@ -195,17 +196,17 @@ Future<ByteData?> readFile(String path) async {
 
 /// 保存数据为本地文件
 Future<File?> saveDataToFile(String path, ByteData data) async {
-  var ok = await checkStoragePermission();
-  if (ok) {
-    File f = File(path);
-    if (!f.existsSync()) {
-      createFile(path);
-    }
-    f.writeAsBytes(data.buffer.asUint8List());
-    return f;
-  } else {
+  var granted = await requestPermission(permission: Permission.storage);
+  if (!granted) {
     return null;
   }
+
+  File f = File(path);
+  if (!f.existsSync()) {
+    createFile(path);
+  }
+  f.writeAsBytes(data.buffer.asUint8List());
+  return f;
 }
 
 /// 遍历文件夹

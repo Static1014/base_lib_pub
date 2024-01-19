@@ -1,3 +1,10 @@
+## 3.2.0
+
+1. device_utils中新增goAppSetting()方法，调整系统应用设置界面；
+2. 修改permission_utils，完善权限申请流程；
+3. MainActivity中修复最近任务列表不显示应用名称的问题；
+4. 修改Podfile中platform :ios, '11.0'为'12.0';
+
 ## 3.1.0
 
 > 开发环境: Flutter 3.16.7, Dart 3.2.4

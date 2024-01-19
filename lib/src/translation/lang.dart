@@ -30,6 +30,11 @@ class BaseTrsClass {
   final imgSaved2Gallery = "imgSaved2Gallery";
   final imgSaved2GalleryFailed = "imgSaved2GalleryFailed";
   final permissionTipStorage = "permissionTipStorage";
+  final permissionTipCamera = "permissionTipCamera";
+  final permissionTipDefault = "permissionTipDefault";
+  final permissionTipFailed = "permissionTipFailed";
+  final startAuthPermission = "startAuthPermission";
+  final manuallyAuthPermission = "manuallyAuthPermission";
 
   // share
   final shareEmpty = "shareEmpty";
@@ -70,7 +75,14 @@ final baseEnUS = {
   BaseTrs.goTest: 'go Test Page',
   BaseTrs.exitOnDoubleClick: 'Double click to exit',
   BaseTrs.crash: 'Something Wrong',
-  BaseTrs.permissionTipStorage: 'Please authorize the use of storage permissions first',
+  // 权限
+  BaseTrs.permissionTipCamera: 'This function requires take shoot with camera, please grant before using.',
+  BaseTrs.permissionTipStorage: 'This function requires reading photos, media content and files from the memory card, please grant before using.',
+  BaseTrs.permissionTipDefault: 'Grant permission to the application before using it.',
+  BaseTrs.startAuthPermission: 'Grant',
+  BaseTrs.permissionTipFailed: 'Grant failure. Please grant permissions manually on app settings page.',
+  BaseTrs.manuallyAuthPermission: 'Grant manually',
+  // 图片处理
   BaseTrs.imgNull: 'Image Data is wrong',
   BaseTrs.imgSaved2Gallery: 'Image has been saved to Gallery',
   BaseTrs.imgSaved2GalleryFailed: 'There\'s something wrong to save image',
@@ -103,7 +115,14 @@ final baseZhCN = {
   BaseTrs.goTest: '打开测试页',
   BaseTrs.exitOnDoubleClick: '双击退出',
   BaseTrs.crash: '好像哪里出错了',
-  BaseTrs.permissionTipStorage: '请先授权使用存储权限',
+  // 权限
+  BaseTrs.permissionTipStorage: '该功能需要读取存储卡中的照片、媒体内容和文件，请授权后再使用。',
+  BaseTrs.permissionTipCamera: '该功能需要使用设备相机进行拍摄，请授权后再使用。',
+  BaseTrs.permissionTipDefault: '请授予应用相应权限后再使用。',
+  BaseTrs.permissionTipFailed: '授权失败，请前往应用设置页手动授权。',
+  BaseTrs.startAuthPermission: '开始授权',
+  BaseTrs.manuallyAuthPermission: '手动授权',
+  // 图片处理
   BaseTrs.imgNull: '图片资源有误',
   BaseTrs.imgSaved2Gallery: '图片已保存到相册',
   BaseTrs.imgSaved2GalleryFailed: '图片保存失败',

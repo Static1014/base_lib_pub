@@ -13,6 +13,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:uri_to_file/uri_to_file.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
@@ -101,6 +102,11 @@ Future<List<AssetEntity>> pickImage(
   List<AssetEntity>? selectedList,
   bool enablePreview = true,
 }) async {
+  var granted = await requestPermission(permission: Permission.storage);
+  if (!granted) {
+    return [];
+  }
+
   final config = AssetPickerConfig(
     textDelegate: const AssetPickerTextDelegate(),
     maxAssets: maxCount,
@@ -126,6 +132,11 @@ Future<List<AssetEntity>> pickImage(
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () async {
+                var granted = await requestPermission(permission: Permission.camera);
+                if (!granted) {
+                  return;
+                }
+
                 /// 开始拍摄
                 final AssetEntity? result = await CameraPicker.pickFromCamera(ctx, pickerConfig: CameraPickerConfig(enableRecording: enableRecording));
 

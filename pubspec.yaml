@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 3.1.0
+version: 3.2.0
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -17,7 +17,7 @@ dependencies:
   get: ^4.6.6
   # toast
   bot_toast: ^4.1.3
-  #  权限申请、检查
+  #  权限申请、检查（android、iOS、web、windows）
   permission_handler: ^11.2.0
   #  保存图片到相册
   image_gallery_saver: ^2.0.3
@@ -64,6 +64,8 @@ dependencies:
   device_info_plus: ^9.1.1
   # 侧滑菜单
   flutter_slidable: ^3.0.1
+  # android_intent(only for android)
+  android_intent_plus: ^4.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,11 @@
+## 3.2.0
+
+1. Add goAppSetting() method in device_utils to route to the application setting page;
+2. Modify the permission_utils to improve the process of permission grant;
+3. Fix the problem that the application name is not displayed in the recent task list in
+   MainActivity;
+4. Modify the platform: iOS in the Podfile, from ' 11.0' to ' 12.0';
+
 ## 3.1.0
 
 > Base on Flutter 3.16.7, Dart 3.2.4
