@@ -1,3 +1,19 @@
+## 3.1.0
+
+> 开发环境: Flutter 3.16.7, Dart 3.2.4
+
+1. 升级wechat_assets_picker: ^9.0.0-dev.2、wechat_camera_picker: ^4.2.0-dev.3，适配Flutter
+   3.16.x，解决无法正常显示图片问题；
+2. 升级全局kotlin版本为1.9.22；
+3. 修改默认主题样式；
+4. 修复common_ui/mImageView参数url为空时的异常报错，当url为空时，直接显示errorWidget；
+5. 升级其他依赖：
+    1. permission_handler: ^11.1.0 -> ^11.2.0
+    2. path_provider: ^2.1.1 -> ^2.1.2
+    3. share_plus: ^7.1.0 -> ^7.2.1
+    4. webview_flutter: ^4.4.2 -> ^4.4.4
+    5. url_launcher: ^6.2.1 -> ^6.2.3
+
 ## 3.0.3
 
 1. 修改BaseTheme默认主题TabBarTheme，取消分割线；
@@ -6,6 +22,7 @@
 
 1. 修改network_utils，支持post、get自定义dio；
 2.
+
 mImageView支持自定义httpClient，默认使用globalHttpClient，如果globalHttpClient未初始化，则使用myExtendedImageHttpClient（默认忽略证书）；
 
 ## 3.0.1

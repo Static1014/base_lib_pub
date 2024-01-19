@@ -455,79 +455,106 @@ Widget mImageView(
     width = size;
     height = size;
   }
-  bool isAsset = url.startsWith("assets") || url.isEmptyOrNull();
-  bool isLocal = false;
-  if (!isAsset) {
-    isLocal = isLocalImage(url);
-  }
-  // '$url - asset: $isAsset, local: $isLocal'.logI();
-  if (radius != 0) {
-    borderRadius = BorderRadius.all(Radius.circular(radius));
-  }
-  if (borderRadius != null && shape != BoxShape.circle) {
-    // 要想设置圆角，shape必须指定为rectangle，想shape为circle时，圆角无效
-    shape = BoxShape.rectangle;
-  }
-
-  LoadStateChanged stateChanged = _getLoadStateChanged(
-    loadingWidget: loadingWidget,
-    errorSize: errorSize,
-    errorWidget: errorWidget,
-    errorImgPath: errorImgPath,
-    package: package,
-    enableFadeIn: enableFadeIn,
-    fadeInDuration: fadeInDuration,
-  );
 
   Widget iv;
-  if (isAsset) {
-    iv = ExtendedImage.asset(
-      url,
-      enableSlideOutPage: enableSlideOutPage,
-      initGestureConfigHandler: initGestureConfigHandler,
-      mode: mode,
-      compressionRatio: compressionRatio,
-      clipBehavior: clipBehavior,
-      fit: fit,
-      shape: shape,
-      border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
-      borderRadius: borderRadius,
-      loadStateChanged: stateChanged,
-      package: url.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+  if (isEmptyOrNull(url)) {
+    iv = Center(
+      child: SizedBox(
+        width: errorSize,
+        height: errorSize,
+        child: Image.asset(
+          errorImgPath,
+          fit: BoxFit.cover,
+          package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+        ),
+      ),
     );
   } else {
-    iv = isLocal
-        ? ExtendedImage.file(
-            File(url),
-            enableSlideOutPage: enableSlideOutPage,
-            initGestureConfigHandler: initGestureConfigHandler,
-            mode: mode,
-            compressionRatio: compressionRatio,
-            clipBehavior: clipBehavior,
-            fit: fit,
-            shape: shape,
-            border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
-            borderRadius: borderRadius,
-            loadStateChanged: stateChanged,
-          )
-        : MyExtendedImageWithHttpClient.network(
-            url,
-            enableSlideOutPage: enableSlideOutPage,
-            initGestureConfigHandler: initGestureConfigHandler,
-            mode: mode,
-            compressionRatio: compressionRatio,
-            clipBehavior: clipBehavior,
-            retries: retries,
-            fit: fit,
-            shape: shape,
-            border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
-            borderRadius: borderRadius,
-            loadStateChanged: stateChanged,
-            cache: cache,
-            timeLimit: timeLimit,
-            timeRetry: timeRetry,
-            client: httpClient ?? globalHttpClient,
-          );
+    bool isAsset = url.startsWith("assets");
+    bool isLocal = false;
+    if (!isAsset) {
+      isLocal = isLocalImage(url);
+    }
+    // '$url - asset: $isAsset, local: $isLocal'.logI();
+    if (radius != 0) {
+      borderRadius = BorderRadius.all(Radius.circular(radius));
+    }
+    if (borderRadius != null && shape != BoxShape.circle) {
+      // 要想设置圆角，shape必须指定为rectangle，想shape为circle时，圆角无效
+      shape = BoxShape.rectangle;
+    }
+
+    LoadStateChanged stateChanged = _getLoadStateChanged(
+      loadingWidget: loadingWidget,
+      errorSize: errorSize,
+      errorWidget: errorWidget,
+      errorImgPath: errorImgPath,
+      package: package,
+      enableFadeIn: enableFadeIn,
+      fadeInDuration: fadeInDuration,
+    );
+
+    if (isAsset) {
+      iv = isEmptyOrNull(url)
+          ? Center(
+              child: SizedBox(
+                width: errorSize,
+                height: errorSize,
+                child: Image.asset(
+                  errorImgPath,
+                  fit: BoxFit.cover,
+                  package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+                ),
+              ),
+            )
+          : ExtendedImage.asset(
+              url,
+              enableSlideOutPage: enableSlideOutPage,
+              initGestureConfigHandler: initGestureConfigHandler,
+              mode: mode,
+              compressionRatio: compressionRatio,
+              clipBehavior: clipBehavior,
+              fit: fit,
+              shape: shape,
+              border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
+              borderRadius: borderRadius,
+              loadStateChanged: stateChanged,
+              package: url.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
+            );
+    } else {
+      iv = isLocal
+          ? ExtendedImage.file(
+              File(url),
+              enableSlideOutPage: enableSlideOutPage,
+              initGestureConfigHandler: initGestureConfigHandler,
+              mode: mode,
+              compressionRatio: compressionRatio,
+              clipBehavior: clipBehavior,
+              fit: fit,
+              shape: shape,
+              border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
+              borderRadius: borderRadius,
+              loadStateChanged: stateChanged,
+            )
+          : MyExtendedImageWithHttpClient.network(
+              url,
+              enableSlideOutPage: enableSlideOutPage,
+              initGestureConfigHandler: initGestureConfigHandler,
+              mode: mode,
+              compressionRatio: compressionRatio,
+              clipBehavior: clipBehavior,
+              retries: retries,
+              fit: fit,
+              shape: shape,
+              border: borderWidth == 0 ? null : Border.all(color: borderColor, width: borderWidth),
+              borderRadius: borderRadius,
+              loadStateChanged: stateChanged,
+              cache: cache,
+              timeLimit: timeLimit,
+              timeRetry: timeRetry,
+              client: httpClient ?? globalHttpClient,
+            );
+    }
   }
   return Container(
     color: bgColor,

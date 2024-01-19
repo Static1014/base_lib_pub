@@ -1,3 +1,20 @@
+## 3.1.0
+
+> Base on Flutter 3.16.7, Dart 3.2.4
+
+1. Upgrade wechat_assets_picker: ^9.0.0-dev.2 and wechat_camera_picker: ^4.2.0-dev.3 to adapt
+   Flutter 3.16.x to solve the problem that images cannot be displayed normally.
+2. Upgrade the global kotlin version to 1.9.22;
+3. Modify the default theme style.
+4. Fix the error message when the url of common_ui/mImageView parameter is empty. If the url is
+   empty, the errorWidget is displayed directly.
+5. Upgrade other dependencies：
+    1. permission_handler: ^11.1.0 -> ^11.2.0
+    2. path_provider: ^2.1.1 -> ^2.1.2
+    3. share_plus: ^7.1.0 -> ^7.2.1
+    4. webview_flutter: ^4.4.2 -> ^4.4.4
+    5. url_launcher: ^6.2.1 -> ^6.2.3
+
 ## 3.0.3
 
 1. modify the default theme TabBarTheme of BaseTheme and cancel the dividing line;
