@@ -1,3 +1,11 @@
+## 3.2.1
+
+1. example/android/app/build.gradle specified need packaging language resources, to remove
+   third-party packages into a variety of languages, only keep this app specified language
+   resources;
+2. example/android/app/build.gradle specified abiFilters, give up support x86 execution;
+3. ScrollControllerExt adds shake() method, which supports shaking on the scroll axis once.
+
 ## 3.2.0
 
 1. Add goAppSetting() method in device_utils to route to the application setting page;

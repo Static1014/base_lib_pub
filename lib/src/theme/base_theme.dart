@@ -50,7 +50,6 @@ class BaseTheme {
           indicatorSize: TabBarIndicatorSize.label,
           indicatorColor: BaseColors.cFontWhite,
           labelPadding: EdgeInsets.zero,
-          tabAlignment: TabAlignment.start,
         ));
   }
 }

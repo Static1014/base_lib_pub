@@ -1,3 +1,9 @@
+## 3.2.1
+
+1. example/android/app/build.gradle指定需要打包的语言资源，去除第三方包引入的各种语言，只保留本APP指定的语言资源；
+2. example/android/app/build.gradle指定abiFilters，放弃支持x86执行；
+3. ScrollControllerExt新增shake方法，支持在滚动轴上晃动一次；
+
 ## 3.2.0
 
 1. device_utils中新增goAppSetting()方法，调整系统应用设置界面；

@@ -70,6 +70,19 @@ extension ScrollControllerExt on ScrollController {
       scrollToTop(milliseconds: milliseconds, curve: curve);
     }
   }
+
+  /// 在滚动轴上晃动一次
+  void shake({
+    double? beginOffset,
+    double shakeOffset = 100,
+    Duration duration = const Duration(milliseconds: 600),
+    Curve curve = Curves.easeOutCubic,
+  }) {
+    beginOffset ??= offset;
+    animateTo(beginOffset + shakeOffset, duration: duration, curve: curve).then((value) {
+      animateTo(beginOffset ?? offset, duration: duration, curve: curve).then((value) {});
+    });
+  }
 }
 
 extension ExtList on List<int> {
