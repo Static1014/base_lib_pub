@@ -1,3 +1,7 @@
+## 3.2.2
+
+1. image_utils修改pickImage，新增存储和拍摄权限申请和失败说明；
+
 ## 3.2.1
 
 1. example/android/app/build.gradle指定需要打包的语言资源，去除第三方包引入的各种语言，只保留本APP指定的语言资源；

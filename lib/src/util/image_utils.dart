@@ -101,10 +101,12 @@ Future<List<AssetEntity>> pickImage(
   bool enableRecording = false,
   List<AssetEntity>? selectedList,
   bool enablePreview = true,
-  String? requestPermissionMsg,
-  String? failedPermissionMsg,
+  String? requestStorageMsg,
+  String? failedStorageMsg,
+  String? requestCameraMsg,
+  String? failedCameraMsg,
 }) async {
-  var granted = await requestPermission(permission: Permission.storage, requestMsg: requestPermissionMsg, failedMsg: failedPermissionMsg);
+  var granted = await requestPermission(permission: Permission.storage, requestMsg: requestStorageMsg, failedMsg: failedStorageMsg);
   if (!granted) {
     return [];
   }
@@ -134,7 +136,7 @@ Future<List<AssetEntity>> pickImage(
             return GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () async {
-                var granted = await requestPermission(permission: Permission.camera, requestMsg: requestPermissionMsg, failedMsg: failedPermissionMsg);
+                var granted = await requestPermission(permission: Permission.camera, requestMsg: requestCameraMsg, failedMsg: failedCameraMsg);
                 if (!granted) {
                   return;
                 }

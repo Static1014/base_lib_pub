@@ -1,3 +1,8 @@
+## 3.2.2
+
+1. image_utils Modified pickImage and added the description of storage and shooting permission
+   application and failure.
+
 ## 3.2.1
 
 1. example/android/app/build.gradle specified need packaging language resources, to remove
