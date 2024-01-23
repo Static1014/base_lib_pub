@@ -1,3 +1,7 @@
+## 3.2.3
+
+1. 修复example/android项目国际化失败问题，即build.gradle中resConfigs配置须与MyTrans中配置匹配；
+
 ## 3.2.2
 
 1. image_utils修改pickImage，新增存储和拍摄权限申请和失败说明；

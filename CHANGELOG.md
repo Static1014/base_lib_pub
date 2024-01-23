@@ -1,3 +1,8 @@
+## 3.2.3
+
+1. Fix the internationalization failure of example/android project, that is, the resConfigs
+   configuration in build.gradle must match the configuration in MyTrans;
+
 ## 3.2.2
 
 1. image_utils Modified pickImage and added the description of storage and shooting permission
