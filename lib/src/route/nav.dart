@@ -115,7 +115,7 @@ class NavClass {
     String? tag,
     String? title,
     bool popConfirm = false,
-    WillPopCallback? onPopConfirm,
+    PopInvokedCallback? onPopConfirm,
     bool clearCache = true,
     bool clearLocalStorage = true,
     void Function(String url)? onPageStarted,

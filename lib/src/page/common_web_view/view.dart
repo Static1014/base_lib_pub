@@ -42,7 +42,7 @@ class CommonWebViewPage extends StatelessWidget {
   final WebPageBuilder? pageBuilder;
 
   final bool popConfirm; // 关闭是否需要确认
-  final WillPopCallback? onPopConfirm; // 关闭确认回调
+  final PopInvokedCallback? onPopConfirm; // 关闭确认回调
   // 启动时是否清空缓存
   final bool clearCacheOnStart;
   final bool clearLocalStorageOnStart;
@@ -64,7 +64,7 @@ class CommonWebViewPage extends StatelessWidget {
   CommonWebViewPage({
     required this.urlOrData,
     this.type = WebViewContentType.url,
-    Key? key,
+    super.key,
     this.tag,
     this.title,
     this.popConfirm = false,
@@ -86,7 +86,7 @@ class CommonWebViewPage extends StatelessWidget {
     this.pbBgColor,
     this.pbColor,
     this.bottomNavEnable = true,
-  }) : super(key: key) {
+  }) {
     final logic = Get.find<CommonWebViewLogic>(tag: tag);
     logic._bottomNavEnable(bottomNavEnable);
     logic.webViewController.init(
@@ -133,12 +133,15 @@ class CommonWebViewPage extends StatelessWidget {
     });
     return pageBuilder?.call(logic, _buildWebViewWithNav(logic), _buildPb(logic)) ??
         mRoot(
-          onWillPop: _buildPopConfirm(),
+          canPop: !popConfirm,
+          popInvokedCallback: _buildPopConfirm(),
           child: Scaffold(
             appBar: appBarBuilder?.call() ??
                 mAppBar(
                   title: title ?? '',
-                  backPressed: _buildPopConfirm(),
+                  backPressed: () {
+                    _buildPopConfirm()?.call(false);
+                  },
                 ),
             body: Stack(
               children: [
@@ -235,20 +238,27 @@ class CommonWebViewPage extends StatelessWidget {
     );
   }
 
-  WillPopCallback? _buildPopConfirm() {
+  PopInvokedCallback? _buildPopConfirm() {
     MDialog? confirmDialog;
     return popConfirm
         ? (onPopConfirm ??
-            () async {
-              confirmDialog = mShowTip(
-                msg: BaseTrs.closePageConfirmTip.tr,
-                actions: MDialog.doubleActions(rightCallback: () {
-                  confirmDialog?.hide(onClosed: () {
-                    Nav.pop();
-                  });
-                }),
-              );
-              return false;
+            (didPop) async {
+              if (!didPop) {
+                confirmDialog = mShowTip(
+                  msg: BaseTrs.closePageConfirmTip.tr,
+                  actions: MDialog.doubleActions(
+                    leftColor: BaseColors.cGrayCancel,
+                    leftCallback: () {
+                      confirmDialog?.hide();
+                    },
+                    rightCallback: () {
+                      confirmDialog?.hide(onClosed: () {
+                        Nav.pop();
+                      });
+                    },
+                  ),
+                );
+              }
             })
         : null;
   }

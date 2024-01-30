@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 
 /// Name: common_ui.dart
@@ -93,17 +94,42 @@ void onBuildFinished(FrameCallback firstFrameCallback, {FrameCallback? everyFram
 }
 
 /// 双击退出
-Widget mWillPopScope({required Widget child, WillPopCallback? onWillPop}) {
-  return WillPopScope(
-    onWillPop: onWillPop ?? clickBack,
-    child: child,
-  );
+// Widget mWillPopScope({required Widget child, WillPopCallback? onWillPop}) {
+//   return WillPopScope(
+//     onWillPop: onWillPop ?? clickBack,
+//     child: child,
+//   );
+// }
+
+Widget mPopScope({
+  bool? canPop,
+  PopInvokedCallback? onPopInvoked,
+  required Widget child,
+}) {
+  return PopScope(
+      canPop: canPop ?? Nav.isPopEnable(),
+      onPopInvoked: onPopInvoked ??
+          (didPop) {
+            hideKeyboard();
+
+            if (!didPop) {
+              if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
+                //   // 一秒之内点击两次返回键，提示再次点击退出
+                MyGet.lastTime = DateTime.now();
+                toast(BaseTrs.exitOnDoubleClick.tr);
+              } else {
+                exitApp();
+              }
+            }
+          },
+      child: child);
 }
 
 /// 点击空白处关闭键盘
 Widget mRoot({
   required Widget child,
-  WillPopCallback? onWillPop, // 当存在返回拦截时才使用WillPopScope，否则会导致popGesture无效（iOS手势返回上一页）
+  bool? canPop,
+  PopInvokedCallback? popInvokedCallback,
   bool safeArea = true,
   bool safeTop = false,
   bool safeBottom = true,
@@ -125,13 +151,47 @@ Widget mRoot({
               ),
             )
           : child);
-  return onWillPop == null && Nav.isPopEnable() // 没有手动拦截，且能返回，才不添加WillPopScope
+  return (popInvokedCallback == null && canPop == null && Nav.isPopEnable()) // 没有手动拦截，且能返回，才不添加WillPopScope
       ? cc
-      : mWillPopScope(
-          onWillPop: onWillPop,
+      : mPopScope(
+          canPop: canPop,
+          onPopInvoked: popInvokedCallback,
           child: cc,
         );
 }
+
+// /// 点击空白处关闭键盘
+// Widget mRoot({
+//   required Widget child,
+//   WillPopCallback? onWillPop, // 当存在返回拦截时才使用WillPopScope，否则会导致popGesture无效（iOS手势返回上一页）
+//   bool safeArea = true,
+//   bool safeTop = false,
+//   bool safeBottom = true,
+//   bool safeLeft = true,
+//   bool safeRight = true,
+//   Color? safeAreaBgColor = BaseColors.cWhite, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
+// }) {
+//   var cc = GestureDetector(
+//       onTap: hideKeyboard,
+//       child: safeArea
+//           ? Container(
+//               color: safeAreaBgColor,
+//               child: SafeArea(
+//                 top: safeTop,
+//                 bottom: safeBottom,
+//                 left: safeLeft,
+//                 right: safeRight,
+//                 child: child,
+//               ),
+//             )
+//           : child);
+//   return onWillPop == null && Nav.isPopEnable() // 没有手动拦截，且能返回，才不添加WillPopScope
+//       ? cc
+//       : mWillPopScope(
+//           onWillPop: onWillPop,
+//           child: cc,
+//         );
+// }
 
 /// 通过回调，在目标route被创建时再调用mAppBar，避免Nav.isPopEnable判断错误
 typedef MAppBarBuilder = PreferredSizeWidget Function();

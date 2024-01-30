@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 3.2.3
+version: 3.3.0
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -29,6 +29,7 @@ dependencies:
   #  wechat_assets_picker: ^8.8.1+1
   #  wechat_camera_picker: ^4.1.2
   #  适配Flutter 3.16.x
+  #  wechat_camera_picker会依赖sensors_plus，调用加速度传感器，判断拍照方向以控制图片方向
   wechat_assets_picker: ^9.0.0-dev.2
   wechat_camera_picker: ^4.2.0-dev.3
   #  网络
@@ -55,7 +56,7 @@ dependencies:
   # webView
   webview_flutter: ^4.4.4
   # url_launcher(通过url启动第三方app，如alipay://)
-  url_launcher: ^6.2.3
+  url_launcher: ^6.2.4
   # 本地存储
   shared_preferences: ^2.2.2
   # 应用信息

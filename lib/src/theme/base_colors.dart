@@ -44,6 +44,7 @@ class BaseColors {
   static const cWhite = Colors.white;
   static const cGray = Colors.grey;
   static const cGrayLine = Color(0xFFC9C9C9);
+  static const cGrayCancel = Color(0xFFC9C9C9);
   static const cGrayBg = Color(0xFFE0E0E0);
   static const cGrayBgMiddle = Color(0xFFEEEEEE);
   static const cGrayLightBg = Color(0xFFFBFBFB);

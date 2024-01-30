@@ -1,3 +1,8 @@
+## 3.3.0
+
+1. 替换WillPopScope为PopScope，适配相关widget；
+2. 修复commonWebView关闭弹框“取消”按钮失效问题；
+
 ## 3.2.3
 
 1. 修复example/android项目国际化失败问题，即build.gradle中resConfigs配置须与MyTrans中配置匹配；

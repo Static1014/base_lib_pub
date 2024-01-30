@@ -68,7 +68,7 @@ class ImagePreviewPage extends StatelessWidget {
   final bool splitBottomView;
 
   ImagePreviewPage({
-    Key? key,
+    super.key,
     this.defaultIndex = 0,
     this.onPreviewIndexChanged,
     required this.imgList,
@@ -89,7 +89,7 @@ class ImagePreviewPage extends StatelessWidget {
     this.tag,
     this.showIndicator = true,
     this.textBuilder,
-  }) : super(key: key) {
+  }) {
     assert(imgList.isNotEmpty, 'the size of preview imgList must be over 0');
     // assert(defaultIndex >= 0 && defaultIndex < imgList.length, 'default index should between 0 and the size of imgList');
 

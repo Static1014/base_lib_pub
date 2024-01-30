@@ -1,3 +1,8 @@
+## 3.3.0
+
+1. Replace WillPopScope with PopScope and adapt the related widgets.
+2. Fix the failure of the Cancel button in the commonWebView close dialog.
+
 ## 3.2.3
 
 1. Fix the internationalization failure of example/android project, that is, the resConfigs

@@ -278,6 +278,7 @@ class HomePage extends StatelessWidget {
                 _buildTestFunc('WebViewPage', () {
                   // 打开多个webview page
                   Nav.startCommonWebView(
+                    popConfirm: true,
                     urlOrData: 'https://www.baidu.com',
                     tag: 'web1',
                     title: '百度',
