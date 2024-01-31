@@ -130,17 +130,53 @@ int randomNum(int max) {
 }
 
 /// 日期时间格式化
-String mFormatDate({DateTime? time, List<String>? format, String daySeparator = '-', String middleSeparator = ' ', String timeSeparator = ':'}) {
+String mFormatDate({
+  DateTime? time,
+  List<String>? format,
+  String daySeparator = '-',
+  String middleSeparator = ' ',
+  String timeSeparator = ':',
+  String milliSeparator = '-',
+  bool milliSecond = false,
+}) {
   time ??= DateTime.now();
-  format ??= [yyyy, daySeparator, mm, daySeparator, dd, middleSeparator, HH, timeSeparator, nn, timeSeparator, ss];
+  format ??= [
+    yyyy,
+    daySeparator,
+    mm,
+    daySeparator,
+    dd,
+    middleSeparator,
+    HH,
+    timeSeparator,
+    nn,
+    timeSeparator,
+    ss,
+    if (milliSecond) ...[milliSeparator, SSS]
+  ];
   return formatDate(time, format);
 }
 
 /// 日期时间格式化
-String mFormatDateFromStamp({required int stamp, List<String>? format, String daySeparator = '-', String middleSeparator = ' ', String timeSeparator = ':'}) {
+String mFormatDateFromStamp({
+  required int stamp,
+  List<String>? format,
+  String daySeparator = '-',
+  String middleSeparator = ' ',
+  String timeSeparator = ':',
+  String milliSeparator = '-',
+  bool milliSecond = false,
+}) {
   DateTime time = DateTime.fromMillisecondsSinceEpoch(stamp);
-  format ??= [yyyy, daySeparator, mm, daySeparator, dd, middleSeparator, HH, timeSeparator, nn, timeSeparator, ss];
-  return formatDate(time, format);
+  return mFormatDate(
+    time: time,
+    format: format,
+    daySeparator: daySeparator,
+    middleSeparator: middleSeparator,
+    timeSeparator: timeSeparator,
+    milliSeparator: milliSeparator,
+    milliSecond: milliSecond,
+  );
 }
 
 /// 货币格式

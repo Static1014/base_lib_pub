@@ -23,7 +23,6 @@ The original intention of this project is to establish a basic framework library
 
 It would be great if someone could get some help in the project.
 
-Come on!
 
 ## Features
 

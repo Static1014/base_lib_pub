@@ -1,3 +1,8 @@
+## 3.3.1
+
+1. log_utils/printLog prints the log, and the time is displayed to milliseconds;
+2. overlay_utils/showLoading supports empty prompt text;
+
 ## 3.3.0
 
 1. Replace WillPopScope with PopScope and adapt the related widgets.

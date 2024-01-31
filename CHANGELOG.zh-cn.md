@@ -1,3 +1,8 @@
+## 3.3.1
+
+1. log_utils/printLog打印日志，时间显示到毫秒；
+2. overlay_utils/showLoading支持空提示文字；
+
 ## 3.3.0
 
 1. 替换WillPopScope为PopScope，适配相关widget；

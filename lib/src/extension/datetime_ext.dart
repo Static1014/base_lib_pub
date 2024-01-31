@@ -6,8 +6,23 @@ import '../util/common_utils.dart';
 /// Date : 2021/8/7 10:05 下午
 extension DateTimeFormat on DateTime {
   /// 格式化，默认yyyy-mm-dd HH:nn:ss
-  String toFormatString({List<String>? format, String daySeparator = '-', String middleSeparator = ' ', String timeSeparator = ':'}) {
-    return mFormatDate(time: this, format: format, daySeparator: daySeparator, middleSeparator: middleSeparator, timeSeparator: timeSeparator);
+  String toFormatString({
+    List<String>? format,
+    String daySeparator = '-',
+    String middleSeparator = ' ',
+    String timeSeparator = ':',
+    String milliSeparator = '-',
+    bool milliSecond = false,
+  }) {
+    return mFormatDate(
+      time: this,
+      format: format,
+      daySeparator: daySeparator,
+      middleSeparator: middleSeparator,
+      timeSeparator: timeSeparator,
+      milliSeparator: milliSeparator,
+      milliSecond: milliSecond,
+    );
   }
 
   /// 时间戳

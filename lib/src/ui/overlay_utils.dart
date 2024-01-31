@@ -76,8 +76,8 @@ void notify(String msg, {String title = '', int durationInSec = 2}) {
 /// @param: msg 消息
 /// @param: onClose 关闭方法回调
 /// @return: 关闭方法
-CancelFunc showLoading(
-  String msg, {
+CancelFunc showLoading({
+  String? msg,
   VoidCallback? onClose,
   double pbSize = 36,
   Color pbColor = BaseColors.cWhite,
@@ -99,16 +99,18 @@ CancelFunc showLoading(
           mainAxisSize: MainAxisSize.min,
           children: [
             mProgressIndicator(size: pbSize, color: pbColor),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 4),
-              child: Text(
-                msg,
-                textAlign: TextAlign.center,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(color: Colors.white, fontSize: 14),
-              ),
-            ),
+            isEmptyOrNull(msg)
+                ? const SizedBox.shrink()
+                : Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 20, 8, 4),
+                    child: Text(
+                      msg ?? '',
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
           ],
         ),
       );
