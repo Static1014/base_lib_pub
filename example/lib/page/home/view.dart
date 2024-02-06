@@ -50,9 +50,21 @@ class HomePage extends StatelessWidget {
                     )),
                 TextButton(
                     onPressed: () {
-                      toast('xxx');
+                      showLoading(builder: (hide) {
+                        return Container(
+                          color: BaseColors.cGreen,
+                          width: Get.width / 2,
+                          height: Get.width / 2,
+                          child: GestureDetector(
+                            child: mText(msg: '我是自定义loading'),
+                            onTap: () {
+                              hide();
+                            },
+                          ),
+                        );
+                      });
                     },
-                    child: mText(msg: '你好')),
+                    child: mText(msg: '自定义loading')),
                 Obx(
                   () => GestureDetector(
                     onTap: () {

@@ -1,3 +1,7 @@
+## 3.3.2
+
+1. overlay_utils/showLoading扩展；
+
 ## 3.3.1
 
 1. log_utils/printLog打印日志，时间显示到毫秒；

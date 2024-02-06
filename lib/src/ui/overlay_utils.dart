@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 /// Created by Static4u
 /// Date : 2023/4/12 17:36
 
-var loadingSize = min(Get.width / 3, 160).roundToDouble();
+var defaultLoadingSize = min(Get.width / 3, 160).roundToDouble();
 
 enum ToastLevel {
   normal, // 灰底白字
@@ -72,48 +72,64 @@ void notify(String msg, {String title = '', int durationInSec = 2}) {
       hideCloseButton: true);
 }
 
+typedef LoadingBuilder = Widget Function(VoidCallback hide);
+
 /// 显示加载中
 /// @param: msg 消息
 /// @param: onClose 关闭方法回调
 /// @return: 关闭方法
 CancelFunc showLoading({
-  String? msg,
   VoidCallback? onClose,
+  String? msg,
+  Color msgColor = Colors.white,
+  TextAlign msgAlign = TextAlign.center,
+  int msgMaxLines = 2,
+  TextOverflow msgOverflow = TextOverflow.ellipsis,
+  TextStyle? msgStyle,
+  double msgFontSize = 14,
   double pbSize = 36,
   Color pbColor = BaseColors.cWhite,
+  double? contentWidth,
+  double? contentHeight,
+  EdgeInsets contentPadding = const EdgeInsets.all(12),
+  EdgeInsets msgPadding = const EdgeInsets.fromLTRB(8, 20, 8, 4),
+  double contentCornerRadius = 8,
+  Color contentBgColor = Colors.black54,
+  LoadingBuilder? builder,
 }) {
   return BotToast.showCustomLoading(
     backButtonBehavior: BackButtonBehavior.ignore, // 拦截返回按钮点击
     onClose: onClose,
     toastBuilder: (func) {
-      return Container(
-        padding: const EdgeInsets.all(12),
-        alignment: Alignment.center,
-        width: loadingSize,
-        height: loadingSize,
-        decoration: const BoxDecoration(
-          color: Colors.black54,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            mProgressIndicator(size: pbSize, color: pbColor),
-            isEmptyOrNull(msg)
-                ? const SizedBox.shrink()
-                : Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 20, 8, 4),
-                    child: Text(
-                      msg ?? '',
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: Colors.white, fontSize: 14),
-                    ),
-                  ),
-          ],
-        ),
-      );
+      return builder != null
+          ? builder.call(func)
+          : Container(
+              padding: contentPadding,
+              alignment: Alignment.center,
+              width: contentWidth ?? defaultLoadingSize,
+              height: contentHeight ?? defaultLoadingSize,
+              decoration: BoxDecoration(
+                color: contentBgColor,
+                borderRadius: BorderRadius.all(Radius.circular(contentCornerRadius)),
+              ),
+              child: Column(
+                children: [
+                  mProgressIndicator(size: pbSize, color: pbColor),
+                  isEmptyOrNull(msg)
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: msgPadding,
+                          child: Text(
+                            msg ?? '',
+                            textAlign: msgAlign,
+                            maxLines: msgMaxLines,
+                            overflow: msgOverflow,
+                            style: msgStyle ?? TextStyle(color: msgColor, fontSize: msgFontSize),
+                          ),
+                        ),
+                ],
+              ),
+            );
     },
   );
 }

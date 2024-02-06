@@ -1,3 +1,7 @@
+## 3.3.2
+
+1. Extend overlay_utils/showLoading.
+
 ## 3.3.1
 
 1. log_utils/printLog prints the log, and the time is displayed to milliseconds;
