@@ -1,3 +1,11 @@
+## 3.4.0
+
+- 提升sdk版本：flutter 3.19.1, dart 3.3.0
+
+1. 新增List扩展，提供元素交换位置方法；
+2. 新增int扩展，提供前部填充字符方法;
+3. 修改example/android中settings.gradle和build.gradle配置；
+
 ## 3.3.2
 
 1. overlay_utils/showLoading扩展；

@@ -1,3 +1,11 @@
+## 3.4.0
+
+- Improved sdk versions: flutter 3.19.1, dart 3.3.0
+
+1. Add the List extension to provide the method of element exchange location;
+2. Add the int extension to provide the front fill character method;
+3. Modify settings.gradle and build.gradle configurations in example/android.
+
 ## 3.3.2
 
 1. Extend overlay_utils/showLoading.

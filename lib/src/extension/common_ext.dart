@@ -104,3 +104,27 @@ extension GlobalKeyExt on GlobalKey {
     return rb.size;
   }
 }
+
+extension SwappableList<E> on List<E> {
+  /// 交换位置
+  bool swap(int first, int second) {
+    if (first < 0 || first >= length) {
+      'The first index is illegal, first: $first, length is $length.'.logE(tag: 'SwappableList');
+      return false;
+    }
+    if (second < 0 || second >= length) {
+      'The second index is illegal, second: $second, length is $length.'.logE(tag: 'SwappableList');
+      return false;
+    }
+
+    if (first == second) {
+      'Swap the same index, first: $first, second: $second.'.logW(tag: 'SwappableList');
+      return false;
+    }
+
+    final tmp = this[first];
+    this[first] = this[second];
+    this[second] = tmp;
+    return true;
+  }
+}

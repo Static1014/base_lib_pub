@@ -17,3 +17,17 @@ extension NumExt on num {
     return this * pi / 180;
   }
 }
+
+extension FullInt on int {
+  /// 整数前填充0
+  String toFullString({int minLength = 2, String ph = '0'}) {
+    String result = '$this';
+    int d = minLength - '$this'.length;
+    if (d > 0) {
+      for (int i = 0; i < d; i++) {
+        result = ph + result;
+      }
+    }
+    return result;
+  }
+}
