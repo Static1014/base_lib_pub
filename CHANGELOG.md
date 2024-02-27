@@ -1,3 +1,7 @@
+## 3.4.1
+
+1. common_ui Added the mButton general simple button component.
+
 ## 3.4.0
 
 - Improved sdk versions: flutter 3.19.1, dart 3.3.0

@@ -859,3 +859,79 @@ Widget mScrollbar({
     child: child,
   );
 }
+
+/// 通用简易按钮
+Widget mButton({
+  required VoidCallback onClick,
+  String? text,
+  double textFontSize = 15,
+  Color textColor = BaseColors.cFontWhite,
+  FontWeight textWeight = FontWeight.normal,
+  EdgeInsets? iconPadding,
+  EdgeInsets? textPadding,
+  Color? bgColor,
+  OutlinedBorder? shape,
+  double borderRadius = 8,
+  IconData? iconData,
+  Icon? icon,
+  Color? iconColor,
+  double? iconSize = 24,
+  double? height = 40,
+  double? width,
+  double minWidth = 0,
+  double minHeight = 0,
+  Widget? child,
+}) {
+  List<Widget> mChildren = [];
+  if (icon != null) {
+    mChildren.add(icon);
+  } else if (iconData != null) {
+    mChildren.add(iconPadding != null
+        ? Padding(
+            padding: iconPadding,
+            child: Icon(iconData, size: iconSize, color: iconColor),
+          )
+        : Icon(iconData, size: iconSize, color: iconColor));
+  }
+  if (text != null) {
+    mChildren.add(textPadding != null
+        ? Padding(
+            padding: textPadding,
+            child: mText(
+              msg: text,
+              color: textColor,
+              weight: textWeight,
+              fontSize: textFontSize,
+            ),
+          )
+        : mText(
+            msg: text,
+            color: textColor,
+            weight: textWeight,
+            fontSize: textFontSize,
+          ));
+  }
+
+  Widget content = SizedBox(
+    height: height,
+    width: width,
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: mChildren,
+    ),
+  );
+  Widget box = minHeight > 0 || minWidth > 0
+      ? ConstrainedBox(
+          constraints: BoxConstraints(minHeight: minHeight, minWidth: minWidth),
+          child: content,
+        )
+      : content;
+  return FilledButton(
+      onPressed: onClick,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(bgColor),
+        shape: MaterialStateProperty.all(shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(borderRadius)))),
+      ),
+      child: child ?? box);
+}

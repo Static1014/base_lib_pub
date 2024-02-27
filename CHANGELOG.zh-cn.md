@@ -1,3 +1,7 @@
+## 3.4.1
+
+1. common_ui新增mButton通用简易按钮组件；
+
 ## 3.4.0
 
 - 提升sdk版本：flutter 3.19.1, dart 3.3.0
