@@ -1,3 +1,7 @@
+## 3.4.3
+
+1. In lang.dart, added common internationalization configurations;
+
 ## 3.4.2
 
 1. common_utils/vibrate Supports custom interval vibration;
