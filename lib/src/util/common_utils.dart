@@ -241,9 +241,29 @@ String formatIntMoney(int num) {
   return result;
 }
 
+void _vibrate() {
+  SystemChannels.platform.invokeMethod('HapticFeedback.vibrate');
+}
+
 // 振动
-void vibrate() async {
+Timer? vibrate({
+  int times = 1,
+  Duration interval = const Duration(milliseconds: 100),
+}) {
   // 需要权限
   // <uses-permission android:name="android.permission.VIBRATE"/>
-  SystemChannels.platform.invokeMethod('HapticFeedback.vibrate');
+  if (times > 1) {
+    // 多次
+    int count = 0;
+    return doInterval(interval, callOnStart: true, (timer) {
+      if (count >= times) {
+        timer?.cancel();
+      }
+      _vibrate();
+      count++;
+    });
+  } else {
+    _vibrate();
+    return null;
+  }
 }

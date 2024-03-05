@@ -1,3 +1,7 @@
+## 3.4.2
+
+1. common_utils/vibrate支持自定义间隔振动；
+
 ## 3.4.1
 
 1. common_ui新增mButton通用简易按钮组件；

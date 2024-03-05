@@ -1,3 +1,7 @@
+## 3.4.2
+
+1. common_utils/vibrate Supports custom interval vibration;
+
 ## 3.4.1
 
 1. common_ui Added the mButton general simple button component.
