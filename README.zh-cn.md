@@ -90,7 +90,7 @@ _语言_: [![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-Zh--c
 1. 个人开源，能力有限，轻喷；
 2. 该项目大部分时间只在个别私人Android设备上调试；
 3. 如存在兼容性问题，可邮箱联系[420048248@qq.com](mailto:420048248@qq.com)或通过底部联系方式进行反馈；
-4. 开发调试基于：Flutter 3.13.2, Dart 3.1.0；
+4. 开发调试基于：Flutter 3.19.2, Dart 3.3.0；
 
 ## 使用
 
@@ -100,23 +100,25 @@ _语言_: [![Static Badge](https://img.shields.io/badge/%E4%B8%AD%E6%96%87-Zh--c
 
 ```dart
 import 'package:base_lib_pub/base_lib_pub.dart';
-
-// ...
+import 'package:base_lib_pub_example/route/routes.dart';
+import 'package:base_lib_pub_example/translation/translation.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  initBaseApp(
+  runMyApp(
+    const MyApp(),
     enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
+    beforeRun: () async {
+      /// 初始化网络请求
+      initGlobalDio(ignoreCertificate: true);
+    },
   );
-  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key}) {
-    /// 初始化网络请求
-    initDio(baseUrl: '');
-  }
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -125,14 +127,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return baseApp(
       // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
       // 国际化配置
-      locale: MyTranslations.locale,
-      fallbackLocale: MyTranslations.fallbackLocale,
-      translations: MyTranslations(),
+      locale: MyTrans.locale,
+      fallbackLocale: MyTrans.fallbackLocale,
+      translations: MyTrans(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
-import '../../getx/getx_animation_controller_mixin.dart';
-import '../../theme/base_colors.dart';
-import '../../translation/lang.dart';
-import '../../ui/common_ui.dart';
-import '../../util/common_utils.dart';
+import '../../../base_lib_pub.dart';
 
 /// Name: m_dialog.dart
 ///

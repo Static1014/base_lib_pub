@@ -5,6 +5,26 @@
 // ignore: non_constant_identifier_names
 final BaseTrs = BaseTrsClass();
 
+extension StringLangFormat on String {
+  /// 国际化文字带参数，
+  /// 如：
+  /// hello = “你好，#1”/“Hello, #1”,
+  /// 通过Trs.hello.tr.withArgs(['Flutter'])，
+  /// 变为“你好，Flutter”/“Hello, Flutter”
+  String withArgs(List<String> args, {String prefix = '#'}) {
+    String result = this;
+    for (var i = 0; i < args.length; i++) {
+      final value = args[i];
+      final tmp = '$prefix${i + 1}';
+      if (result.contains(tmp)) {
+        result = result.replaceAll(tmp, value);
+      }
+    }
+
+    return result;
+  }
+}
+
 class BaseTrsClass {
   /// ************************************************ base ************************************************
   // 双击退出
@@ -93,7 +113,7 @@ class BaseTrsClass {
   final start = "start";
   final continues = "continues";
   final reset = "reset";
-  final leaderboard = "leaderboard";
+  final topList = "topList";
   final close = "close";
   final sortNo = "sortNo";
   final timeCount = "timeCount";
@@ -185,7 +205,7 @@ final baseEnUS = {
   BaseTrs.start: 'Start',
   BaseTrs.continues: 'Continue',
   BaseTrs.reset: 'Reset',
-  BaseTrs.leaderboard: 'Leaderboard',
+  BaseTrs.topList: 'Top List',
   BaseTrs.sortNo: 'No.',
   BaseTrs.timeCount: 'Time spent',
   BaseTrs.timeAt: 'Time point',
@@ -275,7 +295,7 @@ final baseZhCN = {
   BaseTrs.start: '开始',
   BaseTrs.continues: '继续',
   BaseTrs.reset: '重置',
-  BaseTrs.leaderboard: '排行榜',
+  BaseTrs.topList: '排行榜',
   BaseTrs.sortNo: '排名',
   BaseTrs.timeCount: '用时',
   BaseTrs.timeAt: '时间',

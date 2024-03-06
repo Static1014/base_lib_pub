@@ -77,7 +77,7 @@ It would be great if someone could get some help in the project.
     1. Log output;
     2. Date formatting;
     3. Rolling controller;
-    4. getx: myget extends GetInterface；;
+   4. getx: MyGet extends GetInterface；;
 8. Others
     1. GetxAnimationControllerMixin gets AnimationController；;
     2. GetTicker to get TickerProvider；;
@@ -88,7 +88,7 @@ It would be great if someone could get some help in the project.
 1. Personal open source, limited ability, light spray;
 2. Most of the time, the project is only debugging on individual private Android devices. 
 3. If there is any compatibility problem, please email to [420048248@qq.com](mailto:420048248@qq.com) or use the contact information at the bottom to give feedback;
-4. Based on Flutter 3.13.0, Dart 3.1.0；
+4. Based on Flutter 3.19.2, Dart 3.3.0；
 
 
 ## Usage
@@ -99,23 +99,25 @@ The [entrance](example/lib/main.dart) is as follows:
 
 ```dart
 import 'package:base_lib_pub/base_lib_pub.dart';
-
-// ...
+import 'package:base_lib_pub_example/route/routes.dart';
+import 'package:base_lib_pub_example/translation/translation.dart';
+import 'package:flutter/material.dart';
 
 void main() {
-  initBaseApp(
+  runMyApp(
+    const MyApp(),
     enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
+    beforeRun: () async {
+      /// 初始化网络请求
+      initGlobalDio(ignoreCertificate: true);
+    },
   );
-  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key}) {
-    /// 初始化网络请求
-    initDio(baseUrl: '');
-  }
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -124,14 +126,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return baseApp(
       // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
       // 国际化配置
-      locale: MyTranslations.locale,
-      fallbackLocale: MyTranslations.fallbackLocale,
-      translations: MyTranslations(),
+      locale: MyTrans.locale,
+      fallbackLocale: MyTrans.fallbackLocale,
+      translations: MyTrans(),
       // botToast
       builder: toastBuilder,
       navigatorObservers: [toastObserver],

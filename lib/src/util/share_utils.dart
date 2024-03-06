@@ -4,9 +4,7 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../extension/common_ext.dart';
-import '../translation/lang.dart';
-import '../ui/overlay_utils.dart';
+import '../../base_lib_pub.dart';
 
 /// Name: share_utils.dart
 ///

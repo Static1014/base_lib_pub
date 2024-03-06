@@ -19,7 +19,7 @@ export 'src/route/nav.dart';
 export 'src/theme/base_colors.dart';
 export 'src/theme/base_dimens.dart';
 export 'src/theme/base_theme.dart';
-export 'src/translation/lang.dart';
+export 'src/trans/lang.dart';
 export 'src/ui/common_ui.dart';
 export 'src/ui/dialog/m_dialog.dart';
 export 'src/ui/keep_alive_wrapper.dart';

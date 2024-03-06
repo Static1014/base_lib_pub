@@ -51,7 +51,7 @@ android {
 
         // 指定打包语言，去除第三方包引入的各种语言，只保留本APP指定的语言资源
         // google play会检测是否存在不支持的语言
-        // todo 此处配置需要与example/lib/translation/translation.dart中keys所对应，否则会出现国际化资源无法识别的问题
+        // todo 此处配置需要与example/lib/trans/trans.dart中keys所对应，否则会出现国际化资源无法识别的问题
         resConfigs "zh_CN", "en_US"
         ndk {
             // 放弃支持x86

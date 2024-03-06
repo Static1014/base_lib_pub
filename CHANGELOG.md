@@ -1,3 +1,8 @@
+## 3.4.4
+
+1. Adjust the internationalization content in lang.dart;
+2. Extended String to support internationalization with parameters;
+
 ## 3.4.3
 
 1. In lang.dart, added common internationalization configurations;
