@@ -1,3 +1,7 @@
+## 3.4.5
+
+1. 在common_ui部分组件中添加semanticLabel属性；
+
 ## 3.4.4
 
 1. 调整lang.dart中的国际化内容；

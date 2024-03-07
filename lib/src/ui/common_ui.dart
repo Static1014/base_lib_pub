@@ -179,6 +179,7 @@ PreferredSizeWidget mAppBar({
   Widget? titleView,
   SystemUiOverlayStyle? systemOverlayStyle,
   bool automaticallyImplyLeading = true,
+  String? semanticsLabel,
 }) {
   if (autoBackEnable) {
     backEnable = Nav.isPopEnable();
@@ -215,6 +216,7 @@ PreferredSizeWidget mAppBar({
           msg: title,
           color: titleColor,
           fontSize: titleFontSize,
+          semanticsLabel: semanticsLabel,
         ),
     actions: actions,
     bottom: bottom,
@@ -241,14 +243,23 @@ Widget mText({
   FontStyle fontStyle = FontStyle.normal,
   Color? bgColor,
   TextStyle? style,
+  String? semanticsLabel,
 }) {
   if (style != null) {
-    return Text(msg, textAlign: textAlign, maxLines: maxLines, overflow: overflow, style: style);
+    return Text(
+      msg,
+      textAlign: textAlign,
+      maxLines: maxLines,
+      overflow: overflow,
+      style: style,
+      semanticsLabel: semanticsLabel,
+    );
   }
   return Text(msg,
       textAlign: textAlign,
       maxLines: maxLines,
       overflow: overflow,
+      semanticsLabel: semanticsLabel,
       style: TextStyle(
         fontWeight: weight,
         fontSize: fontSize,
@@ -469,6 +480,7 @@ Widget mImageView(
   bool cache = true,
   Clip clipBehavior = Clip.antiAlias,
   HttpClient? httpClient,
+  String? semanticLabel,
 }) {
   if (size != null && size > 0 && width == null && height == null) {
     width = size;
@@ -483,6 +495,7 @@ Widget mImageView(
         height: errorSize,
         child: Image.asset(
           errorImgPath,
+          semanticLabel: semanticLabel,
           fit: BoxFit.cover,
           package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
         ),
@@ -521,6 +534,7 @@ Widget mImageView(
                 height: errorSize,
                 child: Image.asset(
                   errorImgPath,
+                  semanticLabel: semanticLabel,
                   fit: BoxFit.cover,
                   package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
                 ),
@@ -528,6 +542,7 @@ Widget mImageView(
             )
           : ExtendedImage.asset(
               url,
+              semanticLabel: semanticLabel,
               enableSlideOutPage: enableSlideOutPage,
               initGestureConfigHandler: initGestureConfigHandler,
               mode: mode,
@@ -544,6 +559,7 @@ Widget mImageView(
       iv = isLocal
           ? ExtendedImage.file(
               File(url),
+              semanticLabel: semanticLabel,
               enableSlideOutPage: enableSlideOutPage,
               initGestureConfigHandler: initGestureConfigHandler,
               mode: mode,
@@ -557,6 +573,7 @@ Widget mImageView(
             )
           : MyExtendedImageWithHttpClient.network(
               url,
+              semanticLabel: semanticLabel,
               enableSlideOutPage: enableSlideOutPage,
               initGestureConfigHandler: initGestureConfigHandler,
               mode: mode,
@@ -593,6 +610,7 @@ LoadStateChanged _getLoadStateChanged({
   String? package,
   bool enableFadeIn = false,
   Duration fadeInDuration = const Duration(milliseconds: 600),
+  String? semanticLabel,
 }) {
   return (state) {
     switch (state.extendedImageLoadState) {
@@ -616,6 +634,7 @@ LoadStateChanged _getLoadStateChanged({
         if (errorSize == 0) {
           return Image.asset(
             errorImgPath,
+            semanticLabel: semanticLabel,
             fit: BoxFit.cover,
             package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
           );
@@ -626,6 +645,7 @@ LoadStateChanged _getLoadStateChanged({
               height: errorSize,
               child: Image.asset(
                 errorImgPath,
+                semanticLabel: semanticLabel,
                 fit: BoxFit.cover,
                 package: errorImgPath.startsWith(GlobalConst.baseAssetsPrefix) ? GlobalConst.packageName : package,
               )),
@@ -662,6 +682,7 @@ Widget mAvatar({
   Color borderColor = BaseColors.cYellow,
   BoxShape? shape,
   String? package,
+  String? semanticLabel,
 }) {
   shape ??= BoxShape.circle;
   double radius = 0;
@@ -680,6 +701,7 @@ Widget mAvatar({
           height: size,
           child: mImageView(
             url,
+            semanticLabel: semanticLabel,
             borderWidth: borderWidth,
             borderColor: borderColor,
             radius: radius,
@@ -695,7 +717,7 @@ Widget mAvatar({
 }
 
 /// 获取简单BoxDecoration
-BoxDecoration mSimpleBoxDecoration({
+BoxDecoration mBoxDecoration({
   Color borderColor = BaseColors.cGrayLine,
   double borderWidth = 0,
   BorderStyle borderStyle = BorderStyle.solid,
@@ -881,6 +903,7 @@ Widget mButton({
   double minWidth = 0,
   double minHeight = 0,
   Widget? child,
+  String? semanticsLabel,
 }) {
   List<Widget> mChildren = [];
   if (icon != null) {
@@ -902,6 +925,7 @@ Widget mButton({
               color: textColor,
               weight: textWeight,
               fontSize: textFontSize,
+              semanticsLabel: semanticsLabel,
             ),
           )
         : mText(
@@ -909,6 +933,7 @@ Widget mButton({
             color: textColor,
             weight: textWeight,
             fontSize: textFontSize,
+            semanticsLabel: semanticsLabel,
           ));
   }
 

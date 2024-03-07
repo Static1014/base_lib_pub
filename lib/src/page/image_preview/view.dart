@@ -211,7 +211,7 @@ class ImagePreviewPage extends StatelessWidget {
                                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                    decoration: mSimpleBoxDecoration(solidColor: BaseColors.cBlackTrans),
+                                    decoration: mBoxDecoration(solidColor: BaseColors.cBlackTrans),
                                     child: Obx(() {
                                       return mText(
                                         msg: "${logic._curIndex.value + 1} / ${logic._imgList.length}",

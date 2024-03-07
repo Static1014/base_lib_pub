@@ -34,12 +34,12 @@ class ListFooterView extends StatelessWidget {
   final Callback? retryCallback;
 
   const ListFooterView({
-    Key? key,
+    super.key,
     this.height = 40,
     this.width = double.infinity,
     required this.logic,
     this.retryCallback,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

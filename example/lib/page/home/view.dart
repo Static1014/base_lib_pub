@@ -30,6 +30,8 @@ class HomePage extends StatelessWidget {
             child: Column(
               children: [
                 IconButton(
+                    highlightColor: BaseColors.cBlue,
+                    padding: const EdgeInsets.all(8),
                     onPressed: () {
                       tapDialog = MDialog.simpleAnimate(
                           child: GestureDetector(
@@ -46,8 +48,22 @@ class HomePage extends StatelessWidget {
                     },
                     icon: const Icon(
                       Icons.add,
+                      size: 40,
                       color: BaseColors.cGreen,
                     )),
+                mInkView(
+                  splashShape: BoxShape.circle,
+                  splashRadius: 40,
+                  splashColor: BaseColors.cRed,
+                  onClick: () {
+                    toast('ink');
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 40,
+                    color: BaseColors.cBlue,
+                  ),
+                ),
                 TextButton(
                     onPressed: () {
                       showLoading(builder: (hide) {
@@ -336,7 +352,7 @@ class HomePage extends StatelessWidget {
                     bgColor: BaseColors.cBlack,
                     bgOpacityBase: 0.44,
                     pagePadding: EdgeInsets.symmetric(vertical: Get.size.height / 4 / 2, horizontal: 40),
-                    pageDecoration: mSimpleBoxDecoration(borderRadius: 20),
+                    pageDecoration: mBoxDecoration(borderRadius: 20),
                     bottomView: GestureDetector(
                       onTap: () {
                         Nav.pop();

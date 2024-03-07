@@ -263,25 +263,45 @@ class MDialog {
   /// 常用的两按钮
   static List<Widget> doubleActions({
     String? leftBtnText,
+    String? leftBtnSemanticsLabel,
     Color? leftColor,
     Callback? leftCallback,
     String? rightBtnText,
+    String? rightBtnSemanticsLabel,
     Color? rightColor,
     Callback? rightCallback,
+    TextStyle? leftStyle,
+    TextStyle? rightStyle,
+    double? leftFontSize,
+    double? rightFontSize,
+    FontWeight? leftFontWeight,
+    FontWeight? rightFontWeight,
   }) {
     return [
       TextButton(
         onPressed: leftCallback,
         child: Text(
           leftBtnText ?? BaseTrs.cancel.tr,
-          style: TextStyle(color: leftColor),
+          semanticsLabel: leftBtnSemanticsLabel,
+          style: leftStyle ??
+              TextStyle(
+                color: leftColor,
+                fontSize: leftFontSize,
+                fontWeight: leftFontWeight,
+              ),
         ),
       ),
       TextButton(
         onPressed: rightCallback,
         child: Text(
+          semanticsLabel: rightBtnSemanticsLabel,
           rightBtnText ?? BaseTrs.confirm.tr,
-          style: TextStyle(color: rightColor),
+          style: rightStyle ??
+              TextStyle(
+                color: rightColor,
+                fontSize: rightFontSize,
+                fontWeight: rightFontWeight,
+              ),
         ),
       ),
     ];

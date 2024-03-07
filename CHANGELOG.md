@@ -1,3 +1,7 @@
+## 3.4.5
+
+1. Add the semanticLabel attribute to widgets in common_ui.
+
 ## 3.4.4
 
 1. Adjust the internationalization content in lang.dart;
