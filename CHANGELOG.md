@@ -1,3 +1,7 @@
+## 3.5.1
+
+1. remove location_utils depended on geolocator to example;
+
 ## 3.5.0
 
 1. Update base dependencies;
