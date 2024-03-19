@@ -1,8 +1,7 @@
 import 'dart:io';
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:geolocator/geolocator.dart';
-
-import '../../../base_lib_pub.dart';
 
 /// Name: location_utils.dart
 ///

@@ -1,3 +1,7 @@
+## 3.5.1
+
+1. 将location_utils移动到example项目中;
+
 ## 3.5.0
 
 1. 更新base依赖；

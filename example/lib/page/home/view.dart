@@ -5,6 +5,7 @@ import 'package:base_lib_pub_example/translation/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../utils/location_utils.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {
