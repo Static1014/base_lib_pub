@@ -132,7 +132,7 @@ final baseEnUS = {
   BaseTrs.cancel: 'Cancel',
   BaseTrs.share: 'Share',
   BaseTrs.delete: 'Delete',
-  BaseTrs.close: '关闭',
+  BaseTrs.close: 'Close',
   BaseTrs.leftDelete: '<< Sliding left to delete',
   BaseTrs.leaveOne: 'It can\'t be less',
   BaseTrs.setting: 'Setting',

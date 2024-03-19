@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:base_lib_pub/src/util/url_launcher_utils.dart';
+import 'package:base_lib_pub/src/util/url_launcher/url_launcher_utils.dart';
 import 'package:flutter/widgets.dart';
 
 import '../util/common_utils.dart' as common_util;

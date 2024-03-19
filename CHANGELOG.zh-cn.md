@@ -1,3 +1,9 @@
+## 3.5.0
+
+1. 更新base依赖；
+2. 修正国际化lang.dart中的内容；
+3. 新增location_utils，使用geoLocator获取定位信息；
+
 ## 3.4.5
 
 1. 在common_ui部分组件中添加semanticLabel属性；

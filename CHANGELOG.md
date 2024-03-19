@@ -1,3 +1,9 @@
+## 3.5.0
+
+1. Update base dependencies;
+2. Fixed the content in internationalization lang.dart;
+3. Add location_utils and use geoLocator to obtain location information.
+
 ## 3.4.5
 
 1. Add the semanticLabel attribute to widgets in common_ui.

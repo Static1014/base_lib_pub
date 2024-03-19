@@ -29,6 +29,20 @@ class HomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                _buildTestFunc('定位', () async {
+                  var position = await getLocation();
+                  position.toString().logI();
+                  // "geo:39.11270601,117.2167114".launch();
+                  toast(position.toString());
+                }),
+                // _buildTestFunc('打开高德地图导航', () async {
+                //   var position = await getLocation();
+                //   openAmap(position.longitude, position.latitude);
+                // }),
+                // _buildTestFunc('打开苹果地图', () async {
+                //   var position = await getLocation();
+                //   openAppleMap(position.longitude, position.latitude);
+                // }),
                 IconButton(
                     highlightColor: BaseColors.cBlue,
                     padding: const EdgeInsets.all(8),
