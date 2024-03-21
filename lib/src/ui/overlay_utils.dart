@@ -113,6 +113,8 @@ CancelFunc showLoading({
                 borderRadius: BorderRadius.all(Radius.circular(contentCornerRadius)),
               ),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   mProgressIndicator(size: pbSize, color: pbColor),
                   isEmptyOrNull(msg)

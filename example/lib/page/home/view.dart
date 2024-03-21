@@ -36,6 +36,24 @@ class HomePage extends StatelessWidget {
                   // "geo:39.11270601,117.2167114".launch();
                   toast(position.toString());
                 }),
+                _buildTestFunc('振动 tap', () async {
+                  Shake.tap();
+                }),
+                _buildTestFunc('振动 error', () async {
+                  Shake.error();
+                }),
+                _buildTestFunc('振动 notify', () async {
+                  Shake.notify();
+                }),
+                _buildTestFunc('振动1000ms, 255, 3', () async {
+                  vibrate(duration: 500, repeat: 3);
+                }),
+                _buildTestFunc('振动2000ms, 1, 3', () async {
+                  vibrate(duration: 1000, repeat: 3);
+                }),
+                _buildTestFunc('振动[100, 200, 100, 200]', () async {
+                  vibrate(pattern: [100, 200, 100, 300, 100, 400, 100, 500], intensities: [1, 255]);
+                }),
                 // _buildTestFunc('打开高德地图导航', () async {
                 //   var position = await getLocation();
                 //   openAmap(position.longitude, position.latitude);

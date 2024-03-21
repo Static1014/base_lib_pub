@@ -159,7 +159,7 @@ typedef MAppBarBuilder = PreferredSizeWidget Function();
 PreferredSizeWidget mAppBar({
   String title = '',
   bool centerTitle = true,
-  Color titleColor = BaseColors.cFontWhite,
+  Color? titleColor,
   double titleFontSize = BaseDimens.dFontSizeTitle,
   FontWeight titleFontWeight = FontWeight.bold,
   int titleMaxLine = 1,
@@ -167,7 +167,7 @@ PreferredSizeWidget mAppBar({
   double? elevation = 0,
   Color? backgroundColor,
   Widget? leading, // 自定义左侧按钮
-  Color? backIconColor = Colors.white, // 左侧返回按钮
+  Color? backIconColor, // 左侧返回按钮
   bool backEnable = false,
   bool autoBackEnable = true,
   VoidCallback? backPressed,

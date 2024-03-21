@@ -1,3 +1,8 @@
+## 3.6.0
+
+1. 修正showLoading视图元素居中问题；
+2. 替换振动反馈实现vibrate_utils；
+
 ## 3.5.1
 
 1. 将location_utils移动到example项目中;

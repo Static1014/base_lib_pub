@@ -1,3 +1,8 @@
+## 3.6.0
+
+1. Fixed centering of elements in showLoading view.
+2. Replace vibrate_utils with vibrate_utils;
+
 ## 3.5.1
 
 1. remove location_utils depended on geolocator to example;
