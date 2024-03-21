@@ -1,7 +1,9 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub_example/route/routes.dart';
-import 'package:base_lib_pub_example/translation/translation.dart';
+import 'package:base_lib_pub_example/theme/my_themes.dart';
 import 'package:flutter/material.dart';
+
+import 'trans/translation.dart';
 
 void main() {
   runMyApp(
@@ -9,6 +11,8 @@ void main() {
     enableLog: true,
     unPopRoutes: [Routes.init, Routes.home],
     initWeChat: true,
+    isStatusBarIconLight: false,
+    isSysNavigationBarIconLight: false,
     beforeRun: () async {
       /// 初始化网络请求
       initGlobalDio(ignoreCertificate: true);
@@ -30,6 +34,10 @@ class _MyAppState extends State<MyApp> {
       // 路由
       initialRoute: Routes.init,
       getPages: Routes.getPages(),
+      // theme
+      themeMode: ThemeMode.light,
+      theme: MyThemes.light,
+      darkTheme: MyThemes.dark,
       // 国际化配置
       locale: MyTrans.locale,
       fallbackLocale: MyTrans.fallbackLocale,

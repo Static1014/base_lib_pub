@@ -4,6 +4,7 @@ export 'src/base_main.dart';
 export 'src/component/image/my_extended_image_provider_with_custom_http_client.dart';
 export 'src/component/image/my_extended_image_with_http_client.dart';
 export 'src/const/global_const.dart';
+export 'src/extension/color_ext.dart';
 export 'src/extension/common_ext.dart';
 export 'src/extension/datetime_ext.dart';
 export 'src/extension/num_ext.dart';

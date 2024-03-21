@@ -12,6 +12,9 @@ class MyTrans extends Translations {
   // 默认使用设备locale
   static Locale? get locale => Get.deviceLocale;
 
+  // 是否是英文
+  static bool get isEn => Get.locale?.languageCode == 'en';
+
   // locale指定失败时的locale
   static const fallbackLocale = Locale('zh', 'CN');
 

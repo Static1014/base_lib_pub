@@ -6,8 +6,8 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
-import 'package:get/get_utils/get_utils.dart';
 import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 
 /// Name: common_ui.dart
@@ -160,11 +160,11 @@ PreferredSizeWidget mAppBar({
   String title = '',
   bool centerTitle = true,
   Color? titleColor,
-  double titleFontSize = BaseDimens.dFontSizeTitle,
-  FontWeight titleFontWeight = FontWeight.bold,
+  double? titleFontSize,
+  FontWeight? titleFontWeight,
   int titleMaxLine = 1,
   double height = 0,
-  double? elevation = 0,
+  double? elevation,
   Color? backgroundColor,
   Widget? leading, // 自定义左侧按钮
   Color? backIconColor, // 左侧返回按钮
@@ -212,10 +212,11 @@ PreferredSizeWidget mAppBar({
     title: titleView ??
         mText(
           maxLines: titleMaxLine,
-          weight: titleFontWeight,
+          weight: titleFontWeight ?? Get.theme.appBarTheme.titleTextStyle?.fontWeight ?? FontWeight.bold,
           msg: title,
+          // color: titleColor ?? Get.theme.appBarTheme.titleTextStyle?.color,
           color: titleColor,
-          fontSize: titleFontSize,
+          fontSize: titleFontSize ?? Get.theme.appBarTheme.titleTextStyle?.fontSize ?? BaseDimens.dFontSizeTitle,
           semanticsLabel: semanticsLabel,
         ),
     actions: actions,
@@ -263,7 +264,7 @@ Widget mText({
       style: TextStyle(
         fontWeight: weight,
         fontSize: fontSize,
-        color: color ?? BaseColors.cFontBlack,
+        color: color,
         height: lineHeightFactor,
         backgroundColor: bgColor,
         decoration: TextDecoration.none,

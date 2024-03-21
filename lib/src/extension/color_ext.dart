@@ -25,4 +25,8 @@ extension ColorExt on Color {
     }
     return MaterialColor(color.value, swatch);
   }
+
+  get toMaterialStatePropertyAll {
+    return MaterialStatePropertyAll<Color>(this);
+  }
 }

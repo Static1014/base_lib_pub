@@ -1,4 +1,5 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:base_lib_pub_example/page/setting/view.dart';
 import 'package:get/get.dart';
 
 import '../page/home/view.dart';
@@ -19,6 +20,7 @@ class MyRoutesClass extends BaseRoutesClass {
 
   /// 基础测试页
   final test = '/test';
+  final setting = '/setting';
 
   @override
   List<GetPage> getPages() {
@@ -26,6 +28,7 @@ class MyRoutesClass extends BaseRoutesClass {
       ..addAll([
         GetPage(name: Routes.init, transition: Transition.fade, page: () => HomePage()),
         GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
+        GetPage(name: Routes.setting, transition: Transition.rightToLeft, page: () => SettingPage()),
       ]);
   }
 }

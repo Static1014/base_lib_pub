@@ -1,10 +1,11 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub_example/page/test/logic.dart';
 import 'package:base_lib_pub_example/route/nav_ext.dart';
-import 'package:base_lib_pub_example/translation/lang.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../route/routes.dart';
+import '../../trans/lang.dart';
 import '../../utils/location_utils.dart';
 import 'logic.dart';
 
@@ -14,22 +15,53 @@ class HomePage extends StatelessWidget {
   final logic = Get.put(HomeLogic());
   final MySlidableManager slidableManager = MySlidableManager();
   MDialog? tapDialog;
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     return mRoot(
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: mAppBar(
           title: Trs.appName.tr,
           backEnable: false,
-          centerTitle: false,
-          systemOverlayStyle: getSystemOverlayStyle(sysNavigationBarColor: BaseColors.cPrimaryColor),
+          autoBackEnable: false,
+          actions: [
+            IconButton(
+              onPressed: () {
+                for (int i = 0; i < 30; i++) {
+                  Nav.push(Routes.setting, singleTop: false);
+                }
+              },
+              icon: const Icon(Icons.settings),
+            ),
+          ],
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 40),
+          child: FloatingActionButton(
+            onPressed: () {
+              scrollController.toggleScroll();
+            },
+            child: Transform.rotate(
+              angle: 90.toAngle(),
+              child: const Icon(Icons.compare_arrows),
+            ),
+          ),
         ),
         body: mScrollConfig(
           scrollBar: true,
+          controller: scrollController,
           child: SingleChildScrollView(
+            controller: scrollController,
             child: Column(
               children: [
+                FilledButton(
+                  onPressed: () {
+                    toast('msg');
+                  },
+                  child: const Text('你好，我是按钮'),
+                ),
                 _buildTestFunc('定位', () async {
                   var position = await getLocation();
                   position.toString().logI();
@@ -172,7 +204,8 @@ class HomePage extends StatelessWidget {
                                 width: double.infinity,
                                 height: 60,
                                 alignment: Alignment.center,
-                                color: BaseColors.cBlue,
+                                color: Theme.of(context).primaryColor,
+                                // color: Theme.of(context).primaryColor,
                                 child: mText(msg: '你好，我有侧滑菜单1'),
                               ),
                             ),
@@ -199,7 +232,7 @@ class HomePage extends StatelessWidget {
                                       width: double.infinity,
                                       height: 60,
                                       alignment: Alignment.center,
-                                      color: BaseColors.cBlue,
+                                      color: Theme.of(context).primaryColor,
                                       child: mText(msg: '你好，我有侧滑菜单2，侧滑够长可直接移除'),
                                     ),
                                   ),
