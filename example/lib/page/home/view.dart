@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 
 import '../../route/routes.dart';
 import '../../trans/lang.dart';
-import '../../utils/location_utils.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {
@@ -62,12 +61,12 @@ class HomePage extends StatelessWidget {
                   },
                   child: const Text('你好，我是按钮'),
                 ),
-                _buildTestFunc('定位', () async {
-                  var position = await getLocation();
-                  position.toString().logI();
-                  // "geo:39.11270601,117.2167114".launch();
-                  toast(position.toString());
-                }),
+                // _buildTestFunc('定位', () async {
+                //   var position = await getLocation();
+                //   position.toString().logI();
+                //   // "geo:39.11270601,117.2167114".launch();
+                //   toast(position.toString());
+                // }),
                 _buildTestFunc('振动 tap', () async {
                   Shake.tap();
                 }),

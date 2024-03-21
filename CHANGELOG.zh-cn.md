@@ -2,6 +2,7 @@
 
 1. 修正showLoading视图元素居中问题；
 2. 替换振动反馈实现vibrate_utils；
+3. example/android项目下新增flutter基础混淆；
 
 ## 3.5.1
 

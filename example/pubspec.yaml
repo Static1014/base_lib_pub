@@ -33,7 +33,7 @@ dependencies:
   # get
   get: ^4.6.6
   # locator
-  geolocator: ^11.0.0
+  #  geolocator: ^11.0.0
   wechat_assets_picker: ^9.0.2
 
 dev_dependencies:
