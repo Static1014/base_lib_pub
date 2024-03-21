@@ -28,9 +28,7 @@ class HomePage extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                for (int i = 0; i < 30; i++) {
-                  Nav.push(Routes.setting, singleTop: false);
-                }
+                Nav.push(Routes.setting);
               },
               icon: const Icon(Icons.settings),
             ),
