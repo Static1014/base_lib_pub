@@ -3,6 +3,7 @@
 1. 修正showLoading视图元素居中问题；
 2. 替换振动反馈实现vibrate_utils；
 3. example/android项目下新增flutter基础混淆；
+4. 修改base_theme，新增my_theme(light、red)，在example/setting中可修改并记录主题；
 
 ## 3.5.1
 

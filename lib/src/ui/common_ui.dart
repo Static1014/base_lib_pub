@@ -127,19 +127,21 @@ Widget mRoot({
   bool safeBottom = true,
   bool safeLeft = true,
   bool safeRight = true,
-  Color? safeAreaBgColor = BaseColors.cWhite, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
+  Color? safeAreaBgColor, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
 }) {
   var cc = GestureDetector(
       onTap: hideKeyboard,
       child: safeArea
-          ? Container(
-              color: safeAreaBgColor,
-              child: SafeArea(
-                top: safeTop,
-                bottom: safeBottom,
-                left: safeLeft,
-                right: safeRight,
-                child: child,
+          ? Builder(
+              builder: (ctx) => Container(
+                color: safeAreaBgColor ?? Theme.of(ctx).colorScheme.surface,
+                child: SafeArea(
+                  top: safeTop,
+                  bottom: safeBottom,
+                  left: safeLeft,
+                  right: safeRight,
+                  child: child,
+                ),
               ),
             )
           : child);
@@ -158,7 +160,7 @@ typedef MAppBarBuilder = PreferredSizeWidget Function();
 /// 统一appbar
 PreferredSizeWidget mAppBar({
   String title = '',
-  bool centerTitle = true,
+  bool? centerTitle,
   Color? titleColor,
   double? titleFontSize,
   FontWeight? titleFontWeight,
@@ -210,14 +212,17 @@ PreferredSizeWidget mAppBar({
     centerTitle: centerTitle,
     automaticallyImplyLeading: automaticallyImplyLeading,
     title: titleView ??
-        mText(
-          maxLines: titleMaxLine,
-          weight: titleFontWeight ?? Get.theme.appBarTheme.titleTextStyle?.fontWeight ?? FontWeight.bold,
-          msg: title,
-          // color: titleColor ?? Get.theme.appBarTheme.titleTextStyle?.color,
-          color: titleColor,
-          fontSize: titleFontSize ?? Get.theme.appBarTheme.titleTextStyle?.fontSize ?? BaseDimens.dFontSizeTitle,
-          semanticsLabel: semanticsLabel,
+        Builder(
+          builder: (ctx) => mText(
+            title,
+            maxLines: titleMaxLine,
+            semanticsLabel: semanticsLabel,
+            style: Theme.of(ctx).appBarTheme.titleTextStyle?.copyWith(
+                  fontWeight: titleFontWeight,
+                  color: titleColor,
+                  fontSize: titleFontSize,
+                ),
+          ),
         ),
     actions: actions,
     bottom: bottom,
@@ -232,16 +237,16 @@ PreferredSizeWidget mAppBar({
 }
 
 /// 获取普通Text
-Widget mText({
-  required String msg,
-  double fontSize = 15,
-  FontWeight weight = FontWeight.normal,
+Widget mText(
+  String msg, {
+  double? fontSize,
+  FontWeight? weight,
   Color? color,
-  TextAlign textAlign = TextAlign.start,
+  TextAlign? textAlign,
   int? maxLines = 1000,
-  TextOverflow overflow = TextOverflow.ellipsis,
-  double? lineHeightFactor = 1.3, // 1.3基本保证文字上下居中
-  FontStyle fontStyle = FontStyle.normal,
+  TextOverflow? overflow,
+  double? lineHeightFactor, // 1.3基本保证文字上下居中
+  FontStyle? fontStyle,
   Color? bgColor,
   TextStyle? style,
   String? semanticsLabel,
@@ -277,11 +282,17 @@ Widget mTextField({
   String? hint,
   int maxLines = 1,
   int minLines = 1,
+  Widget? prefix,
   IconData? prefixIconData,
+  double? prefixIconSize,
+  EdgeInsets prefixIconPadding = const EdgeInsets.only(left: 6),
   TextEditingController? controller,
+  Color? textColor,
   int? maxLength,
-  Color iconColor = BaseColors.cPrimaryColor,
-  double fontSize = BaseDimens.dFontSizeNormal,
+  Color? iconColor,
+  Color? hintColor,
+  double? fontSize,
+  double fontHeight = 1.2,
   double paddingHorizontal = 6,
   double paddingVertical = BaseDimens.dPadding, // 可调节输入高度
   bool obscureText = false,
@@ -289,6 +300,7 @@ Widget mTextField({
   ValueChanged<String>? onSubmitted,
   FocusNode? focusNode,
   BoxBorder? border,
+  Color borderColor = BaseColors.cGrayLine,
   double borderWidth = 0.5,
   TextInputType? keyboardType,
   List<TextInputFormatter>? formatters,
@@ -309,37 +321,34 @@ Widget mTextField({
   if (isNumOnly) {
     formatters = [FilteringTextInputFormatter.allow(RegExp(GlobalConst.regexpStrNumber))];
   }
-  border ??= borderWidth == 0 ? const Border() : Border(bottom: BorderSide(width: borderWidth, color: BaseColors.cGrayLine));
+  border ??= borderWidth == 0 ? null : Border(bottom: BorderSide(width: borderWidth, color: borderColor));
 
-  return CupertinoTextField(
-    readOnly: readOnly,
-    inputFormatters: formatters,
-    keyboardType: keyboardType ?? TextInputType.text,
-    maxLines: maxLines,
-    minLines: minLines,
-    textAlign: textAlign,
-    style: TextStyle(fontSize: fontSize, height: 1.2),
-    prefix: prefixIconData == null ? null : Padding(padding: const EdgeInsets.only(left: 6), child: Icon(prefixIconData, size: 20, color: iconColor)),
-    padding: EdgeInsets.symmetric(
-      vertical: paddingVertical,
-      horizontal: paddingHorizontal,
+  return Builder(
+    builder: (ctx) => CupertinoTextField(
+      readOnly: readOnly,
+      inputFormatters: formatters,
+      keyboardType: keyboardType ?? TextInputType.text,
+      maxLines: maxLines,
+      minLines: minLines,
+      textAlign: textAlign,
+      style: TextStyle(fontSize: fontSize, color: textColor, height: fontHeight),
+      placeholderStyle: TextStyle(color: hintColor ?? Theme.of(ctx).inputDecorationTheme.hintStyle?.color, fontSize: fontSize, height: fontHeight),
+      placeholder: hint,
+      prefix:
+          prefix ?? (prefixIconData == null ? null : Padding(padding: prefixIconPadding, child: Icon(prefixIconData, size: prefixIconSize, color: iconColor))),
+      padding: EdgeInsets.symmetric(
+        vertical: paddingVertical,
+        horizontal: paddingHorizontal,
+      ),
+      decoration: decoration ?? BoxDecoration(border: border),
+      controller: controller,
+      maxLength: maxLength,
+      clearButtonMode: clearButtonMode,
+      obscureText: obscureText,
+      textInputAction: textInputAction,
+      onSubmitted: onSubmitted,
+      focusNode: focusNode,
     ),
-    decoration: decoration ??
-        BoxDecoration(
-          border: border,
-        ),
-    controller: controller,
-    maxLength: maxLength,
-    placeholderStyle: TextStyle(
-      color: BaseColors.cFontGrayLight,
-      fontSize: fontSize,
-    ),
-    placeholder: hint,
-    clearButtonMode: clearButtonMode,
-    obscureText: obscureText,
-    textInputAction: textInputAction,
-    onSubmitted: onSubmitted,
-    focusNode: focusNode,
   );
 }
 
@@ -411,7 +420,7 @@ Widget mDivider({
 /// 获取共通Divider
 Widget mDividerH({
   Color color = BaseColors.cTransparent,
-  double height = 20,
+  double height = 0,
   double width = 1.5,
   double margin = 0,
 }) {
@@ -680,7 +689,8 @@ Widget mAvatar({
   required double size,
   bool isLocal = false,
   double borderWidth = 1,
-  Color borderColor = BaseColors.cYellow,
+  Color? borderColor,
+  Color? bgColor,
   BoxShape? shape,
   String? package,
   String? semanticLabel,
@@ -690,21 +700,22 @@ Widget mAvatar({
   if (shape == BoxShape.circle) {
     radius = size / 2;
   }
-  return Stack(
-    children: [
-      Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(shape: shape, color: BaseColors.cWhite),
-      ),
-      SizedBox(
+  return Builder(
+    builder: (ctx) => Stack(
+      children: [
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(shape: shape!, color: bgColor ?? Theme.of(ctx).colorScheme.background),
+        ),
+        SizedBox(
           width: size,
           height: size,
           child: mImageView(
             url,
             semanticLabel: semanticLabel,
             borderWidth: borderWidth,
-            borderColor: borderColor,
+            borderColor: borderColor ?? Theme.of(ctx).primaryColor,
             radius: radius,
             shape: shape,
             errorImgPath: GlobalConst.defaultAvatarImg,
@@ -712,8 +723,10 @@ Widget mAvatar({
             placeholderSize: size,
             placeholderImgPath: GlobalConst.defaultAvatarImg,
             package: package,
-          )),
-    ],
+          ),
+        )
+      ],
+    ),
   );
 }
 
@@ -887,9 +900,9 @@ Widget mScrollbar({
 Widget mButton({
   required VoidCallback onClick,
   String? text,
-  double textFontSize = 15,
-  Color textColor = BaseColors.cFontWhite,
-  FontWeight textWeight = FontWeight.normal,
+  double? textFontSize,
+  Color? textColor,
+  FontWeight? textWeight,
   EdgeInsets? iconPadding,
   EdgeInsets? textPadding,
   Color? bgColor,
@@ -898,7 +911,7 @@ Widget mButton({
   IconData? iconData,
   Icon? icon,
   Color? iconColor,
-  double? iconSize = 24,
+  double? iconSize,
   double? height = 40,
   double? width,
   double minWidth = 0,
@@ -922,7 +935,7 @@ Widget mButton({
         ? Padding(
             padding: textPadding,
             child: mText(
-              msg: text,
+              text,
               color: textColor,
               weight: textWeight,
               fontSize: textFontSize,
@@ -930,7 +943,7 @@ Widget mButton({
             ),
           )
         : mText(
-            msg: text,
+            text,
             color: textColor,
             weight: textWeight,
             fontSize: textFontSize,
@@ -956,7 +969,7 @@ Widget mButton({
   return FilledButton(
       onPressed: onClick,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(bgColor),
+        backgroundColor: bgColor?.toMaterialStatePropertyAll,
         shape: MaterialStateProperty.all(shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(borderRadius)))),
       ),
       child: child ?? box);

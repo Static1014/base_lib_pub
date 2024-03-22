@@ -53,11 +53,18 @@ class HomePage extends StatelessWidget {
             controller: scrollController,
             child: Column(
               children: [
+                mTextField(hint: '请输入', prefixIconData: Icons.account_circle_rounded),
                 FilledButton(
                   onPressed: () {
                     toast('msg');
                   },
                   child: const Text('你好，我是按钮'),
+                ),
+                FilledButton(
+                  onPressed: () {
+                    toast('msg');
+                  },
+                  child: mText('你好，我是按钮'),
                 ),
                 // _buildTestFunc('定位', () async {
                 //   var position = await getLocation();
@@ -65,15 +72,17 @@ class HomePage extends StatelessWidget {
                 //   // "geo:39.11270601,117.2167114".launch();
                 //   toast(position.toString());
                 // }),
-                _buildTestFunc('振动 tap', () async {
-                  Shake.tap();
-                }),
-                _buildTestFunc('振动 error', () async {
-                  Shake.error();
-                }),
-                _buildTestFunc('振动 notify', () async {
-                  Shake.notify();
-                }),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    mButton(text: '振动 tap', onClick: Shake.tap),
+                    mDividerH(),
+                    mButton(text: '振动 error', onClick: Shake.error),
+                    mDividerH(),
+                    mButton(text: '振动 notify', onClick: Shake.notify),
+                  ],
+                ),
                 _buildTestFunc('振动1000ms, 255, 3', () async {
                   vibrate(duration: 500, repeat: 3);
                 }),
@@ -134,7 +143,7 @@ class HomePage extends StatelessWidget {
                           width: Get.width / 2,
                           height: Get.width / 2,
                           child: GestureDetector(
-                            child: mText(msg: '我是自定义loading'),
+                            child: mText('我是自定义loading'),
                             onTap: () {
                               hide();
                             },
@@ -142,7 +151,7 @@ class HomePage extends StatelessWidget {
                         );
                       });
                     },
-                    child: mText(msg: '自定义loading')),
+                    child: mText('自定义loading')),
                 Obx(
                   () => GestureDetector(
                     onTap: () {
@@ -203,7 +212,7 @@ class HomePage extends StatelessWidget {
                                 alignment: Alignment.center,
                                 color: Theme.of(context).primaryColor,
                                 // color: Theme.of(context).primaryColor,
-                                child: mText(msg: '你好，我有侧滑菜单1'),
+                                child: mText('你好，我有侧滑菜单1'),
                               ),
                             ),
                             logic.slideOne.value
@@ -230,7 +239,7 @@ class HomePage extends StatelessWidget {
                                       height: 60,
                                       alignment: Alignment.center,
                                       color: Theme.of(context).primaryColor,
-                                      child: mText(msg: '你好，我有侧滑菜单2，侧滑够长可直接移除'),
+                                      child: mText('你好，我有侧滑菜单2，侧滑够长可直接移除'),
                                     ),
                                   ),
                           ],
@@ -276,7 +285,7 @@ class HomePage extends StatelessWidget {
                     contentWidget: Container(
                       constraints: const BoxConstraints(minHeight: 100),
                       alignment: Alignment.center,
-                      child: mText(msg: '你好啊'),
+                      child: mText('你好啊'),
                     ),
                   );
                 }),
@@ -355,7 +364,7 @@ class HomePage extends StatelessWidget {
                                 color: BaseColors.cGreen,
                                 width: double.infinity,
                                 child: Center(
-                                  child: mText(msg: '我是一个控件'),
+                                  child: mText('我是一个控件'),
                                 ),
                               ),
                               Flexible(child: webView),
@@ -391,7 +400,16 @@ class HomePage extends StatelessWidget {
                     Get.findLogic<TestLogic>()?.count(1);
                   });
                 }),
-                _buildTestFuncWithChild(Obx(() => Text('Timer on :  ${logic.tick.value}')), () {
+                _buildTestFuncWithChild(
+                    Builder(
+                      builder: (ctx) => Obx(
+                        () => mText(
+                          'Timer on :  ${logic.tick.value}',
+                          color: Theme.of(context).colorScheme.surface,
+                          fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+                        ),
+                      ),
+                    ), () {
                   if (logic.timer?.isActive ?? false) {
                     logic.timer?.cancel();
                     logic.tick(0);
@@ -423,7 +441,7 @@ class HomePage extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         color: BaseColors.cGreen,
-                        child: mText(msg: '点我关闭dialog'),
+                        child: mText('点我关闭dialog'),
                       ),
                     ),
                     splitBottomView: true,
@@ -441,11 +459,11 @@ class HomePage extends StatelessWidget {
                     pageBgColor: BaseColors.cTransparent,
                     enableHeroTag: false,
                     bottomView: Container(
-                      child: mText(msg: '你好啊'),
+                      child: mText('你好啊'),
                     ),
                   );
                 }),
-                mText(msg: 'ImagePreview with bottomView and actionView in list'),
+                mText('ImagePreview with bottomView and actionView in list'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -472,7 +490,7 @@ class HomePage extends StatelessWidget {
                               maxSize: Get.height * 3 / 4,
                               children: [
                                 mText(
-                                  msg: txt * 30,
+                                  txt * 30,
                                   color: BaseColors.cFontWhite,
                                   fontSize: 14,
                                 ),
@@ -483,7 +501,7 @@ class HomePage extends StatelessWidget {
                             onTap: () {
                               ImagePreviewLogic.to.deleteAt(logic.index.value);
                             },
-                            child: mText(msg: '删除'),
+                            child: mText('删除'),
                           ),
                           onPreviewIndexChanged: (i) {
                             logic.index(i);
@@ -520,7 +538,7 @@ class HomePage extends StatelessWidget {
                             onTap: () {
                               Get.find<ImagePreviewLogic>().deleteAt(1);
                             },
-                            child: mText(msg: '你好啊'),
+                            child: mText('你好啊'),
                           ),
                           onPreviewIndexChanged: (i) {
                             logic.index(i);
@@ -550,7 +568,7 @@ class HomePage extends StatelessWidget {
                             onTap: () {
                               Get.find<ImagePreviewLogic>().deleteAt(1);
                             },
-                            child: mText(msg: '你好啊'),
+                            child: mText('你好啊'),
                           ),
                           onPreviewIndexChanged: (i) {
                             logic.index(i);
@@ -611,7 +629,15 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildTestFunc(String title, GestureTapCallback? onTap) {
-    return _buildTestFuncWithChild(Text(title), onTap);
+    return _buildTestFuncWithChild(
+        Builder(
+          builder: (context) => mText(
+            title,
+            color: Theme.of(context).colorScheme.surface,
+            fontSize: Theme.of(context).textTheme.bodySmall?.fontSize,
+          ),
+        ),
+        onTap);
   }
 
   Widget _buildTestFuncWithChild(Widget child, GestureTapCallback? onTap) {

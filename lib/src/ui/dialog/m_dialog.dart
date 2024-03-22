@@ -193,7 +193,7 @@ class MDialog {
                                     : Padding(
                                         padding: const EdgeInsets.only(bottom: 8),
                                         child: mText(
-                                          msg: title,
+                                          title,
                                           color: titleColor,
                                           weight: titleFontWeight,
                                           maxLines: titleMaxLines,
@@ -209,7 +209,7 @@ class MDialog {
                                     Padding(
                                       padding: msgPadding,
                                       child: mText(
-                                        msg: msg,
+                                        msg,
                                         color: msgColor,
                                         fontSize: msgFontSize,
                                         weight: msgFontWeight,

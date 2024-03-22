@@ -89,13 +89,11 @@ class SettingPage extends StatelessWidget {
           ),
         ),
         child: Row(
-          // mainAxisSize: MainAxisSize.max,
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Icon(icon, size: 24),
-            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 8), child: mText(msg: name, color: BaseColors.cFontBlack))),
-            isEmptyOrNull(rightLabel) ? const SizedBox.shrink() : mText(msg: rightLabel!, fontSize: 13, color: BaseColors.cFontGrayLight),
+            Expanded(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 8), child: mText(name))),
+            isEmptyOrNull(rightLabel) ? const SizedBox.shrink() : mText(rightLabel!, style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
       ),

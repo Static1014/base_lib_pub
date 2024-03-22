@@ -9,13 +9,12 @@ class BaseDimens {
   static const double dFontSizeSmallEx = 12;
   static const double dFontSizeSmall = 14;
   static const double dFontSizeNormal = 16;
-  static const double dFontSizeLarge = 18;
-  static const double dFontSizeLargeEx = 26;
-  static const double dFontSize20 = 20;
-  static const double dFontSizeTitle = 20;
+  static const double dFontSizeLarge = 20;
+  static const double dFontSizeLargeEx = 24;
+  static const double dFontSizeTitle = dFontSizeLarge;
 
-  static const double dFontSizeBtnSmall = 16;
-  static const double dFontSizeBtnNormal = 18;
+  static const double dFontSizeBtnSmall = dFontSizeSmall;
+  static const double dFontSizeBtnNormal = dFontSizeNormal;
 
   /// 默认padding、margin
   static const double dPadding = 12, dMargin = 12;

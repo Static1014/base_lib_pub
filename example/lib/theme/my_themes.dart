@@ -27,22 +27,13 @@ class MyThemes {
       onSurface: BaseColors.cFontGray,
     ),
     splashColor: MyColors.cc4,
-    iconButtonTheme: IconButtonThemeData(
-      style: ButtonStyle(
-        iconColor: MaterialStateProperty.resolveWith<Color>((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return primaryColorLight.toMaterialColor[600];
-          }
-          return primaryColorLight;
-        }),
-      ),
-    ),
+    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: primaryColorLight)),
     iconTheme: const IconThemeData(color: primaryColorLight),
     cardTheme: const CardTheme(color: primaryColorLight, elevation: 2),
-    textTheme: const TextTheme(bodyLarge: TextStyle(color: BaseColors.cFontWhite)),
     scaffoldBackgroundColor: BaseColors.cGrayBgMiddle,
     appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
       color: BaseColors.cWhite,
+      centerTitle: true,
       scrolledUnderElevation: 4,
       shadowColor: BaseColors.cGrayLine,
       titleTextStyle: BaseTheme.defaultAppBarTheme.titleTextStyle?.copyWith(
@@ -85,7 +76,6 @@ class MyThemes {
     ),
     iconTheme: const IconThemeData(color: primaryColorRed),
     cardTheme: const CardTheme(color: primaryColorRed, elevation: 2),
-    textTheme: const TextTheme(bodyLarge: TextStyle(color: BaseColors.cFontWhite)),
     scaffoldBackgroundColor: BaseColors.cGrayBgMiddle,
     appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
       color: BaseColors.cWhite,

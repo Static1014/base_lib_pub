@@ -3,6 +3,7 @@
 1. Fixed centering of elements in showLoading view.
 2. Replace vibrate_utils with vibrate_utils;
 3. Add proguard-rules.pro on Example/Android project;
+4. Modify base_theme and add example/my_theme(light, red), modified and recorded in example/setting;
 
 ## 3.5.1
 

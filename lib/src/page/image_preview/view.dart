@@ -214,7 +214,7 @@ class ImagePreviewPage extends StatelessWidget {
                                     decoration: mBoxDecoration(solidColor: BaseColors.cBlackTrans),
                                     child: Obx(() {
                                       return mText(
-                                        msg: "${logic._curIndex.value + 1} / ${logic._imgList.length}",
+                                        "${logic._curIndex.value + 1} / ${logic._imgList.length}",
                                         color: BaseColors.cFontWhite,
                                       );
                                     }),
@@ -349,8 +349,8 @@ class ImagePreviewPage extends StatelessWidget {
           maxSize: Get.height * 3 / 4,
           children: [
             mText(
-              msg: txt * 100,
-              color: textColor ?? BaseColors.cFontBlack,
+              txt * 100,
+              color: textColor,
               fontSize: 14,
             ),
           ],

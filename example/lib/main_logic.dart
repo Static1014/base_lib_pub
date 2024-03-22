@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/get_utils/get_utils.dart';
 
@@ -31,17 +31,16 @@ class MainLogic extends GetxController {
   }
 
   /// 隐私协议
-  Future<dynamic>? goPrivacy() {
+  Future<dynamic>? goPrivacy(BuildContext context) {
     return Nav.startCommonWebView(
       urlOrData: Api.pathPrivacy,
       clearCache: false,
       tag: 'privacy',
       appBarBuilder: () => mAppBar(
         title: Trs.privacy.tr,
-        backgroundColor: Get.theme.primaryColor,
       ),
       bottomNavEnable: false,
-      pbColor: Get.theme.primaryColor,
+      pbColor: Theme.of(context).primaryColor,
     );
   }
 
