@@ -137,11 +137,17 @@ class CommonWebViewPage extends StatelessWidget {
           popInvokedCallback: _buildPopConfirm(),
           child: Scaffold(
             appBar: appBarBuilder?.call() ??
-                mAppBar(
-                  title: title ?? '',
-                  backPressed: () {
-                    _buildPopConfirm()?.call(false);
-                  },
+                PreferredSize(
+                  preferredSize: const Size.fromHeight(BaseDimens.dAppBarHeight),
+                  child: Obx(
+                    () => mAppBar(
+                      title: title ?? '',
+                      elevation: logic._scrollY.value ? 4 : 0,
+                      backPressed: () {
+                        _buildPopConfirm()?.call(false);
+                      },
+                    ),
+                  ),
                 ),
             body: Stack(
               children: [
@@ -179,8 +185,8 @@ class CommonWebViewPage extends StatelessWidget {
       () => logic._pb.value < 100
           ? LinearProgressIndicator(
               value: logic._pb.value < 10 ? null : double.parse('${logic._pb.value}'),
-              backgroundColor: pbBgColor ?? BaseColors.cGrayBg,
-              valueColor: AlwaysStoppedAnimation(pbColor ?? BaseColors.cPrimaryColor),
+              backgroundColor: pbBgColor,
+              valueColor: AlwaysStoppedAnimation(pbColor),
             )
           : const SizedBox.shrink(),
     );

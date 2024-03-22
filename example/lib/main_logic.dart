@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -18,11 +16,13 @@ import 'trans/lang.dart';
 class MainLogic extends GetxController {
   static MainLogic get to => Get.find();
 
-  void requestUpdate() async {
+  void checkUpdate() {
     var hide = showLoading(msg: Trs.checkUpdateLoading.tr);
 
-    sleep(const Duration(seconds: 2));
-    hide();
+    doDelay(2000, () {
+      toast(Trs.checkUpdateNo.tr);
+      hide();
+    });
   }
 
   void goUpdate() {
@@ -31,7 +31,7 @@ class MainLogic extends GetxController {
   }
 
   /// 隐私协议
-  Future<dynamic>? goPrivacy(BuildContext context) {
+  Future<dynamic>? goPrivacy() {
     return Nav.startCommonWebView(
       urlOrData: Api.pathPrivacy,
       clearCache: false,
@@ -40,7 +40,6 @@ class MainLogic extends GetxController {
         title: Trs.privacy.tr,
       ),
       bottomNavEnable: false,
-      pbColor: Theme.of(context).primaryColor,
     );
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
@@ -16,4 +17,6 @@ class HomeLogic extends GetxController {
   final slideOne = false.obs;
   final pickUrl = ''.obs;
   AssetEntity? pickEntity;
+
+  late ListFooterLogic footerLogic;
 }

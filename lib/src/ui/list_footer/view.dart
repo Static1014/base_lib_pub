@@ -7,6 +7,9 @@ import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 part 'logic.dart';
 
+// 返回当前ListFooterView的ListFooterLogic
+typedef OnListFooterViewCreated = Function(ListFooterLogic logic);
+
 class ListFooterView extends StatelessWidget {
   /// 不能切换状态的ListFooterView
   static Widget frozen({
@@ -14,7 +17,7 @@ class ListFooterView extends StatelessWidget {
     double width = double.infinity,
     required ListFooterState state,
     Callback? retryCallback,
-    String? failedMsg = '',
+    String? msg,
   }) {
     return Container(
       alignment: Alignment.center,
@@ -23,23 +26,44 @@ class ListFooterView extends StatelessWidget {
       child: _buildStateView(
         state: state,
         retryCallback: retryCallback,
-        failedMsg: failedMsg,
+        msg: msg ?? _getDefaultMsg(state),
       ),
     );
   }
 
   final double height;
   final double width;
-  final ListFooterLogic logic;
+  late final ListFooterLogic logic;
   final Callback? retryCallback;
+  final String tag;
+  final OnListFooterViewCreated? onListFooterViewCreated;
+  final String? defaultNoMoreMsg;
+  final String? defaultLoadingMsg;
+  final String? defaultFailedMsg;
+  final Color? failedColor;
 
-  const ListFooterView({
+  ListFooterView({
     super.key,
+    required this.tag,
     this.height = 40,
     this.width = double.infinity,
-    required this.logic,
     this.retryCallback,
-  });
+    this.onListFooterViewCreated,
+    this.defaultNoMoreMsg,
+    this.defaultLoadingMsg,
+    this.defaultFailedMsg,
+    this.failedColor,
+  }) {
+    assert(tag.isNotEmpty, 'ListFooterView needs a unique tag for ListFooterLogic.');
+    bool existed = Get.isRegistered<ListFooterLogic>(tag: tag);
+    // assert(!existed, 'ListFooterView needs a unique tag for ListFooterLogic.');
+    if (existed) {
+      logic = Get.find<ListFooterLogic>(tag: tag);
+    } else {
+      logic = Get.put(ListFooterLogic(), tag: tag);
+    }
+    onListFooterViewCreated?.call(logic);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,22 +73,40 @@ class ListFooterView extends StatelessWidget {
       height: height,
       child: Obx(
         () => _buildStateView(
-          state: logic.state.value,
+          state: logic._state.value,
           retryCallback: retryCallback,
-          failedMsg: logic.failedMsg.value,
+          msg: logic._msg.value,
+          width: width,
+          height: height,
+          defaultNoMoreMsg: defaultNoMoreMsg,
+          defaultLoadingMsg: defaultLoadingMsg,
+          defaultFailedMsg: defaultFailedMsg,
+          failedColor: failedColor,
         ),
       ),
     );
   }
 
+  static String _getDefaultMsg(ListFooterState state) => switch (state) {
+        ListFooterState.noMore => BaseTrs.noMore.tr,
+        ListFooterState.loading => BaseTrs.loading.tr,
+        ListFooterState.failed => BaseTrs.retry.tr,
+      };
+
   static Widget _buildStateView({
     ListFooterState state = ListFooterState.noMore,
     Callback? retryCallback,
-    String? failedMsg = '',
+    required String msg,
+    double? width,
+    double? height,
+    String? defaultNoMoreMsg,
+    String? defaultLoadingMsg,
+    String? defaultFailedMsg,
+    Color? failedColor,
   }) {
     return switch (state) {
       ListFooterState.noMore => mText(
-          BaseTrs.noMore.tr,
+          msg.isEmpty ? (defaultNoMoreMsg ?? BaseTrs.noMore.tr) : msg,
           textAlign: TextAlign.center,
           color: BaseColors.cFontGrayLight,
           fontSize: 14,
@@ -75,7 +117,7 @@ class ListFooterView extends StatelessWidget {
             mProgressIndicator(),
             mDividerH(width: 4),
             mText(
-              BaseTrs.loading.tr,
+              msg.isEmpty ? (defaultLoadingMsg ?? BaseTrs.loading.tr) : msg,
               textAlign: TextAlign.center,
               color: BaseColors.cFontGrayLight,
               fontSize: 14,
@@ -84,11 +126,20 @@ class ListFooterView extends StatelessWidget {
         ),
       ListFooterState.failed => GestureDetector(
           onTap: retryCallback,
-          child: mText(
-            '$failedMsg   ${BaseTrs.retry.tr}',
-            textAlign: TextAlign.center,
-            color: BaseColors.cFontGrayLight,
-            fontSize: 14,
+          child: Container(
+            alignment: Alignment.center,
+            width: width,
+            height: height,
+            color: BaseColors.cTransparent,
+            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+            child: Builder(
+              builder: (ctx) => mText(
+                msg.isEmpty ? (defaultFailedMsg ?? BaseTrs.retry.tr) : msg,
+                textAlign: TextAlign.center,
+                color: failedColor ?? Theme.of(ctx).colorScheme.error,
+                fontSize: 14,
+              ),
+            ),
           ),
         ),
     };

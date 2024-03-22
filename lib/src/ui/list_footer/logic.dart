@@ -1,4 +1,4 @@
-part of list_footer;
+part of 'view.dart';
 
 enum ListFooterState {
   noMore,
@@ -7,6 +7,11 @@ enum ListFooterState {
 }
 
 class ListFooterLogic extends GetxController {
-  final state = ListFooterState.noMore.obs;
-  final failedMsg = ''.obs;
+  final _state = ListFooterState.noMore.obs;
+  final _msg = ''.obs;
+
+  void change(ListFooterState state, {String? msg}) {
+    _state(state);
+    _msg(msg ?? '');
+  }
 }

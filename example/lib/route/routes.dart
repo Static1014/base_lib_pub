@@ -3,6 +3,7 @@ import 'package:base_lib_pub_example/page/setting/view.dart';
 import 'package:get/get.dart';
 
 import '../page/home/view.dart';
+import '../page/splash/view.dart';
 
 /// Name: routes.dart
 ///
@@ -26,9 +27,11 @@ class MyRoutesClass extends BaseRoutesClass {
   List<GetPage> getPages() {
     return super.getPages()
       ..addAll([
-        GetPage(name: Routes.init, transition: Transition.fade, page: () => HomePage()),
+        GetPage(name: Routes.init, transition: Transition.fade, page: () => SplashPage()),
         GetPage(name: Routes.home, transition: Transition.fade, page: () => HomePage()),
         GetPage(name: Routes.setting, transition: Transition.rightToLeft, page: () => SettingPage()),
       ]);
   }
+
+  List<String> get unPopRoutes => [init, home];
 }

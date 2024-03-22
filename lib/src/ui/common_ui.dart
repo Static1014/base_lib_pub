@@ -97,9 +97,10 @@ Widget mPopScope({
   bool? canPop,
   PopInvokedCallback? onPopInvoked,
   required Widget child,
+  String? route,
 }) {
   return PopScope(
-      canPop: canPop ?? Nav.isPopEnable(),
+      canPop: canPop ?? Nav.isPopEnable(route: route),
       onPopInvoked: onPopInvoked ??
           (didPop) {
             hideKeyboard();
@@ -120,6 +121,7 @@ Widget mPopScope({
 /// 点击空白处关闭键盘
 Widget mRoot({
   required Widget child,
+  String? route,
   bool? canPop,
   PopInvokedCallback? popInvokedCallback,
   bool safeArea = true,
@@ -145,12 +147,13 @@ Widget mRoot({
               ),
             )
           : child);
-  return (popInvokedCallback == null && canPop == null && Nav.isPopEnable()) // 没有手动拦截，且能返回，才不添加WillPopScope
+  return (popInvokedCallback == null && canPop == null && Nav.isPopEnable(route: route)) // 没有手动拦截，且能返回，才不添加WillPopScope
       ? cc
       : mPopScope(
           canPop: canPop,
           onPopInvoked: popInvokedCallback,
           child: cc,
+          route: route,
         );
 }
 
@@ -159,6 +162,7 @@ typedef MAppBarBuilder = PreferredSizeWidget Function();
 
 /// 统一appbar
 PreferredSizeWidget mAppBar({
+  String? route,
   String title = '',
   bool? centerTitle,
   Color? titleColor,
@@ -182,9 +186,11 @@ PreferredSizeWidget mAppBar({
   SystemUiOverlayStyle? systemOverlayStyle,
   bool automaticallyImplyLeading = true,
   String? semanticsLabel,
+  double? scrolledUnderElevation,
+  dynamic backResult,
 }) {
   if (autoBackEnable) {
-    backEnable = Nav.isPopEnable();
+    backEnable = Nav.isPopEnable(route: route);
   }
 
   /// 默认返回按钮
@@ -194,7 +200,10 @@ PreferredSizeWidget mAppBar({
       color: backIconColor,
       size: backIconSize,
     ),
-    onPressed: backPressed ?? clickBack,
+    onPressed: backPressed ??
+        () {
+          clickBack(result: backResult, route: route);
+        },
   );
   Widget? leadingReal;
   if (leading != null) {
@@ -208,6 +217,7 @@ PreferredSizeWidget mAppBar({
   var bar = AppBar(
     leading: leadingReal,
     elevation: elevation,
+    scrolledUnderElevation: scrolledUnderElevation,
     backgroundColor: backgroundColor,
     centerTitle: centerTitle,
     automaticallyImplyLeading: automaticallyImplyLeading,

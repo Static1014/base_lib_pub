@@ -30,7 +30,7 @@ class SettingPage extends StatelessWidget {
                 Obx(
                   () => _buildSettingItem(context, Icons.update_outlined, Trs.checkUpdate.tr, () {
                     // 检查更新
-                    MainLogic.to.requestUpdate();
+                    MainLogic.to.checkUpdate();
                   }, rightLabel: '${Trs.curVersionPrefix.tr}: v${logic.version}'),
                 ),
                 _buildSettingItem(context, Icons.feedback_outlined, Trs.feedback.tr, () {
@@ -61,7 +61,7 @@ class SettingPage extends StatelessWidget {
 
   List<Widget> _buildActions() {
     return [
-      // todo 暗色模式切换，配色及主题配置未完成
+      // 主题切换
       IconButton(
           onPressed: () {
             logic.changeTheme();

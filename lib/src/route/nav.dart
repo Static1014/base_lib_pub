@@ -33,9 +33,12 @@ class NavClass {
     return Get.offNamed(routeName, arguments: args, preventDuplicates: singleTop);
   }
 
-  bool isPopEnable() {
-    var routeName = Get.routing.route?.settings.name;
-    return !(_unPopRoutes.contains(routeName));
+  /// 当route为空时，默认以栈顶route页面（当前所在route）的name来进行判断。
+  /// 所以当非栈顶route页面（即便是栈底）重构调用该方法时，如果参数route为空，也会返回true；
+  /// 所以在栈底route的mRoot、mAppBar(正常情况栈底AppBar不会有返回按钮)须传入route参数，如：HomePage
+  bool isPopEnable({String? route}) {
+    route ??= Get.routing.route?.settings.name;
+    return !(_unPopRoutes.contains(route));
   }
 
 //  bool isPbShowing() {

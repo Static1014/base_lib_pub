@@ -45,12 +45,12 @@ void hideKeyboard() {
 }
 
 /// 点击返回
-Future<bool> clickBack({dynamic result}) async {
+Future<bool> clickBack({dynamic result, String? route}) async {
   hideKeyboard();
 
-  if (Nav.isPopEnable()) {
+  if (Nav.isPopEnable(route: route)) {
     // 能返回直接返回上一页
-    Nav.pop();
+    Nav.pop(result: result);
     return false;
   } else {
     // 不能返回

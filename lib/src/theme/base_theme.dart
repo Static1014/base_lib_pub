@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 /// Created by Static4u
 /// Date : 2023/12/13 10:54
 class BaseTheme {
-  static ThemeData defaultTheme = createBaseTheme(BaseColors.cPrimaryColor);
-  static AppBarTheme defaultAppBarTheme = createAppBarTheme(bgColor: BaseColors.cPrimaryColor);
+  static final ThemeData defaultTheme = createBaseTheme(BaseColors.cPrimaryColor);
+  static final AppBarTheme defaultAppBarTheme = createAppBarTheme(bgColor: BaseColors.cPrimaryColor, scrolledUnderElevation: 4);
 
   /// 修正flutter 3.16下M2 -> M3样式的变化
   static ThemeData createBaseTheme(
@@ -56,6 +56,7 @@ class BaseTheme {
     Color? iconColor,
     TextStyle? titleTextStyle,
     double? elevation,
+    double? scrolledUnderElevation,
     SystemUiOverlayStyle overlayStyle = SystemUiOverlayStyle.light,
     Brightness brightness = Brightness.light,
     bool? centerTitle,
@@ -70,6 +71,7 @@ class BaseTheme {
           backgroundColor: bgColor,
           titleTextStyle: titleTextStyle ?? Typography.dense2014.titleLarge,
           systemOverlayStyle: overlayStyle,
+          scrolledUnderElevation: scrolledUnderElevation,
         );
   }
 

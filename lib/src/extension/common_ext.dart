@@ -127,4 +127,38 @@ extension SwappableList<E> on List<E> {
     this[second] = tmp;
     return true;
   }
+
+  /// 取下一个
+  E next(E? current) {
+    int curIndex = 0;
+    if (current != null) {
+      curIndex = indexOf(current);
+      if (curIndex < 0) {
+        // 没找到，取第0个
+        return this[0];
+      }
+    }
+    int nextIndex = curIndex + 1;
+    if (nextIndex >= length) {
+      nextIndex = 0;
+    }
+    return this[nextIndex];
+  }
+
+  /// 取上一个
+  E previous(E? current) {
+    int curIndex = 0;
+    if (current != null) {
+      curIndex = indexOf(current);
+      if (curIndex < 0) {
+        // 没找到，取第0个
+        return this[0];
+      }
+    }
+    int nextIndex = curIndex - 1;
+    if (nextIndex < 0) {
+      nextIndex = length - 1;
+    }
+    return this[nextIndex];
+  }
 }

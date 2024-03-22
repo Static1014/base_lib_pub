@@ -18,7 +18,7 @@ class MySalomonBottomBar extends StatelessWidget {
   ///
   /// https://dribbble.com/shots/5925052-Google-Bottom-Bar-Navigation-Pattern/
   const MySalomonBottomBar({
-    Key? key,
+    super.key,
     required this.items,
     this.backgroundColor,
     this.currentIndex = 0,
@@ -32,7 +32,7 @@ class MySalomonBottomBar extends StatelessWidget {
     this.itemPadding = const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
     this.duration = const Duration(milliseconds: 500),
     this.curve = Curves.easeOutQuint,
-  }) : super(key: key);
+  });
 
   /// A list of tabs to display, ie `Home`, `Likes`, etc
   final List<SalomonBottomBarItem> items;
@@ -95,21 +95,21 @@ class MySalomonBottomBar extends StatelessWidget {
                 curve: curve,
                 duration: duration,
                 builder: (context, t, _) {
-                  final _selectedColor = item.selectedColor ?? selectedItemColor ?? theme.primaryColor;
+                  final selectedColor = item.selectedColor ?? selectedItemColor ?? theme.primaryColor;
 
-                  final _unselectedColor = item.unselectedColor ?? unselectedItemColor ?? theme.iconTheme.color;
+                  final unselectedColor = item.unselectedColor ?? unselectedItemColor ?? theme.iconTheme.color;
 
                   return Material(
-                    color: Color.lerp(_selectedColor.withOpacity(0.0), _selectedColor.withOpacity(selectedColorOpacity ?? 0.1), t),
+                    color: Color.lerp(selectedColor.withOpacity(0.0), selectedColor.withOpacity(selectedColorOpacity ?? 0.1), t),
                     shape: itemShape,
                     child: InkWell(
                       onTap: () => onTap?.call(items.indexOf(item)),
                       onDoubleTap: () => onDoubleTap?.call(items.indexOf(item)),
                       customBorder: itemShape,
-                      focusColor: _selectedColor.withOpacity(0.1),
-                      highlightColor: _selectedColor.withOpacity(0.1),
-                      splashColor: _selectedColor.withOpacity(0.1),
-                      hoverColor: _selectedColor.withOpacity(0.1),
+                      focusColor: selectedColor.withOpacity(0.1),
+                      highlightColor: selectedColor.withOpacity(0.1),
+                      splashColor: selectedColor.withOpacity(0.1),
+                      hoverColor: selectedColor.withOpacity(0.1),
                       child: Padding(
                         padding: itemPadding -
                             (Directionality.of(context) == TextDirection.ltr
@@ -119,7 +119,7 @@ class MySalomonBottomBar extends StatelessWidget {
                           children: [
                             IconTheme(
                               data: IconThemeData(
-                                color: Color.lerp(_unselectedColor, _selectedColor, t),
+                                color: Color.lerp(unselectedColor, selectedColor, t),
                                 size: 24,
                               ),
                               child: items.indexOf(item) == currentIndex ? item.activeIcon ?? item.icon : item.icon,
@@ -137,7 +137,7 @@ class MySalomonBottomBar extends StatelessWidget {
                                         : EdgeInsets.only(left: itemPadding.left, right: itemPadding.right / 2),
                                     child: DefaultTextStyle(
                                       style: TextStyle(
-                                        color: Color.lerp(_selectedColor.withOpacity(0.0), _selectedColor, t),
+                                        color: Color.lerp(selectedColor.withOpacity(0.0), selectedColor, t),
                                         fontWeight: FontWeight.w600,
                                       ),
                                       child: item.title,

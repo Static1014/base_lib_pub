@@ -19,9 +19,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return mRoot(
+      route: Routes.home,
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: mAppBar(
+          route: Routes.home,
           title: Trs.appName.tr,
           backEnable: false,
           autoBackEnable: false,
@@ -383,7 +385,7 @@ class HomePage extends StatelessWidget {
                     tag: 'web1',
                     title: '百度',
                     onCommonWebViewPageCreate: (webController) {
-                      webController.setBackgroundColor(Colors.red);
+                      // webController.setBackgroundColor(Colors.red);
                     },
                     // appBarBuilder: () => mAppBar(title: 'title'),
                   );
@@ -587,7 +589,25 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                ListFooterView.frozen(state: ListFooterState.noMore),
+                GestureDetector(
+                  onTap: () {
+                    logic.footerLogic.change(ListFooterState.failed);
+                    // logic.footerLogic.change(ListFooterState.noMore, msg: '啊啊啊，真没了');
+                  },
+                  child: ListFooterView.frozen(state: ListFooterState.noMore, msg: '点我改变Footer状态'),
+                ),
+                ListFooterView(
+                  tag: 'footer1',
+                  defaultNoMoreMsg: '别拉了，到底了',
+                  defaultLoadingMsg: '我已经很努力在干活了...',
+                  defaultFailedMsg: '完了，出错了，不会扣我钱吧',
+                  onListFooterViewCreated: (footerLogic) {
+                    logic.footerLogic = footerLogic;
+                  },
+                  retryCallback: () {
+                    logic.footerLogic.change(ListFooterState.noMore);
+                  },
+                ),
               ],
             ),
           ),

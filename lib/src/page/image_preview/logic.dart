@@ -1,4 +1,4 @@
-part of image_preview;
+part of 'view.dart';
 
 class ImagePreviewLogic extends GetxController {
   static ImagePreviewLogic get to => Get.find();
