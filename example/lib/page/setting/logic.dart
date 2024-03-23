@@ -1,7 +1,7 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:get/get.dart';
 
-import '../../../theme/my_themes.dart';
+import '../../theme/my_themes.dart';
 
 class SettingLogic extends GetxController {
   final version = ''.obs;
@@ -22,12 +22,6 @@ class SettingLogic extends GetxController {
     // todo 切换时会一次让所有页面刷新，且有过渡渐变效果。
     // todo 如果当前路由栈中route过多，会造成卡顿
     // todo 当某些特殊widget需要从themeData中手动获取颜色时，须使用Theme.of(context).xxx.xxx获取，Get.theme.xxx.xxx不会立即刷新
-    MyThemes.changeTheme(name: MyThemes.themeList.next(MyThemes.curThemeHolder).name);
-    // if (MyThemes.curThemeHolder.name == 'light') {
-    // } else if (MyThemes.curThemeHolder.name == 'red') {
-    //   MyThemes.changeTheme(name: 'blue');
-    // } else {
-    //   MyThemes.changeTheme(name: 'light');
-    // }
+    MyThemes.changeTheme(name: MyThemes.themeList.next(MyThemes.curThemeHolder)?.name);
   }
 }

@@ -1,3 +1,8 @@
+## 3.6.1
+
+1. Adjust MyThemes to a singleton mode.
+2. Partial function optimization;
+
 ## 3.6.0
 
 1. Fixed centering of elements in showLoading view.

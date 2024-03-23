@@ -129,7 +129,13 @@ extension SwappableList<E> on List<E> {
   }
 
   /// 取下一个
-  E next(E? current) {
+  E? next(E? current) {
+    if (length < 1) {
+      return null;
+    }
+    if (length == 1) {
+      return this[0];
+    }
     int curIndex = 0;
     if (current != null) {
       curIndex = indexOf(current);
@@ -146,7 +152,13 @@ extension SwappableList<E> on List<E> {
   }
 
   /// 取上一个
-  E previous(E? current) {
+  E? previous(E? current) {
+    if (length < 1) {
+      return null;
+    }
+    if (length == 1) {
+      return this[0];
+    }
     int curIndex = 0;
     if (current != null) {
       curIndex = indexOf(current);

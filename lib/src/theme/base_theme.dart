@@ -6,12 +6,62 @@ import 'package:flutter/services.dart';
 ///
 /// Created by Static4u
 /// Date : 2023/12/13 10:54
+
+class ThemeHolder {
+  String name;
+  ThemeData themeData;
+
+  ThemeHolder(this.name, this.themeData);
+}
+
 class BaseTheme {
-  static final ThemeData defaultTheme = createBaseTheme(BaseColors.cPrimaryColor);
+  static ThemeData createTheme({
+    required Color primaryColor,
+    required Color error,
+    Color? secondary,
+    Color? splashColor,
+    Brightness brightness = Brightness.light,
+  }) {
+    MaterialColor primaryMC = primaryColor.toMaterialColor;
+    return BaseTheme._createBaseTheme(primaryColor).copyWith(
+      primaryColor: primaryColor,
+      colorScheme: ColorScheme(
+        brightness: brightness,
+        primary: primaryColor,
+        onPrimary: BaseColors.cWhite,
+        secondary: primaryMC.shade300,
+        onSecondary: BaseColors.cWhite,
+        error: error,
+        onError: BaseColors.cWhite,
+        background: BaseColors.cGrayLightBg,
+        onBackground: BaseColors.cFontGray,
+        surface: BaseColors.cWhite,
+        onSurface: BaseColors.cFontGray,
+      ),
+      splashColor: primaryMC.shade50,
+      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: primaryColor)),
+      iconTheme: IconThemeData(color: primaryColor),
+      cardTheme: CardTheme(color: primaryColor, elevation: 2),
+      scaffoldBackgroundColor: BaseColors.cGrayBgMiddle,
+      appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
+        color: BaseColors.cWhite,
+        centerTitle: true,
+        scrolledUnderElevation: 4,
+        shadowColor: BaseColors.cGrayLine,
+        titleTextStyle: BaseTheme.defaultAppBarTheme.titleTextStyle?.copyWith(
+          color: primaryColor,
+          fontSize: BaseDimens.dFontSizeTitle,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
+
+  static final ThemeData defaultTheme = _createBaseTheme(BaseColors.cPrimaryColor);
   static final AppBarTheme defaultAppBarTheme = createAppBarTheme(bgColor: BaseColors.cPrimaryColor, scrolledUnderElevation: 4);
 
   /// 修正flutter 3.16下M2 -> M3样式的变化
-  static ThemeData createBaseTheme(
+  static ThemeData _createBaseTheme(
     Color color, {
     Brightness brightness = Brightness.light,
   }) {

@@ -1,30 +1,40 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'my_colors.dart';
 
-/// Name: my_themes.dart
+/// Name :my_themes.dart
 ///
 /// Created by Static4u
-/// Date : 2023/7/12 10:35
+/// Date : 2024/3/23 22:18
+///
+// ignore: non_constant_identifier_names
+final MyThemes = MyThemesClass();
 
-class MyThemes {
-  static final _light = _createTheme(MyColors.cc2);
-  static final _red = _createTheme(MyColors.cc4);
-  static final _blue = _createTheme(MyColors.cc1);
+class MyThemesClass {
+  final _keyCurThemeName = 'keyCurThemeName';
 
-  static List<ThemeHolder> themeList = [
-    ThemeHolder('light', _light),
-    ThemeHolder('red', _red),
-    ThemeHolder('blue', _blue),
-  ];
+  // 静态变量
+  static final MyThemesClass _singleton = MyThemesClass._internal();
 
-  static ThemeHolder curThemeHolder = themeList[0];
+  // 工厂方法
+  factory MyThemesClass() {
+    return _singleton;
+  }
 
-  static const _keyCurThemeName = 'keyCurThemeName';
+  List<ThemeHolder> themeList = [];
+  late ThemeHolder curThemeHolder;
 
-  static Future<bool> changeTheme({String? name}) async {
+  // 私有构造函数
+  MyThemesClass._internal() {
+    final green = ThemeHolder('green', BaseTheme.createTheme(primaryColor: MyColors.cc2, error: MyColors.cc4, secondary: MyColors.cc3));
+    final red = ThemeHolder('red', BaseTheme.createTheme(primaryColor: MyColors.cc4, error: MyColors.cc4, secondary: MyColors.cc3));
+    final blue = ThemeHolder('blue', BaseTheme.createTheme(primaryColor: MyColors.cc1, error: MyColors.cc4, secondary: MyColors.cc3));
+    themeList = [green, red, blue];
+    curThemeHolder = themeList[0];
+  }
+
+  Future<bool> changeTheme({String? name}) async {
     if (isEmptyOrNull(name)) {
       name = await DataUtils.getString(_keyCurThemeName, defaultValue: '');
       if (name == '') {
@@ -43,46 +53,4 @@ class MyThemes {
     curThemeHolder = target;
     return true;
   }
-
-  static ThemeData _createTheme(Color primaryColor, {Brightness brightness = Brightness.light}) {
-    return BaseTheme.createBaseTheme(primaryColor).copyWith(
-      primaryColor: primaryColor,
-      colorScheme: ColorScheme(
-        brightness: brightness,
-        primary: primaryColor,
-        onPrimary: BaseColors.cWhite,
-        secondary: MyColors.cc3,
-        onSecondary: BaseColors.cWhite,
-        error: MyColors.cc4,
-        onError: BaseColors.cWhite,
-        background: BaseColors.cGrayLightBg,
-        onBackground: BaseColors.cFontGray,
-        surface: BaseColors.cWhite,
-        onSurface: BaseColors.cFontGray,
-      ),
-      splashColor: MyColors.cc3,
-      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: primaryColor)),
-      iconTheme: IconThemeData(color: primaryColor),
-      cardTheme: CardTheme(color: primaryColor, elevation: 2),
-      scaffoldBackgroundColor: BaseColors.cGrayBgMiddle,
-      appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
-        color: BaseColors.cWhite,
-        centerTitle: true,
-        scrolledUnderElevation: 4,
-        shadowColor: BaseColors.cGrayLine,
-        titleTextStyle: BaseTheme.defaultAppBarTheme.titleTextStyle?.copyWith(
-          color: primaryColor,
-          fontSize: BaseDimens.dFontSizeTitle,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
-
-class ThemeHolder {
-  String name;
-  ThemeData themeData;
-
-  ThemeHolder(this.name, this.themeData);
 }
