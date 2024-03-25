@@ -30,3 +30,7 @@ extension ColorExt on Color {
     return MaterialStatePropertyAll<Color>(this);
   }
 }
+
+extension MaterialColorExt on MaterialColor {
+  get dark => shade900;
+}

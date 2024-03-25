@@ -16,44 +16,69 @@ class ThemeHolder {
 
 class BaseTheme {
   static ThemeData createTheme({
+    Brightness brightness = Brightness.light,
     required Color primaryColor,
     required Color error,
     Color? secondary,
+    Color? onPrimary,
+    Color? onSecondary,
+    Color? onError,
+    Color? surface,
+    Color? onSurface,
+    ColorScheme? colorScheme,
     Color? splashColor,
-    Brightness brightness = Brightness.light,
+    Color? appBarBgColor,
+    Color? appBarForegroundColor,
+    Color? iconColor,
+    Color? cardColor,
+    Color? bgColor,
+    Color? textColor,
+    Color? inputHintColor,
+    Color? bodyLarge,
+    Color? bodyMedium,
+    Color? bodySmall,
+    Iterable<ThemeExtension<dynamic>>? extensions,
   }) {
     MaterialColor primaryMC = primaryColor.toMaterialColor;
     return BaseTheme._createBaseTheme(primaryColor).copyWith(
       primaryColor: primaryColor,
-      colorScheme: ColorScheme(
-        brightness: brightness,
-        primary: primaryColor,
-        onPrimary: BaseColors.cWhite,
-        secondary: primaryMC.shade300,
-        onSecondary: BaseColors.cWhite,
-        error: error,
-        onError: BaseColors.cWhite,
-        background: BaseColors.cGrayLightBg,
-        onBackground: BaseColors.cFontGray,
-        surface: BaseColors.cWhite,
-        onSurface: BaseColors.cFontGray,
-      ),
-      splashColor: primaryMC.shade50,
-      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: primaryColor)),
-      iconTheme: IconThemeData(color: primaryColor),
-      cardTheme: CardTheme(color: primaryColor, elevation: 2),
-      scaffoldBackgroundColor: BaseColors.cGrayBgMiddle,
+      colorScheme: colorScheme ??
+          ColorScheme(
+            brightness: brightness,
+            primary: primaryColor,
+            onPrimary: onPrimary ?? BaseColors.cWhite,
+            secondary: secondary ?? primaryMC.shade300,
+            onSecondary: onSecondary ?? BaseColors.cWhite,
+            error: error,
+            onError: onError ?? BaseColors.cWhite,
+            background: bgColor ?? BaseColors.cGrayLightBg,
+            onBackground: BaseColors.cFontGray,
+            surface: surface ?? BaseColors.cWhite,
+            onSurface: onSurface ?? BaseColors.cFontGray,
+          ),
+      splashColor: splashColor ?? primaryMC.shade50,
+      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: iconColor ?? primaryColor)),
+      iconTheme: IconThemeData(color: iconColor ?? primaryColor),
+      cardTheme: CardTheme(color: cardColor ?? primaryColor, elevation: 2),
+      scaffoldBackgroundColor: bgColor ?? BaseColors.cGrayBgMiddle,
       appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
-        color: BaseColors.cWhite,
+        color: appBarBgColor ?? BaseColors.cWhite,
         centerTitle: true,
         scrolledUnderElevation: 4,
         shadowColor: BaseColors.cGrayLine,
+        iconTheme: BaseTheme.defaultAppBarTheme.iconTheme?.copyWith(color: appBarForegroundColor),
         titleTextStyle: BaseTheme.defaultAppBarTheme.titleTextStyle?.copyWith(
-          color: primaryColor,
+          color: appBarForegroundColor ?? primaryColor,
           fontSize: BaseDimens.dFontSizeTitle,
           fontWeight: FontWeight.bold,
         ),
       ),
+      // 自定义
+      textTheme: createTextTheme(bodyLarge: bodyLarge, bodyMedium: bodyMedium, bodySmall: bodySmall),
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: inputHintColor ?? BaseColors.cFontGrayLight, height: 1.3),
+      ),
+      extensions: extensions,
     );
   }
 
@@ -64,6 +89,7 @@ class BaseTheme {
   static ThemeData _createBaseTheme(
     Color color, {
     Brightness brightness = Brightness.light,
+    Iterable<ThemeExtension<dynamic>>? extensions,
   }) {
     return (Brightness.light == brightness ? ThemeData.light() : ThemeData.dark()).copyWith(
       colorScheme: ColorScheme.fromSeed(
@@ -93,11 +119,7 @@ class BaseTheme {
         indicatorColor: BaseColors.cFontWhite,
         labelPadding: EdgeInsets.zero,
       ),
-      // 自定义
-      textTheme: defaultTextTheme,
-      inputDecorationTheme: const InputDecorationTheme(
-        hintStyle: TextStyle(color: BaseColors.cFontGrayLight, height: 1.2),
-      ),
+      extensions: extensions,
     );
   }
 
@@ -125,27 +147,32 @@ class BaseTheme {
         );
   }
 
-  static TextTheme defaultTextTheme = const TextTheme(
-    bodyLarge: TextStyle(
-      color: BaseColors.cFontBlackLight,
-      fontSize: BaseDimens.dFontSizeLarge,
-      overflow: TextOverflow.ellipsis,
-      height: 1.3,
-      decoration: TextDecoration.none,
-    ),
-    bodyMedium: TextStyle(
-      color: BaseColors.cFontBlack,
-      fontSize: BaseDimens.dFontSizeNormal,
-      overflow: TextOverflow.ellipsis,
-      height: 1.3,
-      decoration: TextDecoration.none,
-    ),
-    bodySmall: TextStyle(
-      color: BaseColors.cFontGrayLight,
-      fontSize: BaseDimens.dFontSizeSmall,
-      overflow: TextOverflow.ellipsis,
-      height: 1.3,
-      decoration: TextDecoration.none,
-    ),
-  );
+  static TextTheme createTextTheme({
+    Color? bodyLarge,
+    Color? bodyMedium,
+    Color? bodySmall,
+  }) =>
+      TextTheme(
+        bodyLarge: TextStyle(
+          color: bodyLarge ?? BaseColors.cFontBlackLight,
+          fontSize: BaseDimens.dFontSizeLarge,
+          overflow: TextOverflow.ellipsis,
+          height: 1.3,
+          decoration: TextDecoration.none,
+        ),
+        bodyMedium: TextStyle(
+          color: bodyMedium ?? BaseColors.cFontBlack,
+          fontSize: BaseDimens.dFontSizeNormal,
+          overflow: TextOverflow.ellipsis,
+          height: 1.3,
+          decoration: TextDecoration.none,
+        ),
+        bodySmall: TextStyle(
+          color: bodySmall ?? BaseColors.cFontGrayLight,
+          fontSize: BaseDimens.dFontSizeSmall,
+          overflow: TextOverflow.ellipsis,
+          height: 1.3,
+          decoration: TextDecoration.none,
+        ),
+      );
 }

@@ -1,3 +1,8 @@
+## 3.6.2
+
+1. BaseTheme.createTheme新增参数；
+2. example新增自定义ThemeData属性MyThemeData;
+
 ## 3.6.1
 
 1. 调整MyThemes为单例模式；

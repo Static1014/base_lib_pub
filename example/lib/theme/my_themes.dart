@@ -1,7 +1,9 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'my_colors.dart';
+import 'my_theme_data.dart';
 
 /// Name :my_themes.dart
 ///
@@ -10,6 +12,13 @@ import 'my_colors.dart';
 ///
 // ignore: non_constant_identifier_names
 final MyThemes = MyThemesClass();
+
+class ThemeHolder {
+  String name;
+  ThemeData themeData;
+
+  ThemeHolder(this.name, this.themeData);
+}
 
 class MyThemesClass {
   final _keyCurThemeName = 'keyCurThemeName';
@@ -27,9 +36,40 @@ class MyThemesClass {
 
   // 私有构造函数
   MyThemesClass._internal() {
-    final green = ThemeHolder('green', BaseTheme.createTheme(primaryColor: MyColors.cc2, error: MyColors.cc4, secondary: MyColors.cc3));
-    final red = ThemeHolder('red', BaseTheme.createTheme(primaryColor: MyColors.cc4, error: MyColors.cc4, secondary: MyColors.cc3));
-    final blue = ThemeHolder('blue', BaseTheme.createTheme(primaryColor: MyColors.cc1, error: MyColors.cc4, secondary: MyColors.cc3));
+    MaterialColor rcColor = BaseColors.cOrange.toMaterialColor;
+    final green = ThemeHolder(
+      'green',
+      BaseTheme.createTheme(
+        primaryColor: MyColors.cc2,
+        error: MyColors.cc4,
+        secondary: MyColors.cc3,
+        extensions: <ThemeExtension<MyThemeData>>[
+          MyThemeData(record: rcColor.shade500),
+        ],
+      ),
+    );
+    final red = ThemeHolder(
+      'red',
+      BaseTheme.createTheme(
+        primaryColor: MyColors.cc4,
+        error: MyColors.cc4,
+        secondary: MyColors.cc3,
+        extensions: <ThemeExtension<MyThemeData>>[
+          MyThemeData(record: rcColor.shade50),
+        ],
+      ),
+    );
+    final blue = ThemeHolder(
+      'blue',
+      BaseTheme.createTheme(
+        primaryColor: MyColors.cc1,
+        error: MyColors.cc4,
+        secondary: MyColors.cc3,
+        extensions: <ThemeExtension<MyThemeData>>[
+          MyThemeData(record: rcColor.shade900),
+        ],
+      ),
+    );
     themeList = [green, red, blue];
     curThemeHolder = themeList[0];
   }

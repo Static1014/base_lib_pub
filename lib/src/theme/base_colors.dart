@@ -49,11 +49,11 @@ class BaseColors {
   static const cGrayBgMiddle = Color(0xFFEEEEEE);
   static const cGrayLightBg = Color(0xFFFBFBFB);
 
-  static const cFontBlack = Color(0xFF484848);
   static const cFontBlackLight = Colors.black54; // 0x8A000000
-  static const cFontWhite = Colors.white;
+  static const cFontBlack = Color(0xFF484848);
   static const cFontGray = Color(0xFF8E8E93);
   static const cFontGrayLight = Color(0xFFBDBDBD);
+  static const cFontWhite = Colors.white;
 
   static const cTransparent = Colors.transparent;
 

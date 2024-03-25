@@ -1,3 +1,8 @@
+## 3.6.2
+
+1. Add parameters to BaseTheme.createTheme.
+2. Add custom extension to ThemeData, such as MyThemeData;
+
 ## 3.6.1
 
 1. Adjust MyThemes to a singleton mode.

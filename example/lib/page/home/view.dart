@@ -1,6 +1,7 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:base_lib_pub_example/page/test/logic.dart';
 import 'package:base_lib_pub_example/route/nav_ext.dart';
+import 'package:base_lib_pub_example/theme/my_theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,6 +56,12 @@ class HomePage extends StatelessWidget {
             controller: scrollController,
             child: Column(
               children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  color: context.theme.extension<MyThemeData>()?.record,
+                  child: mText('自定义主题属性'),
+                ),
                 mTextField(hint: '请输入', prefixIconData: Icons.account_circle_rounded),
                 FilledButton(
                   onPressed: () {
