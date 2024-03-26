@@ -10,9 +10,9 @@ import '../page/splash/view.dart';
 /// Created by Static4u
 /// Date : 2023/4/12 10:53
 // ignore: non_constant_identifier_names
-final Routes = MyRoutesClass();
+final Routes = _MyRoutesClass();
 
-class MyRoutesClass extends BaseRoutesClass {
+class _MyRoutesClass extends BaseRoutesClass {
   /// 初始路由
   final init = '/';
 

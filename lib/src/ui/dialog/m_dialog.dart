@@ -27,8 +27,10 @@ class MDialogManager {
     if (d == null) {
       dialogList.add(dialog);
       var overlayState = Overlay.of(overlayContext ?? Get.overlayContext!);
+      // ignore: invalid_use_of_protected_member
       dialog.animController.controller.clearListeners();
       dialog.animController.controller.addListener(() {
+        // ignore: invalid_use_of_protected_member
         overlayState.setState(() {});
       });
       overlayState.insert(dialog._entry);

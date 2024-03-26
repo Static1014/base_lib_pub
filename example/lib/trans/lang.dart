@@ -6,9 +6,9 @@ import 'package:base_lib_pub/base_lib_pub.dart';
 /// Date : 2023/7/14 10:07
 
 // ignore: non_constant_identifier_names
-final Trs = MyTrs();
+final Trs = _MyTrs();
 
-class MyTrs extends BaseTrsClass {
+class _MyTrs extends BaseTrsClass {
   /// mine
   final appName = "appName";
 }

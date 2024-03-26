@@ -310,6 +310,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
   }
 
   @override
+  // ignore: non_nullable_equals_parameter
   bool operator ==(dynamic other) {
     if (other.runtimeType != runtimeType) {
       return false;
