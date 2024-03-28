@@ -1,3 +1,7 @@
+## 3.6.3
+
+1. Partial code optimization;
+
 ## 3.6.2
 
 1. Add parameters to BaseTheme.createTheme.
