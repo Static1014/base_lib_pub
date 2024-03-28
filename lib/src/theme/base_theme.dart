@@ -37,6 +37,7 @@ class BaseTheme {
     Color? bodyLarge,
     Color? bodyMedium,
     Color? bodySmall,
+    Color? indicatorColor,
     Iterable<ThemeExtension<dynamic>>? extensions,
   }) {
     MaterialColor primaryMC = primaryColor.toMaterialColor;
@@ -78,6 +79,7 @@ class BaseTheme {
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(color: inputHintColor ?? BaseColors.cFontGrayLight, height: 1.3),
       ),
+      indicatorColor: indicatorColor ?? primaryColor,
       extensions: extensions,
     );
   }

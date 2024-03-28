@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final myThemeData = context.theme.myThemeData;
     return mRoot(
       route: Routes.home,
       child: Scaffold(
@@ -59,7 +60,7 @@ class HomePage extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   height: 40,
-                  color: context.theme.extension<MyThemeData>()?.record,
+                  color: myThemeData.record,
                   child: mText('自定义主题属性'),
                 ),
                 mTextField(hint: '请输入', prefixIconData: Icons.account_circle_rounded),

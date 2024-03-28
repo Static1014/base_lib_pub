@@ -23,3 +23,8 @@ class MyThemeData extends ThemeExtension<MyThemeData> {
     return MyThemeData(record: Color.lerp(record, other.record, t)!);
   }
 }
+
+extension ThemeDataExt on ThemeData {
+  // 获取自定义主题
+  MyThemeData get myThemeData => extension<MyThemeData>()!;
+}
