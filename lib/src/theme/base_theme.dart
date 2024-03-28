@@ -32,6 +32,7 @@ class BaseTheme {
     Color? iconColor,
     Color? cardColor,
     Color? bgColor,
+    Color? scaffoldBgColor,
     Color? textColor,
     Color? inputHintColor,
     Color? bodyLarge,
@@ -61,7 +62,7 @@ class BaseTheme {
       iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: iconColor ?? primaryColor)),
       iconTheme: IconThemeData(color: iconColor ?? primaryColor),
       cardTheme: CardTheme(color: cardColor ?? primaryColor, elevation: 2),
-      scaffoldBackgroundColor: bgColor ?? BaseColors.cGrayBgMiddle,
+      scaffoldBackgroundColor: scaffoldBgColor ?? BaseColors.cGrayBgMiddle,
       appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
         color: appBarBgColor ?? BaseColors.cWhite,
         centerTitle: true,
