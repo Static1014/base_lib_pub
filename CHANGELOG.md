@@ -1,3 +1,9 @@
+## 3.6.4
+
+1. Adjust the baseApp and runApp parameter structures;
+2. The default backIconData modification was added to the mAppBar.
+3. Add the GlobalKeyExt extension to obtain the overlayContext;
+
 ## 3.6.3
 
 1. Partial code optimization;

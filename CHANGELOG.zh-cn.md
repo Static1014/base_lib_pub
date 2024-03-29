@@ -1,3 +1,9 @@
+## 3.6.4
+
+1. 调整baseApp、runApp参数结构；
+2. mAppBar新增默认backIconData修改；
+3. 新增GlobalKeyExt扩展，获取overlayContext；
+
 ## 3.6.3
 
 1. 部分代码优化；

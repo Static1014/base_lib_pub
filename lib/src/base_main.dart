@@ -14,18 +14,6 @@ void runMyApp(
   /// 是否开启日志
   enableLog = false,
 
-  /// 状态栏和系统导航栏配色
-  Color statusBarColor = BaseColors.cTransparent,
-  Color sysNavigationBarColor = BaseColors.cBlack,
-  bool isStatusBarIconLight = true, // 深底白字
-  bool isSysNavigationBarIconLight = true, // 深底白字
-
-  /// 底层路由
-  List<String>? unPopRoutes,
-
-  /// 默认路由跳转动画
-  Transition? defaultTransition = Transition.cupertino,
-
   /// 自定义启动前执行
   RoundAppRun? beforeRun,
 
@@ -43,18 +31,8 @@ void runMyApp(
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setGlobalSystemOverlayStyle(
-    statusBarColor: statusBarColor,
-    isStatusBarIconLight: isStatusBarIconLight,
-    sysNavigationBarColor: sysNavigationBarColor,
-    isSysNavigationBarIconLight: isStatusBarIconLight,
-  );
-  Nav.initUnPopRoutes(unPopRoutes ?? []);
   initLog(enable: enableLog);
-  Get.config(
-    enableLog: enableLog,
-    defaultTransition: defaultTransition,
-  );
+  
   if (clearGetxControllersBeforeExit) {
     MyGet.actionsBeforeExitApp.add(() {
       clearAllGetxControllers();
@@ -112,10 +90,6 @@ Future<void> baseBeforeRun() async {
   await DataUtils.init(prefix: true);
 
   return;
-}
-
-void initLog({bool enable = false}) {
-  isForceLog = enable;
 }
 
 GetMaterialApp baseApp({
@@ -177,7 +151,25 @@ GetMaterialApp baseApp({
   RouterDelegate<Object>? routerDelegate,
   BackButtonDispatcher? backButtonDispatcher,
   bool useInheritedMediaQuery = false,
+
+  /// 状态栏和系统导航栏配色
+  Color statusBarColor = BaseColors.cTransparent,
+  Color sysNavigationBarColor = BaseColors.cBlack,
+  bool isStatusBarIconLight = true, // 深底白字
+  bool isSysNavigationBarIconLight = true, // 深底白字
+
+  /// 底层路由
+  List<String>? unPopRoutes,
 }) {
+  Nav.initUnPopRoutes(unPopRoutes ?? []);
+
+  setGlobalSystemOverlayStyle(
+    statusBarColor: statusBarColor,
+    isStatusBarIconLight: isStatusBarIconLight,
+    sysNavigationBarColor: sysNavigationBarColor,
+    isSysNavigationBarIconLight: isStatusBarIconLight,
+  );
+
   return GetMaterialApp(
     key: key,
     navigatorKey: navigatorKey,

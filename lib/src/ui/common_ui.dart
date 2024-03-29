@@ -171,11 +171,12 @@ PreferredSizeWidget mAppBar({
   int titleMaxLine = 1,
   double height = 0,
   double? elevation,
-  Color? backgroundColor,
-  Widget? leading, // 自定义左侧按钮
-  Color? backIconColor, // 左侧返回按钮
   bool backEnable = false,
   bool autoBackEnable = true,
+  Color? backgroundColor,
+  IconData? backIconData,
+  Color? backIconColor, // 左侧返回按钮
+  Widget? leading, // 自定义左侧按钮
   VoidCallback? backPressed,
   List<Widget>? actions,
   PreferredSizeWidget? bottom,
@@ -196,7 +197,7 @@ PreferredSizeWidget mAppBar({
   /// 默认返回按钮
   final Widget leadingDefault = IconButton(
     icon: Icon(
-      Icons.arrow_back_ios_new,
+      backIconData ?? Icons.arrow_back_ios_new,
       color: backIconColor,
       size: backIconSize,
     ),

@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 /// 通过转义字符改变日志颜色
 const ansiColorRed = "\x1b[31m";
@@ -16,6 +17,11 @@ const bool colorful = false;
 
 /// 日志开关
 bool isForceLog = false;
+
+void initLog({bool enable = false}) {
+  isForceLog = enable;
+  Get.isLogEnable = enable;
+}
 
 /// 打印错误日志
 void e({required dynamic msg, String tag = '', bool split = false, String? ansiColor}) {
