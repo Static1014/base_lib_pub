@@ -1,3 +1,7 @@
+## 3.6.5
+
+1. 调整GlobalKey扩展；
+
 ## 3.6.4
 
 1. 调整baseApp、runApp参数结构；

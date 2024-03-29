@@ -1,3 +1,7 @@
+## 3.6.5
+
+1. Adjust GlobalKey extension;
+
 ## 3.6.4
 
 1. Adjust the baseApp and runApp parameter structures;

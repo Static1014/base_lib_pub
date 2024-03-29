@@ -83,17 +83,3 @@ extension ScrollControllerExt on ScrollController {
     });
   }
 }
-
-extension GlobalKeyExt on GlobalKey {
-  /// 获取当前key标记的Widget在屏幕上的位置
-  Offset get curWidgetLocation {
-    RenderBox rb = currentContext?.findRenderObject() as RenderBox;
-    return rb.localToGlobal(Offset.zero);
-  }
-
-  /// 获取当前key标记的Widget的size
-  Size get curWidgetSize {
-    RenderBox rb = currentContext?.findRenderObject() as RenderBox;
-    return rb.size;
-  }
-}
