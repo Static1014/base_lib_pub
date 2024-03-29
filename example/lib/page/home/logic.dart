@@ -19,4 +19,5 @@ class HomeLogic extends GetxController {
   AssetEntity? pickEntity;
 
   late ListFooterLogic footerLogic;
+  MDialog? tapDialog;
 }

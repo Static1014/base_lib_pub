@@ -10,11 +10,10 @@ import '../../trans/lang.dart';
 import 'logic.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
 
   final logic = Get.put(HomeLogic());
   final MySlidableManager slidableManager = MySlidableManager();
-  MDialog? tapDialog;
   final ScrollController scrollController = ScrollController();
 
   @override
@@ -114,10 +113,10 @@ class HomePage extends StatelessWidget {
                     highlightColor: BaseColors.cBlue,
                     padding: const EdgeInsets.all(8),
                     onPressed: () {
-                      tapDialog = MDialog.simpleAnimate(
+                      logic.tapDialog = MDialog.simpleAnimate(
                           child: GestureDetector(
                         onDoubleTap: () {
-                          tapDialog?.hide();
+                          logic.tapDialog?.hide();
                         },
                         child: InteractiveViewer(
                           maxScale: 4,
