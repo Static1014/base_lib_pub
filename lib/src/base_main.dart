@@ -31,8 +31,8 @@ void runMyApp(
 }) {
   WidgetsFlutterBinding.ensureInitialized();
 
-  initLog(enable: enableLog);
-  
+  LogUtils.initLog(enable: enableLog);
+
   if (clearGetxControllersBeforeExit) {
     MyGet.actionsBeforeExitApp.add(() {
       clearAllGetxControllers();

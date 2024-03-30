@@ -1,7 +1,7 @@
-/// Name: image_utils.dart
-///
-/// Created by Static4u
-/// Date : 2023/7/11 14:33
+// Name: image_utils.dart
+//
+// Created by Static4u
+// Date : 2023/7/11 14:33
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -140,11 +140,18 @@ Future<List<AssetEntity>> pickImage(
                 if (!granted) {
                   return;
                 }
+                if (!ctx.mounted) {
+                  return;
+                }
 
                 /// 开始拍摄
                 final AssetEntity? result = await CameraPicker.pickFromCamera(ctx, pickerConfig: CameraPickerConfig(enableRecording: enableRecording));
 
                 if (result == null) {
+                  return;
+                }
+
+                if (!ctx.mounted) {
                   return;
                 }
 
@@ -164,6 +171,9 @@ Future<List<AssetEntity>> pickImage(
           }
         : null,
   );
+  if (!context.mounted) {
+    return [];
+  }
   return await AssetPicker.pickAssets(context, pickerConfig: config) ?? [];
 }
 

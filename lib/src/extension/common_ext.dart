@@ -12,15 +12,15 @@ import '../util/log_utils.dart';
 /// Date : 2023/4/12 15:21
 extension CommonExt on Object {
   void logE({String tag = '', bool split = false, String? ansiColor}) {
-    e(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
+    LogUtils.e(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
   }
 
   void logI({String tag = '', bool split = false, String? ansiColor}) {
-    i(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
+    LogUtils.i(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
   }
 
   void logW({String tag = '', bool split = false, String? ansiColor}) {
-    w(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
+    LogUtils.w(msg: toString(), tag: tag, split: split, ansiColor: ansiColor);
   }
 }
 

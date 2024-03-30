@@ -1,3 +1,8 @@
+## 3.6.6
+
+1. Adjusting the MDialog with the same id will hide the previous one before showing the current pop-up;
+2. The default log is printed in color according to the level;
+
 ## 3.6.5
 
 1. Adjust GlobalKey extension;

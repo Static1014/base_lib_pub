@@ -1,4 +1,5 @@
 import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:base_lib_pub_example/const/my_const.dart';
 import 'package:base_lib_pub_example/main_logic.dart';
 import 'package:base_lib_pub_example/route/routes.dart';
 import 'package:base_lib_pub_example/theme/my_themes.dart';
@@ -10,7 +11,7 @@ import 'trans/translation.dart';
 void main() {
   runMyApp(
     const MyApp(),
-    enableLog: true,
+    enableLog: MyConst.isDebug || MyConst.isForceLog,
     initWeChat: true,
     beforeRun: () async {
       /// 初始化网络请求

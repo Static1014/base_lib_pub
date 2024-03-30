@@ -81,6 +81,11 @@ class HomePage extends StatelessWidget {
                 //   // "geo:39.11270601,117.2167114".launch();
                 //   toast(position.toString());
                 // }),
+                _buildTestFunc('log colorful', () async {
+                  'Info log'.logI();
+                  'Warning log'.logW();
+                  'Error log'.logE();
+                }),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -280,6 +285,23 @@ class HomePage extends StatelessWidget {
                 }),
                 _buildTestFunc('tel', () {
                   tel('15022252451');
+                }),
+                _buildTestFunc('tip id', () {
+                  mShowTip(id: '111', title: 'test', msg: '你好啊，我很长', actions: [
+                    TextButton(
+                        onPressed: () {
+                          mShowTip(
+                            id: '111',
+                            title: 'test',
+                            msg: '你好啊，我是同id的dialog',
+                          );
+                        },
+                        child: mText('再来一个'))
+                  ]);
+                  // mShowTip(
+                  //   title: 'test',
+                  //   msg: '你好啊，我很长，都装不下了' * 100,
+                  // );
                 }),
                 _buildTestFunc('oversize tip dialog', () {
                   mShowTip(

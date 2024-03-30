@@ -12,57 +12,80 @@ import '../../../base_lib_pub.dart';
 class MDialogManager {
   static List<MDialog> dialogList = [];
 
-  static bool hideDialogById(String id, {Callback? onClosed}) {
-    var rDialog = dialogList.firstWhereOrNull((element) => element.id == id);
-    if (rDialog == null || rDialog.isFake) {
+  static bool hideDialogById(String id) {
+    var dList = dialogList.where((element) => element.id == id).toList();
+    if (dList.isEmpty) {
       return false;
     }
-
-    rDialog.hide(onClosed: onClosed);
+    for (var dialog in dList) {
+      if (dialog.isFake) {
+        dialog.hide();
+      }
+    }
     return true;
   }
 
-  static bool showDialog(MDialog dialog, {BuildContext? overlayContext, Callback? onOpened}) {
-    var d = dialogList.firstWhereOrNull((element) => element.id == dialog.id);
-    if (d == null) {
-      dialogList.add(dialog);
-      var overlayState = Overlay.of(overlayContext ?? Get.overlayContext!);
-      // ignore: invalid_use_of_protected_member
-      dialog.animController.controller.clearListeners();
-      dialog.animController.controller.addListener(() {
-        // ignore: invalid_use_of_protected_member
-        overlayState.setState(() {});
-      });
-      overlayState.insert(dialog._entry);
-      dialog.animController.controller.forward().whenComplete(() {
-        onOpened?.call();
-      });
+  static bool showDialog(MDialog dialog, {BuildContext? overlayContext}) {
+    if (dialog.isFake) {
+      return false;
+    }
+
+    var dList = dialogList.where((element) => element.id == dialog.id).toList();
+    if (dList.isEmpty) {
+      // 没有同id的对话框
+      _add(dialog, overlayContext: overlayContext);
+      return true;
+    } else {
+      // 有同id的对话框，先关闭
+      for (var element in dList) {
+        element.hide();
+      }
+      // 再添加新的
+      _add(dialog, overlayContext: overlayContext);
+    }
+    return false;
+  }
+
+  static void _add(MDialog dialog, {BuildContext? overlayContext}) {
+    dialogList.add(dialog);
+    var overlayState = Overlay.of(overlayContext ?? Get.overlayContext!);
+    overlayState.insert(dialog._entry);
+    dialog.animMixin.animController.forward().whenComplete(() {
+      dialog.onOpened?.call();
+    });
+  }
+
+  static bool hideDialog(MDialog dialog, {bool anim = true}) {
+    if (dialog.isFake) {
+      return false;
+    }
+    int index = dialogList.indexOf(dialog);
+    if (index >= 0) {
+      if (anim) {
+        dialog.animMixin.animController.reverse().whenComplete(() {
+          _remove(dialog);
+        });
+      } else {
+        _remove(dialog);
+      }
       return true;
     }
     return false;
   }
 
-  static bool hideDialog(MDialog dialog, {Callback? onClosed}) {
-    var d = dialogList.firstWhereOrNull((element) => element.id == dialog.id);
-    if (d != null) {
-      dialog.animController.controller.reverse().whenComplete(() {
-        dialog._entry.remove();
-        // dialog.animController.controller.dispose();
-        dialogList.remove(dialog);
-        onClosed?.call();
-      });
-      return true;
-    }
-    return false;
+  static void _remove(MDialog dialog) {
+    dialog._entry.remove();
+    dialogList.remove(dialog);
+    dialog.onClosed?.call();
+    dialog.animMixin.dispose();
   }
 
   static bool isVisible(MDialog dialog) {
-    return dialogList.contains(dialog);
+    return !dialog.isFake && dialogList.contains(dialog);
   }
 }
 
 typedef MDialogBuilder = Widget Function(BuildContext context, AnimationController animationController);
-typedef MDialogActionCallback = bool Function();
 
 class MDialog {
   late OverlayEntry _entry;
@@ -70,12 +93,14 @@ class MDialog {
   Widget? child;
   String? id;
   bool isFake = false;
-  late GetxAnimationControllerMixin animController;
+  late GetxAnimationControllerMixin animMixin;
+  VoidCallback? onOpened;
+  VoidCallback? onClosed;
 
   bool get isVisible => MDialogManager.isVisible(this);
 
   void _init({Duration? duration}) {
-    animController = GetxAnimationControllerMixin(animDuration: duration ?? const Duration(milliseconds: 240));
+    animMixin = GetxAnimationControllerMixin(animDuration: duration ?? const Duration(milliseconds: 240));
 
     if (isEmptyOrNull(id)) {
       id = UniqueKey().toString();
@@ -87,22 +112,47 @@ class MDialog {
     isFake = true;
   }
 
+  MDialog show({BuildContext? overlayContext, Callback? onOpened}) {
+    this.onOpened = onOpened;
+    MDialogManager.showDialog(this, overlayContext: overlayContext);
+    return this;
+  }
+
+  MDialog hide({
+    Callback? onClosed,
+    bool anim = true,
+  }) {
+    this.onClosed = onClosed;
+    MDialogManager.hideDialog(this, anim: anim);
+    return this;
+  }
+
   /// 完全自定义
-  MDialog.builder({required MDialogBuilder builder, this.id, Duration? duration}) {
+  MDialog.builder({
+    required MDialogBuilder builder,
+    this.id,
+    Duration? duration,
+  }) {
     _init(duration: duration);
     _entry = OverlayEntry(builder: (ctx) {
-      return builder(ctx, animController.controller);
+      return builder(ctx, animMixin.animController);
     });
   }
 
   /// 自定义带动画
-  MDialog.simpleAnimate({required Widget child, this.id, Duration? duration}) {
+  MDialog.simpleAnimate({
+    required Widget child,
+    this.id,
+    Duration? duration,
+    this.dismissible = true,
+  }) {
     _init(duration: duration);
+
     _entry = OverlayEntry(
       builder: (ctx) => FadeTransition(
         opacity: Tween<double>(begin: 0, end: 1).animate(
           CurvedAnimation(
-            parent: animController.controller,
+            parent: animMixin.animController,
             curve: const Interval(0, 1, curve: Curves.easeOutCubic),
           ),
         ),
@@ -117,7 +167,7 @@ class MDialog {
             child: ScaleTransition(
                 scale: Tween<double>(begin: 0, end: 1).animate(
                   CurvedAnimation(
-                    parent: animController.controller,
+                    parent: animMixin.animController,
                     curve: const Interval(0, 1, curve: Curves.easeOutCubic),
                   ),
                 ),
@@ -153,7 +203,7 @@ class MDialog {
       builder: (ctx) => FadeTransition(
         opacity: Tween<double>(begin: 0, end: 1).animate(
           CurvedAnimation(
-            parent: animController.controller,
+            parent: animMixin.animController,
             curve: const Interval(0, 1, curve: Curves.easeOutCubic),
           ),
         ),
@@ -168,7 +218,7 @@ class MDialog {
             child: ScaleTransition(
               scale: Tween<double>(begin: 0, end: 1).animate(
                 CurvedAnimation(
-                  parent: animController.controller,
+                  parent: animMixin.animController,
                   curve: const Interval(0, 1, curve: Curves.easeOutCubic),
                 ),
               ),
@@ -250,16 +300,6 @@ class MDialog {
         ),
       ),
     );
-  }
-
-  MDialog show({BuildContext? overlayContext, Callback? onOpened}) {
-    MDialogManager.showDialog(this, overlayContext: overlayContext, onOpened: onOpened);
-    return this;
-  }
-
-  MDialog hide({Callback? onClosed}) {
-    MDialogManager.hideDialog(this, onClosed: onClosed);
-    return this;
   }
 
   /// 常用的两按钮
