@@ -113,6 +113,11 @@ double getStatusBarHeight(BuildContext context) {
   return MediaQuery.of(context).padding.top;
 }
 
+/// 获取键盘高度
+double getKeyboardHeight(BuildContext context) {
+  return MediaQuery.of(context).viewInsets.bottom;
+}
+
 /// 获取屏幕尺寸
 Size getScreenSize(BuildContext context) {
   return MediaQuery.of(context).size;

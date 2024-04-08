@@ -1,3 +1,13 @@
+## 3.7.0
+
+1. 优化log_utils:
+    1. 默认开启等级颜色;
+    2. 默认开启分段，在tag中新增groupID以识别分段日志；
+    3. 使用print替代developer.log；
+2. 默认主题调整；
+3. 其他widget调整；
+4. Android AGP/gradle升级：8.3.1/8.4;
+
 ## 3.6.6
 
 1. 调整MDialog同id将先隐藏前一个再展示当前弹框；
@@ -182,10 +192,8 @@ mImageView支持自定义httpClient，默认使用globalHttpClient，如果globa
 
 1. 新增MyExtendedImageProviderWithHttpClient实现自定义httpClient的ImageProvider，以加载非官方证书的https图片资源；
 2.
-
 新增MyExtendedImageWithHttpClient实现network网络图片加载，默认使用network_utils/globalHttpClient??initHttpClient()
 进行网络图片加载；
-
 3. 替换mImageView中ExtendedImage.network为MyExtendedImageWithHttpClient.network，用于加载非官方证书的https图片资源；
 
 ## 2.7.3

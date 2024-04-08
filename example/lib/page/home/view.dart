@@ -63,17 +63,28 @@ class HomePage extends StatelessWidget {
                   child: mText('自定义主题属性'),
                 ),
                 mTextField(hint: '请输入', prefixIconData: Icons.account_circle_rounded),
-                FilledButton(
-                  onPressed: () {
-                    toast('msg');
-                  },
-                  child: const Text('你好，我是按钮'),
-                ),
-                FilledButton(
-                  onPressed: () {
-                    toast('msg');
-                  },
-                  child: mText('你好，我是按钮'),
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilledButton(
+                      onPressed: () {
+                        toast('我是FilledButton(child: Text)');
+                      },
+                      child: const Text('按钮1'),
+                    ),
+                    FilledButton(
+                      onPressed: () {
+                        toast('我是FilledButton(child: mText)');
+                      },
+                      child: mText('按钮2'),
+                    ),
+                    mButton(
+                        onClick: () {
+                          toast('我是mButton');
+                        },
+                        text: '按钮3'),
+                  ],
                 ),
                 // _buildTestFunc('定位', () async {
                 //   var position = await getLocation();

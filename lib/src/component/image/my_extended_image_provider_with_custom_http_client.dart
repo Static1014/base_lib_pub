@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:ui' as ui show Codec;
 
+import 'package:base_lib_pub/base_lib_pub.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
@@ -88,7 +89,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
   @override
   final bool printError;
 
-  /// The max duration to cahce image.
+  /// The max duration to cache image.
   /// After this time the cache is expired and the image is reloaded.
   @override
   final Duration? cacheMaxAge;
@@ -105,7 +106,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
 
     return MultiFrameImageStreamCompleter(
       codec: _loadAsync(
-        key as ExtendedNetworkImageProvider,
+        key,
         chunkEvents,
         decode,
       ),
@@ -145,9 +146,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
           result = await instantiateImageCodec(data, decode);
         }
       } catch (e) {
-        if (printError) {
-          print(e);
-        }
+        e.logE(tag: 'MyExtendedImageProviderWithHttpClient');
       }
     }
 
@@ -161,9 +160,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
           result = await instantiateImageCodec(data, decode);
         }
       } catch (e) {
-        if (printError) {
-          print(e);
-        }
+        e.logE(tag: 'MyExtendedImageProviderWithHttpClient');
       }
     }
 
@@ -182,28 +179,28 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
     StreamController<ImageChunkEvent>? chunkEvents,
     String md5Key,
   ) async {
-    final Directory _cacheImagesDirectory = Directory(join((await getTemporaryDirectory()).path, cacheImageFolderName));
+    final Directory cacheImagesDirectory = Directory(join((await getTemporaryDirectory()).path, cacheImageFolderName));
     Uint8List? data;
     // exist, try to find cache image file
-    if (_cacheImagesDirectory.existsSync()) {
-      final File cacheFlie = File(join(_cacheImagesDirectory.path, md5Key));
-      if (cacheFlie.existsSync()) {
+    if (cacheImagesDirectory.existsSync()) {
+      final File cacheFile = File(join(cacheImagesDirectory.path, md5Key));
+      if (cacheFile.existsSync()) {
         if (key.cacheMaxAge != null) {
           final DateTime now = DateTime.now();
-          final FileStat fs = cacheFlie.statSync();
+          final FileStat fs = cacheFile.statSync();
           if (now.subtract(key.cacheMaxAge!).isAfter(fs.changed)) {
-            cacheFlie.deleteSync(recursive: true);
+            cacheFile.deleteSync(recursive: true);
           } else {
-            data = await cacheFlie.readAsBytes();
+            data = await cacheFile.readAsBytes();
           }
         } else {
-          data = await cacheFlie.readAsBytes();
+          data = await cacheFile.readAsBytes();
         }
       }
     }
     // create folder
     else {
-      await _cacheImagesDirectory.create();
+      await cacheImagesDirectory.create();
     }
     // load from network
     if (data == null) {
@@ -213,7 +210,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
       );
       if (data != null) {
         // cache image file
-        await File(join(_cacheImagesDirectory.path, md5Key)).writeAsBytes(data);
+        await File(join(cacheImagesDirectory.path, md5Key)).writeAsBytes(data);
       }
     }
 
@@ -255,19 +252,15 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
 
       return bytes;
     } on OperationCanceledError catch (_) {
-      if (printError) {
-        print('User cancel request $url.');
-      }
+      'User cancel request $url.'.logE(tag: 'MyExtendedImageProviderWithHttpClient');
       return Future<Uint8List>.error(StateError('User cancel request $url.'));
     } catch (e) {
-      if (printError) {
-        print(e);
-      }
+      e.logE(tag: 'MyExtendedImageProviderWithHttpClient');
       // [ExtendedImage.clearMemoryCacheIfFailed] can clear cache
       // Depending on where the exception was thrown, the image cache may not
       // have had a chance to track the key in the cache at all.
-      // Schedule a microtask to give the cache a chance to add the key.
-      // scheduleMicrotask(() {
+      // Schedule a microTask to give the cache a chance to add the key.
+      // scheduleMicroTask(() {
       //   PaintingBinding.instance.imageCache.evict(key);
       // });
       // rethrow;

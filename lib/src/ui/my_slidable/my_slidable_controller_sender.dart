@@ -7,10 +7,10 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 /// Date : 2023/10/12 10:20
 class MySlidableControllerSender extends StatefulWidget {
   const MySlidableControllerSender({
-    Key? key,
+    super.key,
     required this.child,
     this.slideSet,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final Set<SlidableController>? slideSet;

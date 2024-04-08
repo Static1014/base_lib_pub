@@ -40,6 +40,7 @@ class BaseTheme {
     Color? bodySmall,
     Color? indicatorColor,
     Iterable<ThemeExtension<dynamic>>? extensions,
+    String? fontFamily,
   }) {
     MaterialColor primaryMC = primaryColor.toMaterialColor;
     return BaseTheme._createBaseTheme(primaryColor).copyWith(
@@ -60,6 +61,12 @@ class BaseTheme {
           ),
       splashColor: splashColor ?? primaryMC.shade50,
       iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: iconColor ?? primaryColor)),
+      // filledButtonTheme: FilledButtonThemeData(
+      //   style: FilledButton.styleFrom(
+      //     foregroundColor: onPrimary ?? BaseColors.cWhite,
+      //     textStyle: TextStyle(fontFamily: fontFamily),
+      //   ),
+      // ),
       iconTheme: IconThemeData(color: iconColor ?? primaryColor),
       cardTheme: CardTheme(color: cardColor ?? primaryColor, elevation: 2),
       scaffoldBackgroundColor: scaffoldBgColor ?? BaseColors.cGrayBgMiddle,
@@ -73,12 +80,20 @@ class BaseTheme {
           color: appBarForegroundColor ?? primaryColor,
           fontSize: BaseDimens.dFontSizeTitle,
           fontWeight: FontWeight.bold,
+          fontFamily: fontFamily,
         ),
       ),
       // 自定义
-      textTheme: createTextTheme(bodyLarge: bodyLarge, bodyMedium: bodyMedium, bodySmall: bodySmall),
+      // textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(textStyle: TextStyle(fontFamily: fontFamily))),
+      textTheme: createTextTheme(
+        bodyLarge: bodyLarge,
+        bodyMedium: bodyMedium,
+        bodySmall: bodySmall,
+        label: onPrimary ?? BaseColors.cWhite,
+        fontFamily: fontFamily,
+      ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(color: inputHintColor ?? BaseColors.cFontGrayLight, height: 1.3),
+        hintStyle: TextStyle(color: inputHintColor ?? BaseColors.cFontGrayLight, height: 1.3).apply(fontFamily: fontFamily),
       ),
       indicatorColor: indicatorColor ?? primaryColor,
       extensions: extensions,
@@ -154,28 +169,56 @@ class BaseTheme {
     Color? bodyLarge,
     Color? bodyMedium,
     Color? bodySmall,
-  }) =>
-      TextTheme(
-        bodyLarge: TextStyle(
-          color: bodyLarge ?? BaseColors.cFontBlackLight,
-          fontSize: BaseDimens.dFontSizeLarge,
-          overflow: TextOverflow.ellipsis,
-          height: 1.3,
-          decoration: TextDecoration.none,
-        ),
-        bodyMedium: TextStyle(
-          color: bodyMedium ?? BaseColors.cFontBlack,
-          fontSize: BaseDimens.dFontSizeNormal,
-          overflow: TextOverflow.ellipsis,
-          height: 1.3,
-          decoration: TextDecoration.none,
-        ),
-        bodySmall: TextStyle(
-          color: bodySmall ?? BaseColors.cFontGrayLight,
-          fontSize: BaseDimens.dFontSizeSmall,
-          overflow: TextOverflow.ellipsis,
-          height: 1.3,
-          decoration: TextDecoration.none,
-        ),
-      );
+    Color? label,
+    String? fontFamily,
+    Brightness brightness = Brightness.light,
+  }) {
+    return (brightness == Brightness.light ? ThemeData.light() : ThemeData.dark())
+        .textTheme
+        .copyWith(
+          bodyLarge: TextStyle(
+            color: bodyLarge ?? BaseColors.cFontBlackLight,
+            fontSize: BaseDimens.dFontSizeLarge,
+            overflow: TextOverflow.ellipsis,
+            height: 1.3,
+            decoration: TextDecoration.none,
+          ),
+          bodyMedium: TextStyle(
+            color: bodyMedium ?? BaseColors.cFontBlack,
+            fontSize: BaseDimens.dFontSizeNormal,
+            overflow: TextOverflow.ellipsis,
+            height: 1.3,
+            decoration: TextDecoration.none,
+          ),
+          bodySmall: TextStyle(
+            color: bodySmall ?? BaseColors.cFontGrayLight,
+            fontSize: BaseDimens.dFontSizeSmall,
+            overflow: TextOverflow.ellipsis,
+            height: 1.3,
+            decoration: TextDecoration.none,
+          ),
+          // labelLarge: TextStyle(
+          //   color: label ?? BaseColors.cFontBlack,
+          //   fontSize: BaseDimens.dFontSizeLarge,
+          //   overflow: TextOverflow.ellipsis,
+          //   height: 1.3,
+          //   decoration: TextDecoration.none,
+          // ),
+          // labelMedium: TextStyle(
+          //   color: label ?? BaseColors.cFontBlack,
+          //   fontSize: BaseDimens.dFontSizeNormal,
+          //   overflow: TextOverflow.ellipsis,
+          //   height: 1.3,
+          //   decoration: TextDecoration.none,
+          // ),
+          // labelSmall: TextStyle(
+          //   color: label ?? BaseColors.cFontBlack,
+          //   fontSize: BaseDimens.dFontSizeSmall,
+          //   overflow: TextOverflow.ellipsis,
+          //   height: 1.3,
+          //   decoration: TextDecoration.none,
+          // ),
+        )
+        .apply(fontFamily: fontFamily, displayColor: label);
+  }
 }

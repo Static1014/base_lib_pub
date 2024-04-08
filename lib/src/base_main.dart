@@ -154,7 +154,7 @@ GetMaterialApp baseApp({
 
   /// 状态栏和系统导航栏配色
   Color statusBarColor = BaseColors.cTransparent,
-  Color sysNavigationBarColor = BaseColors.cBlack,
+  Color? sysNavigationBarColor,
   bool isStatusBarIconLight = true, // 深底白字
   bool isSysNavigationBarIconLight = true, // 深底白字
 

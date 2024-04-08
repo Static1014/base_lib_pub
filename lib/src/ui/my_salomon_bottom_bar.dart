@@ -1,3 +1,6 @@
+import 'package:base_lib_pub/base_lib_pub.dart';
+import 'package:flutter/material.dart';
+
 /// Name: my_salomon_bottom_bar.dart
 ///Copyright 2020 Luke Pighetti
 ///
@@ -10,9 +13,6 @@
 ///
 /// Modify by Static4u
 /// Date : 2023/9/13 21:41
-import 'package:base_lib_pub/base_lib_pub.dart';
-import 'package:flutter/material.dart';
-
 class MySalomonBottomBar extends StatelessWidget {
   /// A bottom bar that faithfully follows the design by Aurélien Salomon
   ///

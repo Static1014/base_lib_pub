@@ -1,3 +1,14 @@
+## 3.7.0
+
+1. Optimize the `log_utils`:
+    1. Default to enable the level color;
+    2. Default to enable log segmentation, and add a new groupID at the end of tag to identify the
+       segmented logs;
+    3. Use `print()` instead of `developer.log()`;
+2. Default theme adjustment;
+3. Other widget adjustments;
+4. Android AGP/gradle upgraded：8.3.1/8.4;
+
 ## 3.6.6
 
 1. Adjusting the MDialog with the same id will hide the previous one before showing the current pop-up;

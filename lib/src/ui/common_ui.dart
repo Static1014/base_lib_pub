@@ -37,12 +37,12 @@ void setSystemOverlayVisible({
 void setGlobalSystemOverlayStyle({
   Color statusBarColor = BaseColors.cTransparent,
   bool isStatusBarIconLight = true, // 深底白字
-  Color sysNavigationBarColor = BaseColors.cBlack,
+  Color? sysNavigationBarColor,
   bool isSysNavigationBarIconLight = true, // 深底白字
 }) {
   MyGet.isStatusBarIconLight = isStatusBarIconLight;
   MyGet.statusBarBgColor = statusBarColor;
-  MyGet.sysNavigationBarBgColor = sysNavigationBarColor;
+  MyGet.sysNavigationBarBgColor = sysNavigationBarColor ?? (isSysNavigationBarIconLight ? BaseColors.cBlack : BaseColors.cWhite);
   MyGet.isSysNavigationBarIconLight = isSysNavigationBarIconLight;
 
   SystemChrome.setSystemUIOverlayStyle(getSystemOverlayStyle(
@@ -189,6 +189,7 @@ PreferredSizeWidget mAppBar({
   String? semanticsLabel,
   double? scrolledUnderElevation,
   dynamic backResult,
+  EdgeInsetsGeometry? padding,
 }) {
   if (autoBackEnable) {
     backEnable = Nav.isPopEnable(route: route);
@@ -244,7 +245,14 @@ PreferredSizeWidget mAppBar({
 
   double pHeight = (height != 0 ? height : BaseDimens.dAppBarHeight) + (bottom?.preferredSize.height ?? 0);
 
-  return PreferredSize(preferredSize: Size.fromHeight(pHeight), child: bar);
+  return PreferredSize(
+      preferredSize: Size.fromHeight(pHeight),
+      child: padding == null
+          ? bar
+          : Container(
+              padding: padding,
+              child: bar,
+            ));
 }
 
 /// 获取普通Text
@@ -272,20 +280,22 @@ Widget mText(
       semanticsLabel: semanticsLabel,
     );
   }
-  return Text(msg,
-      textAlign: textAlign,
-      maxLines: maxLines,
-      overflow: overflow,
-      semanticsLabel: semanticsLabel,
-      style: TextStyle(
-        fontWeight: weight,
-        fontSize: fontSize,
-        color: color,
-        height: lineHeightFactor,
-        backgroundColor: bgColor,
-        decoration: TextDecoration.none,
-        fontStyle: fontStyle,
-      ));
+  return Builder(
+    builder: (context) => Text(msg,
+        textAlign: textAlign,
+        maxLines: maxLines,
+        overflow: overflow,
+        semanticsLabel: semanticsLabel,
+        style: context.theme.textTheme.bodyMedium?.copyWith(
+          fontWeight: weight,
+          fontSize: fontSize,
+          color: color,
+          height: lineHeightFactor,
+          backgroundColor: bgColor,
+          decoration: TextDecoration.none,
+          fontStyle: fontStyle,
+        )),
+  );
 }
 
 /// 获取普通输入框
@@ -317,9 +327,11 @@ Widget mTextField({
   List<TextInputFormatter>? formatters,
   bool isNumOnly = false,
   BoxDecoration? decoration,
-  TextAlign textAlign = TextAlign.left,
+  TextAlign textAlign = TextAlign.start,
+  TextAlignVertical? textAlignVertical,
   OverlayVisibilityMode clearButtonMode = OverlayVisibilityMode.editing,
   bool readOnly = false,
+  bool autofocus = false,
 }) {
   if (minLines >= maxLines) {
     maxLines = minLines;
@@ -342,6 +354,7 @@ Widget mTextField({
       maxLines: maxLines,
       minLines: minLines,
       textAlign: textAlign,
+      textAlignVertical: textAlignVertical,
       style: TextStyle(fontSize: fontSize, color: textColor, height: fontHeight),
       placeholderStyle: TextStyle(color: hintColor ?? Theme.of(ctx).inputDecorationTheme.hintStyle?.color, fontSize: fontSize, height: fontHeight),
       placeholder: hint,
@@ -359,6 +372,7 @@ Widget mTextField({
       textInputAction: textInputAction,
       onSubmitted: onSubmitted,
       focusNode: focusNode,
+      autofocus: autofocus,
     ),
   );
 }
@@ -941,25 +955,20 @@ Widget mButton({
           )
         : Icon(iconData, size: iconSize, color: iconColor));
   }
+
   if (text != null) {
-    mChildren.add(textPadding != null
-        ? Padding(
-            padding: textPadding,
-            child: mText(
-              text,
-              color: textColor,
-              weight: textWeight,
-              fontSize: textFontSize,
-              semanticsLabel: semanticsLabel,
-            ),
-          )
-        : mText(
-            text,
-            color: textColor,
-            weight: textWeight,
-            fontSize: textFontSize,
-            semanticsLabel: semanticsLabel,
-          ));
+    final tv = Builder(builder: (context) {
+      return mText(
+        text,
+        semanticsLabel: semanticsLabel,
+        style: context.textTheme.labelLarge?.copyWith(
+          color: textColor ?? context.theme.colorScheme.onPrimary,
+          fontWeight: textWeight,
+          fontSize: textFontSize,
+        ),
+      );
+    });
+    mChildren.add(textPadding != null ? Padding(padding: textPadding, child: tv) : tv);
   }
 
   Widget content = SizedBox(
@@ -977,11 +986,14 @@ Widget mButton({
           child: content,
         )
       : content;
-  return FilledButton(
+  return Builder(
+    builder: (context) => FilledButton(
       onPressed: onClick,
-      style: ButtonStyle(
+      style: context.theme.filledButtonTheme.style?.copyWith(
         backgroundColor: bgColor?.toMaterialStatePropertyAll,
         shape: MaterialStateProperty.all(shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(borderRadius)))),
       ),
-      child: child ?? box);
+      child: child ?? box,
+    ),
+  );
 }
