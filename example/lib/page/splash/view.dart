@@ -6,16 +6,16 @@ import '../../../trans/lang.dart';
 import 'logic.dart';
 
 class SplashPage extends StatelessWidget {
-  SplashPage({super.key});
+  SplashPage({super.key}) {
+    onBuildFinished((duration) {
+      logic.start();
+    });
+  }
 
   final logic = Get.put(SplashLogic());
 
   @override
   Widget build(BuildContext context) {
-    onBuildFinished((duration) {
-      logic.start();
-    });
-
     return mRoot(
       child: Container(
         width: Get.width,

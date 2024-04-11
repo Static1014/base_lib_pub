@@ -9,13 +9,14 @@ import '../../trans/lang.dart';
 import 'logic.dart';
 
 class SettingPage extends StatelessWidget {
-  SettingPage({super.key});
+  SettingPage({super.key}) {
+    onBuildFinished((duration) {});
+  }
 
   final logic = Get.put(SettingLogic());
 
   @override
   Widget build(BuildContext context) {
-    onBuildFinished((duration) {});
     return mRoot(
       child: Scaffold(
         appBar: mAppBar(

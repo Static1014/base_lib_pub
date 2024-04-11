@@ -1,3 +1,8 @@
+## 3.7.1
+
+1. 调整onBuildFinished调用时机，避免不必要的重复调用；
+2. 调整CommonWebViewPage、ImagePreviewPage中logic的实例获取时间；
+
 ## 3.7.0
 
 1. 优化log_utils:

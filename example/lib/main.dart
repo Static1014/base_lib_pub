@@ -30,11 +30,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+
     onBuildFinished((duration) {
       // 手动配置主题，重启时需要切换
       MyThemes.changeTheme();
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return baseApp(
       // 路由
       initialRoute: Routes.init,

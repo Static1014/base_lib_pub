@@ -85,6 +85,8 @@ SystemUiOverlayStyle getSystemOverlayStyle({
 /// widget build回调
 /// @param firstFrameCallback: 第一帧完成回调
 /// @param everyFrameCallback: 第二及以后帧完成回调
+/// * 简易在构造函数内调用
+/// ! 不要在Widget build(BuildContext context) {...} 内调用，build()会重复调用；
 void onBuildFinished(FrameCallback firstFrameCallback, {FrameCallback? everyFrameCallback}) {
   WidgetsBinding.instance.addPostFrameCallback(firstFrameCallback);
 

@@ -61,6 +61,8 @@ class CommonWebViewPage extends StatelessWidget {
   final Color? pbBgColor;
   final Color? pbColor;
 
+  late final CommonWebViewLogic logic;
+
   CommonWebViewPage({
     required this.urlOrData,
     this.type = WebViewContentType.url,
@@ -87,7 +89,7 @@ class CommonWebViewPage extends StatelessWidget {
     this.pbColor,
     this.bottomNavEnable = true,
   }) {
-    final logic = Get.find<CommonWebViewLogic>(tag: tag);
+    logic = Get.find<CommonWebViewLogic>(tag: tag);
     logic._bottomNavEnable(bottomNavEnable);
     logic.webViewController.init(
       clearCache: clearCacheOnStart,
@@ -113,13 +115,6 @@ class CommonWebViewPage extends StatelessWidget {
     if (urlOrData.isEmptyOrNull()) {
       'CommonWebViewPage\' url or data is empty or null, check?'.logE(tag: 'CommonWebViewPage');
     }
-  }
-
-  final double bottomHeight = 40;
-
-  @override
-  Widget build(BuildContext context) {
-    final logic = Get.find<CommonWebViewLogic>(tag: tag);
 
     onBuildFinished((duration) {
       logic._type(type);
@@ -131,6 +126,12 @@ class CommonWebViewPage extends StatelessWidget {
         body: body,
       );
     });
+  }
+
+  final double bottomHeight = 40;
+
+  @override
+  Widget build(BuildContext context) {
     return pageBuilder?.call(logic, _buildWebViewWithNav(logic), _buildPb(logic)) ??
         mRoot(
           canPop: !popConfirm,

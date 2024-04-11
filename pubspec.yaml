@@ -1,6 +1,6 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 3.7.0
+version: 3.7.1
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
@@ -58,12 +58,12 @@ dependencies:
   # 本地存储
   shared_preferences: ^2.2.2
   #  util/分享
-  #  share_plus: ^7.2.2
   share_plus: ^8.0.2
   # 应用信息
   package_info_plus: ^6.0.0
   # 设备信息
-  device_info_plus: ^10.0.1
+  device_info_plus: ^9.1.2
+  #  device_info_plus: ^10.0.1  # ? syncfusion_flutter_pdfviewer与此冲突
   # 侧滑菜单
   flutter_slidable: ^3.1.0
   # android_intent(only for android)

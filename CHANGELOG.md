@@ -1,3 +1,8 @@
+## 3.7.1
+
+1. Adjust the call timing of onBuildFinished to avoid unnecessary repeated calls;
+2. Adjust the logic instance acquisition time in the CommonWebViewPage and ImagePreviewPage.
+
 ## 3.7.0
 
 1. Optimize the `log_utils`:

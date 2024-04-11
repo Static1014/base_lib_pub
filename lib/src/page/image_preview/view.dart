@@ -66,6 +66,7 @@ class ImagePreviewPage extends StatelessWidget {
 
   // 让bottomView独立于image，放在页面底部
   final bool splitBottomView;
+  late final ImagePreviewLogic logic;
 
   ImagePreviewPage({
     super.key,
@@ -93,7 +94,7 @@ class ImagePreviewPage extends StatelessWidget {
     assert(imgList.isNotEmpty, 'the size of preview imgList must be over 0');
     // assert(defaultIndex >= 0 && defaultIndex < imgList.length, 'default index should between 0 and the size of imgList');
 
-    var logic = Get.find<ImagePreviewLogic>(tag: tag);
+    logic = Get.find<ImagePreviewLogic>(tag: tag);
     logic._initPageController(defaultIndex < 0 && defaultIndex >= imgList.length ? 0 : defaultIndex);
     logic._imgList(imgList);
     logic.onPreviewIndexChanged = onPreviewIndexChanged;
@@ -110,8 +111,6 @@ class ImagePreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var logic = Get.find<ImagePreviewLogic>(tag: tag);
-
     return mRoot(
       safeArea: false,
       child: Scaffold(
