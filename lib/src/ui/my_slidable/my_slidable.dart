@@ -13,9 +13,11 @@ class MySlidable extends StatelessWidget {
   final String groupTag;
   final double extentRatio;
   final MySlidableManager? manager;
+  final SlidableController? controller;
   final Function? onDismissed;
-  final Widget motion;
+  // final Widget motion;
   final List<Widget> actions;
+  final MySlideMotion motion;
 
   const MySlidable({
     super.key,
@@ -24,8 +26,9 @@ class MySlidable extends StatelessWidget {
     this.groupTag = '0',
     this.extentRatio = 0.3,
     this.manager,
+    this.controller,
     this.onDismissed,
-    this.motion = const StretchMotion(),
+    this.motion = MySlideMotion.stretch,
   }) : assert(onDismissed == null || key != null, 'You must have a key when onDismissed is used.');
 
   @override
@@ -34,9 +37,15 @@ class MySlidable extends StatelessWidget {
       key: key,
       // 相同的groupTag只能同时打开一个
       groupTag: groupTag,
+      controller: controller,
       endActionPane: ActionPane(
         extentRatio: extentRatio,
-        motion: motion,
+        motion: switch (motion) {
+          MySlideMotion.stretch => const StretchMotion(),
+          MySlideMotion.behind => const BehindMotion(),
+          MySlideMotion.scroll => const ScrollMotion(),
+          MySlideMotion.drawer => const DrawerMotion(),
+        },
         dismissible: onDismissed != null
             ? DismissiblePane(
                 onDismissed: () {
@@ -53,4 +62,11 @@ class MySlidable extends StatelessWidget {
       ),
     );
   }
+}
+
+enum MySlideMotion {
+  stretch,
+  behind,
+  scroll,
+  drawer,
 }

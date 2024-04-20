@@ -44,8 +44,8 @@ extension StringExt on String {
 
 extension ScrollControllerExt on ScrollController {
   /// 滚动到底部
-  void scrollToBottom({int milliseconds = 300, Curve curve = Curves.easeIn}) {
-    animateTo(
+  Future<void> scrollToBottom({int milliseconds = 300, Curve curve = Curves.easeIn}) {
+    return animateTo(
       position.maxScrollExtent,
       duration: Duration(milliseconds: milliseconds),
       curve: curve,
@@ -53,8 +53,8 @@ extension ScrollControllerExt on ScrollController {
   }
 
   /// 滚动到顶部
-  void scrollToTop({int milliseconds = 300, Curve curve = Curves.easeIn}) {
-    animateTo(
+  Future<void> scrollToTop({int milliseconds = 300, Curve curve = Curves.easeIn}) {
+    return animateTo(
       0,
       duration: Duration(milliseconds: milliseconds),
       curve: curve,
@@ -62,11 +62,11 @@ extension ScrollControllerExt on ScrollController {
   }
 
   /// 如果在顶部，滚动到底部；否则滚动到顶部
-  void toggleScroll({int milliseconds = 300, Curve curve = Curves.easeIn}) {
+  Future<void> toggleScroll({int milliseconds = 300, Curve curve = Curves.easeIn}) {
     if (offset == 0) {
-      scrollToBottom(milliseconds: milliseconds, curve: curve);
+      return scrollToBottom(milliseconds: milliseconds, curve: curve);
     } else {
-      scrollToTop(milliseconds: milliseconds, curve: curve);
+      return scrollToTop(milliseconds: milliseconds, curve: curve);
     }
   }
 

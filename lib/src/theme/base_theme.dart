@@ -61,19 +61,19 @@ class BaseTheme {
           ),
       splashColor: splashColor ?? primaryMC.shade50,
       iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(foregroundColor: iconColor ?? primaryColor)),
-      // filledButtonTheme: FilledButtonThemeData(
-      //   style: FilledButton.styleFrom(
-      //     foregroundColor: onPrimary ?? BaseColors.cWhite,
-      //     textStyle: TextStyle(fontFamily: fontFamily),
-      //   ),
-      // ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: FilledButton.styleFrom(
+          foregroundColor: onPrimary ?? BaseColors.cWhite,
+          textStyle: TextStyle(fontFamily: fontFamily),
+        ),
+      ),
       iconTheme: IconThemeData(color: iconColor ?? primaryColor),
       cardTheme: CardTheme(color: cardColor ?? primaryColor, elevation: 2),
       scaffoldBackgroundColor: scaffoldBgColor ?? BaseColors.cGrayBgMiddle,
       appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
         color: appBarBgColor ?? BaseColors.cWhite,
         centerTitle: true,
-        scrolledUnderElevation: 4,
+        scrolledUnderElevation: 2,
         shadowColor: BaseColors.cGrayLine,
         iconTheme: BaseTheme.defaultAppBarTheme.iconTheme?.copyWith(color: appBarForegroundColor),
         titleTextStyle: BaseTheme.defaultAppBarTheme.titleTextStyle?.copyWith(
@@ -84,7 +84,7 @@ class BaseTheme {
         ),
       ),
       // 自定义
-      // textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(textStyle: TextStyle(fontFamily: fontFamily))),
+      textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(textStyle: TextStyle(fontFamily: fontFamily))),
       textTheme: createTextTheme(
         bodyLarge: bodyLarge,
         bodyMedium: bodyMedium,

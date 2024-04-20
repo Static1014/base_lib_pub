@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:base_lib_pub/base_lib_pub.dart';
@@ -79,5 +80,44 @@ extension SwappableList<E> on List<E> {
       nextIndex = length - 1;
     }
     return this[nextIndex];
+  }
+
+  E? random() {
+    if (length < 1) {
+      return null;
+    }
+    if (length == 1) {
+      return this[0];
+    }
+    return this[Random().nextInt(length)];
+  }
+
+  List<E> randomList({int count = 1, bool repeatable = false}) {
+    if (length < 1) {
+      return [];
+    }
+
+    List<E> result = [];
+    if (!repeatable) {
+      // 不能重复
+      if (count > length) {
+        throw Exception('Count should be less than or equal to length');
+      }
+
+      List<E> copy = map((e) => e).toList();
+      final random = Random();
+      for (var i = 0; i < count; i++) {
+        int j = random.nextInt(copy.length);
+        result.add(copy[j]);
+        copy.removeAt(j);
+      }
+    } else {
+      // 可以重复
+      final random = Random();
+      for (int i = 0; i < count; i++) {
+        result.add(this[random.nextInt(length)]);
+      }
+    }
+    return result;
   }
 }

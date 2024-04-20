@@ -1,3 +1,11 @@
+## 3.7.2
+
+1. color扩展：
+    1. 新增函数`shade(double shade, {double alpha = 1})`获得颜色的浅色和深色；
+    2. 新增`toHexString()`获取颜色的十六进制字符串；
+2. list扩展，新增random()、randomList()两个方法，获取列表中的随机元素；
+3. 部分ui调整；
+
 ## 3.7.1
 
 1. 调整onBuildFinished调用时机，避免不必要的重复调用；

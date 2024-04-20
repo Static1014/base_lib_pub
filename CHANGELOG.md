@@ -1,3 +1,11 @@
+## 3.7.2
+
+1. color extension:
+    1. Add the function `shade(double shade, {double alpha = 1}) ` to get the light and dark colors;
+    2. Add `toHexString()` to get the hexadecimal string of color;
+2. list extension, adding two methods, `random ()` and `randomList ()`, to obtain random elements in the list;
+3. Some ui adjustments;
+
 ## 3.7.1
 
 1. Adjust the call timing of onBuildFinished to avoid unnecessary repeated calls;

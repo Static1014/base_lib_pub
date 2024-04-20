@@ -31,6 +31,7 @@ class BaseTrsClass {
   final exitOnDoubleClick = "exitOnDoubleClick";
   final crash = "crash";
   final delete = "delete";
+  final edit = "edit";
   final deleteTip = "deleteTip";
   final leftDelete = "leftDelete";
   final leaveOne = "leaveOne";
@@ -132,6 +133,7 @@ final baseEnUS = {
   BaseTrs.cancel: 'Cancel',
   BaseTrs.share: 'Share',
   BaseTrs.delete: 'Delete',
+  BaseTrs.edit: 'Edit',
   BaseTrs.close: 'Close',
   BaseTrs.leftDelete: '<< Sliding left to delete',
   BaseTrs.leaveOne: 'It can\'t be less',
@@ -223,6 +225,7 @@ final baseZhCN = {
   BaseTrs.share: '分享',
   BaseTrs.cancel: '取消',
   BaseTrs.delete: '删除',
+  BaseTrs.edit: '编辑',
   BaseTrs.leftDelete: '<< 左滑删除',
   BaseTrs.leaveOne: '不能再删啦',
   BaseTrs.setting: '设置',

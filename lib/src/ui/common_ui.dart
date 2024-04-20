@@ -101,24 +101,21 @@ Widget mPopScope({
   required Widget child,
   String? route,
 }) {
-  return PopScope(
-      canPop: canPop ?? Nav.isPopEnable(route: route),
-      onPopInvoked: onPopInvoked ??
-          (didPop) {
-            hideKeyboard();
-
-            if (!didPop) {
-              if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
-                //   // 一秒之内点击两次返回键，提示再次点击退出
-                MyGet.lastTime = DateTime.now();
-                toast(BaseTrs.exitOnDoubleClick.tr);
-              } else {
-                exitApp();
-              }
-            }
-          },
-      child: child);
+  return PopScope(canPop: canPop ?? Nav.isPopEnable(route: route), onPopInvoked: onPopInvoked ?? defaultPopInvokedCallback, child: child);
 }
+
+PopInvokedCallback defaultPopInvokedCallback = (didPop) {
+  hideKeyboard();
+  if (!didPop) {
+    if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
+      //   // 一秒之内点击两次返回键，提示再次点击退出
+      MyGet.lastTime = DateTime.now();
+      toast(BaseTrs.exitOnDoubleClick.tr);
+    } else {
+      exitApp();
+    }
+  }
+};
 
 /// 点击空白处关闭键盘
 Widget mRoot({
@@ -132,9 +129,10 @@ Widget mRoot({
   bool safeLeft = true,
   bool safeRight = true,
   Color? safeAreaBgColor, // 当有safeArea时，safeArea之外的区域需要手动设置背景色，否则会变黑；
+  GestureTapCallback? onScreenTap,
 }) {
   var cc = GestureDetector(
-      onTap: hideKeyboard,
+      onTap: onScreenTap ?? hideKeyboard,
       child: safeArea
           ? Builder(
               builder: (ctx) => Container(
@@ -271,6 +269,7 @@ Widget mText(
   Color? bgColor,
   TextStyle? style,
   String? semanticsLabel,
+      TextDecoration decoration = TextDecoration.none,
 }) {
   if (style != null) {
     return Text(
@@ -294,7 +293,7 @@ Widget mText(
           color: color,
           height: lineHeightFactor,
           backgroundColor: bgColor,
-          decoration: TextDecoration.none,
+          decoration: decoration,
           fontStyle: fontStyle,
         )),
   );
@@ -991,10 +990,10 @@ Widget mButton({
   return Builder(
     builder: (context) => FilledButton(
       onPressed: onClick,
-      style: context.theme.filledButtonTheme.style?.copyWith(
+      style: ButtonStyle(
         backgroundColor: bgColor?.toMaterialStatePropertyAll,
-        shape: MaterialStateProperty.all(shape ?? RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(borderRadius)))),
-      ),
+        shape: MaterialStateProperty.all(shape ?? const StadiumBorder()),
+      ).merge(context.theme.filledButtonTheme.style),
       child: child ?? box,
     ),
   );

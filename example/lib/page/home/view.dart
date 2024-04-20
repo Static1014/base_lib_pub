@@ -80,6 +80,7 @@ class HomePage extends StatelessWidget {
                       child: mText('按钮2'),
                     ),
                     mButton(
+                        bgColor: Colors.red,
                         onClick: () {
                           toast('我是mButton');
                         },

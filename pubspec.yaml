@@ -1,10 +1,10 @@
 name: base_lib_pub
 description: This is a basic library based on Getx. In order to build applications conveniently and quickly, you can quickly integrate the basic functions needed by general applications.
-version: 3.7.1
+version: 3.7.2
 repository: https://github.com/Static1014/base_lib_pub.git
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: ">=3.3.0 <4.0.0"
   flutter: ">=3.16.0"
 
 dependencies:
@@ -33,7 +33,7 @@ dependencies:
   wechat_assets_picker: ^9.0.2
   wechat_camera_picker: ^4.2.1
   #  网络
-  dio: ^5.4.2+1
+  dio: ^5.4.3
   #  图片压缩
   flutter_image_compress: ^2.2.0
   #  util/访问存储文件夹
@@ -84,7 +84,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

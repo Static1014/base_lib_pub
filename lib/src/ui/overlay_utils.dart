@@ -10,7 +10,8 @@ import 'package:get/get.dart';
 /// Created by Static4u
 /// Date : 2023/4/12 17:36
 
-var defaultLoadingSize = min(Get.width / 3, 160).roundToDouble();
+final defaultLoadingContainerSize = min(Get.width / 4, 120).roundToDouble();
+const double defaultLoadingPbSize = 27;
 
 enum ToastLevel {
   normal, // 灰底白字
@@ -87,7 +88,7 @@ CancelFunc showLoading({
   TextOverflow msgOverflow = TextOverflow.ellipsis,
   TextStyle? msgStyle,
   double msgFontSize = 14,
-  double pbSize = 36,
+  double pbSize = defaultLoadingPbSize,
   Color pbColor = BaseColors.cWhite,
   double? contentWidth,
   double? contentHeight,
@@ -103,38 +104,73 @@ CancelFunc showLoading({
     toastBuilder: (func) {
       return builder != null
           ? builder.call(func)
-          : Container(
-              padding: contentPadding,
-              alignment: Alignment.center,
-              width: contentWidth ?? defaultLoadingSize,
-              height: contentHeight ?? defaultLoadingSize,
-              decoration: BoxDecoration(
-                color: contentBgColor,
-                borderRadius: BorderRadius.all(Radius.circular(contentCornerRadius)),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  mProgressIndicator(size: pbSize, color: pbColor),
-                  isEmptyOrNull(msg)
-                      ? const SizedBox.shrink()
-                      : Padding(
-                          padding: msgPadding,
-                          child: Text(
-                            msg ?? '',
-                            textAlign: msgAlign,
-                            maxLines: msgMaxLines,
-                            overflow: msgOverflow,
-                            style: msgStyle ?? TextStyle(color: msgColor, fontSize: msgFontSize),
-                          ),
-                        ),
-                ],
-              ),
+          : mLoadingView(
+              msg: msg,
+              msgColor: msgColor,
+              msgFontSize: msgFontSize,
+              msgAlign: msgAlign,
+              msgStyle: msgStyle,
+              msgMaxLines: msgMaxLines,
+              msgOverflow: msgOverflow,
+              msgPadding: msgPadding,
+              pbSize: pbSize,
+              pbColor: pbColor,
+              contentCornerRadius: contentCornerRadius,
+              contentBgColor: contentBgColor,
+              contentWidth: contentWidth,
+              contentHeight: contentHeight,
+              contentPadding: contentPadding,
             );
     },
   );
 }
+
+Widget mLoadingView({
+  String? msg,
+  Color msgColor = Colors.white,
+  double msgFontSize = 14,
+  TextAlign msgAlign = TextAlign.center,
+  TextStyle? msgStyle,
+  int msgMaxLines = 2,
+  TextOverflow msgOverflow = TextOverflow.ellipsis,
+  EdgeInsets msgPadding = const EdgeInsets.fromLTRB(8, 16, 8, 4),
+  double pbSize = defaultLoadingPbSize,
+  Color pbColor = BaseColors.cWhite,
+  double contentCornerRadius = 8,
+  Color contentBgColor = Colors.black54,
+  double? contentWidth,
+  double? contentHeight,
+  EdgeInsets contentPadding = const EdgeInsets.all(12),
+}) =>
+    Container(
+      padding: contentPadding,
+      alignment: Alignment.center,
+      width: contentWidth ?? defaultLoadingContainerSize,
+      height: contentHeight ?? defaultLoadingContainerSize,
+      decoration: BoxDecoration(
+        color: contentBgColor,
+        borderRadius: BorderRadius.all(Radius.circular(contentCornerRadius)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          mProgressIndicator(size: pbSize, color: pbColor),
+          isEmptyOrNull(msg)
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: msgPadding,
+                  child: Text(
+                    msg ?? '',
+                    textAlign: msgAlign,
+                    maxLines: msgMaxLines,
+                    overflow: msgOverflow,
+                    style: msgStyle ?? TextStyle(color: msgColor, fontSize: msgFontSize),
+                  ),
+                ),
+        ],
+      ),
+    );
 
 MDialog mShowDialog(Widget child, {String? id}) {
   return MDialog.builder(builder: (ctx, controller) => child, id: id)..show();
