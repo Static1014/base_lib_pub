@@ -54,8 +54,6 @@ class BaseTheme {
             onSecondary: onSecondary ?? BaseColors.cWhite,
             error: error,
             onError: onError ?? BaseColors.cWhite,
-            background: bgColor ?? BaseColors.cGrayLightBg,
-            onBackground: BaseColors.cFontGray,
             surface: surface ?? BaseColors.cWhite,
             onSurface: onSurface ?? BaseColors.cFontGray,
           ),

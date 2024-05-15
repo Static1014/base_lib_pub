@@ -1,3 +1,7 @@
+## 3.7.3
+
+1. upgrade flutter sdk to 3.22.0;
+
 ## 3.7.2
 
 1. color extension:

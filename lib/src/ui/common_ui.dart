@@ -269,7 +269,7 @@ Widget mText(
   Color? bgColor,
   TextStyle? style,
   String? semanticsLabel,
-      TextDecoration decoration = TextDecoration.none,
+  TextDecoration decoration = TextDecoration.none,
 }) {
   if (style != null) {
     return Text(
@@ -437,7 +437,7 @@ Widget mDivider({
   Color color = BaseColors.cTransparent,
   double height = 8,
 }) {
-  return Divider(
+  return Container(
     color: color,
     height: height,
   );
@@ -732,7 +732,7 @@ Widget mAvatar({
         Container(
           width: size,
           height: size,
-          decoration: BoxDecoration(shape: shape!, color: bgColor ?? Theme.of(ctx).colorScheme.background),
+          decoration: BoxDecoration(shape: shape!, color: bgColor ?? Theme.of(ctx).colorScheme.surface),
         ),
         SizedBox(
           width: size,
@@ -991,8 +991,8 @@ Widget mButton({
     builder: (context) => FilledButton(
       onPressed: onClick,
       style: ButtonStyle(
-        backgroundColor: bgColor?.toMaterialStatePropertyAll,
-        shape: MaterialStateProperty.all(shape ?? const StadiumBorder()),
+        backgroundColor: bgColor?.toWidgetStatePropertyAll,
+        shape: WidgetStateProperty.all(shape ?? const StadiumBorder()),
       ).merge(context.theme.filledButtonTheme.style),
       child: child ?? box,
     ),

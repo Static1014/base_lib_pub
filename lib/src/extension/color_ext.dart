@@ -57,8 +57,8 @@ extension ColorExt on Color {
     return MaterialColor(color.value, swatch);
   }
 
-  get toMaterialStatePropertyAll {
-    return MaterialStatePropertyAll<Color>(this);
+  get toWidgetStatePropertyAll {
+    return WidgetStatePropertyAll<Color>(this);
   }
 
   // 转十六进制字符

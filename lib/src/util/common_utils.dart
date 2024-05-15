@@ -55,8 +55,9 @@ Future<bool> clickBack({dynamic result, String? route}) async {
   } else {
     // 不能返回
     if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
-      //   // 一秒之内点击两次返回键，提示再次点击退出
+      // 一秒之内点击两次返回键，提示再次点击退出
       MyGet.lastTime = DateTime.now();
+      // 'xxxxx'.logE();
       toast(BaseTrs.exitOnDoubleClick.tr);
       return false;
     }

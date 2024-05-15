@@ -44,6 +44,7 @@ class BaseTrsClass {
   final noMore = "noMore";
   final loading = "loading";
   final retry = "retry";
+  final all = "all";
 
   // imgUtils
   final imgNull = "imgNull";
@@ -144,6 +145,7 @@ final baseEnUS = {
   BaseTrs.goTest: 'go Test Page',
   BaseTrs.exitOnDoubleClick: 'Double click to exit',
   BaseTrs.crash: 'Something Wrong',
+  BaseTrs.all: 'All',
   // 权限
   BaseTrs.permissionTipCamera: 'This function requires take shoot with camera, please grant before using.',
   BaseTrs.permissionTipStorage: 'This function requires reading photos, media content and files from the memory card, please grant before using.',
@@ -236,6 +238,7 @@ final baseZhCN = {
   BaseTrs.goTest: '打开测试页',
   BaseTrs.exitOnDoubleClick: '双击退出',
   BaseTrs.crash: '好像哪里出错了',
+  BaseTrs.all: '全部',
   // 权限
   BaseTrs.permissionTipStorage: '该功能需要读取存储卡中的照片、媒体内容和文件，请授权后再使用。',
   BaseTrs.permissionTipCamera: '该功能需要使用设备相机进行拍摄，请授权后再使用。',
