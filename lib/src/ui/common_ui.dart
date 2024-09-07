@@ -97,14 +97,14 @@ void onBuildFinished(FrameCallback firstFrameCallback, {FrameCallback? everyFram
 
 Widget mPopScope({
   bool? canPop,
-  PopInvokedCallback? onPopInvoked,
+  PopInvokedWithResultCallback? onPopInvokedWithResult,
   required Widget child,
   String? route,
 }) {
-  return PopScope(canPop: canPop ?? Nav.isPopEnable(route: route), onPopInvoked: onPopInvoked ?? defaultPopInvokedCallback, child: child);
+  return PopScope(canPop: canPop ?? Nav.isPopEnable(route: route), onPopInvokedWithResult: onPopInvokedWithResult ?? defaultPopInvokedCallback, child: child);
 }
 
-PopInvokedCallback defaultPopInvokedCallback = (didPop) {
+PopInvokedWithResultCallback defaultPopInvokedCallback = (didPop, result) {
   hideKeyboard();
   if (!didPop) {
     if (MyGet.lastTime == null || DateTime.now().difference(MyGet.lastTime!) > const Duration(seconds: 1)) {
@@ -122,7 +122,7 @@ Widget mRoot({
   required Widget child,
   String? route,
   bool? canPop,
-  PopInvokedCallback? popInvokedCallback,
+  PopInvokedWithResultCallback? popInvokedCallback,
   bool safeArea = true,
   bool safeTop = false,
   bool safeBottom = true,
@@ -151,7 +151,7 @@ Widget mRoot({
       ? cc
       : mPopScope(
           canPop: canPop,
-          onPopInvoked: popInvokedCallback,
+          onPopInvokedWithResult: popInvokedCallback,
           child: cc,
           route: route,
         );

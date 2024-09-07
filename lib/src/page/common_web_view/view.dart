@@ -42,7 +42,7 @@ class CommonWebViewPage extends StatelessWidget {
   final WebPageBuilder? pageBuilder;
 
   final bool popConfirm; // 关闭是否需要确认
-  final PopInvokedCallback? onPopConfirm; // 关闭确认回调
+  final PopInvokedWithResultCallback? onPopConfirm; // 关闭确认回调
   // 启动时是否清空缓存
   final bool clearCacheOnStart;
   final bool clearLocalStorageOnStart;
@@ -145,7 +145,7 @@ class CommonWebViewPage extends StatelessWidget {
                       title: title ?? '',
                       elevation: logic._scrollY.value ? 4 : 0,
                       backPressed: () {
-                        _buildPopConfirm()?.call(false);
+                        _buildPopConfirm()?.call(false, null);
                       },
                     ),
                   ),
@@ -245,11 +245,11 @@ class CommonWebViewPage extends StatelessWidget {
     );
   }
 
-  PopInvokedCallback? _buildPopConfirm() {
+  PopInvokedWithResultCallback? _buildPopConfirm() {
     MDialog? confirmDialog;
     return popConfirm
         ? (onPopConfirm ??
-            (didPop) async {
+            (didPop, result) async {
               if (!didPop) {
                 confirmDialog = mShowTip(
                   msg: BaseTrs.closePageConfirmTip.tr,

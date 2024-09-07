@@ -261,14 +261,18 @@ Future<File?> compressAndGetImageFile({required File imageFile, required String 
 }
 
 ///save network image to photo
-Future<bool> saveNetworkImageToPhoto(String url, {bool useCache = true}) async {
+Future<bool> saveNetworkImageToPhoto(String url, {String filename = 'bp_img', bool useCache = true}) async {
   if (kIsWeb) {
     return false;
   }
   final Uint8List? data = await getNetworkImageData(url, useCache: useCache);
   // var filePath = await ImagePickerSaver.saveFile(fileData: data);
   // return filePath != null && filePath != '';
-  final AssetEntity? imageEntity = await PhotoManager.editor.saveImage(data!, title: '保存到相册');
+  if (data == null) {
+    return false;
+  }
+  // return false;
+  final AssetEntity? imageEntity = await PhotoManager.editor.saveImage(data, filename: filename);
 
   return imageEntity != null;
 }

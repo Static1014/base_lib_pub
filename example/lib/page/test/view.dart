@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class TestPage extends StatelessWidget {
   final String? tag;
 
-  const TestPage({Key? key, this.tag}) : super(key: key);
+  const TestPage({super.key, this.tag});
 
   @override
   Widget build(BuildContext context) {
