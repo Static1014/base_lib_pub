@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 /// Date : 2023/4/12 17:36
 
 final defaultLoadingContainerSize = min(Get.width / 4, 120).roundToDouble();
-const double defaultLoadingPbSize = 27;
+const double defaultLoadingPbSize = 24;
 
 enum ToastLevel {
   normal, // 灰底白字
@@ -82,20 +82,20 @@ typedef LoadingBuilder = Widget Function(VoidCallback hide);
 CancelFunc showLoading({
   VoidCallback? onClose,
   String? msg,
-  Color msgColor = Colors.white,
-  TextAlign msgAlign = TextAlign.center,
-  int msgMaxLines = 2,
-  TextOverflow msgOverflow = TextOverflow.ellipsis,
+  Color? msgColor,
+  TextAlign? msgAlign,
+  int? msgMaxLines,
+  TextOverflow? msgOverflow,
   TextStyle? msgStyle,
-  double msgFontSize = 14,
-  double pbSize = defaultLoadingPbSize,
-  Color pbColor = BaseColors.cWhite,
+  double? msgFontSize,
+  double? pbSize,
+  Color? pbColor,
   double? contentWidth,
   double? contentHeight,
-  EdgeInsets contentPadding = const EdgeInsets.all(12),
-  EdgeInsets msgPadding = const EdgeInsets.fromLTRB(8, 20, 8, 4),
-  double contentCornerRadius = 8,
-  Color contentBgColor = Colors.black54,
+  EdgeInsets? contentPadding,
+  double? msgPadding,
+  double? contentCornerRadius,
+  Color? contentBgColor,
   LoadingBuilder? builder,
 }) {
   return BotToast.showCustomLoading(
@@ -106,20 +106,20 @@ CancelFunc showLoading({
           ? builder.call(func)
           : mLoadingView(
               msg: msg,
-              msgColor: msgColor,
-              msgFontSize: msgFontSize,
-              msgAlign: msgAlign,
+              msgColor: msgColor ?? Colors.white,
+              msgFontSize: msgFontSize ?? 12,
+              msgAlign: msgAlign ?? TextAlign.center,
               msgStyle: msgStyle,
-              msgMaxLines: msgMaxLines,
-              msgOverflow: msgOverflow,
-              msgPadding: msgPadding,
-              pbSize: pbSize,
-              pbColor: pbColor,
-              contentCornerRadius: contentCornerRadius,
-              contentBgColor: contentBgColor,
+              msgMaxLines: msgMaxLines ?? 2,
+              msgOverflow: msgOverflow ?? TextOverflow.ellipsis,
+              msgPadding: msgPadding ?? 12,
+              pbSize: pbSize ?? defaultLoadingPbSize,
+              pbColor: pbColor ?? Colors.white,
+              contentCornerRadius: contentCornerRadius ?? 8,
+              contentBgColor: contentBgColor ?? Colors.black54,
               contentWidth: contentWidth,
               contentHeight: contentHeight,
-              contentPadding: contentPadding,
+              contentPadding: contentPadding ?? const EdgeInsets.fromLTRB(6, 12, 6, 6),
             );
     },
   );
@@ -128,19 +128,19 @@ CancelFunc showLoading({
 Widget mLoadingView({
   String? msg,
   Color msgColor = Colors.white,
-  double msgFontSize = 14,
+  double msgFontSize = 12,
   TextAlign msgAlign = TextAlign.center,
   TextStyle? msgStyle,
   int msgMaxLines = 2,
   TextOverflow msgOverflow = TextOverflow.ellipsis,
-  EdgeInsets msgPadding = const EdgeInsets.fromLTRB(8, 16, 8, 4),
+  double msgPadding = 10,
+  EdgeInsets contentPadding = const EdgeInsets.fromLTRB(6, 12, 6, 6),
   double pbSize = defaultLoadingPbSize,
   Color pbColor = BaseColors.cWhite,
   double contentCornerRadius = 8,
   Color contentBgColor = Colors.black54,
   double? contentWidth,
   double? contentHeight,
-  EdgeInsets contentPadding = const EdgeInsets.all(12),
 }) =>
     Container(
       padding: contentPadding,
@@ -151,25 +151,23 @@ Widget mLoadingView({
         color: contentBgColor,
         borderRadius: BorderRadius.all(Radius.circular(contentCornerRadius)),
       ),
+      constraints: BoxConstraints(minHeight: defaultLoadingContainerSize, maxHeight: Get.width / 2),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          mProgressIndicator(size: pbSize, color: pbColor),
-          isEmptyOrNull(msg)
-              ? const SizedBox.shrink()
-              : Padding(
-                  padding: msgPadding,
-                  child: Text(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: isEmptyOrNull(msg)
+              ? [mProgressIndicator(size: pbSize, color: pbColor)]
+              : [
+                  mProgressIndicator(size: pbSize, color: pbColor),
+                  mDivider(height: msgPadding),
+                  Text(
                     msg ?? '',
                     textAlign: msgAlign,
                     maxLines: msgMaxLines,
                     overflow: msgOverflow,
                     style: msgStyle ?? TextStyle(color: msgColor, fontSize: msgFontSize),
                   ),
-                ),
-        ],
-      ),
+                ]),
     );
 
 MDialog mShowDialog(Widget child, {String? id}) {
