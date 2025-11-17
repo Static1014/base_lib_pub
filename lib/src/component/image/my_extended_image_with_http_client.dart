@@ -36,7 +36,7 @@ class MyExtendedImageWithHttpClient extends ExtendedImage {
     super.beforePaintImage,
     super.afterPaintImage,
     super.mode = ExtendedImageMode.none,
-    super.enableMemoryCache = true,
+    // super.enableMemoryCache = true,
     super.clearMemoryCacheIfFailed = true,
     super.onDoubleTap,
     super.initGestureConfigHandler,

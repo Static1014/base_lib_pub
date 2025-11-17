@@ -66,7 +66,7 @@ class BaseTheme {
         ),
       ),
       iconTheme: IconThemeData(color: iconColor ?? primaryColor),
-      cardTheme: CardTheme(color: cardColor ?? primaryColor, elevation: 2),
+      cardTheme: CardThemeData(color: cardColor ?? primaryColor, elevation: 2),
       scaffoldBackgroundColor: scaffoldBgColor ?? BaseColors.cGrayBgMiddle,
       appBarTheme: BaseTheme.defaultAppBarTheme.copyWith(
         color: appBarBgColor ?? BaseColors.cWhite,
@@ -99,7 +99,7 @@ class BaseTheme {
   }
 
   static final ThemeData defaultTheme = _createBaseTheme(BaseColors.cPrimaryColor);
-  static final AppBarTheme defaultAppBarTheme = createAppBarTheme(bgColor: BaseColors.cPrimaryColor, scrolledUnderElevation: 4);
+  static final AppBarThemeData defaultAppBarTheme = createAppBarTheme(bgColor: BaseColors.cPrimaryColor, scrolledUnderElevation: 4);
 
   /// 修正flutter 3.16下M2 -> M3样式的变化
   static ThemeData _createBaseTheme(
@@ -129,7 +129,7 @@ class BaseTheme {
         shape: const CircleBorder(),
       ),
       appBarTheme: defaultAppBarTheme,
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         dividerHeight: 0,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorColor: BaseColors.cFontWhite,
@@ -139,7 +139,7 @@ class BaseTheme {
     );
   }
 
-  static AppBarTheme createAppBarTheme({
+  static AppBarThemeData createAppBarTheme({
     required Color bgColor,
     Color? iconColor,
     TextStyle? titleTextStyle,

@@ -1,6 +1,6 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get_utils/get_utils.dart';
-import 'package:harmony_plugin/harmony_plugin.dart';
+// import 'package:harmony_plugin/harmony_plugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 /// Name: device_utils.dart
@@ -23,7 +23,7 @@ class _DeviceUtilsClass {
   }
 
   final DeviceInfoPlugin _plugin = DeviceInfoPlugin();
-  final HarmonyPlugin _harmonyPlugin = HarmonyPlugin();
+  // final HarmonyPlugin _harmonyPlugin = HarmonyPlugin();
 
   /// Android设备信息：
   /// harmony 4.0.0：
@@ -170,18 +170,19 @@ class _DeviceUtilsClass {
 
   Future<WebBrowserInfo?> get webBrowserInfo async => GetPlatform.isWeb ? _plugin.webBrowserInfo : null;
 
-  Future<bool> get isHarmonyOS => _harmonyPlugin.isHarmonyOS();
+  // Future<bool> get isHarmonyOS => _harmonyPlugin.isHarmonyOS();
 
-  Future<String> get harmonyVersion => _harmonyPlugin.getHarmonyVersion();
+  // Future<String> get harmonyVersion => _harmonyPlugin.getHarmonyVersion();
 
-  Future<bool> get isHarmonyPureMode => _harmonyPlugin.isHarmonyPureMode();
+  // Future<bool> get isHarmonyPureMode => _harmonyPlugin.isHarmonyPureMode();
 
   /// 设备名称
   Future<String> getPhoneDisplayName() async {
     if (GetPlatform.isAndroid) {
       AndroidDeviceInfo info = (await androidInfo)!;
       // HUAWEI NAM-AL00 on Harmony 4.0.0.115
-      return '${info.brand} ${info.model} on ${(await isHarmonyOS) ? 'Harmony ${await harmonyVersion}' : 'Android ${info.version.release}'}';
+      // return '${info.brand} ${info.model} on ${(await isHarmonyOS) ? 'Harmony ${await harmonyVersion}' : 'Android ${info.version.release}'}';
+      return '${info.brand} ${info.model} on Android ${info.version.release}';
     } else if (GetPlatform.isIOS) {
       IosDeviceInfo info = (await iosInfo)!;
       // iPhone 14 Pro Max on iOS 16.4

@@ -363,4 +363,7 @@ class MyExtendedImageProviderWithHttpClient extends ImageProvider<ExtendedNetwor
       chunkEvents,
     );
   }
+  
+  @override
+  WebHtmlElementStrategy get webHtmlElementStrategy => throw UnimplementedError();
 }
