@@ -2,6 +2,10 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        // Flutter 镜像
+        maven {
+            url "https://storage.flutter-io.cn/download.flutter.io"
+        }
     }
 }
 rootProject.buildDir = '../build'
@@ -10,10 +14,17 @@ subprojects {
     afterEvaluate {
         if (project.hasProperty('android')) {
             android {
+                compileSdkVersion 36
                 compileOptions {
                     sourceCompatibility JavaVersion.VERSION_17
                     targetCompatibility JavaVersion.VERSION_17
                 }
+            }
+        }
+        // 配置 Kotlin JVM 目标版本
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = '17'
             }
         }
     }

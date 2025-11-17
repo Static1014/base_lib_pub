@@ -24,7 +24,6 @@ if (flutterVersionName == null) {
 
 android {
     namespace 'com.example.base_lib_pub_example'
-    ndkVersion '27.0.12077973'
     kotlinOptions {
         jvmTarget = '17'
     }
